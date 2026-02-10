@@ -1,6 +1,6 @@
 {
   "name": "nirguna",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "Compile JavaScript to WASM and FASM",
@@ -33,14 +33,13 @@
     "@nirguna/bundler": "*",
     "@nirguna/cli-args": "*",
     "@nirguna/cli-help": "*",
-    "@nirguna/operator-fasm": "*",
     "@nirguna/plugin-bandler-fasm": "*",
-    "@nirguna/plugin-fasm": "*",
+    "@nirguna/plugin-fasm": "^1.0.0",
     "@nirguna/plugin-nirguna": "*",
     "@nirguna/plugin-nemesis": "*",
     "@nirguna/plugin-optimizer-fasm": "*",
     "@nirguna/plugin-optimizer-wasm": "*",
-    "@nirguna/plugin-wasm": "*",
+    "@nirguna/plugin-wasm": "^1.0.0",
     "@nirguna/runner-fasm": "*",
     "@nirguna/runner-wasm": "*",
     "@putout/babel": "^5.2.12",
@@ -66,6 +65,7 @@
     "putout"
   ],
   "devDependencies": {
+    "@nirguna/operator-fasm": "^1.0.0",
     "@putout/plugin-printer": "^7.1.1",
     "@putout/test": "^15.1.1",
     "c8": "^10.0.0",
@@ -98,7 +98,6 @@
     "#transformer-wasm": "./packages/transformer-wasm/transformer.js",
     "#transformer-fasm": "./packages/transformer-fasm/transformer.js",
     "#operator-wasm": "./packages/operator-wasm/index.js",
-    "#operator-fasm": "./externals/operator-fasm/index.ts",
     "#nirguna": "./lib/nirguna.js"
   },
   "license": "MIT",
