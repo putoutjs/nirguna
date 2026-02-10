@@ -1,7 +1,6 @@
 {
   "name": "@nirguna/plugin-fasm",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna plugin adds ability to optimize fasm",
@@ -31,7 +30,7 @@
     "madrun"
   ],
   "dependencies": {
-    "@nirguna/operator-fasm": "*"
+    "@nirguna/operator-fasm": "^1.0.0"
   },
   "devDependencies": {
     "@putout/plugin-remove-nested-blocks": "^9.1.0",

@@ -1,7 +1,6 @@
 {
   "name": "@nirguna/operator-fasm",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna plugin adds ability to transform Nemesis",

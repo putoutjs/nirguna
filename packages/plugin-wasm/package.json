@@ -1,11 +1,10 @@
 {
   "name": "@nirguna/plugin-wasm",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna plugin adds ability to optimize fasm",
-  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/plugin-fasm#readme",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/plugin-wasm#readme",
   "main": "lib/index.js",
   "release": false,
   "tag": false,
