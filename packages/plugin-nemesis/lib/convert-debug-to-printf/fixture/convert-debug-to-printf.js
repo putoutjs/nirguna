@@ -1,0 +1,2 @@
+debug(hello);
+debug('world');

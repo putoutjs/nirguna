@@ -1,0 +1,846 @@
+2026.02.08, v3.0.0
+
+fix:
+- 6f48834 nirguna: plugin-fasm: apply-types: multiple quotes
+- 26db527 nirguna: plugin-fasm: apply-types: template
+- d9a64c7 nirguna: cli-help: bundle first
+- 27d9836 nemesis: find_file: pop
+- 8413a28 nemesis: condition
+
+feature:
+- f66536f nirguna: plugin-fasm: apply-types: backslash
+- 29b01f8 nirguna: cli-help: output: bundle
+- 23c2f48 nirguna: cli-help: targets: asm/wast
+- 105b625 nirguna: printer-fasm: string-literal: improve
+- c58d11d drop support of node < 22
+- 3591a99 nirguna: @putout/plugin-printer v7.1.1
+- 84c7040 nirguna: @putout/plugin-esm v9.2.0
+- fab315c nirguna: v86 v0.5.319
+- cdaebc9 nirguna: update dependencies
+- e9c308e nemesis: gets
+- 96bcd68 @nirguna/plugin-fasm: extract-labele-blocks: nested
+
+2025.07.25, v2.13.3
+
+feature:
+- 7c0c12c @nirguna/plugin-fasm: extract-labele-blocks: nested
+
+2025.07.24, v2.13.2
+
+fix:
+- 4c4d3c1 @nirguna/plugin-fasm: convert-args-to-regs
+
+feature:
+- 6dd1438 @nirguna/operator-fasm: globals
+
+2025.07.23, v2.13.1
+
+feature:
+- ed31929 @nirguna/plugin-fasm: remove-useless-promise
+
+2025.07.22, v2.13.0
+
+feature:
+- 3980a88 @nirguna/operator-nemesis: add
+
+2025.07.22, v2.12.7
+
+feature:
+- 28cb12b @nirguna/plugin-fasm: convert-do-while-to-jnz: break
+- 9757627 @nirguna/plugin-nemesis: convert-find-first-to-int-0xff: add
+
+2025.07.20, v2.12.6
+
+feature:
+- 4fc2b36 nirguna: plugin-fasm: convert-if-to-jmp: or
+
+2025.07.20, v2.12.5
+
+feature:
+- 828cb35 @putout/plugin-fasm: convert-assign-to-move: constants
+- e2f186e @nirguna/transformer-fasm: remove-useless-operand: add
+
+2025.07.19, v2.12.4
+
+feature:
+- 5d2a9bb plugin-fasm: convert-if-to-jmp: logical
+
+2025.07.19, v2.12.3
+
+feature:
+- 37d096a @nirguna/plugin-nemesis: colors
+
+2025.07.19, v2.12.2
+
+fix:
+- 39c335c nemesis: boot
+
+2025.07.19, v2.12.1
+
+feature:
+- 3321bd1 nirguna: plugin-fasm: convert-while-to-jz
+
+2025.07.18, v2.12.0
+
+feature:
+- c1e341e nirguna: plugin-fasm: convert-while-to-jz
+- 31c7d80 nirguna: plugin-fasm: extract-labeled-block
+
+2025.07.17, v2.11.1
+
+feature:
+- 12ddc96 @nirguna/plugin-nemesis: convert-gets-to-0xff
+- cfb743f nemesis: sector: rm useless push
+
+2025.07.15, v2.11.0
+
+feature:
+- e7713d7 nirguna: include assembly
+
+2025.07.14, v2.10.3
+
+feature:
+- ca49e32 plugin-bundler-fasm: replace-section-code-with-functions: exclude start
+- f305e8f @nirguna/runner/fasm: externals
+
+2025.07.14, v2.10.2
+
+fix:
+- bffa9f5 @nirguna-plugin-fasm: convert-while-to-js: jz -> jnz
+
+2025.07.13, v2.10.1
+
+fix:
+- fbcf55d nirguna: runner-fasm: early return
+
+2025.07.13, v2.10.0
+
+feature:
+- 1da9fed nirguna: runner-fasm: add boot
+- 1c27a4f nirguna: nemesis: build floppy image
+
+2025.07.12, v2.9.0
+
+feature:
+- d98cffc @nirguna/format-floppy: add
+- 9dda9f1 @nirguna/format-floppy: add
+- 1cb5e1a plugin-fasm: switch-cmp-operands: add
+
+2025.07.11, v2.8.11
+
+feature:
+- 3adba0a @putout/plugin-optimizer-fasm: merge-one-byte-reg: exclude not mov
+- ca99add plugin-bandler-fasm: apply-debug: snake-case
+- 139a278 @putout/plugin-bundler-fasm: apply-debug: label
+
+2025.07.08, v2.8.10
+
+feature:
+- 799aeba nemesis: sector: improve logic
+
+2025.07.08, v2.8.9
+
+feature:
+- c1048b4 plugin-nemesis: convert-set-color-to-0xff
+
+2025.07.08, v2.8.8
+
+feature:
+- 937db3f plugin-bundler-fasm: apply-debug
+
+2025.07.07, v2.8.7
+
+feature:
+- 15ca622 nemesis: move out from npm
+
+2025.07.07, v2.8.6
+
+feature:
+- 075cc37 plugin-fasm: split-binary-expression: exclude constants
+
+2025.07.06, v2.8.5
+
+feature:
+- 2578175 plugin-fasm: extract-labeled-block: nested labels
+
+2025.07.05, v2.8.4
+
+feature:
+- 925f069 plugin-fasm: convert-while-to-jz: lodsb
+
+2025.07.05, v2.8.3
+
+feature:
+- 42f6ce4 plugin-fasm: convert-while-to-js: assing -> mov
+- b02d926 @putout/plugin-fasm: convert-while-to-jz: BinaryExpression
+
+2025.07.04, v2.8.2
+
+feature:
+- bb4d88a plugin-fasm: convert-while-to-js: get-stiring-length: simplify
+- 3b2ba8a nirguna: eslint-plugin-putout v28.0.0
+
+2025.06.29, v2.8.1
+
+feature:
+- 7310af0 nirguna: runner-wasm: local-set
+- 54b08ab plugin-wasm: convert-await-to-call: add
+
+2025.06.29, v2.8.0
+
+feature:
+- 1d124f6 plugin-wasm: convert-await-to-call: add
+
+2025.06.28, v2.7.5
+
+feature:
+- e284012 nirguna: sum
+
+2025.06.28, v2.7.4
+
+feature:
+- cc0e458 nirguna: plugin-optimizer-fasm: apply-lodsb
+- 59739ca runner-wasm: tests
+- 77e12ac @nirguna/test: add
+
+2025.06.27, v2.7.3
+
+feature:
+- 58a9f51 nirguna: plugin-fasm: convert-linux-write-to-syscall
+
+2025.06.27, v2.7.2
+
+feature:
+- a7f3419 nirguna: bundler-fasm: add use directive
+
+2025.06.26, v2.7.1
+
+feature:
+- 525bdc1 nirguna: improve support of x64
+
+2025.06.26, v2.7.0
+
+feature:
+- b76ee18 nirguna: emulator: ureg
+- 5c0fa7e nirguna: emulator-fasm: bundle
+
+2025.06.25, v2.6.4
+
+fix:
+- 01809f6 nirguna: nemesis
+
+2025.06.24, v2.6.3
+
+feature:
+- b05fb4c nirguna: plugin-fasm: convert-arguments-to-registers
+
+2025.06.23, v2.6.2
+
+feature:
+- 6156f74 nirguna: plugin-fasm: convert-arguments-to-registers: add esp -> ret size
+- 8095442 nemesis: find-file
+- 2c11137 @nirguna/plugin-fasm: convert-const-to-equ
+- c3c694e plugin-fasm: convet-do-while-to-jnz: false
+
+2025.06.23, v2.6.1
+
+feature:
+- dd61391 nirguna: plugin-fasm: convert-do-while-to-jnz: true
+- 8afcc92 nirguna: plugin-fasm: apply-registers
+- e6fbfd1 nirguna: plugin-nemesis: convert-read-sector-to-int-0xff
+
+2025.06.22, v2.6.0
+
+feature:
+- 6608917 nirguna: plugin-nemesis: convert-read-sector-to-int-0xff
+- 70ef92a nirguna: improve error handling
+- ebaa93e nirguna: add ability to log
+- ac72c23 nirguna: add ability to log
+
+2025.06.21, v2.5.5
+
+feature:
+- ccc0e5e nirguna: convert-assign-to-or: add
+
+2025.06.21, v2.5.4
+
+fix:
+- 01babcc nirguna: plugin-nemesis: convert-printf-to-int-0xff
+
+2025.06.21, v2.5.3
+
+feature:
+- 3c48c0e nirguna: plugin-convert-assign-to-and
+
+2025.06.20, v2.5.2
+
+feature:
+- 0575e5b nirguna: fasm: in/out
+- 11971c0 nirguna: min-max-col-line
+
+2025.06.19, v2.5.1
+
+fix:
+- 61dcaed nirguna: plugin-optimizer-fasm: join-one-byte-registers
+
+2025.06.19, v2.5.0
+
+feature:
+- 70681d0 nirguna: join-one-byte-registers
+- 06f8dd5 replace-section-data-with-let: add
+
+2025.06.19, v2.4.6
+
+feature:
+- 3154976 nirguna: remove-useless-xchg
+- d7cfe9f nirguna: preserve al before call
+
+2025.06.19, v2.4.5
+
+feature:
+- ec7ed97 nirguna: fasm: type
+- 786fba7 nirguna: nemesis: external
+
+2025.06.17, v2.4.4
+
+feature:
+- a26bcc6 nirguna: plugin-bundler: replace-section-code-with-functions
+
+2025.06.17, v2.4.3
+
+feature:
+- e615b08 nirguna: move iret to int-table
+
+2025.06.16, v2.4.2
+
+feature:
+- 229ffe0 nirguna: plugin-nemesis: add
+- 9177e26 nirguna: read config
+- ac1bc22 nirguna: readConfig: add
+
+2025.06.15, v2.4.1
+
+feature:
+- 26ba4a6 nirguna: plugin-fasm: move-equ-to-bottom
+
+2025.06.15, v2.4.0
+
+feature:
+- 94a2319 @putout/plugin-fasm: convert-do-while-to-jnz: continue
+
+2025.06.15, v2.3.11
+
+feature:
+- df45154 nirguna: split-assign-await-with-assign-eax
+
+2025.06.14, v2.3.10
+
+feature:
+- 43c4267 plugin-fasm: convert-if-to-jmp: nested labels
+- 699277b nirguna: apply-function-declaration
+
+2025.06.14, v2.3.9
+
+feature:
+- 7b96723 nirguna: plugin-fasm: convert-return-to-eax
+
+2025.06.11, v2.3.8
+
+feature:
+- 5300d47 plugin-fasm: convert-function-to-label: ret
+
+2025.06.10, v2.3.7
+
+feature:
+- 233b0da plugin-fasm: split-stack-operations: label
+
+2025.06.09, v2.3.6
+
+feature:
+- 7979d17 nirguna: plugin-fasm: convert-if-to-jmp: rm unused
+- ddcb9f7 nirguna: convert-if-to-jmp: counter
+- 6807d1b nirguna: printer-fasm: assignment-expression
+
+2025.06.09, v2.3.5
+
+feature:
+- f1f5b29 @putout/plugin-optimizer-fasm: remove-useless-ret: iret
+
+2025.06.08, v2.3.4
+
+feature:
+- 824aae6 nirguna: plugin-optimizer-fasm: remove-useless-jmp: add
+
+2025.06.08, v2.3.3
+
+feature:
+- 0490645 nirguna: replace-section-code-with-functions
+
+2025.06.07, v2.3.2
+
+feature:
+- 40d3439 nirguna: section: imports
+- 2111a06 nirguna: fasm: import
+
+2025.06.07, v2.3.1
+
+fix:
+- f98b52b bin: exit code
+
+feature:
+- 921a633 nirguna: plugin-optimizer-fasm: convert-mov-to-xor: exclude 8, 16 bit, when assign 1
+
+2025.06.06, v2.3.0
+
+feature:
+- 2d8c04b @putout/plugin-optimizer-fasm: remove-useless-nop: no next
+- a863c9b plugin-optimizer-fasm: remove-useless-nop
+
+2025.06.06, v2.2.27
+
+feature:
+- 07ee976 nirguna: plugin-fasm: convert-do-while-to-jnz: not
+
+2025.06.05, v2.2.26
+
+feature:
+- d6f81c3 nirguna: plugin-fasm: add-label-prefix: exclude MemberExpression
+- 9b586ae do-while
+
+2025.06.05, v2.2.25
+
+feature:
+- 1e5a84e plugin-fasm: convert-bios-read-sector: pointer
+
+2025.06.04, v2.2.24
+
+feature:
+- edf1b6c nirguna: plugin-fasm: convert-ternary-to-if: add
+
+2025.06.04, v2.2.23
+
+feature:
+- 305a6fa plugin-fasm: convert-bios-read-sector-to-int-13: args
+
+2025.06.04, v2.2.22
+
+feature:
+- e85f23e nirguna: convert-bios-read-sector-to-int-13: assign
+
+2025.06.04, v2.2.21
+
+feature:
+- 3f16912 plugin-fasm: convert-strncmp-to-repe-cmpsb: add
+
+2025.06.04, v2.2.20
+
+feature:
+- 5707486 plugin-fasm: convert-if-to-jmp: no-block
+
+2025.06.04, v2.2.19
+
+feature:
+- a619346 nirguna: plugin-fasm: convert-bios-reboot-to-jmp-far
+
+2025.06.03, v2.2.18
+
+feature:
+- c7f85aa plugin-optimizer-fasm: convert-mov-to-xor: one byte registers
+
+2025.06.03, v2.2.17
+
+feature:
+- c63dcbc nirguna: @putout/printer v15.0.0
+- d220365 nirguna: @putout/babel v4.0.1
+
+2025.05.30, v2.2.16
+
+feature:
+- 7cc5003 nirguna: optimizer-fasm: remove-useless-condition
+
+2025.05.30, v2.2.15
+
+feature:
+- d304ae7 nirguna: optimizer-fasm: remove-useless-ret
+
+2025.05.30, v2.2.14
+
+feature:
+- e43bbdf nirguna: plugin-optimizer-fasm: join-one-bye-registers: xor
+
+2025.05.30, v2.2.13
+
+feature:
+- 8ffb771 plugin-optimizer-fasm: join-one-bite-registers-assign
+
+2025.05.29, v2.2.12
+
+feature:
+- 6de9537 plugin-fasm: convert-bios-read-sector-to-int-13: clc
+
+2025.05.29, v2.2.11
+
+feature:
+- 14e4bcd nirguna: taget: asm
+
+2025.05.29, v2.2.10
+
+fix:
+- d7becc6 plugin-fasm: convert-bios-read-sector-to-int-13: clc
+
+2025.05.29, v2.2.9
+
+feature:
+- e1a5984 nirguna: plugin-optimizer-fasm: convert-js-to-jmp: test
+
+2025.05.28, v2.2.8
+
+fix:
+- 2320d31 nirguna: boot
+
+feature:
+- 815fac6 nirguna: yargs-parser v22.0.0
+
+2025.05.28, v2.2.7
+
+fix:
+- bcba6d7 rm loop
+
+feature:
+- b7853b7 nirguna: plugin-optimizer-fasm: jmp far
+- d5e20d2 nirguna: remove-useless-ret
+
+2025.05.28, v2.2.6
+
+feature:
+- a8a8f0c nirguna: if
+
+2025.05.28, v2.2.5
+
+feature:
+- 861998e nirguna: getStringLength
+
+2025.05.27, v2.2.4
+
+feature:
+- b8fece2 nirguna: do-while
+
+2025.05.27, v2.2.3
+
+feature:
+- 4540488 nirguna: bios.readChar: add
+
+2025.05.27, v2.2.2
+
+feature:
+- e765b9c bios.printLine
+
+2025.05.27, v2.2.1
+
+feature:
+- 8f9e144 nirguna: await fn -> call(fn)
+
+2025.05.26, v2.2.0
+
+fix:
+- 88c811b bundler
+
+feature:
+- 3d9899b nirguna: bios.clearScreen(): add
+- 0de285b nirguna: fasm: boot
+- 3336d28 nirguna: eslint-plugin-putout v27.0.0
+
+2025.05.25, v2.1.13
+
+feature:
+- 9170dee plugin-optimizer-wasm: apply-eqz: add
+
+2025.05.23, v2.1.12
+
+feature:
+- 43cb3a4 nirguna: bundler
+
+2025.05.23, v2.1.11
+
+fix:
+- 2d0a92f cli-args: validate-args: no file found
+
+2025.05.23, v2.1.10
+
+feature:
+- c38e45f nirguna: plugin-fasm: convert-function-to-label: useless stack operations
+
+2025.05.23, v2.1.9
+
+feature:
+- 560486d nirguna: plugin-fasm: convert-if-to-jmp
+
+2025.05.23, v2.1.8
+
+fix:
+- d2b08a9 nirguna: plugin-fasm: convert-if-to-jmp
+
+2025.05.23, v2.1.7
+
+feature:
+- ca5ba79 nirguna: printer-wasm: return
+
+2025.05.22, v2.1.6
+
+fix:
+- 5a637b4 plugin-wasm: apply-type-to-if
+
+2025.05.22, v2.1.5
+
+feature:
+- a9d5449 @putout/plugin-optimizer-wasm: remove-useles-ret
+
+2025.05.22, v2.1.4
+
+feature:
+- c2341d1 nirguna: plugin-optimizer: convert-jz-to-jmp
+
+2025.05.22, v2.1.3
+
+feature:
+- f88e473 nirguna: plugin-fasm: else
+
+2025.05.22, v2.1.2
+
+feature:
+- b5675c0 nirguna: remove-useless-if
+
+2025.05.22, v2.1.1
+
+feature:
+- b559718 nirguna: if
+
+2025.05.21, v2.1.0
+
+feature:
+- 9e1d52b nirguna: fasm: if
+
+2025.05.21, v2.0.43
+
+feature:
+- 6a2536b nirguna: wasm: if expression
+
+2025.05.21, v2.0.42
+
+feature:
+- e7fc3a7 nirguna: printer: wasm: else
+
+2025.05.21, v2.0.41
+
+feature:
+- c1043c4 nirguna: plugin-optimizer-wasm: remove-useless-if: add
+
+2025.05.20, v2.0.40
+
+feature:
+- 5c51e85 nirguna: plugin-wasm: if
+
+2025.05.19, v2.0.39
+
+feature:
+- 54825f9 nirguna: printer-wasm: if: then
+
+2025.05.19, v2.0.38
+
+feature:
+- 7f238dd nirguna: printer-wasm: return
+
+2025.05.19, v2.0.37
+
+feature:
+- 117389a nirguna: plugin-optimizer-wasm: remove-useless-return
+
+2025.05.19, v2.0.36
+
+feature:
+- c5fd706 nirguna: plugin-wasm: remove-useless-return
+
+2025.05.18, v2.0.35
+
+feature:
+- 4482f11 plugin-wasm: apply-types: return
+
+2025.05.18, v2.0.34
+
+feature:
+- f8811ab plugin-wasm: apply-eq: add
+
+2025.05.18, v2.0.33
+
+feature:
+- d88a379 nirguna: plugin-wasm: apply-i32-const
+- 05e47a5 cli-help: add
+
+2025.05.16, v2.0.32
+
+feature:
+- e6019c2 cli-args: add
+
+2025.05.16, v2.0.31
+
+feature:
+- f2b3c10 nirguna: plugin-optimizer-fasm: cdq
+
+2025.05.16, v2.0.30
+
+feature:
+- 4f32ba4 nirguna: optimized: add
+
+2025.05.15, v2.0.29
+
+feature:
+- 991aa14 nirguna: wasm: memory
+- 0e810f1 nirguna: wasm: memory
+- de618a8 plugin-wasm: apply-data-address-type
+
+2025.05.15, v2.0.29
+
+feature:
+- 04a4eba nirguna: wasm: memory
+- de618a8 plugin-wasm: apply-data-address-type
+
+2025.05.15, v2.0.28
+
+feature:
+- 78de649 nirguna: data
+
+2025.05.14, v2.0.27
+
+feature:
+- 0f6d345 nirguna: bitness
+
+2025.05.14, v2.0.26
+
+fix:
+- bb4de39 nirguna: dump
+
+2025.05.14, v2.0.25
+
+fix:
+- 5aaff5a nirguna: dump
+
+2025.05.14, v2.0.24
+
+feature:
+- 91f482a nirguna: wasm: write
+
+2025.05.14, v2.0.23
+
+feature:
+- c55efbe nirguna: printer-wasm: is-wasm-type
+
+2025.05.14, v2.0.22
+
+fix:
+- 8e9ac92 nirguna: printer-wasm: indent
+
+2025.05.14, v2.0.21
+
+fix:
+- 9ea01ab nirguna: plugin-wasm: apply-types
+
+2025.05.14, v2.0.20
+
+fix:
+- 106a9b5 nirguna: plugin-wasm: convert-const-to-local
+
+2025.05.14, v2.0.19
+
+feature:
+- 50eac47 nirguna: plugin-wasm: move-local-on-top
+- ef6a811 nirguna: @putout/plugin-remove-nested-blocks v9.0.0
+
+2025.05.14, v2.0.18
+
+feature:
+- 900c11c nirguna: plugin-wasm: local.set
+- fb8cf79 bin: RAW
+
+2025.05.13, v2.0.17
+
+feature:
+- 67d2a52 nirguna: fasm: add-label-prefix
+
+2025.05.13, v2.0.16
+
+feature:
+- 5451399 nirguna: fn
+
+2025.05.13, v2.0.15
+
+feature:
+- a44417b nirguna: plugin-fasm: function -> label
+
+2025.05.12, v2.0.14
+
+feature:
+- 1cc3556 nirguna: bundle: preserve labels
+
+2025.05.11, v2.0.13
+
+feature:
+- 18e28b9 nirguna: use rollup instead of esbuild
+- 5eb2a5f nirguna: fasm: apply-inc
+
+2025.05.11, v2.0.12
+
+feature:
+- 6ac2072 nirguna: fasm: apply-inc
+
+2025.05.11, v2.0.11
+
+feature:
+- a01cd16 nirguna: fasm
+
+2025.05.10, v2.0.10
+
+feature:
+- 147e1d5 nirguna: fash: label
+
+2025.05.09, v2.0.9
+
+feature:
+- 828885c nirguna: plugin-fasm: convert-dec-to-hex
+
+2025.05.09, v2.0.8
+
+feature:
+- 2620673 nirguna: improve bundle support
+
+2025.05.09, v2.0.7
+
+feature:
+- 8f46f13 nirguna: transform-wasm: inline-export
+- d9e46c2 nirguna: esbuild: add
+- 935ac70 ishara: plugins
+- 44fb512 nirguna: fasm
+
+2025.05.06, v2.0.6
+
+feature:
+- 05da434 nirguna: binary
+
+2025.05.06, v2.0.5
+
+feature:
+- 494fe12 nirguna: wasm: add
+
+2025.05.05, v2.0.4
+
+feature:
+- 3ab6443 nirguna: apply-function-declaration
+
+2025.05.05, v2.0.3
+
+feature:
+- 999f8d4 translate: signature
+
+2025.05.01, v2.0.2
+
+feature:
+- 943c1cb nirguna: operator-wast

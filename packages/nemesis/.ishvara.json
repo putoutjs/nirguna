@@ -1,0 +1,13 @@
+{
+    "external": [
+        "@nirguna/operator-nemesis"
+    ],
+    "rules": {
+        "@nirguna/plugin-nemesis/convert-debug-to-printf": ["on", {
+            "color": 7
+        }]
+    },
+    "plugins": [
+        "@nirguna/plugin-nemesis"
+    ]
+}

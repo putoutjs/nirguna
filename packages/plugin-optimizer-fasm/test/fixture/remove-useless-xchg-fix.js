@@ -1,0 +1,1 @@
+xchg(eax, ebx);

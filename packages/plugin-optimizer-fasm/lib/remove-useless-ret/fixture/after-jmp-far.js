@@ -1,0 +1,2 @@
+jmp.far('0xFFFF:0x0000');
+ret();

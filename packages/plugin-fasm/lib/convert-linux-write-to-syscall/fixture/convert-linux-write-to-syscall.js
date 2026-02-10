@@ -1,0 +1,4 @@
+linux.write({
+    message,
+    length,
+});

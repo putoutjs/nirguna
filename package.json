@@ -1,0 +1,54 @@
+{
+  "name": "root",
+  "private": "true",
+  "type": "module",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "Compile JavaScript to WASM",
+  "homepage": "https://github.com/putoutjs/nirguna",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/putoutjs/nirguna.git"
+  },
+  "scripts": {
+    "wisdom": "madrun wisdom",
+    "test": "madrun test",
+    "test:all": "madrun test:all",
+    "watch:test": "madrun watch:test",
+    "lint": "madrun lint",
+    "fresh:lint": "madrun fresh:lint",
+    "lint:fresh": "madrun lint:fresh",
+    "fix:lint": "madrun fix:lint",
+    "coverage": "madrun coverage",
+    "report": "madrun report",
+    "build:boot": "madrun build:boot",
+    "build:boot:fasm": "madrun build:boot:fasm",
+    "build:boot:asm": "madrun build:boot:asm",
+    "build:nemesis": "madrun build:nemesis",
+    "build:nemesis:asm": "madrun build:nemesis:asm",
+    "build:nemesis:fasm": "madrun build:nemesis:fasm"
+  },
+  "dependencies": {},
+  "keywords": [
+    "putout"
+  ],
+  "devDependencies": {
+    "@nirguna/plugin-nemesis": "*",
+    "nirguna": "*",
+    "c8": "^10.0.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-putout": "^30.0.2",
+    "madrun": "^12.1.3",
+    "redlint": "^5.7.0",
+    "supertape": "^12.4.0"
+  },
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

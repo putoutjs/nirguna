@@ -1,0 +1,3 @@
+nemesis.setColor({
+    color: 'yellow',
+});

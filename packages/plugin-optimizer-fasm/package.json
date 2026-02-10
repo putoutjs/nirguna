@@ -1,0 +1,55 @@
+{
+  "name": "@nirguna/plugin-optimizer-fasm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "🐊nirguna plugin adds ability to optimize fasm",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/plugin-optimizer-fasm#readme",
+  "main": "lib/index.js",
+  "release": false,
+  "tag": false,
+  "changelog": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderaiser/putout.git"
+  },
+  "scripts": {
+    "test": "madrun test",
+    "watch:test": "madrun watch:test",
+    "lint": "madrun lint",
+    "fresh:lint": "madrun fresh:lint",
+    "lint:fresh": "madrun lint:fresh",
+    "fix:lint": "madrun fix:lint",
+    "coverage": "madrun coverage",
+    "report": "madrun report"
+  },
+  "keywords": [
+    "putout",
+    "putout-plugin",
+    "plugin",
+    "madrun"
+  ],
+  "dependencies": {
+    "@nirguna/operator-fasm": "*"
+  },
+  "devDependencies": {
+    "@putout/test": "^15.1.1",
+    "c8": "^10.0.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-n": "^17.0.0",
+    "eslint-plugin-putout": "^30.0.2",
+    "madrun": "^12.1.3",
+    "nodemon": "^3.0.1"
+  },
+  "peerDependencies": {
+    "putout": ">=41"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

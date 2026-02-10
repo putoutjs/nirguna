@@ -1,0 +1,20 @@
+{
+    "skipFull": false,
+    "check-coverage": false,
+    "all": true,
+    "exclude": [
+        "**/bin",
+        "**/example",
+        "*.config.js",
+        "**/.*",
+        "coverage",
+        "**/fixture",
+        "**/*.config.*",
+        "**/printer-*",
+        "**/nemesis"
+    ],
+    "branches": 100,
+    "lines": 100,
+    "functions": 100,
+    "statements": 100
+}

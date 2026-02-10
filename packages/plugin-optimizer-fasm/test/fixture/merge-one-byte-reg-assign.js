@@ -1,0 +1,21 @@
+mov(al, 0);
+mov(ah, 0);
+mov(ah, 0);
+mov(al, 0);
+mov(bl, 0);
+mov(bh, 0);
+mov(bh, 0);
+mov(bl, 0);
+mov(cl, 0);
+mov(ch, 0);
+mov(ch, 0);
+mov(cl, 0);
+mov(dl, 0);
+mov(dh, 0);
+
+mov(dh, 0);
+mov(dl, 0);
+mov(al, 0xff);
+mov(ah, 0xff);
+mov(x, 0);
+mov(x, 0);

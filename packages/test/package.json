@@ -1,0 +1,61 @@
+{
+  "name": "@nirguna/test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "🐊nirguna test",
+  "homepage": "https://github.com/coderaiser/putout/tree/master/packages/plugin-madrun#readme",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "release": false,
+  "tag": false,
+  "changelog": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderaiser/putout.git"
+  },
+  "scripts": {
+    "test": "madrun test",
+    "watch:test": "madrun watch:test",
+    "lint": "madrun lint",
+    "fresh:lint": "madrun fresh:lint",
+    "lint:fresh": "madrun lint:fresh",
+    "fix:lint": "madrun fix:lint",
+    "coverage": "madrun coverage",
+    "report": "madrun report"
+  },
+  "dependencies": {
+    "@nirguna/bundler": "*",
+    "@putout/babel": "^5.2.12",
+    "nirguna": "*",
+    "just-kebab-case": "^4.2.0",
+    "supertape": "^12.4.0",
+    "try-catch": "^4.0.9"
+  },
+  "keywords": [
+    "putout",
+    "putout-plugin",
+    "plugin",
+    "madrun"
+  ],
+  "devDependencies": {
+    "@putout/eslint-flat": "^4.0.0",
+    "@putout/plugin-nodejs": "*",
+    "@putout/plugin-remove-unused-expressions": "*",
+    "c8": "^10.0.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-n": "^17.0.0",
+    "eslint-plugin-putout": "^30.0.2",
+    "madrun": "^12.1.3",
+    "nodemon": "^3.0.1"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

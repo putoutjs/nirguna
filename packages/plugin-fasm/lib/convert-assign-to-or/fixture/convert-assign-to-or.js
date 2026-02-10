@@ -1,0 +1,1 @@
+al |= [sec_quantity];

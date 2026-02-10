@@ -1,0 +1,32 @@
+{
+    "printer": ["putout", {
+        "semantics": {
+            "maxElementLengthInOneLine": 100
+        }
+    }],
+    "match": {
+        "{test,*.spec.*}": {
+            "nodejs/declare": "on",
+            "tape/remove-skip": "off"
+        },
+        "lib": {
+            "esm/merge-duplicate-imports-join": "off",
+            "conditions/apply-comparison-order": "off",
+            "apply-arrow": "off",
+            "declare": "off",
+            "extract-sequence-expressions": "off",
+            "assignment/convert-to-declaration": "off",
+            "labels/remove-unuse": "off",
+            "nodejs/declare": "off",
+            "putout": "off",
+            "remove-unused-expressions": "off",
+            "variables/remove-unused": "off",
+            "typescript/remove-useless-types-from-constants": "off",
+            "declare-before-reference": "off",
+            "promises/remove-useless-await": "off",
+            "promises/remove-useless-async": "off",
+            "variables/remove-useless-rename": "off",
+            "return/remove-useless": "off"
+        }
+    }
+}

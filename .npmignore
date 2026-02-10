@@ -1,0 +1,14 @@
+nemesis
+fixture
+external/nemesis
+external/plugin-nemesis
+external/operator-nemesis
+example
+.*
+test
+yarn-error.log
+
+coverage
+eslint.config.*
+*.config.*
+*.spec.*
