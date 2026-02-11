@@ -30,9 +30,9 @@
     "build:nemesis:fasm": "madrun build:nemesis:fasm"
   },
   "dependencies": {
-    "@nirguna/bundler": "*",
+    "@nirguna/bundler": "^1.0.0",
     "@nirguna/cli-args": "*",
-    "@nirguna/cli-help": "*",
+    "@nirguna/cli-help": "^1.0.0",
     "@nirguna/plugin-bandler-fasm": "*",
     "@nirguna/plugin-fasm": "^1.0.0",
     "@nirguna/plugin-nirguna": "*",

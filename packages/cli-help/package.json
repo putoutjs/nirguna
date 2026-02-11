@@ -1,5 +1,6 @@
 {
   "name": "@nirguna/cli-help",
+  "version": "1.0.0",
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "Compile JavaScript to WASM",
@@ -17,40 +18,13 @@
     "lint:fresh": "madrun lint:fresh",
     "fix:lint": "madrun fix:lint",
     "coverage": "madrun coverage",
-    "report": "madrun report",
-    "build:boot": "madrun build:boot",
-    "build:boot:fasm": "madrun build:boot:fasm",
-    "build:boot:asm": "madrun build:boot:asm",
-    "build:nemesis": "madrun build:nemesis",
-    "build:nemesis:asm": "madrun build:nemesis:asm",
-    "build:nemesis:fasm": "madrun build:nemesis:fasm"
+    "report": "madrun report"
   },
-  "dependencies": {
-    "@nirguna/bundler": "*",
-    "@nirguna/operator-fasm": "*",
-    "@putout/babel": "^5.2.12",
-    "@putout/plugin-esm": "^4.5.0",
-    "@putout/plugin-remove-nested-blocks": "^9.0.0",
-    "@putout/printer": "^15.0.0",
-    "@typescript-eslint/typescript-estree": "^8.32.1",
-    "chalk": "^5.4.1",
-    "fasm.js": "^1.0.7",
-    "hexdump-nodejs": "^0.1.0",
-    "iced-x86": "^1.21.0",
-    "putout": "^40.1.9",
-    "try-catch": "^4.0.9",
-    "try-to-catch": "^4.0.5",
-    "typescript": "^5.8.3",
-    "wabt": "^1.0.37",
-    "yargs-parser": "^22.0.0"
-  },
+  "dependencies": {},
   "keywords": [
     "putout"
   ],
   "devDependencies": {
-    "@nirguna/test": "*",
-    "@putout/plugin-printer": "^5.0.0",
-    "@putout/test": "^15.1.1",
     "c8": "^10.0.0",
     "eslint": "^10.0.0",
     "eslint-plugin-n": "^17.0.0",

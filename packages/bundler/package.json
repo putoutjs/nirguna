@@ -1,11 +1,10 @@
 {
   "name": "@nirguna/bundler",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna bundler",
-  "homepage": "https://github.com/coderaiser/putout/tree/master/packages/plugin-madrun#readme",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/bundler#readme",
   "exports": {
     ".": "./lib/bundler.js",
     "./prepare-error": "./lib/prepare-error.js"
@@ -15,7 +14,7 @@
   "changelog": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coderaiser/putout.git"
+    "url": "git+https://github.com/putoutjs/bundler.git"
   },
   "scripts": {
     "test": "madrun test",
@@ -40,9 +39,6 @@
     "madrun"
   ],
   "devDependencies": {
-    "@putout/eslint-flat": "^4.0.0",
-    "@putout/plugin-nodejs": "*",
-    "@putout/plugin-remove-unused-expressions": "*",
     "c8": "^10.0.0",
     "eslint": "^10.0.0",
     "eslint-plugin-n": "^17.0.0",
