@@ -37,7 +37,7 @@
     "@nirguna/plugin-fasm": "^1.0.0",
     "@nirguna/plugin-nirguna": "*",
     "@nirguna/plugin-nemesis": "*",
-    "@nirguna/plugin-optimizer-fasm": "*",
+    "@nirguna/plugin-optimizer-fasm": "^1.0.0",
     "@nirguna/plugin-optimizer-wasm": "*",
     "@nirguna/plugin-wasm": "^1.0.0",
     "@nirguna/runner-fasm": "*",

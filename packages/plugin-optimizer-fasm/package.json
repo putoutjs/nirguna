@@ -1,7 +1,6 @@
 {
   "name": "@nirguna/plugin-optimizer-fasm",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna plugin adds ability to optimize fasm",
@@ -12,7 +11,7 @@
   "changelog": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coderaiser/putout.git"
+    "url": "git+https://github.com/putoutjs/nirguna.git"
   },
   "scripts": {
     "test": "madrun test",
@@ -31,7 +30,7 @@
     "madrun"
   ],
   "dependencies": {
-    "@nirguna/operator-fasm": "*"
+    "@nirguna/operator-fasm": "^1.0.0"
   },
   "devDependencies": {
     "@putout/test": "^15.1.1",

@@ -1,4 +1,4 @@
-## putout-plugin-fasm
+## putout-plugin-optimizer-fasm
 
 Transforms:
 
