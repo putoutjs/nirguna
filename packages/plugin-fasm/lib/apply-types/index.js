@@ -76,4 +76,3 @@ function convert({__b, __c}) {
     
     return `__a.${type} = __c`;
 }
-

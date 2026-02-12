@@ -39,4 +39,3 @@ test('nirguna: translator-wasm: translate: places', async (t) => {
     t.deepEqual(places, expected);
     t.end();
 });
-

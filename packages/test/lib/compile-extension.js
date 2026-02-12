@@ -67,4 +67,3 @@ export const compileExtension = (dir, {run, target, config}) => ({fail, equal}) 
     
     return equal(result, expected);
 };
-

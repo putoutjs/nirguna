@@ -22,9 +22,7 @@ test('nirguna: asm: config', async (t) => {
     const [result] = await compile(source, {
         target: 'asm',
         config: {
-            plugins: [
-                'variables',
-            ],
+            plugins: ['variables'],
         },
     });
     

@@ -9,7 +9,6 @@
 [DeepScanURL]: https://deepscan.io/dashboard#view=project&tid=16903&pid=20211&bid=545558
 [DeepScanIMGURL]: https://deepscan.io/api/teams/16903/projects/20211/branches/545558/badge/grade.svg
 
-
 ![nirguna](https://github.com/putoutjs/nirguna/blob/master/images/nirguna.jpg)
 
 > Nirguna (Sanskrit: निर्गुण) refers to the supreme, ultimate reality (Brahman) in Hinduism and other Indian philosophies as being without form, material attributes, or limitations (derived from nir, meaning "without," and guna, meaning "quality" or "attribute"). It signifies a transcendental, non-dual, and ineffable state of being.
