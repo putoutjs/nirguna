@@ -1,3 +1,11 @@
+2026.02.12, v1.0.3
+
+fix:
+- 74eb9ac @nirguna/plugin-nirguna: publish
+
+feature:
+- 4415755 nirguna: format-floppy: node v24
+
 2026.02.12, v1.0.2
 
 fix:
