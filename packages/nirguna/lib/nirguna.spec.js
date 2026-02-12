@@ -17,7 +17,7 @@ test('nirguna: asm', async (t) => {
     t.end();
 });
 
-test.only('nirguna: asm: config', async (t) => {
+test('nirguna: asm: config', async (t) => {
     const source = 'const a = 2; eax = 1';
     const [result] = await compile(source, {
         target: 'asm',
