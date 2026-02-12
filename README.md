@@ -1,4 +1,14 @@
-# Nirguna
+# Nirguna [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL] [![DeepScan][DeepScanIMGURL]][DeepScanURL]
+
+[NPMURL]: https://npmjs.org/package/nirguna "npm"
+[NPMIMGURL]: https://img.shields.io/npm/v/nirguna.svg?style=flat&longCache=true
+[BuildStatusURL]: https://github.com/putoutjs/nirguna/actions?query=workflow%3A%22Node+CI%22 "Build Status"
+[BuildStatusIMGURL]: https://github.com/putoutjs/nirguna/workflows/Node%20CI/badge.svg
+[CoverageURL]: https://coveralls.io/github/putoutjs/nirguna?branch=master
+[CoverageIMGURL]: https://coveralls.io/repos/putout/nirguna/badge.svg?branch=master&service=github
+[DeepScanURL]: https://deepscan.io/dashboard#view=project&tid=16903&pid=20211&bid=545558
+[DeepScanIMGURL]: https://deepscan.io/api/teams/16903/projects/20211/branches/545558/badge/grade.svg
+
 
 ![nirguna](https://github.com/putoutjs/nirguna/blob/master/images/nirguna.jpg)
 
