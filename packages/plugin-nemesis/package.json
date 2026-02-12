@@ -1,11 +1,10 @@
 {
   "name": "@nirguna/plugin-nemesis",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
-  "description": "🐊nirguna plugin adds ability to transform Nemesis",
-  "homepage": "https://github.com/coderaiser/putout/tree/master/packages/plugin-madrun#readme",
+  "description": "Nirguna plugin adds ability to transform Nemesis",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/plugin-nemesis#readme",
   "main": "lib/index.js",
   "release": false,
   "tag": false,
@@ -25,7 +24,7 @@
     "report": "madrun report"
   },
   "dependencies": {
-    "@nirguna/operator-fasm": "*"
+    "@nirguna/operator-fasm": "^1.0.0"
   },
   "keywords": [
     "putout",
@@ -34,9 +33,6 @@
     "madrun"
   ],
   "devDependencies": {
-    "@putout/eslint-flat": "^4.0.0",
-    "@putout/plugin-nodejs": "*",
-    "@putout/plugin-remove-unused-expressions": "*",
     "@putout/test": "^15.1.1",
     "c8": "^10.0.0",
     "eslint": "^10.0.0",
