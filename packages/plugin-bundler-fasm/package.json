@@ -1,7 +1,6 @@
 {
   "name": "@nirguna/plugin-bandler-fasm",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna plugin adds ability to bandle fasm",
@@ -31,9 +30,6 @@
     "madrun"
   ],
   "devDependencies": {
-    "@putout/eslint-flat": "^4.0.0",
-    "@putout/plugin-nodejs": "*",
-    "@putout/plugin-remove-unused-expressions": "*",
     "@putout/test": "^15.1.1",
     "c8": "^10.0.0",
     "eslint": "^10.0.0",

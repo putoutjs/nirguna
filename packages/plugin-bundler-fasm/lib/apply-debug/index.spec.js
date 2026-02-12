@@ -51,3 +51,19 @@ test('bundler-fasm: apply-debug: transform with options: wrong-debug', (t) => {
     });
     t.end();
 });
+
+test('bundler-fasm: apply-debug: transform with options: variables', (t) => {
+    t.transformWithOptions('variables', {
+        debug: '1',
+        variables: [],
+    });
+    t.end();
+});
+
+test('bundler-fasm: apply-debug: transform with options: functions', (t) => {
+    t.transformWithOptions('functions', {
+        debug: 'port',
+        functions: [],
+    });
+    t.end();
+});
