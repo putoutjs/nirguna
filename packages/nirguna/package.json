@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@nirguna/bundler": "^1.0.0",
-    "@nirguna/cli-args": "*",
+    "@nirguna/cli-args": "^1.0.0",
     "@nirguna/cli-help": "^1.0.0",
     "@nirguna/plugin-bandler-fasm": "*",
     "@nirguna/plugin-fasm": "^1.0.0",

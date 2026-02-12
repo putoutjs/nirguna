@@ -1,9 +1,10 @@
 {
   "name": "@nirguna/cli-args",
+  "version": "1.0.0",
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
-  "description": "Compile JavaScript to WASM",
-  "homepage": "https://github.com/putoutjs/nirguna",
+  "description": "Nirguna cli args",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/cli-args#readme",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -26,74 +27,28 @@
     "build:nemesis:fasm": "madrun build:nemesis:fasm"
   },
   "dependencies": {
-    "@nirguna/bundler": "*",
-    "@nirguna/operator-fasm": "*",
-    "@putout/babel": "^5.2.12",
-    "@putout/plugin-esm": "^4.5.0",
-    "@putout/plugin-remove-nested-blocks": "^9.0.0",
-    "@putout/printer": "^15.0.0",
-    "@typescript-eslint/typescript-estree": "^8.32.1",
-    "chalk": "^5.4.1",
-    "fasm.js": "^1.0.7",
-    "find-up": "^7.0.0",
     "find-up-simple": "^1.0.1",
-    "hexdump-nodejs": "^0.1.0",
-    "iced-x86": "^1.21.0",
-    "putout": "^40.1.9",
     "try-catch": "^4.0.9",
     "try-to-catch": "^4.0.5",
-    "typescript": "^5.8.3",
-    "wabt": "^1.0.37",
     "yargs-parser": "^22.0.0"
   },
   "keywords": [
     "putout"
   ],
   "devDependencies": {
-    "@nirguna/test": "*",
-    "@putout/plugin-printer": "^5.0.0",
-    "@putout/test": "^15.1.1",
     "c8": "^10.0.0",
     "eslint": "^10.0.0",
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-putout": "^30.0.2",
-    "just-kebab-case": "^4.2.0",
     "madrun": "^12.1.3",
     "montag": "^1.2.1",
     "nodemon": "^3.0.1",
     "redlint": "^5.7.0",
     "supertape": "^12.4.0"
   },
-  "imports": {
-    "#cli-args": "./packages/cli-args/index.js",
-    "#cli-help": "./packages/cli-help/help.js",
-    "#plugin-wasm": "./packages/plugin-wasm/lib/index.js",
-    "#plugin-fasm": "./packages/plugin-fasm/lib/index.js",
-    "#plugin-nirguna": "./packages/plugin-nirguna/lib/index.js",
-    "#plugin-bundler-fasm": "./packages/plugin-bundler-fasm/lib/index.js",
-    "#compiler-wasm": "./packages/compiler-wasm/compiler.js",
-    "#compiler-fasm": "./packages/compiler-fasm/compiler.js",
-    "#optimizer-fasm": "./packages/optimizer-fasm/optimizer.js",
-    "#optimizer-wasm": "./packages/optimizer-wasm/optimizer.js",
-    "#printer-wasm": "./packages/printer-wasm/printer.js",
-    "#printer-fasm": "./packages/printer-fasm/printer.js",
-    "#runner-fasm": "./packages/runner-fasm/runner.js",
-    "#translator-wasm": "./packages/translator-wasm/translator.js",
-    "#test-wasm": "./packages/test-wasm/test.js",
-    "#translator-fasm": "./packages/translator-fasm/translator.js",
-    "#transformer-wasm": "./packages/transformer-wasm/transformer.js",
-    "#transformer-fasm": "./packages/transformer-fasm/transformer.js",
-    "#runner-wasm": "./packages/runner-wasm/runner.js",
-    "#operator-wasm": "./packages/operator-wasm/index.js",
-    "#operator-fasm": "./externals/operator-fasm/index.ts",
-    "#nirguna": "./packages/nirguna/nirguna.js"
-  },
   "license": "MIT",
-  "workspaces": [
-    "externals/*"
-  ],
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "publishConfig": {
     "access": "public"

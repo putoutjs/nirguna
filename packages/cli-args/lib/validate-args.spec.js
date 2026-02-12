@@ -40,3 +40,22 @@ test('nirguna: cli-args: log', async (t) => {
     t.calledWith(log, ['not found']);
     t.end();
 });
+
+test('nirguna: cli-args: no target', async (t) => {
+    const exit = stub();
+    const log = stub();
+    const stat = stub().throws(Error('not found'));
+    
+    const args = {
+        _: 'hello',
+    };
+    
+    await validateArgs(args, {
+        exit,
+        log,
+        stat,
+    });
+    
+    t.calledWith(exit, [1]);
+    t.end();
+});

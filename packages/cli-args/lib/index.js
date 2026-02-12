@@ -1,4 +1,3 @@
-export * from './parse-args.js';
-export * from './validate-args.js';
-export * from './parse-config.js';
-
+export {parseArgs} from './parse-args.js';
+export {validateArgs} from './validate-args.js';
+export {parseConfig} from './parse-config.js';

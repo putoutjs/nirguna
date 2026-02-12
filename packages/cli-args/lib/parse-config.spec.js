@@ -96,3 +96,49 @@ test('nirguna: cli-options: parse-options: options: findUpSync', (t) => {
     t.calledOnce(readConfig);
     t.end();
 });
+
+test('nirguna: cli-options: parse-options: readConfigAgain', (t) => {
+    const originalError = Error('parse error');
+    
+    assign(originalError, {
+        code: 'MODULE_NOT_FOUND',
+    });
+    
+    const readConfig = stub().throws(originalError);
+    const findUpSync = stub().returns('hello');
+    const readConfigAgain = stub();
+    
+    parseConfig(__filename, {
+        readConfig,
+        findUpSync,
+        readConfigAgain,
+    });
+    
+    t.calledWith(readConfigAgain, ['hello']);
+    t.end();
+});
+
+test('nirguna: cli-options: parse-options: readConfigAgain: error', (t) => {
+    const originalError = Error('parse error');
+    
+    assign(originalError, {
+        code: 'MODULE_NOT_FOUND',
+    });
+    
+    const readConfig = stub().throws(originalError);
+    const findUpSync = stub().returns('hello');
+    const readConfigAgain = stub().throws(originalError);
+    
+    const result = parseConfig(__filename, {
+        readConfig,
+        findUpSync,
+        readConfigAgain,
+    });
+    
+    const expected = [null, {
+        debug: false,
+    }];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});

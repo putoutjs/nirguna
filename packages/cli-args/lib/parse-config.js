@@ -15,6 +15,7 @@ export const parseConfig = (name, overrides = {}) => {
         readConfig = require,
         env = process.env,
         findUpSync = _findUpSync,
+        readConfigAgain = readConfig,
     } = overrides;
     
     const debug = env.DEBUG || false;
@@ -22,6 +23,7 @@ export const parseConfig = (name, overrides = {}) => {
         cwd,
         findUpSync,
         readConfig,
+        readConfigAgain,
     });
     
     assign(options, {
@@ -31,7 +33,14 @@ export const parseConfig = (name, overrides = {}) => {
     return [error, options];
 };
 
-function findConfig(name, {cwd, readConfig, findUpSync}) {
+function findConfig(name, overrides = {}) {
+    const {
+        cwd,
+        readConfig,
+        findUpSync,
+        readConfigAgain,
+    } = overrides;
+    
     const dir = dirname(name);
     const configPath = join(cwd(), dir, NAME);
     
@@ -45,7 +54,7 @@ function findConfig(name, {cwd, readConfig, findUpSync}) {
         if (!configPath)
             return [null, { }];
         
-        [error, options = {}] = tryCatch(readConfig, configPath);
+        [error, options = {}] = tryCatch(readConfigAgain, configPath);
         
         if (error?.code === 'MODULE_NOT_FOUND')
             return [null, { }];
