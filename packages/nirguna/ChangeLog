@@ -1,3 +1,8 @@
+2026.02.12, v1.0.2
+
+fix:
+- 7192598 @nirguna/plugin-bundler: name
+
 2026.02.12, v1.0.1
 
 feature:
