@@ -1,3 +1,11 @@
+2026.02.12, v1.0.1
+
+feature:
+- 1dd185e nirguna: cli-args: publish
+- 83fb42e @nirguna/operator-nemesis: publish
+- 9609778 @nirguna/plugin-optimizer-fasm: publish
+- bef7f80 nirguna: set version
+
 2026.02.08, v3.0.0
 
 fix:
