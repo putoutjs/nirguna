@@ -4,7 +4,7 @@ import * as removeUselessOperand from '@putout/plugin-remove-useless-operand';
 import * as removeNestedBlocks from '@putout/plugin-remove-nested-blocks';
 import * as fasm from '@nirguna/plugin-fasm';
 import * as nirguna from '@nirguna/plugin-nirguna';
-import * as bundler from '@nirguna/plugin-bandler-fasm';
+import * as bundler from '@nirguna/plugin-bundler-fasm';
 
 const defaultConfig = {
     rules: {},
