@@ -27,7 +27,9 @@
     "build:nemesis:asm": "madrun build:nemesis:asm",
     "build:nemesis:fasm": "madrun build:nemesis:fasm"
   },
-  "dependencies": {},
+  "dependencies": {
+    "putout": "^41.20.1"
+  },
   "keywords": [
     "putout"
   ],
