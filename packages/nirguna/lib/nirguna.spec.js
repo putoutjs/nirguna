@@ -23,7 +23,7 @@ test('nirguna: asm: config', async (t) => {
         target: 'asm',
         config: {
             plugins: [
-                'variables/remove-unused',
+                'variables',
             ],
         },
     });
