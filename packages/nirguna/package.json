@@ -35,8 +35,8 @@
     "@nirguna/cli-help": "^1.0.0",
     "@nirguna/plugin-bundler-fasm": "^1.0.0",
     "@nirguna/plugin-fasm": "^1.0.0",
-    "@nirguna/plugin-nirguna": "*",
     "@nirguna/plugin-nemesis": "*",
+    "@nirguna/plugin-nirguna": "*",
     "@nirguna/plugin-optimizer-fasm": "^1.0.0",
     "@nirguna/plugin-optimizer-wasm": "*",
     "@nirguna/plugin-wasm": "^1.0.0",
@@ -65,6 +65,7 @@
     "putout"
   ],
   "devDependencies": {
+    "@putout/plugin-variables": "^1.6.1",
     "@nirguna/operator-fasm": "^1.0.0",
     "@putout/plugin-printer": "^7.1.1",
     "@putout/test": "^15.1.1",

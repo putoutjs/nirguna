@@ -1,10 +1,9 @@
 {
   "name": "@nirguna/format-floppy",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
-  "description": "🐊nirguna format floppy",
+  "description": "Nirguna format floppy",
   "exports": {
     ".": "./lib/format.js"
   },
@@ -44,7 +43,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "publishConfig": {
     "access": "public"

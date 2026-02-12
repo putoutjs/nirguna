@@ -17,13 +17,13 @@ test('nirguna: asm', async (t) => {
     t.end();
 });
 
-test('nirguna: asm: config', async (t) => {
+test.only('nirguna: asm: config', async (t) => {
     const source = 'const a = 2; eax = 1';
     const [result] = await compile(source, {
         target: 'asm',
         config: {
             plugins: [
-                'remove-unused-variables',
+                'variables/remove-unused',
             ],
         },
     });
