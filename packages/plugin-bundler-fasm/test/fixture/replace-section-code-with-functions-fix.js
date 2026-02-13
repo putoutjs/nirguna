@@ -23,7 +23,7 @@ async function getStringLength() {
     do {
         lodsb();
         ++cx;
-    } while (al)
+    } while (al);
     
     return cx;
 }

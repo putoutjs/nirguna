@@ -9,7 +9,7 @@ async function getStringLength() {
     do {
         lodsb();
         ++cx;
-    } while (al)
+    } while (al);
     mov(ax, cx);
     pop(bp);
     ret(2);

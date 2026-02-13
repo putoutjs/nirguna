@@ -8,7 +8,7 @@ getStringLength: {
     do {
         lodsb();
         ++cx;
-    } while (al)
+    } while (al);
     ax = cx;
     pop(bp);
     ret(2);
