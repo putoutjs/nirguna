@@ -1,3 +1,8 @@
+2026.02.13, v1.0.4
+
+feature:
+- eeeb2d2 @nirguna/plugin-optimizer-wasm: publish
+
 2026.02.12, v1.0.3
 
 fix:
