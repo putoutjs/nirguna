@@ -4,7 +4,5 @@
 *.spec.*
 
 test
-nemesis
-fixture
 example
 coverage
