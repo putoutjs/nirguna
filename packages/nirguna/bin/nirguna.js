@@ -14,7 +14,7 @@ import {
     validateArgs,
     parseConfig,
 } from '@nirguna/cli-args';
-import {compile} from 'packages/nirguna/lib/nirguna.spec.js';
+import {compile} from '#nirguna';
 
 const onStageChange = (args) => (stage, {last, places}) => {
     const line = stage[0].toUpperCase() + stage.slice(1);
