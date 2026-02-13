@@ -39,8 +39,6 @@
     "@nirguna/plugin-optimizer-fasm": "^1.0.0",
     "@nirguna/plugin-optimizer-wasm": "^1.0.0",
     "@nirguna/plugin-wasm": "^1.0.0",
-    "@nirguna/runner-fasm": "*",
-    "@nirguna/runner-wasm": "*",
     "@putout/babel": "^5.2.12",
     "@putout/plugin-assignment": "^2.0.0",
     "@putout/plugin-esm": "^9.2.0",
@@ -64,6 +62,7 @@
     "putout"
   ],
   "devDependencies": {
+    "@nirguna/runner-wasm": "*",
     "@nirguna/operator-fasm": "^1.0.0",
     "@putout/plugin-printer": "^7.1.1",
     "@putout/test": "^15.1.1",
