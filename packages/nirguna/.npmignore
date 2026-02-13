@@ -1,9 +1,10 @@
-example
 .*
-test
-yarn-error.log
-
-coverage
-eslint.config.*
+*.log
 *.config.*
 *.spec.*
+
+test
+nemesis
+fixture
+example
+coverage
