@@ -214,3 +214,30 @@ test('nirguna: printer-fasm: escape', (t) => {
     t.equal(result, expected);
     t.end();
 });
+
+test('nirguna: printer-fasm: assign', (t) => {
+    const source = montag`
+        al = nemesis.readSector({
+          count: ah,
+          buffer: 0x7c00,
+          sector: 2,
+          track: 0,
+          head: 1
+        })
+    
+    `;
+    
+    const result = print(source);
+    const expected = montag`
+        al = nemesis readSector {
+            count: ah,
+            buffer: 0x7c00,
+            sector: 2,
+            track: 0,
+            head: 1,
+        }\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});

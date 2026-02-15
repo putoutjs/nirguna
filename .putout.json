@@ -10,7 +10,12 @@
                     "25.x"
                 ]
             }]
-        }
+        },
+         ".filesystem.json": {
+              "filesystem/remove-files": ["on", {
+                  "names": ["coverage"]
+              }]
+            }
     },
-    "ignore": ["example"]
+    "ignore": ["example", "!**/coverage"]
 }

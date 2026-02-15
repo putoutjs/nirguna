@@ -1,4 +1,4 @@
-import {visitors} from '@putout/printer';
+import {visitors, maybeVisitor} from '@putout/printer';
 import {types} from '@putout/babel';
 
 const {isMemberExpression} = types;
@@ -43,5 +43,5 @@ export const AssignmentExpression = (path, printer, semantics) => {
         return;
     }
     
-    return visitors.AssignmentExpression(path, printer, semantics);
+    return maybeVisitor(visitors.AssignmentExpression, path, printer, semantics);
 };
