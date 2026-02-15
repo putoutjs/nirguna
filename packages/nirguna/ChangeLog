@@ -1,3 +1,8 @@
+2026.02.16, v1.0.8
+
+feature:
+- 2fe4f82 nirguna: printer-fasm: maybeVisitor
+
 2026.02.13, v1.0.7
 
 fix:
