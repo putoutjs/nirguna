@@ -20,7 +20,6 @@ export async function findFirst() {
         
         pop(cx);
     } while (--cx);
-    
     si = 0x7c00 - 0x20;
     pop(cx);
     
