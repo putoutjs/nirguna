@@ -40,7 +40,7 @@
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",
     "nirguna": "*",
-    "redlint": "^5.7.0",
+    "redlint": "^6.1.1",
     "supertape": "^12.5.0"
   },
   "license": "MIT",
