@@ -48,7 +48,7 @@
     "@nirguna/test": "*",
     "@putout/eslint-flat": "^4.0.0",
     "c8": "^10.0.0",
-    "eslint": "^10.0.0",
+    "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",
     "montag": "^1.2.1",

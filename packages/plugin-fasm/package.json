@@ -36,7 +36,7 @@
     "@putout/plugin-remove-nested-blocks": "^9.1.0",
     "@putout/test": "^15.1.1",
     "c8": "^10.0.0",
-    "eslint": "^10.0.0",
+    "eslint": "^10.0.1",
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",

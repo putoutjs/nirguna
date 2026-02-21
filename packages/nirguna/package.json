@@ -67,7 +67,7 @@
     "@putout/plugin-printer": "^7.1.1",
     "@putout/test": "^15.1.1",
     "c8": "^10.0.0",
-    "eslint": "^10.0.0",
+    "eslint": "^10.0.1",
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-putout": "^31.0.1",
     "just-kebab-case": "^4.2.0",

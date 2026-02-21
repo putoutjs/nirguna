@@ -45,7 +45,7 @@
     "@putout/plugin-nodejs": "*",
     "@putout/plugin-remove-unused-expressions": "*",
     "c8": "^10.0.0",
-    "eslint": "^10.0.0",
+    "eslint": "^10.0.1",
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",
