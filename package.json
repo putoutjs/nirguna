@@ -28,7 +28,7 @@
     "build:nemesis:fasm": "madrun build:nemesis:fasm"
   },
   "dependencies": {
-    "putout": "^41.20.1"
+    "putout": "^42.0.12"
   },
   "keywords": [
     "putout"

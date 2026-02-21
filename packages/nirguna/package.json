@@ -51,7 +51,7 @@
     "hexdump-nodejs": "^0.1.0",
     "iced-x86": "^1.21.0",
     "just-snake-case": "^3.2.0",
-    "putout": "^41.20.0",
+    "putout": "^42.0.12",
     "try-catch": "^4.0.9",
     "try-to-catch": "^4.0.5",
     "typescript": "^5.8.3",
