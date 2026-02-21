@@ -8,7 +8,7 @@ const test = createTest(import.meta.url, {
 });
 
 test('nemesis: convert-find-first-to-int-0xff: report', (t) => {
-    t.report('convert-find-first-to-int-0xff', `Use '0xff' instead of 'nemesis.readSector()'`);
+    t.report('convert-find-first-to-int-0xff', `Use '0xff' instead of 'nemesis.findFirst()'`);
     t.end();
 });
 

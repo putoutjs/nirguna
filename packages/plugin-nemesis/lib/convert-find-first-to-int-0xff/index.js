@@ -1,6 +1,6 @@
 import {FIND_FIRST} from '../api.js';
 
-export const report = () => `Use '0xff' instead of 'nemesis.readSector()'`;
+export const report = () => `Use '0xff' instead of 'nemesis.findFirst()'`;
 
 export const match = () => ({
     'nemesis.findFirst(__a)': (vars, path) => {
