@@ -1,6 +1,6 @@
 {
   "name": "@nirguna/plugin-nemesis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "Nirguna plugin adds ability to transform Nemesis",
