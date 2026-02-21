@@ -20,7 +20,8 @@ export async function findFirst() {
         
         pop(cx);
     } while (--cx);
-    find_sec_loaded: si = 0x7c00 - 0x20;
+    
+    si = 0x7c00 - 0x20;
     pop(cx);
     
     find_file_search: si += 0x20;
