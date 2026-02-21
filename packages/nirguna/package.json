@@ -41,7 +41,7 @@
     "@nirguna/plugin-wasm": "^1.0.0",
     "@putout/babel": "^5.2.12",
     "@putout/plugin-assignment": "^2.0.0",
-    "@putout/plugin-esm": "^9.2.0",
+    "@putout/plugin-esm": "^10.0.1",
     "@putout/plugin-remove-nested-blocks": "^9.0.0",
     "@putout/plugin-remove-useless-operand": "^3.0.0",
     "@putout/printer": "^17.1.0",
