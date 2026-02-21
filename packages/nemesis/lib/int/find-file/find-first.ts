@@ -7,7 +7,7 @@ export async function findFirst() {
     cx = 3;
     sec_reading_find: push(cx);
     al = nemesis.readSector({
-        count: ah,
+        count: 1,
         buffer: 0x7c00,
         sector: 2,
         track: 0,
