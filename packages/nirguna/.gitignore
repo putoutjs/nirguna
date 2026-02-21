@@ -1,12 +1,13 @@
-.idea
-.DS_Store
-.filesystem.json
-
 *.swp
 *.log
 *.lock
 *.bin
 
+.idea
+.DS_Store
+.filesystem.json
+
+yarn-error.log
+
 node_modules
 coverage
-yarn-error.log

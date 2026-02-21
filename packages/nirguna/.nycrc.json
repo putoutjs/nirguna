@@ -3,15 +3,15 @@
     "check-coverage": false,
     "all": true,
     "exclude": [
+        "**/*.config.*",
+        "**/.*",
         "**/bin",
         "**/example",
-        "*.config.js",
-        "**/.*",
-        "coverage",
         "**/fixture",
-        "**/*.config.*",
         "**/printer-*",
-        "**/nemesis"
+        "**/nemesis",
+        "*.config.js",
+        "coverage"
     ],
     "branches": 100,
     "lines": 100,
