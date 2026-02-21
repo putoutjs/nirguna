@@ -44,12 +44,12 @@ let COMMANDS = [
     0xd,
 ];
 
-let prompt = '] ';
+let prompt = ']';
 
 async function start() {
     nemesis.printf(hi);
     nemesis.setScreenSize({
-        columns: [1, 79],
+        columns: [0, 79],
         lines: [0, 24],
     });
     
