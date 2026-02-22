@@ -1,16 +1,10 @@
-import {
-    org,
-    use16,
-    bios,
-} from '@nirguna/operator-fasm';
+import {bios} from '@nirguna/operator-fasm';
 import {getStringLength} from '../string/get-string-length.ts';
 import {printf} from './printf.js';
 import {reboot} from './reboot.js';
 
-org(0x7c00);
-use16();
-
 section: 'const';
+
 let loader_name = 'Nemesis Loader o_O';
 let error_reading = 'error: read';
 let kernel_found = 'kernel found';

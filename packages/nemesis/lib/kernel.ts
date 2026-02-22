@@ -1,14 +1,9 @@
 import {nemesis} from '@nirguna/operator-nemesis';
 import {
-    org,
-    use16,
     i16,
     rb,
 } from '@nirguna/operator-fasm';
 import {intTable} from './int/int-table.ts';
-
-org(0x7e00);
-use16();
 
 section: 'const';
 cli();

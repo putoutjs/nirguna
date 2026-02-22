@@ -12,9 +12,6 @@ import {strcmp} from '../string/strcmp';
 import {setColor} from './commands/set-color';
 import {getStringLength} from '../string/get-string-length';
 
-org(0x500);
-use16();
-
 const cmdSize = 80;
 
 let hi = [

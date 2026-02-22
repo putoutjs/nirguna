@@ -13,7 +13,7 @@ export default {
     'report': () => 'c8 report --reporter=lcov',
     'build:boot': () => run('build:boot:*'),
     'build:boot:fasm': () => nirguna({
-        targets: ['fasm'],
+        targets: ['boot'],
         src: 'externals/nemesis/lib/boot/index.js',
     }),
     'build:boot:asm': () => nirguna({
@@ -26,7 +26,7 @@ export default {
         src: 'externals/nemesis/lib/kernel.ts',
     }),
     'build:nemesis:fasm': () => nirguna({
-        targets: ['fasm'],
+        targets: ['kernel'],
         src: 'externals/nemesis/lib/kernel.ts',
     }),
 };
@@ -35,7 +35,7 @@ function nirguna({targets, src}) {
     const result = [];
     
     for (const target of targets) {
-        const cmd = `./externals/nirguna/bin/nirguna.js -t ${target} ${src}`;
+        const cmd = `./bin/nirguna.js -t ${target} ${src}`;
         result.push(cmd);
     }
     
