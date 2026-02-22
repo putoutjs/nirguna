@@ -17,7 +17,8 @@ const TARGET = {
 
 export const report = (path, {target}) => `Insert target: '${target}'`;
 
-export const fix = (path, {target = 'boot'}) => {
+export const fix = (path, {options}) => {
+    const {target} = options;
     path.node.extra.target = target;
     path.node.body.unshift(template.ast(TARGET[target]));
 };

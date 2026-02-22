@@ -25,7 +25,10 @@ export const compile = async (source, options = {}) => {
         places,
     });
     
-    const [code, compilePlaces] = transform(source, config);
+    const [code, compilePlaces] = transform(source, {
+        ...config,
+        target,
+    });
     
     if (compilePlaces.length) {
         emitLastStateChange('transform', compilePlaces);

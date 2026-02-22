@@ -183,3 +183,18 @@ test('nirguna: transformer-fasm: remove-useless-operand', (t) => {
     t.equal(code, expected);
     t.end();
 });
+
+test('nirguna: transformer-fasm: insert-target', (t) => {
+    const source = '';
+    const [code] = transform(source, {
+        target: 'linux',
+    });
+    
+    const expected = montag`
+        format.ELF64.executable;
+        entry.$;\n
+    `;
+    
+    t.equal(code, expected);
+    t.end();
+});

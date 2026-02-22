@@ -21,6 +21,7 @@ export const transform = (source, config) => {
         debug,
         plugins,
         rules,
+        target,
         readFileSync = _readFileSync,
     } = parseConfig(config);
     
@@ -55,6 +56,9 @@ export const transform = (source, config) => {
             ...rules,
             'nirguna/fasm/apply-include': ['on', {
                 readFileSync,
+            }],
+            'nirguna/fasm/insert-target': ['on', {
+                target,
             }],
         },
         plugins: [
