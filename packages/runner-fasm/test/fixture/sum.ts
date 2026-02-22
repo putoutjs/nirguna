@@ -2,7 +2,6 @@ import {linux} from '@nirguna/operator-fasm';
 import {sum} from './sum/sum.ts';
 
 format.ELF64.executable;
-segment.readable.executable;
 entry.$;
 
 let result: i64 = 0;
