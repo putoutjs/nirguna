@@ -10,7 +10,7 @@ export async function strcmp(a, b): ureg {
             al = 1;
             break;
         }
-        
+
         ++udi;
     }
 

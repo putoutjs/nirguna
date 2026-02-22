@@ -8,7 +8,7 @@ const {test} = createTest(import.meta.url, {
 });
 
 test('nirguna: runner-fasm: x64', async ({compile}) => {
-    const expected = 'Hello 64-bit world!';
+    const expected = 'Hello 64-bit world!\n';
     await compile('x64', expected);
 });
 

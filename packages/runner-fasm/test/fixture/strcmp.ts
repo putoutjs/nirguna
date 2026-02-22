@@ -34,7 +34,7 @@ if (al)
         message: NOT_EQUAl,
         length: 9,
     })
-    
+
 
 linux.exit(0);
 

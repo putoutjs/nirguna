@@ -1,4 +1,4 @@
-import {getStringLength} from 'nemesis/get-string-length';
+import {getStringLength} from './string/get-string-length.ts';
 
 format.ELF64.executable;
 segment.readable.executable;
@@ -13,7 +13,7 @@ rdx = await getStringLength(message);
 linux.write({
     message,
     length: rdx,
-})
+});
 
 linux.exit(0);
 
