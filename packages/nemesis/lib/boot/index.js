@@ -15,7 +15,7 @@ let loader_name = 'Nemesis Loader o_O';
 let error_reading = 'error: read';
 let kernel_found = 'kernel found';
 let error_finding = 'error: kernel not found';
-let error_krnlfile = 'kernel not load';
+let error_kernel_file = 'kernel not load';
 let kernel_load = 'kernel load';
 let kernel_name = 'KERNEL';
 
@@ -161,7 +161,7 @@ async function start() {
     } while (--cx);
     
     if (ax)
-        await printf(error_krnlfile);
+        await printf(error_kernel_file);
 }
 
 section: 'code';
