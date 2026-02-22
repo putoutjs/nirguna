@@ -6,6 +6,9 @@
   "description": "Nirguna cli args",
   "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/cli-args#readme",
   "main": "lib/index.js",
+  "release": false,
+  "tag": false,
+  "changelog": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/putoutjs/nirguna.git"
