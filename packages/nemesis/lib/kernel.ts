@@ -1,8 +1,5 @@
 import {nemesis} from '@nirguna/operator-nemesis';
-import {
-    i16,
-    rb,
-} from '@nirguna/operator-fasm';
+import {i16, rb} from '@nirguna/operator-fasm';
 import {intTable} from './int/int-table.ts';
 
 section: 'const';

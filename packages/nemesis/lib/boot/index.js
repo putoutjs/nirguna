@@ -4,7 +4,6 @@ import {printf} from './printf.js';
 import {reboot} from './reboot.js';
 
 section: 'const';
-
 let loader_name = 'Nemesis Loader o_O';
 let error_reading = 'error: read';
 let kernel_found = 'kernel found';
