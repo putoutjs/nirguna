@@ -31,4 +31,3 @@ export const validateArgs = async (args, {log, exit, stat}) => {
         return exit(1);
     }
 };
-
