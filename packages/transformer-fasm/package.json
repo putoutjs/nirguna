@@ -1,0 +1,60 @@
+{
+  "name": "@nirguna/transformer-fasm",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "🐊nirguna transformer adds ability to transform fasm",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/transformer-fasm#readme",
+  "main": "lib/transformer.js",
+  "release": false,
+  "tag": false,
+  "changelog": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderaiser/putout.git"
+  },
+  "imports": {
+    "#transformer-fasm": "./lib/transformer.js"
+  },
+  "scripts": {
+    "test": "madrun test",
+    "watch:test": "madrun watch:test",
+    "lint": "madrun lint",
+    "fresh:lint": "madrun fresh:lint",
+    "lint:fresh": "madrun lint:fresh",
+    "fix:lint": "madrun fix:lint",
+    "coverage": "madrun coverage",
+    "report": "madrun report"
+  },
+  "keywords": [
+    "putout",
+    "putout-transformer",
+    "transformer",
+    "madrun"
+  ],
+  "dependencies": {
+    "@nirguna/operator-fasm": "^1.0.0",
+    "@nirguna/plugin-bundler-fasm": "^1.0.0",
+    "@nirguna/plugin-fasm": "^1.1.0",
+    "@nirguna/plugin-nirguna": "^1.0.0",
+    "@putout/plugin-remove-nested-blocks": "^9.1.0",
+    "@putout/plugin-remove-useless-operand": "^3.0.0",
+    "putout": "^42.0.12"
+  },
+  "devDependencies": {
+    "c8": "^10.0.0",
+    "eslint": "^10.0.1",
+    "eslint-plugin-putout": "^31.0.1",
+    "madrun": "^13.0.0",
+    "montag": "^1.2.1",
+    "nodemon": "^3.0.1",
+    "supertape": "^12.5.0"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

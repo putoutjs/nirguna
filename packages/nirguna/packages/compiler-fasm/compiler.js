@@ -1,4 +1,4 @@
-import {transform} from '#transformer-fasm';
+import {transform} from '@nirguna/transformer-fasm';
 import {print} from '#printer-fasm';
 import {translate} from '#translator-fasm';
 import {optimize} from '#optimizer-fasm';
