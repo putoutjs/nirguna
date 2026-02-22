@@ -1,8 +1,6 @@
 import {createTest} from '@putout/test';
 import * as plugin from './index.js';
 
-const target = 'linux';
-
 const test = createTest(import.meta.url, {
     plugins: [
         ['insert-target', plugin],
@@ -27,4 +25,3 @@ test('fasm: insert-target: transform with options', (t) => {
     });
     t.end();
 });
-
