@@ -46,3 +46,4 @@ Transforms:
 - ✅[`remove-useless-braces`](https://putout.cloudcmd.io/#/gist/140689014540d48d501c1fa50b3694ca/e1521db4f951c38c17a6c3af46456c47f1f3a1a8);
 - ✅[`remove-useless-promise`](https://putout.cloudcmd.io/#/gist/d21eb87bc77b53e54c28b1ae8442a403/1b35064142068e623a564f578517c2aace55ceba);
 - ✅[`switch-cmp-operands`](https://putout.cloudcmd.io/#/gist/cdf71331f1024c9c966d4756c6159684/9d3f2ebeb41cd096de7919f0c39bc75cbaf5ce0c);
+- ✅[`insert-target`](https://putout.cloudcmd.io/#/gist/e7e3f495fdfde1b065117fc0ae41873c/b6fe3dc81d33c81d332ce5d551b8a2fb40b63d70);

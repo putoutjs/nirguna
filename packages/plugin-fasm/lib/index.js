@@ -1,3 +1,4 @@
+import * as insertTarget from './insert-target/index.js';
 import * as removeUselessPromise from './remove-useless-promise/index.js';
 import * as applyInclude from './apply-include/index.js';
 import * as switchCmpOperands from './switch-cmp-operands/index.js';
@@ -90,4 +91,5 @@ export const rules = {
     'switch-cmp-operands': switchCmpOperands,
     'apply-include': applyInclude,
     'remove-useless-promise': removeUselessPromise,
+    'insert-target': insertTarget,
 };

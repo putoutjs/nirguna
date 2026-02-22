@@ -216,3 +216,8 @@ test('plugin-fasm: transform: backslash', (t) => {
     t.transform('backslash');
     t.end();
 });
+
+test('plugin-fasm: transform: insert-target', (t) => {
+    t.transform('insert-target');
+    t.end();
+});
