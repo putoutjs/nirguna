@@ -59,3 +59,22 @@ test('nirguna: cli-args: no target', async (t) => {
     t.calledWith(exit, [1]);
     t.end();
 });
+
+test('nirguna: cli-args: no target: log', async (t) => {
+    const exit = stub();
+    const log = stub();
+    const stat = stub().throws(Error('not found'));
+    
+    const args = {
+        _: 'hello',
+    };
+    
+    await validateArgs(args, {
+        exit,
+        log,
+        stat,
+    });
+    
+    t.calledWith(log, [`'--target' is missing: 'wasm', 'fasm', 'asm', 'wast', 'linux', 'boot', 'kernel', 'nemesis'`]);
+    t.end();
+});
