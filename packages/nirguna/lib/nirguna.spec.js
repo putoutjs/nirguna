@@ -124,3 +124,28 @@ test('nirguna: target: linux', async (t) => {
     t.equal(result, expected);
     t.end();
 });
+
+test('nirguna: target: wasm', async (t) => {
+    const source = montag`
+        export async function add(a, b) {
+            return a + b;
+        }
+    `;
+    
+    const [result] = await compile(source, {
+        target: 'wasm',
+        type: 'assembly',
+        config: {},
+    });
+    
+    const expected = montag`
+        (module
+            (func $add (export "add") (param $a) (param $b)
+                (i32.add (local.get $a) (local.get $b))
+            )
+        )\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});

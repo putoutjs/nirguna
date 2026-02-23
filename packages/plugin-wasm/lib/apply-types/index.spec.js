@@ -22,6 +22,11 @@ test('nirguna: plugin:wasm: apply-types: transform: i64', (t) => {
     t.end();
 });
 
+test('nirguna: plugin:wasm: apply-types: transform: async', (t) => {
+    t.transform('async');
+    t.end();
+});
+
 test('nirguna: plugin:wasm: apply-types: transform: no report after transform', (t) => {
     t.noReportAfterTransform('apply-types');
     t.end();

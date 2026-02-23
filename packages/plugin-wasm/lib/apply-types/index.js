@@ -43,5 +43,8 @@ function parseType(path) {
     
     const {returnType} = fnPath.node;
     
+    if (!returnType)
+        return 'i32';
+    
     return returnType.typeAnnotation.typeName.name;
 }
