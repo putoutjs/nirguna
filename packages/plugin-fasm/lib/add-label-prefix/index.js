@@ -55,4 +55,3 @@ function getIds(path, name) {
     
     return ids;
 }
-

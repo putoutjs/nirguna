@@ -80,6 +80,21 @@ export const replace = () => ({
     },
 });
 
+const TARGET = {
+    linux: {
+        size: 8,
+        bits: 'i64',
+    },
+    kernel: {
+        size: 2,
+        bits: 'i16',
+    },
+    boot: {
+        size: 2,
+        bits: 'i16',
+    },
+};
+
 const REG = {
     i16: {
         eax: 'ax',
@@ -104,7 +119,19 @@ const BYTES = {
     i64: 8,
 };
 
+function getTarget({scope}) {
+    const programPath = scope.getProgramParent().path;
+    const {target} = programPath.node.extra;
+    
+    return target;
+}
+
 function getBytes(path) {
+    const target = getTarget(path);
+    
+    if (target)
+        return TARGET[target].size;
+    
     const {returnType} = path.node;
     
     if (!returnType)
@@ -116,6 +143,14 @@ function getBytes(path) {
 }
 
 function getRegister(path, reg) {
+    const target = getTarget(path);
+    
+    if (target) {
+        const {bits} = TARGET[target];
+        
+        return REG[bits][reg];
+    }
+    
     const {returnType} = path.node;
     
     if (!returnType)

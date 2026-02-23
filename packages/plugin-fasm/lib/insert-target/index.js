@@ -15,7 +15,10 @@ const TARGET = {
     }`,
 };
 
-export const report = (path, {target}) => `Insert target: '${target}'`;
+export const report = (path, {options}) => {
+    const {target} = options;
+    return `Insert target: '${target}'`;
+};
 
 export const fix = (path, {options}) => {
     const {target} = options;

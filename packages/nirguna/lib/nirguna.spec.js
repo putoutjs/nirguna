@@ -62,3 +62,65 @@ test('nirguna: wasm: onStageChanged', async (t) => {
     t.deepEqual(result, expected);
     t.end();
 });
+
+test('nirguna: target: boot', async (t) => {
+    const source = montag`
+        async function add(a, b) {
+            return a + b;
+        }
+    `;
+    
+    const [result] = await compile(source, {
+        target: 'boot',
+        type: 'assembly',
+        config: {},
+    });
+    
+    const expected = montag`
+       org 0x7c00
+       use16
+       
+       __nirguna_add:
+       push bp
+       mov bp, sp
+       mov ax, [bp + 4]
+       add ax, [bp + 6]
+       pop bp
+       ret 4
+    
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: target: linux', async (t) => {
+    const source = montag`
+        async function add(a, b) {
+            return a + b;
+        }
+    `;
+    
+    const [result] = await compile(source, {
+        target: 'linux',
+        type: 'assembly',
+        config: {},
+    });
+    
+    const expected = montag`
+       format ELF64 executable
+       entry $
+       
+       __nirguna_add:
+       push rbp
+       mov rbp, rsp
+       mov rax, [rbp + 0x10]
+       add rax, [rbp + 0x18]
+       pop rbp
+       ret 0x10
+    
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});

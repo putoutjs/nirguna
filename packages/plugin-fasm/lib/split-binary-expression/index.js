@@ -24,8 +24,8 @@ export const replace = () => ({
             return '__a += __c';
         
         return `{
-    	__a = __b;
-        __a += __c
-    }`;
+            __a = __b;
+            __a += __c
+        }`;
     },
 });

@@ -31,4 +31,3 @@ test('fasm: add-label-prefix: no report after transform', (t) => {
     t.noReportAfterTransform('add-label-prefix');
     t.end();
 });
-
