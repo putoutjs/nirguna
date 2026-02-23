@@ -22,7 +22,13 @@ test('fasm: add-label-prefix: transform: member', (t) => {
     t.end();
 });
 
+test('fasm: add-label-prefix: transform: duplicate', (t) => {
+    t.transform('duplicate');
+    t.end();
+});
+
 test('fasm: add-label-prefix: no report after transform', (t) => {
     t.noReportAfterTransform('add-label-prefix');
     t.end();
 });
+

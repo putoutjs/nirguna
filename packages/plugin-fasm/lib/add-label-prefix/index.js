@@ -41,10 +41,18 @@ function getIds(path, name) {
             if (isMemberExpression(path.parentPath))
                 return;
             
-            if (name === path.node.name)
-                ids.push(path);
+            if (name !== path.node.name)
+                return;
+            
+            const calleePath = path.parentPath.get('callee');
+            
+            if (calleePath === path)
+                return;
+            
+            ids.push(path);
         },
     });
     
     return ids;
 }
+
