@@ -27,7 +27,13 @@ test('nirguna: plugin:wasm: convert-binary-to-call: transform: async', (t) => {
     t.end();
 });
 
+test('nirguna: plugin:wasm: convert-binary-to-call: transform: not-identifiers', (t) => {
+    t.transform('not-identifiers');
+    t.end();
+});
+
 test('nirguna: plugin:wasm: convert-binary-to-call: transform: no report after transform', (t) => {
     t.noReportAfterTransform('convert-binary-to-call');
     t.end();
 });
+
