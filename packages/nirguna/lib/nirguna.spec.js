@@ -125,7 +125,7 @@ test('nirguna: target: linux', async (t) => {
     t.end();
 });
 
-test.only('nirguna: target: wasm', async (t) => {
+test('nirguna: target: wasm', async (t) => {
     const source = montag`
         export async function add(a, b) {
             return a + b;

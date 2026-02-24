@@ -1,9 +1,6 @@
 import {types} from 'putout';
 
-const {
-    isFunction,
-    isIdentifier,
-} = types;
+const {isFunction, isIdentifier} = types;
 
 export const report = () => `Convert binary to call`;
 
@@ -37,4 +34,3 @@ function parseType(path) {
     
     return returnType.typeAnnotation.typeName.name;
 }
-
