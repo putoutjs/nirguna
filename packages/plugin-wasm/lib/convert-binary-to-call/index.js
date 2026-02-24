@@ -5,7 +5,7 @@ const {
     isIdentifier,
 } = types;
 
-export const report = () => `Convert binary to function`;
+export const report = () => `Convert binary to call`;
 
 export const replace = () => ({
     '__a + __b': ({__a, __b}, path) => {

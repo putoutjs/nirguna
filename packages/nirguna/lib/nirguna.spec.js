@@ -125,7 +125,7 @@ test('nirguna: target: linux', async (t) => {
     t.end();
 });
 
-test('nirguna: target: wasm', async (t) => {
+test.only('nirguna: target: wasm', async (t) => {
     const source = montag`
         export async function add(a, b) {
             return a + b;
@@ -140,7 +140,7 @@ test('nirguna: target: wasm', async (t) => {
     
     const expected = montag`
         (module
-            (func $add (export "add") (param $a) (param $b)
+            (func $add (export "add") (param $a i32) (param $b i32)
                 (i32.add (local.get $a) (local.get $b))
             )
         )\n
