@@ -1,3 +1,18 @@
+2026.02.24, v1.1.1
+
+fix:
+- 5ba529b @putout/plugin-fasm: add-label-prefix: exclude CallExpression callee
+- a6c2c3d @putout/plugin-fasm: insert-target: filter
+
+feature:
+- dde51ae @nirguna/transformer-wasm: publish
+- c44bb5c @putout/plugin-wasm: convert-binary-to-call
+- 4c250e1 @putout/plugin-wasm: convert-binary-to-function
+- 448d50a @putout/plugin-wasm: apply-types: async
+- 9f30e51 @putout/plugin-fasm: convert-args-to-regs: insert-target: improve support
+- 8d44159 nemesis: target: boot, kernel, nemesis
+- 0ab6c1f @putout/transform-fasm: insert-target
+
 2026.02.22, v1.1.0
 
 fix:
