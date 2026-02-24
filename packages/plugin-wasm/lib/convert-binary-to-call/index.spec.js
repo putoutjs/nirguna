@@ -36,4 +36,3 @@ test('nirguna: plugin:wasm: convert-binary-to-call: transform: no report after t
     t.noReportAfterTransform('convert-binary-to-call');
     t.end();
 });
-
