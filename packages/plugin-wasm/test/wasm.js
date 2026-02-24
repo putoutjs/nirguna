@@ -76,3 +76,8 @@ test('plugin-wasm: transform: convert-await-to-call', (t) => {
     t.transform('convert-await-to-call');
     t.end();
 });
+
+test('plugin-wasm: transform: convert-binary-to-function', (t) => {
+    t.transform('convert-binary-to-function');
+    t.end();
+});
