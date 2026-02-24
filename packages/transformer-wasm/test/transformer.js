@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import montag from 'montag';
-import {transform} from '#transformer-wasm';
+import {transform} from '../lib/transformer.js';
 
 test('nirguna: transformer-wasm', (t) => {
     const source = montag`

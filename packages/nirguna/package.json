@@ -40,6 +40,7 @@
     "@nirguna/plugin-optimizer-wasm": "^1.0.0",
     "@nirguna/plugin-wasm": "^1.0.0",
     "@nirguna/transformer-fasm": "^1.0.0",
+    "@nirguna/transformer-wasm": "^1.0.0",
     "@putout/babel": "^5.2.12",
     "@putout/plugin-assignment": "^2.0.0",
     "@putout/plugin-esm": "^10.0.1",
@@ -92,7 +93,6 @@
     "#translator-wasm": "./packages/translator-wasm/translator.js",
     "#test-wasm": "./packages/test-wasm/test.js",
     "#translator-fasm": "./packages/translator-fasm/translator.js",
-    "#transformer-wasm": "./packages/transformer-wasm/transformer.js",
     "#operator-wasm": "./packages/operator-wasm/index.js",
     "#nirguna": "./lib/nirguna.js"
   },
