@@ -3,6 +3,8 @@ import {types} from 'putout';
 const {
     identifier,
     tsTypeReference,
+    isFunction,
+    tsTypeAnnotation,
 } = types;
 
 const TARGETS = {
@@ -12,21 +14,31 @@ const TARGETS = {
     'wasm-f64': 'f64',
 };
 
-export const report = (path, {options}) => {
-    const {target = 'wasm-i32'} = options;
+export const report = ({path, target}) => {
     return `Use type: '${TARGETS[target]}'`;
 };
 
-export const fix = ({path}, {options}) => {
-    const {target = 'wasm-i32'} = options;
+export const fix = ({path, target}) => {
+    const typeAnnotation = tsTypeReference(identifier(TARGETS[target]));
     
-    path.node.typeAnnotation = tsTypeReference(identifier(TARGETS[target]));
+    if (isFunction(path)) {
+        path.node.returnType = tsTypeAnnotation(typeAnnotation);
+        return;
+    }
+    
+    path.node.typeAnnotation = typeAnnotation;
 };
 
 export const traverse = ({options, push}) => ({
     Function(path) {
         const {target = 'wasm-i32'} = options;
         const params = path.get('params');
+        
+        if (!path.node.returnType)
+            push({
+                path,
+                target,
+            });
         
         for (const param of params) {
             if (param.node.typeAnnotation)
@@ -39,3 +51,4 @@ export const traverse = ({options, push}) => ({
         }
     },
 });
+
