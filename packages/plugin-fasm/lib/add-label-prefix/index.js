@@ -1,6 +1,10 @@
 import {types} from 'putout';
 
-const {isMemberExpression} = types;
+const {
+    isMemberExpression,
+    isAwaitExpression,
+} = types;
+
 const PREFIX = '__nirguna_';
 
 export const report = ({name, newName}) => `Add prefix to label: '${name}' -> '${newName}'`;
@@ -45,8 +49,9 @@ function getIds(path, name) {
                 return;
             
             const calleePath = path.parentPath.get('callee');
+            const parentAwait = isAwaitExpression(path.parentPath.parentPath);
             
-            if (calleePath === path)
+            if (!parentAwait && calleePath === path)
                 return;
             
             ids.push(path);

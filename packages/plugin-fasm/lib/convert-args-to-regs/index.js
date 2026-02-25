@@ -93,6 +93,10 @@ const TARGET = {
         size: 2,
         bits: 'i16',
     },
+    nemesis: {
+        size: 2,
+        bits: 'i16',
+    },
 };
 
 const REG = {

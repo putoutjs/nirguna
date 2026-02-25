@@ -1,7 +1,5 @@
 import {nemesis} from '@nirguna/operator-nemesis';
 import {
-    org,
-    use16,
     bios,
     rb,
 } from '@nirguna/operator-fasm';
