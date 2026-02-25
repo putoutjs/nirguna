@@ -14,7 +14,7 @@ const TARGETS = {
     'wasm-f64': 'f64',
 };
 
-export const report = ({path, target}) => {
+export const report = ({target}) => {
     return `Use type: '${TARGETS[target]}'`;
 };
 
@@ -51,4 +51,3 @@ export const traverse = ({options, push}) => ({
         }
     },
 });
-
