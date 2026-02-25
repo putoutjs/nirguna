@@ -3,6 +3,7 @@ import {
     types,
     operator,
 } from 'putout';
+import {TARGETS} from '#targets';
 
 const {
     replaceWithMultiple,
@@ -80,25 +81,6 @@ export const replace = () => ({
     },
 });
 
-const TARGET = {
-    linux: {
-        size: 8,
-        bits: 'i64',
-    },
-    kernel: {
-        size: 2,
-        bits: 'i16',
-    },
-    boot: {
-        size: 2,
-        bits: 'i16',
-    },
-    nemesis: {
-        size: 2,
-        bits: 'i16',
-    },
-};
-
 const REG = {
     i16: {
         eax: 'ax',
@@ -134,7 +116,7 @@ function getBytes(path) {
     const target = getTarget(path);
     
     if (target)
-        return TARGET[target].size;
+        return TARGETS[target].size;
     
     const {returnType} = path.node;
     
@@ -150,7 +132,7 @@ function getRegister(path, reg) {
     const target = getTarget(path);
     
     if (target) {
-        const {bits} = TARGET[target];
+        const {bits} = TARGETS[target];
         
         return REG[bits][reg];
     }
