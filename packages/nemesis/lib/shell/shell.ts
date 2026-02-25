@@ -1,8 +1,5 @@
 import {nemesis} from '@nirguna/operator-nemesis';
-import {
-    bios,
-    rb,
-} from '@nirguna/operator-fasm';
+import {bios, rb} from '@nirguna/operator-fasm';
 import {dir} from './commands/dir.ts';
 import {notFound} from './commands/not-found.ts';
 import {clearBuffer} from './clear-buffer';
