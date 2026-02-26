@@ -31,3 +31,8 @@ test('plugin-bundler-fasm: transform: apply-debug', (t) => {
     t.transform('apply-debug');
     t.end();
 });
+
+test('plugin-bundler-fasm: transform: apply-async', (t) => {
+    t.transform('apply-async');
+    t.end();
+});

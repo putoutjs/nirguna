@@ -65,7 +65,7 @@ test('nirguna: wasm: onStageChanged', async (t) => {
 
 test('nirguna: target: boot', async (t) => {
     const source = montag`
-        async function add(a, b) {
+        function add(a, b) {
             return a + b;
         }
     `;
@@ -96,7 +96,7 @@ test('nirguna: target: boot', async (t) => {
 
 test('nirguna: target: linux', async (t) => {
     const source = montag`
-        async function add(a, b) {
+        function add(a, b) {
             return a + b;
         }
     `;
@@ -127,7 +127,7 @@ test('nirguna: target: linux', async (t) => {
 
 test('nirguna: target: wasm', async (t) => {
     const source = montag`
-        export async function add(a, b) {
+        export function add(a, b) {
             return a + b;
         }
     `;

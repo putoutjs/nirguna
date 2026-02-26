@@ -32,6 +32,6 @@ let hi = [
     0xd,
 ];
 
-function get() {
+async function get() {
     let eax = 3;
 }

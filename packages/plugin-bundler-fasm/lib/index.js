@@ -1,3 +1,4 @@
+import * as applyAsync from './apply-async/index.js';
 import * as applyDebug from './apply-debug/index.js';
 import * as addUseDirective from './add-use-directive/index.js';
 import * as replaceSectionDataWithLet from './replace-section-data-with-let/index.js';
@@ -10,4 +11,5 @@ export const rules = {
     'replace-section-data-with-let': replaceSectionDataWithLet,
     'add-use-directive': addUseDirective,
     'apply-debug': applyDebug,
+    'apply-async': applyAsync,
 };
