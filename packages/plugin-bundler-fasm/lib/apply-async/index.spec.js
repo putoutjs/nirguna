@@ -21,4 +21,3 @@ test('bundler-fasm: apply-async: transform', (t) => {
     t.transform('apply-async');
     t.end();
 });
-
