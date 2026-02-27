@@ -68,7 +68,6 @@
     "@nirguna/runner-wasm": "*",
     "@putout/plugin-printer": "^7.1.1",
     "@putout/test": "^15.1.1",
-    "c8": "^11.0.0",
     "eslint": "^10.0.1",
     "eslint-plugin-n": "^17.0.0",
     "eslint-plugin-putout": "^31.0.1",
@@ -77,6 +76,7 @@
     "montag": "^1.2.1",
     "nodemon": "^3.0.1",
     "redlint": "^6.1.1",
+    "superc8": "^12.0.0",
     "supertape": "^12.4.0"
   },
   "imports": {

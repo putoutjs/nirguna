@@ -35,12 +35,12 @@
   ],
   "devDependencies": {
     "@nirguna/plugin-nemesis": "*",
-    "c8": "^11.0.0",
     "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",
     "nirguna": "*",
     "redlint": "^6.1.1",
+    "superc8": "^12.0.0",
     "supertape": "^12.5.0"
   },
   "license": "MIT",
