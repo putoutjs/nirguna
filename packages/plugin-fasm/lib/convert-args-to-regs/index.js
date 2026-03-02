@@ -184,8 +184,10 @@ function insertReturnAtEnd(ebp, __body) {
     
     const popEBP = createExpression(`pop(${ebp})`);
     
-    if (compare(last, 'ret()'))
+    if (compare(last, 'ret()')) {
         __body.body.splice(-1, 0, popEBP);
-    else
-        __body.body.push(popEBP);
+        return;
+    }
+    
+    __body.body.push(popEBP);
 }

@@ -98,10 +98,12 @@ function addStackOperations({__body, __type_params = []}) {
     
     const last = __body.body.at(-1);
     
-    if (isReturnStatement(last))
+    if (isReturnStatement(last)) {
         __body.body.splice(-1, 1, pop, last);
-    else
-        __body.body.push(pop);
+        return;
+    }
+    
+    __body.body.push(pop);
 }
 
 function createStackOperation(name, args) {
