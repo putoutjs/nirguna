@@ -1,5 +1,5 @@
 import {transform} from '@nirguna/transformer-fasm';
-import {print} from '#printer-fasm';
+import {print} from '@nirguna/printer-fasm';
 import {translate} from '#translator-fasm';
 import {optimize} from '#optimizer-fasm';
 
