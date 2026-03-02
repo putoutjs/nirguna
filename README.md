@@ -127,7 +127,7 @@ Compiled with `nirguna 1.wast.ts` to `1.wast`:
 With:
 
 ```js
-import {compile} from 'nirguna/lib/nirguna.spec';
+import {compile} from 'nirguna';
 
 const wast = compile(wastts);
 const binary = await translate(wast);
