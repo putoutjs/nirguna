@@ -36,3 +36,8 @@ test('fasm: convert-return-to-eax: transform: type', (t) => {
     t.transform('type');
     t.end();
 });
+
+test('fasm: convert-return-to-eax: transform: return-type', (t) => {
+    t.transform('return-type');
+    t.end();
+});
