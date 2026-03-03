@@ -1,9 +1,17 @@
 import {io} from '@nirguna/operator-fasm';
 
+const UP = 0x80;
+
 const RIGHT_SHIFT = 0x36;
 const LEFT_SHIFT = 0x2a;
-const RIGHT_SHIFT_UP = 0x36 + 0x80;
-const LEFT_SHIFT_UP = 0x2a + 0x80;
+const RIGHT_SHIFT_UP = 0x36 + UP;
+const LEFT_SHIFT_UP = 0x2a + UP;
+
+const LEFT_CTRL = 0x1D;
+const LEFT_CTRL_UP = LEFT_CTRL + UP;
+
+const LEFT_ALT = 0x38;
+const LEFT_ALT_UP = LEFT_ALT + UP;
 
 // никаких параметров не принимает.
 // в al возвращает ascii код нажатой клавиши
@@ -21,6 +29,18 @@ export async function getChar<bx>() {
         [shift] = 1;
         jmp(again);
     }
+    
+    if (al === LEFT_ALT)
+        jmp(again);
+    
+    if (al === LEFT_ALT_UP)
+        jmp(again);
+    
+    if (al === LEFT_CTRL)
+        jmp(again);
+    
+    if (al === LEFT_CTRL_UP)
+        jmp(again);
     
     //;Скан-коды отпущенного шифта
     if (al === RIGHT_SHIFT_UP) {
@@ -109,3 +129,4 @@ let scan_table = [
     0x21,
     ' ',
 ];
+
