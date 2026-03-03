@@ -1,10 +1,10 @@
 org(0x7e00);
 use16();
-_exec.equ = 4;
-_find_file.equ = 3;
-_printf.equ = 2;
-_get_char.equ = 1;
 _reboot.equ = 0;
+_get_char.equ = 1;
+_printf.equ = 2;
+_find_file.equ = 3;
+_exec.equ = 4;
 cli();
 push(ax);
 push(es);

@@ -2,8 +2,8 @@
 
 org(0x7e00);
 use16();
-_secwrite.equ = 0xd;
 _secread.equ = 0xc;
+_secwrite.equ = 0xd;
 cli();
 push(ax);
 push(es);

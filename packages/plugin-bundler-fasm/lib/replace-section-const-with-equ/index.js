@@ -11,7 +11,7 @@ export const fix = ({label, list}) => {
     const nodes = [];
     
     for (const current of list.reverse()) {
-        nodes.push(current.node);
+        nodes.unshift(current.node);
         remove(current);
     }
     
