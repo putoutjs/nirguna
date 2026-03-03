@@ -13,9 +13,9 @@ export default {
     'report': () => 'c8 report --reporter=lcov',
     'build': () => {
         return [
-            '../nirguna/bin/nirguna.js -t kernel lib/kernel.ts',
-            '../nirguna/bin/nirguna.js -t boot lib/boot/index.js',
-            '../nirguna/bin/nirguna.js -t nemesis lib/shell/shell.ts',
+            'nirguna -t kernel lib/kernel.ts',
+            'nirguna -t boot lib/boot/index.js',
+            'nirguna -t nemesis lib/shell/shell.ts',
             './scripts/build.js',
             'cp ./build/* ~/nemesis-emulator/',
         ].join(' && ');
