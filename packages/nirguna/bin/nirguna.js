@@ -140,10 +140,10 @@ if (args.output) {
 }
 
 if (!args.output)
-    if (args.target === 'fasm')
-        write(name, 'bin', binary);
-    else if (args.target === 'wasm')
+    if (args.target === 'wasm')
         write(name, 'wasm', binary);
+    else
+        write(name, 'bin', binary);
 
 if (args.target === 'wast')
     write(name, 'wast', binary);
