@@ -46,7 +46,7 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     if (path.node.test.typeArguments) {
         print.space();
         print('(result ');
-        print(path.get('test.typeArguments.params.0.typeName'));
+        print('__test.typeArguments.params.0.typeName');
         print(')');
     }
     

@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import montag from 'montag';
-import {print} from '#printer-wasm';
+import {print} from './printer.js';
 
 test('nirguna: printer-wasm', (t) => {
     const source = montag`

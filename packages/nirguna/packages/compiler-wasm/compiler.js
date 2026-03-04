@@ -1,6 +1,6 @@
 import {transform} from '@nirguna/transformer-wasm';
+import {print} from '@nirguna/printer-wasm';
 import {translate} from '#translator-wasm';
-import {print} from '#printer-wasm';
 import {optimize} from '#optimizer-wasm';
 
 const noop = () => {};
@@ -60,3 +60,4 @@ export const compile = async (source, options = {}) => {
     emitLastStateChange('translate', places);
     return [binary, places];
 };
+

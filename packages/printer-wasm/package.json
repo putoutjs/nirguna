@@ -1,0 +1,53 @@
+{
+  "name": "@nirguna/printer-wasm",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "nirguna wasm printer",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/printer-wasm#readme",
+  "main": "lib/printer.js",
+  "release": false,
+  "tag": false,
+  "changelog": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderaiser/putout.git"
+  },
+  "scripts": {
+    "test": "madrun test",
+    "watch:test": "madrun watch:test",
+    "lint": "madrun lint",
+    "fresh:lint": "madrun fresh:lint",
+    "lint:fresh": "madrun lint:fresh",
+    "fix:lint": "madrun fix:lint",
+    "coverage": "madrun coverage",
+    "report": "madrun report"
+  },
+  "keywords": [
+    "printer",
+    "wasm"
+  ],
+  "devDependencies": {
+    "eslint": "^10.0.1",
+    "eslint-plugin-putout": "^31.0.1",
+    "madrun": "^13.0.0",
+    "montag": "^1.2.1",
+    "nodemon": "^3.0.1",
+    "superc8": "^12.0.0",
+    "supertape": "^12.5.0"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "putout": ">=42"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@putout/babel": "^5.3.2",
+    "@putout/printer": "^18.0.0"
+  }
+}
