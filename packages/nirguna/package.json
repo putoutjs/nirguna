@@ -47,7 +47,7 @@
     "@putout/plugin-esm": "^10.0.1",
     "@putout/plugin-remove-nested-blocks": "^9.0.0",
     "@putout/plugin-remove-useless-operand": "^3.0.0",
-    "@putout/printer": "^17.1.0",
+    "@putout/printer": "^18.0.0",
     "@typescript-eslint/typescript-estree": "^8.32.1",
     "chalk": "^5.4.1",
     "fasm.js": "^1.0.7",
