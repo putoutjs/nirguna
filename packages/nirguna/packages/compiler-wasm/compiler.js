@@ -60,4 +60,3 @@ export const compile = async (source, options = {}) => {
     emitLastStateChange('translate', places);
     return [binary, places];
 };
-
