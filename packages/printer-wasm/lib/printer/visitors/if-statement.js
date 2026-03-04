@@ -1,29 +1,24 @@
 import {types} from '@putout/babel';
-import {exists} from '@putout/printer/is';
+import {exists, isInsideBlock} from '@putout/printer/is';
+import {createTypeChecker} from '@putout/printer/type-checker';
 
 const {
     isBlockStatement,
-    isFunctionDeclaration,
     isStatement,
     isReturnStatement,
 } = types;
 
 const isTopLevel = ({parentPath}) => parentPath.parentPath.isProgram();
 
-const isLastEmptyInsideBody = (path) => {
-    const {parentPath} = path;
-    
-    if (!isBlockStatement(parentPath))
-        return false;
-    
-    if (!isBlockStatement(path.node.consequent))
-        return false;
-    
-    if (path.node.consequent.body.length)
-        return false;
-    
-    return isFunctionDeclaration(path.parentPath.parentPath);
-};
+const isBlockConsequent = (path) => isBlockStatement(path.node.consequent);
+const isConsequentHasBody = (path) => path.node.consequent.body.length;
+
+const isLastEmptyInsideBody = createTypeChecker([
+    ['-: -> !', isInsideBlock],
+    ['-: -> !', isBlockConsequent],
+    ['-', isConsequentHasBody],
+    '+: parentPath.parentPath -> FunctionDeclaration',
+]);
 
 export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     const {parentPath} = path;
