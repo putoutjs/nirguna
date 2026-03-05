@@ -1,24 +1,7 @@
 import {types} from '@putout/babel';
-import {exists, isInsideBlock} from '@putout/printer/is';
-import {createTypeChecker} from '@putout/printer/type-checker';
+import {exists} from '@putout/printer/is';
 
-const {
-    isBlockStatement,
-    isStatement,
-    isReturnStatement,
-} = types;
-
-const isTopLevel = ({parentPath}) => parentPath.parentPath.isProgram();
-
-const isBlockConsequent = (path) => isBlockStatement(path.node.consequent);
-const isConsequentHasBody = (path) => path.node.consequent.body.length;
-
-const isLastEmptyInsideBody = createTypeChecker([
-    ['-: -> !', isInsideBlock],
-    ['-: -> !', isBlockConsequent],
-    ['-', isConsequentHasBody],
-    '+: parentPath.parentPath -> FunctionDeclaration',
-]);
+const {isReturnStatement} = types;
 
 export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     const {parentPath} = path;
@@ -48,10 +31,7 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     const isConsequentBlock = consequent.isBlockStatement();
     const isVar = consequent.isVariableDeclaration();
     
-    if (isConsequentBlock) {
-        print.space();
-        print(consequent);
-    } else {
+    if (!isConsequentBlock) {
         const isRet = isReturnStatement(consequent);
         print.newline();
         indent.inc();
@@ -65,20 +45,7 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     print(')');
     print.newline();
     
-    if (alternate.isBlockStatement()) {
-        write.space();
-        write('(else');
-        write.space();
-        traverse(alternate);
-    } else if (alternate.isIfStatement()) {
-        if (alternate.get('consequent').isBlockStatement())
-            write.space();
-        else
-            indent();
-        
-        write('(else ');
-        traverse(alternate);
-    } else if (exists(alternate)) {
+    if (exists(alternate)) {
         maybe.write.newline(isVar);
         maybe.indent(!isConsequentBlock);
         maybe.write.space(isConsequentBlock);
@@ -95,14 +62,6 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
         write(')');
         write.newline();
     }
-    
-    const nextPath = path.parentPath.getNextSibling();
-    
-    if (path === partOfAlternate && !isTopLevel(path) && !isStatement(nextPath))
-        print.newline();
-    
-    if (isLastEmptyInsideBody(path))
-        print.newline();
     
     indent.dec();
     indent();

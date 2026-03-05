@@ -1,7 +1,4 @@
-import {hasCoupleTrailingComments} from '@putout/printer/is';
-
 export const Program = (path, printer) => {
-    const {body} = path.node;
     const {
         traverse,
         write,
@@ -18,9 +15,6 @@ export const Program = (path, printer) => {
     indent.dec();
     write.newline();
     write(')');
-    
-    if (body.length && hasCoupleTrailingComments(body.at(-1)))
-        return;
     
     write.endOfFile();
 };
