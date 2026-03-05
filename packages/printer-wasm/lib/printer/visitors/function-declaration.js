@@ -1,14 +1,14 @@
-import {types} from '@putout/babel';
 import {isNext, isNextParent} from '@putout/printer/is';
+import {createTypeChecker} from '@putout/printer/type-checker';
 import {printParams} from '../params.js';
 
-const {
-    isAssignmentExpression,
-    isTSModuleBlock,
-    isBlockStatement,
-    isExpressionStatement,
-    isFunctionDeclaration,
-} = types;
+const hasFnBody = ({node}) => node.body.body.length;
+
+const isInsideBlockLike = createTypeChecker([
+    '+: parentPath.parentPath -> TSModuleBlock',
+    '-: parentPath -> !BlockStatement',
+    ['+: -> !', hasFnBody],
+]);
 
 export const FunctionDeclaration = {
     print(path, printer, semantics) {
@@ -18,12 +18,8 @@ export const FunctionDeclaration = {
         print('(');
         print('func');
         
-        if (!generator) {
+        if (!generator)
             print(' ');
-        } else {
-            print('*');
-            print.space();
-        }
         
         print('$');
         print('__id');
@@ -54,38 +50,8 @@ export const FunctionDeclaration = {
         print('__body');
         print(')');
     },
-    afterSatisfy: () => [isNext, isNextParent, isInsideBlockStatement],
-    after(path, {indent, write}) {
-        if (isNextAssign(path) || isNextFunction(path) || isNext(path))
-            indent();
-        
+    afterSatisfy: () => [isNext, isNextParent, isInsideBlockLike],
+    after(path, {write}) {
         write.breakline();
-        //maybe.write.newline(notInsideExportDefaultWithBody(path));
     },
 };
-
-const isNextFunction = (path) => {
-    const next = path.getNextSibling();
-    return isFunctionDeclaration(next);
-};
-
-const isNextAssign = (path) => {
-    const next = path.getNextSibling();
-    
-    if (!isExpressionStatement(next))
-        return false;
-    
-    return isAssignmentExpression(next.node.expression);
-};
-
-function isInsideBlockStatement(path) {
-    const {parentPath} = path;
-    
-    if (isTSModuleBlock(parentPath.parentPath))
-        return true;
-    
-    if (!isBlockStatement(parentPath))
-        return false;
-    
-    return !path.node.body.body.length;
-}
