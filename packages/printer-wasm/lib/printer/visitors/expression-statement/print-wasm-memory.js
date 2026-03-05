@@ -1,15 +1,11 @@
-import {types} from '@putout/babel';
+import {createTypeChecker} from '@putout/printer/type-checker';
 
-const {isCallExpression} = types;
+const checkName = (a) => a === '__nirguna_wasm_memory';
 
-export const isWastMemory = (expression) => {
-    if (!isCallExpression(expression))
-        return;
-    
-    const {name} = expression.node.callee;
-    
-    return name === '__nirguna_wasm_memory';
-};
+export const isWastMemory = createTypeChecker([
+    '-: -> !CallExpression',
+    ['+: node.callee.name', checkName],
+]);
 
 export function printWasmMemory(path, printer) {
     const {print} = printer;
