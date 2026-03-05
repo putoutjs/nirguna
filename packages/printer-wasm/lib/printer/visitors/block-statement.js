@@ -1,5 +1,4 @@
 const isFirstStatement = (path) => path.node.body[0];
-const isFirstDirective = (path) => path.node.directives?.[0];
 
 export const BlockStatement = {
     print(path, printer) {

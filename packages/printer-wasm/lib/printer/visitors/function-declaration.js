@@ -2,12 +2,9 @@ import {isNext, isNextParent} from '@putout/printer/is';
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {printParams} from '../params.js';
 
-const hasFnBody = ({node}) => node.body.body.length;
-
 const isInsideBlockLike = createTypeChecker([
     '+: parentPath.parentPath -> TSModuleBlock',
     '-: parentPath -> !BlockStatement',
-    ['+: -> !', hasFnBody],
 ]);
 
 export const FunctionDeclaration = {
