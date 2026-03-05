@@ -1,18 +1,14 @@
 import {types} from '@putout/babel';
+import {createTypeChecker} from '@putout/printer/type-checker';
 
-const {
-    isCallExpression,
-    isReturnStatement,
-} = types;
+const {isReturnStatement} = types;
 
-export const isWastImport = (expression) => {
-    if (!isCallExpression(expression))
-        return;
-    
-    const {name} = expression.node.callee;
-    
-    return name === '__nirguna_wasm_import';
-};
+const checkName = (a) => a === '__nirguna_wasm_import';
+
+export const isWastImport = createTypeChecker([
+    '-: -> !CallExpression',
+    ['+: node.callee.name', checkName],
+]);
 
 export function printWasmImport(path, printer) {
     const {print, maybe} = printer;
