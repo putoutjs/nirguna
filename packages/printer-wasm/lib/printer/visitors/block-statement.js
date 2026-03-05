@@ -12,12 +12,9 @@ export const BlockStatement = {
         
         const body = path.get('body');
         
-        if (path.parentPath.isBlockStatement())
-            indent();
-        
         indent.inc();
         
-        if (isFirstStatement(path) || isFirstDirective(path))
+        if (isFirstStatement(path))
             write.newline();
         
         for (const element of body) {
@@ -26,8 +23,5 @@ export const BlockStatement = {
         
         indent.dec();
         maybe.indent(body.length);
-        
-        if (path.parentPath.isObjectMethod())
-            write(',');
     },
 };
