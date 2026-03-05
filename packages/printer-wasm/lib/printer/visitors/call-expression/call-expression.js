@@ -1,22 +1,15 @@
 import {types} from '@putout/babel';
 import {isWasmType} from './is-wasm-type.js';
 
-const {isIdentifier} = types;
-const {isArray} = Array;
-
-const parseArgs = (path) => {
-    const argsPath = path.get('arguments');
-    
-    if (!isArray(argsPath))
-        return [];
-    
-    return argsPath;
-};
+const {
+    isIdentifier,
+    isCallExpression,
+} = types;
 
 export function CallExpression(path, {indent, print, maybe, traverse}) {
-    const args = parseArgs(path);
+    const args = path.get('arguments');
     const n = args.length - 1;
-    const isParentCall = path.parentPath.isCallExpression();
+    const isParentCall = isCallExpression(path.parentPath);
     const callee = path.get('callee');
     
     print('(');
@@ -27,18 +20,10 @@ export function CallExpression(path, {indent, print, maybe, traverse}) {
     maybe.indent.inc(isParentCall);
     
     for (const [i, arg] of args.entries()) {
-        const isObject = arg.isObjectExpression();
-        
-        if (isParentCall && !isObject && n)
-            print.breakline();
-        
         if (isIdentifier(arg) && !isWasmType(arg.node.name))
             print('$');
         
         print(arg);
-        
-        if (isParentCall && n)
-            continue;
         
         if (i < n)
             print(' ');
@@ -51,3 +36,4 @@ export function CallExpression(path, {indent, print, maybe, traverse}) {
     
     print(')');
 }
+
