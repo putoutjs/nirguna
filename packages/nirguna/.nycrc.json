@@ -9,6 +9,7 @@
         "**/example",
         "**/fixture",
         "**/nemesis",
+        "**/*.spec.js",
         "*.config.js",
         "coverage"
     ],
