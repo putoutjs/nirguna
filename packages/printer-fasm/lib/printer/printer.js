@@ -8,6 +8,7 @@ import {SequenceExpression} from './visitors/sequence-expression.js';
 import {AssignmentExpression} from './visitors/assignment-expression.js';
 import {TaggedTemplateExpression} from './visitors/tagged-template-expression.js';
 import {StringLiteral} from './visitors/string-literal.js';
+import {ArrayExpression} from './visitors/array-expression.js';
 
 export const print = (ast) => {
     return putoutPrint(ast, {
@@ -17,6 +18,7 @@ export const print = (ast) => {
         },
         visitors: {
             AssignmentExpression,
+            ArrayExpression,
             CallExpression,
             MemberExpression,
             BlockStatement,

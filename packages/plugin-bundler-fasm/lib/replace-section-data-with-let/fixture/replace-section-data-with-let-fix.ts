@@ -26,10 +26,7 @@ let not_f = 'sh3ll not found :(!';
 let buf: rb = 0x10;
 let sh3ll = 'SH3LL ';
 
-let hi = [
-    'Hello from Nemesis =)!',
-    0xd,
-];
+let hi = ['Hello from Nemesis =)!', 0xd];
 
 function get() {
     const eax = 3;

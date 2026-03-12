@@ -2,10 +2,7 @@ async function execute() {
     await debugPort(__debug_1_hello_world);
 }
 
-let __debug_1_hello_world = [
-    'hello world',
-    0xa,
-];
+let __debug_1_hello_world = ['hello world', 0xa];
 
 async function debugPort(name) {
     pusha();

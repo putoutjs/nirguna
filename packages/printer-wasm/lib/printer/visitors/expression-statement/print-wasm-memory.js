@@ -3,7 +3,7 @@ import {createTypeChecker} from '@putout/printer/type-checker';
 const checkName = (a) => a === '__nirguna_wasm_memory';
 
 export const isWastMemory = createTypeChecker([
-    '-: -> !CallExpression',
+    ['-: -> !CallExpression'],
     ['+: node.callee.name', checkName],
 ]);
 

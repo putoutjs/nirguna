@@ -48,7 +48,6 @@
     "@putout/plugin-esm": "^10.0.1",
     "@putout/plugin-remove-nested-blocks": "^9.0.0",
     "@putout/plugin-remove-useless-operand": "^3.0.0",
-    "@putout/printer": "^18.0.0",
     "@typescript-eslint/typescript-estree": "^8.32.1",
     "chalk": "^5.4.1",
     "fasm.js": "^1.0.7",
@@ -68,7 +67,6 @@
   "devDependencies": {
     "@nirguna/operator-fasm": "^1.0.0",
     "@nirguna/runner-wasm": "*",
-    "@putout/plugin-printer": "^7.1.1",
     "@putout/test": "^15.1.1",
     "eslint": "^10.0.1",
     "eslint-plugin-n": "^17.0.0",

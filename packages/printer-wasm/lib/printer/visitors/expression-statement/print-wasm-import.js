@@ -6,7 +6,7 @@ const {isReturnStatement} = types;
 const checkName = (a) => a === '__nirguna_wasm_import';
 
 export const isWastImport = createTypeChecker([
-    '-: -> !CallExpression',
+    ['-: -> !CallExpression'],
     ['+: node.callee.name', checkName],
 ]);
 

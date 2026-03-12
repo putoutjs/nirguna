@@ -13,10 +13,7 @@ exec_addr.dw[0x500];
 old_ds.dw[0];
 old_esi.dw[0];
 
-hi.equ[[
-    'Hello from Nemesis =)!',
-    0xd,
-]];
+hi.equ[['Hello from Nemesis =)!', 0xd]];
 buf.rb[0x10];
 
 export const compare = (eax) => {

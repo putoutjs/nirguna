@@ -3,9 +3,7 @@ function printf() {
         cmp([line], 24);
         jnz(__nirguna_fasm_if_end_1);
         {
-            [
-                --line,
-            ];
+            [--line];
             
             ax = 0x601; // Прокрутка вверх на одну строку
             bh = 0x02; // чорный фон, зеленые символы

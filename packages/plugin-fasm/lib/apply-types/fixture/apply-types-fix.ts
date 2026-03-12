@@ -14,10 +14,7 @@ exec_addr.dw = 0x500;
 old_ds.dw = 0;
 old_esi.dw = 0;
 
-const hi = [
-    'Hello from Nemesis =)!',
-    0xd,
-];
+const hi = ['Hello from Nemesis =)!', 0xd];
 
 buf.rb = 0x10;
 

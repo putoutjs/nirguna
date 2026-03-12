@@ -8,7 +8,6 @@
         "**/bin",
         "**/example",
         "**/fixture",
-        "**/printer-*",
         "**/nemesis",
         "*.config.js",
         "coverage"

@@ -1,7 +1,5 @@
 {
-    al = [
-        kernel_sec_size,
-    ];
+    al = [kernel_sec_size];
     bx = bx;
     cl = cl;
     ch = ch;
