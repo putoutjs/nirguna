@@ -15,14 +15,14 @@ let HELP = 'help';
 let REBOOT = 'reboot';
 let COLOR = 'color';
 let CLS = 'cls';
-let DIR = 'dir';
+let LS = 'ls';
 
 let COMMANDS = [
     'Nemesis HELP:',
     0xd,
     'help   - show this screen ;)',
     0xd,
-    'dir    - show the files in dir where you now',
+    'ls     - show the files in dir where you now',
     0xd,
     'cls    - will clear the screen',
     0xd,
@@ -84,7 +84,7 @@ async function start() {
             continue;
         }
         
-        await strcmp(buffer, DIR);
+        await strcmp(buffer, LS);
         
         if (!al) {
             await dir();
