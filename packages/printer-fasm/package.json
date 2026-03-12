@@ -30,6 +30,7 @@
     "madrun"
   ],
   "devDependencies": {
+    "@putout/plugin-printer": "^8.7.2",
     "@putout/test": "^15.1.1",
     "eslint": "^10.0.1",
     "eslint-plugin-n": "^17.0.0",
