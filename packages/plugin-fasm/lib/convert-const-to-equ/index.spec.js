@@ -1,6 +1,6 @@
 import {createTest} from '@putout/test';
 import * as plugin from '#convert-const-to-equ';
-import * as splitIncludeToIfSequence from '../split-include-to-if-sequence/index.js';
+import * as splitIncludeToIfSequence from '#split-includes-to-if-sequence';
 
 const test = createTest(import.meta.url, {
     plugins: [

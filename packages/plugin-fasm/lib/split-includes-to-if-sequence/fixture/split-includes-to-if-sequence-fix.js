@@ -1,9 +1,16 @@
-[].includes();
-[a].includes();
-notDeclared.includes();
+if ([].includes())
+    x();
+
+if ([a].includes())
+    x();
+
+if (notDeclared.includes(z))
+    x();
 
 const notArray = getArray();
-notArray.includes();
+
+if (notArray.includes())
+    x();
 
 {
     if (al === LEFT_ALT)

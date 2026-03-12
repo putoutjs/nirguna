@@ -16,7 +16,8 @@
   "imports": {
     "#targets": "./lib/targets.js",
     "#convert-const-to-equ": "./lib/convert-const-to-equ/index.js",
-    "#split-include-to-if-sequence": "./lib/split-include-to-if-sequence/index.js"
+    "#convert-assign-to-mov": "./lib/convert-assign-to-mov/index.js",
+    "#split-includes-to-if-sequence": "./lib/split-includes-to-if-sequence/index.js"
   },
   "scripts": {
     "test": "madrun test",

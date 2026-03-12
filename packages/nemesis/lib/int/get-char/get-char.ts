@@ -17,6 +17,11 @@ const IGNORED_KEYS = [
     LEFT_ALT_UP,
 ];
 
+const SHIFT_KEYS = [
+    LEFT_SHIFT,
+    RIGHT_SHIFT,
+];
+
 // никаких параметров не принимает
 // в al возвращает ascii код нажатой клавиши
 export async function getChar<bx>() {
@@ -24,12 +29,7 @@ export async function getChar<bx>() {
         io.in(al, 0x60);
     } while (al === 0xfa);
     
-    if (al === RIGHT_SHIFT) {
-        [shift] = 1;
-        jmp(again);
-    }
-    
-    if (al === LEFT_SHIFT) {
+    if (SHIFT_KEYS.includes(al)) {
         [shift] = 1;
         jmp(again);
     }

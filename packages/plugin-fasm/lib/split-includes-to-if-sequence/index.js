@@ -21,11 +21,11 @@ export const report = () => `Use 'if condition' instead of 'includes'`;
 
 export const match = () => ({
     'if (__a.includes(__b)) __c': ({__a, __b}, path) => {
-        if (!isIdentifier(__a))
-            return false;
+        //   if (!isIdentifier(__a))
+        //       return false;
         
-        if (!isIdentifier(__b))
-            return false;
+        //if (!isIdentifier(__b))
+        //    return false;
         
         const binding = path.scope.getAllBindings()[__a.name];
         
@@ -57,7 +57,7 @@ export const replace = () => ({
             nodes.push(createIf({
                 __e: __b,
                 __f: element,
-                __c,
+                __c: structuredClone(__c),
             }));
         }
         

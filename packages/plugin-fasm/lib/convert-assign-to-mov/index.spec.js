@@ -1,6 +1,9 @@
 import {createTest} from '@putout/test';
-import * as plugin from './index.js';
+import * as removeNestedBlocks from '@putout/plugin-remove-nested-blocks';
+import * as plugin from '#convert-assign-to-mov';
 import * as convertArgumentsToRegisters from '../convert-args-to-regs/index.js';
+import * as splitIncludesToIfSequence from '#split-includes-to-if-sequence';
+import * as convertIfToJmp from '../convert-if-to-jmp/index.js';
 
 const test = createTest(import.meta.url, {
     plugins: [
@@ -52,5 +55,14 @@ test('compiler: convert-assign-to-mov: no report: ptr', (t) => {
 
 test('compiler: convert-assign-to-mov: transform: binary', (t) => {
     t.transform('binary');
+    t.end();
+});
+
+test('compiler: convert-assign-to-mov: transform: split-includes-to-if-sequence', (t) => {
+    t.transform('split-includes-to-if-sequence', {
+        splitIncludesToIfSequence,
+        convertIfToJmp,
+        removeNestedBlocks,
+    });
     t.end();
 });
