@@ -24,4 +24,3 @@ test('fasm: convert-const-to-equ: transform: split-include-to-if-sequence', (t) 
     });
     t.end();
 });
-

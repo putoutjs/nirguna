@@ -22,4 +22,3 @@ export const match = () => ({
 export const replace = () => ({
     'const __a = __b': '__a.equ = __b;',
 });
-
