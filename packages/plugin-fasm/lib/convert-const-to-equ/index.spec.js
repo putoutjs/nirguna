@@ -1,5 +1,6 @@
 import {createTest} from '@putout/test';
-import * as plugin from './index.js';
+import * as plugin from '#convert-const-to-equ';
+import * as splitIncludeToIfSequence from '../split-include-to-if-sequence/index.js';
 
 const test = createTest(import.meta.url, {
     plugins: [
@@ -16,3 +17,11 @@ test('fasm: convert-const-to-equ: transform', (t) => {
     t.transform('convert-const-to-equ');
     t.end();
 });
+
+test('fasm: convert-const-to-equ: transform: split-include-to-if-sequence', (t) => {
+    t.transform('split-include-to-if-sequence', {
+        splitIncludeToIfSequence,
+    });
+    t.end();
+});
+

@@ -13,6 +13,13 @@ const LEFT_CTRL_UP = LEFT_CTRL + UP;
 const LEFT_ALT = 0x38;
 const LEFT_ALT_UP = LEFT_ALT + UP;
 
+const IGNORED_KEYS = [
+    LEFT_CTRL,
+    LEFT_CTRL_UP,
+    LEFT_ALT,
+    LEFT_ALT_UP,
+];
+
 // никаких параметров не принимает
 // в al возвращает ascii код нажатой клавиши
 export async function getChar<bx>() {
@@ -30,16 +37,7 @@ export async function getChar<bx>() {
         jmp(again);
     }
     
-    if (al === LEFT_ALT)
-        jmp(again);
-    
-    if (al === LEFT_ALT_UP)
-        jmp(again);
-    
-    if (al === LEFT_CTRL)
-        jmp(again);
-    
-    if (al === LEFT_CTRL_UP)
+    if (IGNORED_KEYS.includes(al))
         jmp(again);
     
     if (al === RIGHT_SHIFT_UP) {

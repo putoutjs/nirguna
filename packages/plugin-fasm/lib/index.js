@@ -1,3 +1,5 @@
+import * as convertConstToEqu from '#convert-const-to-equ';
+import * as splitIncludeToIfSequence from './split-include-to-if-sequence/index.js';
 import * as insertTarget from './insert-target/index.js';
 import * as removeUselessPromise from './remove-useless-promise/index.js';
 import * as applyInclude from './apply-include/index.js';
@@ -7,7 +9,6 @@ import * as convertLinuxExitToSyscall from './convert-linux-exit-to-syscall/inde
 import * as convertLinuxWriteToSyscall from './convert-linux-write-to-syscall/index.js';
 import * as convertWhileToJz from './convert-while-to-jz/index.js';
 import * as convertUregToReg from './convert-ureg-to-reg/index.js';
-import * as convertConstToEqu from './convert-const-to-equ/index.js';
 import * as removeUselessBraces from './remove-useless-braces/index.js';
 import * as applyRegisters from './apply-registers/index.js';
 import * as convertAssignToOr from './convert-assign-to-or/index.js';
@@ -92,4 +93,5 @@ export const rules = {
     'apply-include': applyInclude,
     'remove-useless-promise': removeUselessPromise,
     'insert-target': insertTarget,
+    'split-include-to-if-sequence': splitIncludeToIfSequence,
 };

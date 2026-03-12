@@ -14,7 +14,9 @@
     "url": "git+https://github.com/coderaiser/putout.git"
   },
   "imports": {
-    "#targets": "./lib/targets.js"
+    "#targets": "./lib/targets.js",
+    "#convert-const-to-equ": "./lib/convert-const-to-equ/index.js",
+    "#split-include-to-if-sequence": "./lib/split-include-to-if-sequence/index.js"
   },
   "scripts": {
     "test": "madrun test",
