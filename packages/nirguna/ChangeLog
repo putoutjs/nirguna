@@ -1,3 +1,25 @@
+2026.03.12, v1.2.4
+
+fix:
+- 04177ee nemesis: gets: rm cmp before if
+
+feature:
+- f141470 @nirguna/printer-fasm: @putout/printer v18.4.5
+- 9c5da5b @nirguna/printer-wasm: @putout/plugin-printer v8.7.2
+- 9db3c25 @nirguna/printer-fasm: @putout/plugin-printer v8.7.2
+- fbe460f nemesis: mov out help
+- 2bc5620 nemesis: dir -> ls
+- e18914d nemesis: reuse constant
+- 2942583 @nirguna/printer-wasm: coverage
+- 996f6df @nirguna/printer-wasm: rm unused
+- 0a82979 @nirguna/printer-wasm: FunctionDeclaration: rm unused
+- 77ae252 @nirguna/printer-wasm: IfStatement: rm unused
+- 2d1e42f @nigrung/printer-wasm: CallExpression: remove unused
+- c45e041 @nirguna/printer-wasm: print-wasm-import: simplify
+- 175531a @nirguna/printer-wasm: isWastMemory: simplify
+- 42e64e2 @nirguna/printer-wasm: IfStatement: simplify
+- b169a9d @nirguna/printer-wasm: IfStatement: simplify
+
 2026.03.04, v1.2.3
 
 feature:
