@@ -4,7 +4,7 @@ import {i16} from '@nirguna/operator-fasm';
 let count: i16 = 0;
 let NEW_LINE = [0xd, 0xd];
 
-export async function dir() {
+export async function ls() {
     [count] = 0;
     do {
         inc([count]);

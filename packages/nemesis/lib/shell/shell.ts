@@ -1,11 +1,12 @@
 import {nemesis} from '@nirguna/operator-nemesis';
 import {bios, rb} from '@nirguna/operator-fasm';
-import {dir} from './commands/dir.ts';
+import {ls} from './commands/ls.ts';
 import {notFound} from './commands/not-found.ts';
 import {clearBuffer} from './clear-buffer';
 import {strcmp} from '../string/strcmp';
 import {setColor} from './commands/set-color';
 import {getStringLength} from '../string/get-string-length';
+import {HELP_COMMANDS} from './commands/help';
 
 const cmdSize = 80;
 
@@ -16,21 +17,6 @@ let REBOOT = 'reboot';
 let COLOR = 'color';
 let CLS = 'cls';
 let LS = 'ls';
-
-let COMMANDS = [
-    'Nemesis HELP:',
-    0xd,
-    'help   - show this screen ;)',
-    0xd,
-    'ls     - show the files in dir where you now',
-    0xd,
-    'cls    - will clear the screen',
-    0xd,
-    'reboot - reboot the computer',
-    0xd,
-    'color  - change text and background color',
-    0xd,
-];
 
 let prompt = ']';
 
@@ -59,7 +45,7 @@ async function start() {
         await strcmp(buffer, HELP);
         
         if (!al) {
-            nemesis.printf(COMMANDS);
+            nemesis.printf(HELP_COMMANDS);
             continue;
         }
         
@@ -87,7 +73,7 @@ async function start() {
         await strcmp(buffer, LS);
         
         if (!al) {
-            await dir();
+            await ls();
             continue;
         }
         
