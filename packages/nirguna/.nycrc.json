@@ -4,12 +4,12 @@
     "all": true,
     "exclude": [
         "**/*.config.*",
+        "**/*.spec.js",
         "**/.*",
         "**/bin",
         "**/example",
         "**/fixture",
         "**/nemesis",
-        "**/*.spec.js",
         "*.config.js",
         "coverage"
     ],
