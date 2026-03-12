@@ -19,6 +19,11 @@ const IGNORED_KEYS = [
 
 const SHIFT_KEYS = [LEFT_SHIFT, RIGHT_SHIFT];
 
+const SHIFT_KEYS_UP = [
+    LEFT_SHIFT_UP,
+    RIGHT_SHIFT_UP,
+];
+
 // никаких параметров не принимает
 // в al возвращает ascii код нажатой клавиши
 export async function getChar<bx>() {
@@ -34,12 +39,7 @@ export async function getChar<bx>() {
     if (IGNORED_KEYS.includes(al))
         jmp(again);
     
-    if (al === RIGHT_SHIFT_UP) {
-        [shift] = 0;
-        jmp(again);
-    }
-    
-    if (al === LEFT_SHIFT_UP) {
+    if (SHIFT_KEYS_UP.includes(al)) {
         [shift] = 0;
         jmp(again);
     }
