@@ -1,5 +1,6 @@
 import * as convertConstToEqu from '#convert-const-to-equ';
 import * as splitIncludesToIfSequence from '#split-includes-to-if-sequence';
+import * as convertAssignToMov from '#convert-assign-to-mov';
 import * as insertTarget from './insert-target/index.js';
 import * as removeUselessPromise from './remove-useless-promise/index.js';
 import * as applyInclude from './apply-include/index.js';
@@ -39,7 +40,6 @@ import * as convEquCallToMember from './convert-equ-call-to-member/index.js';
 import * as convertDecToHex from './convert-dec-to-hex/index.js';
 import * as convertAssignToMember from './convert-assign-to-member/index.js';
 import * as convertAssignToAdd from './convert-assign-to-add/index.js';
-import * as convertAssignToMov from '#convert-assign-to-mov';
 import * as convertAssignToXor from './convert-assign-to-xor/index.js';
 import * as convertAssignToShl from './convert-assign-to-shl/index.js';
 import * as convertAwaitToCall from './convert-await-to-call/index.js';

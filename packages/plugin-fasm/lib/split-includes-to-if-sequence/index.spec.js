@@ -37,4 +37,3 @@ test('fasm: split-includes-to-if-sequence: no report after transform: convert-as
     });
     t.end();
 });
-

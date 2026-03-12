@@ -1,9 +1,9 @@
 import {createTest} from '@putout/test';
 import * as removeNestedBlocks from '@putout/plugin-remove-nested-blocks';
+import * as convertAssignToMov from '#convert-assign-to-mov';
 import * as plugin from './index.js';
 import * as insertTarget from '../insert-target/index.js';
 import * as convertAssignToAdd from '../convert-assign-to-add/index.js';
-import * as convertAssignToMov from '#convert-assign-to-mov';
 import * as splitBinaryExpression from '../split-binary-expression/index.js';
 import * as convertFunctionToLabel from '../convert-function-to-label/index.js';
 

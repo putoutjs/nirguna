@@ -1,4 +1,5 @@
 import {createTest} from '@putout/test';
+import * as convertAssignToMov from '#convert-assign-to-mov';
 import * as plugin from './index.js';
 import * as applyRegisters from '../apply-registers/index.js';
 import * as removeUselessBraces from '../remove-useless-braces/index.js';
@@ -6,7 +7,6 @@ import * as convertFunctionToLabel from '../convert-function-to-label/index.js';
 import * as convertPrintLineToInt10 from '../convert-bios-print-line-to-int-10/index.js';
 import * as convertReturnToEax from '../convert-return-to-eax/index.js';
 import * as convertUregToReg from '../convert-ureg-to-reg/index.js';
-import * as convertAssignToMov from '#convert-assign-to-mov';
 import * as convertDeclarationToMov from '../convert-declaration-to-mov/index.js';
 import * as convertWhileToJz from '../convert-while-to-jz/index.js';
 import * as splitBinaryExpression from '../split-binary-expression/index.js';

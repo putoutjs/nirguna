@@ -1,8 +1,8 @@
 import {createTest} from '@putout/test';
 import * as removeNestedBlocks from '@putout/plugin-remove-nested-blocks';
 import * as plugin from '#convert-assign-to-mov';
-import * as convertArgumentsToRegisters from '../convert-args-to-regs/index.js';
 import * as splitIncludesToIfSequence from '#split-includes-to-if-sequence';
+import * as convertArgumentsToRegisters from '../convert-args-to-regs/index.js';
 import * as convertIfToJmp from '../convert-if-to-jmp/index.js';
 
 const test = createTest(import.meta.url, {
