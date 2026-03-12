@@ -4,8 +4,8 @@ const UP = 0x80;
 
 const RIGHT_SHIFT = 0x36;
 const LEFT_SHIFT = 0x2a;
-const RIGHT_SHIFT_UP = 0x36 + UP;
-const LEFT_SHIFT_UP = 0x2a + UP;
+const RIGHT_SHIFT_UP = RIGHT_SHIFT + UP;
+const LEFT_SHIFT_UP = LEFT_SHIFT + UP;
 
 const LEFT_CTRL = 0x1D;
 const LEFT_CTRL_UP = LEFT_CTRL + UP;
@@ -13,7 +13,7 @@ const LEFT_CTRL_UP = LEFT_CTRL + UP;
 const LEFT_ALT = 0x38;
 const LEFT_ALT_UP = LEFT_ALT + UP;
 
-// никаких параметров не принимает.
+// никаких параметров не принимает
 // в al возвращает ascii код нажатой клавиши
 export async function getChar<bx>() {
     again: do {
@@ -42,7 +42,6 @@ export async function getChar<bx>() {
     if (al === LEFT_CTRL_UP)
         jmp(again);
     
-    //;Скан-коды отпущенного шифта
     if (al === RIGHT_SHIFT_UP) {
         [shift] = 0;
         jmp(again);
