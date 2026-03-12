@@ -7,7 +7,7 @@ import {readSector} from './sector.ts';
 import {findFile} from './find-file/find-file.ts';
 import {exec} from './exec';
 import {setColor} from './color';
-import {getChar} from './get-char';
+import {getChar} from './get-char/get-char';
 import {gets} from './gets';
 import {findFirst} from './find-file/find-first';
 

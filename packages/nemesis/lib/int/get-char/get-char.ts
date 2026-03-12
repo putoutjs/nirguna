@@ -1,17 +1,14 @@
 import {io} from '@nirguna/operator-fasm';
-
-const UP = 0x80;
-
-const RIGHT_SHIFT = 0x36;
-const LEFT_SHIFT = 0x2a;
-const RIGHT_SHIFT_UP = RIGHT_SHIFT + UP;
-const LEFT_SHIFT_UP = LEFT_SHIFT + UP;
-
-const LEFT_CTRL = 0x1D;
-const LEFT_CTRL_UP = LEFT_CTRL + UP;
-
-const LEFT_ALT = 0x38;
-const LEFT_ALT_UP = LEFT_ALT + UP;
+import {
+    LEFT_ALT,
+    LEFT_CTRL,
+    LEFT_SHIFT,
+    LEFT_ALT_UP,
+    LEFT_CTRL_UP,
+    LEFT_SHIFT_UP,
+    RIGHT_SHIFT,
+    RIGHT_SHIFT_UP,
+} from './keys.js';
 
 const IGNORED_KEYS = [
     LEFT_CTRL,
