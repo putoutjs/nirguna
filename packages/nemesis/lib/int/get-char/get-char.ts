@@ -19,10 +19,7 @@ const IGNORED_KEYS = [
 
 const SHIFT_KEYS = [LEFT_SHIFT, RIGHT_SHIFT];
 
-const SHIFT_KEYS_UP = [
-    LEFT_SHIFT_UP,
-    RIGHT_SHIFT_UP,
-];
+const SHIFT_KEYS_UP = [LEFT_SHIFT_UP, RIGHT_SHIFT_UP];
 
 // никаких параметров не принимает
 // в al возвращает ascii код нажатой клавиши
