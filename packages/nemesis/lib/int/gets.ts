@@ -24,7 +24,6 @@ export async function gets() {
             --di;
             pop(ax);
             push(ax);
-            cmp(di, ax);
             
             if (di !== ax) {
                 ++cx;
