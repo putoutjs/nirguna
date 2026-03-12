@@ -20,10 +20,6 @@ export const report = () => `Use 'if condition' instead of 'includes'`;
 
 export const match = () => ({
     'if (__a.includes(__b)) __c': ({__a}, path) => {
-        //   if (!isIdentifier(__a))
-        //       return false;
-        //if (!isIdentifier(__b))
-        //    return false;
         const binding = path.scope.getAllBindings()[__a.name];
         
         if (!binding)

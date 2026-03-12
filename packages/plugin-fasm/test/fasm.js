@@ -222,7 +222,7 @@ test('plugin-fasm: transform: insert-target', (t) => {
     t.end();
 });
 
-test('plugin-fasm: transform: split-include-to-if-sequence', (t) => {
-    t.transform('split-include-to-if-sequence');
+test('plugin-fasm: transform: split-includes-to-if-sequence', (t) => {
+    t.transform('split-includes-to-if-sequence');
     t.end();
 });
