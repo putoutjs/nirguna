@@ -18,10 +18,7 @@ pop([es, ax]);
 sti();
 
 let shell = 'SH3LL ';
-let hi = [
-    'Hello from Nemesis =)!',
-    0xd,
-];
+let hi = ['Hello from Nemesis =)!', 0xd];
 
 nemesis.printf(hi);
 nemesis.exec(shell);

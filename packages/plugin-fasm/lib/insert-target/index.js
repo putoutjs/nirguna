@@ -15,7 +15,9 @@ export const fix = (path, {options}) => {
     path.node.body.unshift(template.ast(code));
 };
 
-export const include = () => ['Program'];
+export const include = () => [
+    'Program',
+];
 
 export const filter = (path, {options}) => {
     const {target} = options;

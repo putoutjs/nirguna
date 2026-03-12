@@ -118,7 +118,9 @@ test('nirguna: compiler-fasm: optimized: onStageChanged: place', async (t) => {
                 ['report', {
                     report: () => 'hello',
                     fix: noop,
-                    include: () => ['Program'],
+                    include: () => [
+                        'Program',
+                    ],
                 }],
             ],
         },

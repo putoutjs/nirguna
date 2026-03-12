@@ -9,11 +9,7 @@ import {getStringLength} from '../string/get-string-length';
 
 const cmdSize = 80;
 
-let hi = [
-    `Hi, I am Sh3ll. Type 'help' for `,
-    'more information',
-    0xd,
-];
+let hi = [`Hi, I am Sh3ll. Type 'help' for `, 'more information', 0xd];
 
 let HELP = 'help';
 let REBOOT = 'reboot';
