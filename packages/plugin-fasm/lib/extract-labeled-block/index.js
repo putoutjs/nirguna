@@ -23,29 +23,6 @@ export const fix = ({path, first, other}) => {
     body.splice(index + 1, 0, ...other);
 };
 export const traverse = ({push}) => ({
-    '__a: __b: {__body}': (path) => {
-        const {parentPath} = path;
-        
-        if (isProgram(parentPath))
-            return;
-        
-        if (isLabeledStatement(parentPath))
-            return;
-        
-        if (isLabeledStatement(path.node.body))
-            return;
-        
-        const {__body} = getTemplateValues(path, '__a: __b: {__body}');
-        
-        const [first, ...other] = __body.body;
-        
-        if (!isBlockStatement(first))
-            push({
-                path,
-                first,
-                other,
-            });
-    },
     '__a: {__body}': (path) => {
         const {parentPath} = path;
         
