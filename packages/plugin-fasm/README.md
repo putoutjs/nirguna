@@ -36,7 +36,7 @@ Transforms:
 - ✅[`convert-await-to-call`](https://putout.cloudcmd.io/#/gist/0ec93b79f05e36b8ed54e79acd5813d1/e1210ac63069d81dd5f679b324ad82b49a2f25ad);
 - ✅[`convert-do-while-to-jnz`](https://putout.cloudcmd.io/#/gist/fe11c0afb23c53585fcb55189593a07a/f194c349cd774d5ab49e0e198c2855e1bb8be6ac);
 - ✅[`convert-while-to-jz`](https://putout.cloudcmd.io/#/gist/6be739dd8e167c8a1b1a72a1830a4920/c24d22911ea61d74fb5391c4cc31821da4055116);
-- ✅[`converg-ureg-to-reg`](https://putout.cloudcmd.io/#/gist/794275bc0cf83432615333b1e41f1975/bac80042b461cb09d8f83402de6fd1f1dafb465c);
+- ✅[`convert-ureg-to-reg`](https://putout.cloudcmd.io/#/gist/794275bc0cf83432615333b1e41f1975/bac80042b461cb09d8f83402de6fd1f1dafb465c);
 - ✅[`convert-mov-to-add`](https://putout.cloudcmd.io/#/gist/2f03076ac9a794c880fcbadcc1cd502d/145f3e930f9514b79adc47076354f2203476607f);
 - ✅[`convert-declaration-to-mov`](https://putout.cloudcmd.io/#/gist/184b75da1a92ae554b522d004c520017/689ff370e4b20204957a22f499d6f963614b7afb);
 - ✅[`extract-labeled-block`](https://putout.cloudcmd.io/#/gist/033921790a761eef2361aa8b4708e29e/e0e0eb1aa41791c2c01e858f7c198f1a408c6418);
@@ -48,3 +48,47 @@ Transforms:
 - ✅[`remove-useless-promise`](https://putout.cloudcmd.io/#/gist/d21eb87bc77b53e54c28b1ae8442a403/1b35064142068e623a564f578517c2aace55ceba);
 - ✅[`switch-cmp-operands`](https://putout.cloudcmd.io/#/gist/cdf71331f1024c9c966d4756c6159684/9d3f2ebeb41cd096de7919f0c39bc75cbaf5ce0c);
 - ✅[`insert-target`](https://putout.cloudcmd.io/#/gist/e7e3f495fdfde1b065117fc0ae41873c/b6fe3dc81d33c81d332ce5d551b8a2fb40b63d70);
+
+## convert-ureg-to-reg
+
+Checkout in 🐊[**Putout Editor**](https://putout.cloudcmd.io/#/gist/794275bc0cf83432615333b1e41f1975/bac80042b461cb09d8f83402de6fd1f1dafb465c).
+
+### ❌ Example of incorrect code
+
+```js
+'use 64';
+
+function getStringLength(str): ureg {
+    const usi = str;
+    const ucx = 0;
+    const al = 1;
+    
+    while (al) {
+        lodsb();
+        ++ucx;
+    }
+    
+    return ucx;
+}
+```
+
+### ✅ Example of correct code
+
+```js
+function getStringLength(str): i64 {
+    const rsi = str;
+    const rcx = 0;
+    const al = 1;
+    
+    while (al) {
+        lodsb();
+        ++rcx;
+    }
+    
+    return rcx;
+}
+```
+
+## License
+
+MIT
