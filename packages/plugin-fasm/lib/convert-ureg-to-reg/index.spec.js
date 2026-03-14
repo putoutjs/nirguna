@@ -26,3 +26,13 @@ test('fasm: convert-ureg-to-reg: transform: no-type', (t) => {
     t.transform('no-type');
     t.end();
 });
+
+test('fasm: convert-ureg-to-reg: transform: use-32', (t) => {
+    t.transform('use-32');
+    t.end();
+});
+
+test('fasm: convert-ureg-to-reg: transform: use-64', (t) => {
+    t.transform('use-64');
+    t.end();
+});

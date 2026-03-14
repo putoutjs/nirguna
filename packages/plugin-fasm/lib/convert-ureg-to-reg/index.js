@@ -12,16 +12,13 @@ function getBitness(path) {
     
     const {value} = directives[0].value;
     
-    if (value === 'use 16')
-        return 16;
-    
     if (value === 'use 32')
         return 32;
     
     if (value === 'use 64')
         return 64;
     
-    return '16';
+    return 16;
 }
 
 export const report = () => `Use 'reg' instead of 'ureg'`;
