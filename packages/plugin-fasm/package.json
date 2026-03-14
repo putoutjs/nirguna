@@ -1,6 +1,6 @@
 {
   "name": "@nirguna/plugin-fasm",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna plugin adds ability to optimize fasm",
