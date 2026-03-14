@@ -55,12 +55,12 @@ Checkout in 🐊[**Putout Editor**](https://putout.cloudcmd.io/#/gist/794275bc0c
 
 ### ❌ Example of incorrect code
 
-```js
+```ts
 'use 64';
 
 function getStringLength(str): ureg {
     const usi = str;
-    const ucx = 0;
+    let ucx = 0;
     const al = 1;
     
     while (al) {
@@ -74,10 +74,10 @@ function getStringLength(str): ureg {
 
 ### ✅ Example of correct code
 
-```js
+```ts
 function getStringLength(str): i64 {
     const rsi = str;
-    const rcx = 0;
+    let rcx = 0;
     const al = 1;
     
     while (al) {

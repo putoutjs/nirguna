@@ -34,7 +34,6 @@ export const dump = (source, binary) => {
     formatter.digitSeparator = '`';
     formatter.firstOperandCharIndex = 10;
     // Format the instructions
-    
     const output = instructions.map((instruction) => {
         // Eg. "00007FFAC46ACDB2 488DAC2400FFFFFF     lea       rbp,[rsp-100h]"
         let line = instruction.ip.toString(16);
