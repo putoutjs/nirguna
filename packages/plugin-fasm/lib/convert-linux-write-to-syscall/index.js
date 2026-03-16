@@ -1,16 +1,9 @@
-import {operator, types} from 'putout';
+import {operator} from 'putout';
 
-const {isArrayExpression} = types;
 const {extract} = operator;
 const STDOUT = 1;
 
 export const report = () => `Use 'syscall' instead of 'linux.write()'`;
-
-export const match = () => ({
-    'linux.write()': (vars, path) => {
-        return path.parentPath.isExpressionStatement();
-    },
-});
 
 export const replace = () => ({
     'linux.write(__object)': ({__object}) => {
@@ -34,14 +27,7 @@ function parseArgs(properties) {
     const result = {};
     
     for (const {key, value} of properties) {
-        const extracted = extract(value);
-        
-        if (isArrayExpression(value)) {
-            result[key.name] = `[${extracted}]`;
-            continue;
-        }
-        
-        result[key.name] = extracted;
+        result[key.name] = extract(value);
     }
     
     return result;
