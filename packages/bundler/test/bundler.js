@@ -10,6 +10,7 @@ const __dirname = dirname(__filename);
 test('nirguna: bundler', async (t) => {
     const filePath = join(__dirname, 'fixture', 'index.js');
     const [, result] = await bundle(filePath);
+    
     const expected = montag`
         const hello = () => 'hello';
         
@@ -41,6 +42,7 @@ test('nirguna: bundler: config', async (t) => {
 test('nirguna: bundler: external', async (t) => {
     const filePath = join(__dirname, 'fixture', 'index.js');
     const externalPath = join(__dirname, 'fixture', 'hello.js');
+    
     const [, result] = await bundle(filePath, {
         external: [externalPath],
     });

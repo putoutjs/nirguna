@@ -153,6 +153,7 @@ test('nirguna: transformer-fasm: debug: off', (t) => {
     `;
     
     const config = {};
+    
     const [code] = transform(source, {
         ...config,
         debug: false,

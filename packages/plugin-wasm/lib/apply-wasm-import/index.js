@@ -34,6 +34,7 @@ export const replace = () => ({
         }
         
         remove(path.parentPath.parentPath);
+        
         return path;
     },
 });

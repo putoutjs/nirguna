@@ -5,6 +5,7 @@ import {
 } from 'putout';
 
 const {insertBefore} = operator;
+
 const {
     expressionStatement,
     isObjectExpression,

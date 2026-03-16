@@ -16,6 +16,7 @@ test('nirguna: nemesis: kernel: bundle', async (t) => {
 test.skip('nirguna: nemesis: kernel: compile', async (t) => {
     const filePath = new URL('./kernel.ts', import.meta.url).pathname;
     const [, bundled] = await bundle(filePath, config);
+    
     const [, places] = await compile(bundled, {
         target: 'fasm',
         config,

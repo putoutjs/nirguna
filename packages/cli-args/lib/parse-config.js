@@ -19,6 +19,7 @@ export const parseConfig = (name, overrides = {}) => {
     } = overrides;
     
     const debug = env.DEBUG || false;
+    
     const [error, options] = findConfig(name, {
         cwd,
         findUpSync,

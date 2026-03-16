@@ -38,6 +38,7 @@ export const traverse = ({store, pathStore, push, options}) => ({
         exit(path) {
             const [label] = store();
             const {functions = []} = options;
+            
             const fns = [
                 ...pathStore(),
                 ...functions,

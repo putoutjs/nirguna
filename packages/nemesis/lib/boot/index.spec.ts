@@ -13,6 +13,7 @@ test('nirguna: nemesis: boot: bundle', async (t) => {
 test('nirguna: nemesis: boot: compile', async (t) => {
     const filePath = new URL('./index.js', import.meta.url).pathname;
     const [, bundled] = await bundle(filePath);
+    
     const [, places] = await compile(bundled, {
         target: 'fasm',
     });

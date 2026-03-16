@@ -53,6 +53,7 @@ test('nirguna: cli-options: parse-options: debug', (t) => {
 test('nirguna: cli-options: parse-options: options', (t) => {
     const originalError = Error('parse error');
     const readConfig = stub().throws(originalError);
+    
     const [error] = parseConfig(__filename, {
         readConfig,
     });

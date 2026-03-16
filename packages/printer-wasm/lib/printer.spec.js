@@ -11,6 +11,7 @@ test('nirguna: printer-wasm', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $x (export "x") (param $a i32) (param $b i32) (result i32)
@@ -34,6 +35,7 @@ test('nirguna: printer-wasm: import', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (import "console" "log" (func $log (param i32)))
@@ -59,6 +61,7 @@ test('nirguna: printer-wasm: import: couple args', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (import "console" "log" (func $log (param $name i32) (param $message f64) (result i32)))
@@ -81,6 +84,7 @@ test('nirguna: printer-wasm: import: no return', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (import "console" "log" (func $warn (result i32)))
@@ -101,6 +105,7 @@ test('nirguna: printer-wasm: comments', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $x (export "x") (param $a i32) (param $b i32) (result i32)
@@ -126,6 +131,7 @@ test('nirguna: printer-wasm: function: no export', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $add (result i32)
@@ -148,6 +154,7 @@ test('nirguna: printer-wasm: bios', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (data (i32.const 0) "Hello World")
@@ -164,6 +171,7 @@ test('nirguna: printer-wasm: memory', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (memory 1)
@@ -180,6 +188,7 @@ test('nirguna: printer-wasm: memory: export', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (memory (export "memory") 1)
@@ -198,6 +207,7 @@ test('nirguna: printer-wasm: return', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $thenElse (export "thenElse") (param $a i32) (result i32)
@@ -221,6 +231,7 @@ test('nirguna: printer-wasm: if', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $thenElse (export "thenElse") (param $a i32) (result i32)
@@ -250,6 +261,7 @@ test('nirguna: printer-wasm: else', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $compare2 (export "compare2") (param $a i32) (result i32)
@@ -281,6 +293,7 @@ test('nirguna: printer-wasm: else: no return', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $compare2 (export "compare2") (param $a i32) (result i32)
@@ -312,6 +325,7 @@ test('nirguna: printer-wasm: if: result', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $compare2 (export "compare2") (param $a i32) (result i32)
@@ -344,6 +358,7 @@ test('nirguna: printer-wasm: fn: couple', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $compare (export "compare") (param $eax i32) (result i32)
@@ -368,6 +383,7 @@ test('nirguna: printer-wasm: return: empty', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $compare (export "compare") (param $eax)
@@ -395,6 +411,7 @@ test('nirguna: printer-wasm: i64', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         (module
             (func $x (export "x") (param $a i64) (result i64)

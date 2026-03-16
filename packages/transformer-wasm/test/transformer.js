@@ -14,6 +14,7 @@ test('nirguna: transformer-wasm', (t) => {
     `;
     
     const [result] = transform(source);
+    
     const expected = montag`
         export function sum(a: i32, b: i32): i32 {
             i32.add(local.get(), local.get());
@@ -42,6 +43,7 @@ test('nirguna: transformer-wasm: nested', (t) => {
     `;
     
     const [result] = transform(source);
+    
     const expected = montag`
         function add(): i32 {
             local(eax, i32);
@@ -72,6 +74,7 @@ test('nirguna: transformer-wasm: arrow', (t) => {
     `;
     
     const [result] = transform(source);
+    
     const expected = montag`
         export function sum(a: i32, b: i32): i32 {
             i32.add(local.get(), local.get());

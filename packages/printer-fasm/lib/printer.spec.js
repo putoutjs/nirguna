@@ -9,6 +9,7 @@ test('nirguna: printer-fasm', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         var stack = [];\n
     `;
@@ -23,6 +24,7 @@ test('nirguna: printer-fasm: label: start', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         boot:
         jmp short start\n
@@ -39,6 +41,7 @@ test('nirguna: printer-fasm: label', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         mov eax, ebx
         
@@ -56,6 +59,7 @@ test('nirguna: printer-fasm: jmp far', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         jmp far 0xFFFF:0x0000\n
     `;
@@ -73,6 +77,7 @@ test('nirguna: printer-fasm: jmp far: inside label', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
          __nirguna_reboot:
         jmp far 0xFFFF:0x0000
@@ -89,6 +94,7 @@ test('nirguna: printer-fasm: db', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         kernel_name db 'KERNEL', 0\n
     `;
@@ -103,6 +109,7 @@ test('nirguna: printer-fasm: db: couple', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         hi db 'hello from Nemizida =)!!!', 0xa, 0\n
     `;
@@ -117,6 +124,7 @@ test('nirguna: printer-fasm: AssignmentExpression', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         mov [es:0xff * 4], ax\n
     `;
@@ -131,6 +139,7 @@ test('nirguna: printer-fasm: AssignmentExpression: byte ptr', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         mov dl, [es:bx]\n
     `;
@@ -147,6 +156,7 @@ test('nirguna: printer-fasm: maxElementLengthInOneLine', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         mov al, [backgroundColor]\n
     `;
@@ -162,6 +172,7 @@ test('nirguna: printer-fasm: in/out', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         in al, dx
         out al, dx\n\n
@@ -179,6 +190,7 @@ test('nirguna: printer-fasm: include', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         int 0xff\n
     `;
@@ -193,6 +205,7 @@ test('nirguna: printer-fasm: quotes', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         hi db 'Hi, I am Sh3ll. Type ''help'' for ', 'more information', 0xd, 0\n
     `;
@@ -207,6 +220,7 @@ test('nirguna: printer-fasm: escape', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
          scan_table_shift db 0x21, '\\z'\n
     `;
@@ -228,6 +242,7 @@ test('nirguna: printer-fasm: assign', (t) => {
     `;
     
     const result = print(source);
+    
     const expected = montag`
         al = nemesis readSector {
             count: ah,

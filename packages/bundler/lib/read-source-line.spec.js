@@ -11,6 +11,7 @@ test('nirguna: bundler: readSourceLine', async (t) => {
     `;
     
     const readSourceFile = stub().resolves(source);
+    
     const result = await readSourceLine('hello', 3, {
         readSourceFile,
     });
