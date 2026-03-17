@@ -16,12 +16,12 @@ const OPERATOR_REVERSE = {
     '>=': 'jl',
 };
 
-export function parseOperator(operator, {direct = false}) {
+export function parseOperator(operator, {direct = false} = {}) {
     const customOperator = direct ? OPERATOR : OPERATOR_REVERSE;
     const result = customOperator[operator];
     
     if (!result)
-        throw Error(`☝️Looks like operator '${operator}' not supported`);
+        throw Error(`☝️Looks like operator '${operator}' is not supported`);
     
     return result;
 }
