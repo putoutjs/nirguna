@@ -23,12 +23,7 @@ export const filter = (path) => {
     
     const {returnType} = path.node;
     
-    if (returnType && returnType.typeAnnotation.typeName.name !== 'iret')
-        return false;
-    
-    const last = path.node.body.body.at(-1);
-    
-    return !(isCallExpression(last) && last.callee.name === 'ret');
+    return !(returnType && returnType.typeAnnotation.typeName.name !== 'iret');
 };
 
 export const replace = () => ({
@@ -114,3 +109,4 @@ function createStackOperation(name, args) {
     
     return expressionStatement(callExpression(callee, params));
 }
+
