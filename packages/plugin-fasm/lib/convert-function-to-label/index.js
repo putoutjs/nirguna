@@ -2,7 +2,6 @@ import {types, operator} from 'putout';
 
 const {compare} = operator;
 const {
-    isCallExpression,
     isReturnStatement,
     expressionStatement,
     identifier,
@@ -109,4 +108,3 @@ function createStackOperation(name, args) {
     
     return expressionStatement(callExpression(callee, params));
 }
-
