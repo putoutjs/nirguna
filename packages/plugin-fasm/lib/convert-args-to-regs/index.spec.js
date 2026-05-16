@@ -101,4 +101,3 @@ test('fasm: convert-args-to-regs: transform: last-ret', (t) => {
     t.transform('last-ret');
     t.end();
 });
-
