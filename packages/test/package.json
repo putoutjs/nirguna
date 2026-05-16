@@ -29,9 +29,9 @@
   "dependencies": {
     "@nirguna/bundler": "*",
     "@putout/babel": "^5.2.12",
-    "nirguna": "*",
     "just-kebab-case": "^4.2.0",
-    "supertape": "^12.4.0",
+    "nirguna": "*",
+    "supertape": "^13.2.0",
     "try-catch": "^4.0.9"
   },
   "keywords": [
