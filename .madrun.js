@@ -2,7 +2,7 @@ import {run} from 'madrun';
 
 const env = {
     SUPERC8_RESPONSIVE: 1,
-}
+};
 
 export default {
     'wisdom': () => run(['lint', 'test:all']),
