@@ -37,7 +37,22 @@ test('fasm: convert-while-to-jz: transform: break', (t) => {
     t.end();
 });
 
+test('fasm: convert-while-to-jz: transform: while-true', (t) => {
+    t.transform('while-true');
+    t.end();
+});
+
 test('fasm: convert-while-to-jz: transform: no-body', (t) => {
     t.transform('no-body');
+    t.end();
+});
+
+test('fasm: convert-while-to-jz: transform: equals', (t) => {
+    t.transform('equals');
+    t.end();
+});
+
+test('fasm: convert-while-to-jz: transform: continue', (t) => {
+    t.transform('continue');
     t.end();
 });
