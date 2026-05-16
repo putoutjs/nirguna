@@ -57,7 +57,7 @@
     "putout": "^42.0.12",
     "try-catch": "^4.0.9",
     "try-to-catch": "^4.0.5",
-    "typescript": "^5.8.3",
+    "typescript": "^6.0.3",
     "wabt": "^1.0.37",
     "yargs-parser": "^22.0.0"
   },
