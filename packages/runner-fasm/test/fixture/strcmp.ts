@@ -39,5 +39,5 @@ if (al)
 linux.exit(0);
 
 section: 'code';
-segment.readable.writeable;
+segment.readable.writable;
 section: 'data';
