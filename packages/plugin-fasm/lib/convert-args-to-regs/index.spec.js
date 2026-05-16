@@ -96,3 +96,9 @@ test('fasm: convert-args-to-regs: transform: ret', (t) => {
     t.transform('ret');
     t.end();
 });
+
+test('fasm: convert-args-to-regs: transform: last-ret', (t) => {
+    t.transform('last-ret');
+    t.end();
+});
+
