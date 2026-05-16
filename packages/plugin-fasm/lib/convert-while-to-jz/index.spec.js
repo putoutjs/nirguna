@@ -37,22 +37,27 @@ test('fasm: convert-while-to-jz: transform: break', (t) => {
     t.end();
 });
 
-test('fasm: convert-while-to-jz: transform: while-true', (t) => {
-    t.transform('while-true');
-    t.end();
-});
-
 test('fasm: convert-while-to-jz: transform: no-body', (t) => {
     t.transform('no-body');
     t.end();
 });
 
-test('fasm: convert-while-to-jz: transform: equals', (t) => {
-    t.transform('equals');
+test('fasm: convert-while-to-jz: transform: continue', (t) => {
+    t.transform('continue');
     t.end();
 });
 
-test('fasm: convert-while-to-jz: transform: continue', (t) => {
-    t.transform('continue');
+test('fasm: convert-while-to-jz: transform: while-true', (t) => {
+    t.transform('while-true');
+    t.end();
+});
+
+test('fasm: convert-while-to-jz: transform: while-false', (t) => {
+    t.transform('while-false');
+    t.end();
+});
+
+test('fasm: convert-while-to-jz: transform: equal', (t) => {
+    t.transform('equal');
     t.end();
 });

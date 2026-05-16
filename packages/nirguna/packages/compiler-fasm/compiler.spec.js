@@ -132,7 +132,7 @@ test('nirguna: compiler-fasm: optimized: onStageChanged: place', async (t) => {
             places: [{
                 message: 'hello',
                 position: {
-                    column: 1,
+                    column: 0,
                     line: 1,
                 },
                 rule: 'report',

@@ -1,3 +1,2 @@
-while (true) {
+while (true)
     lodsb();
-}

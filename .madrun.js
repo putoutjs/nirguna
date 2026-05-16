@@ -1,5 +1,9 @@
 import {run} from 'madrun';
 
+const env = {
+    SUPERC8_RESPONSIVE: 1,
+}
+
 export default {
     'wisdom': () => run(['lint', 'test:all']),
     'test': () => `tape 'packages/**/*.spec.js' 'packages/**/test/*.js'`,
@@ -9,7 +13,7 @@ export default {
     'fresh:lint': () => run('lint', '--fresh'),
     'lint:fresh': () => run('lint', '--fresh'),
     'fix:lint': () => run('lint', '--fix'),
-    'coverage': async () => `c8 ${await run('test')}`,
+    'coverage': async () => [env, `c8 ${await run('test')}`],
     'report': () => 'c8 report --reporter=lcov',
     'build:boot': () => run('build:boot:*'),
     'build:boot:fasm': () => nirguna({
