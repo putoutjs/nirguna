@@ -1,5 +1,5 @@
 import {test} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {compile} from '#compiler-wasm';
 
 test('nirguna: compiler-wasm', async (t) => {

@@ -1,5 +1,5 @@
 import {test} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {transform} from '#transformer-wasm';
 
 test('nirguna: transformer-wasm', (t) => {

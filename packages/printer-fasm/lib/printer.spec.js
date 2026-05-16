@@ -1,5 +1,5 @@
 import {test} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {print} from './printer.js';
 
 test('nirguna: printer-fasm', (t) => {

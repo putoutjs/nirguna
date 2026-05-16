@@ -1,5 +1,5 @@
 import {createTest} from '@nirguna/test';
-import montag from 'montag';
+import {montag} from 'montag';
 import {run} from '../lib/runner.js';
 
 const {test} = createTest(import.meta.url, {

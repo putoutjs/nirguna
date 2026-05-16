@@ -1,5 +1,5 @@
 import {test} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {optimize} from '#optimizer-fasm';
 
 test('nirguna: optimizer-fasm', (t) => {

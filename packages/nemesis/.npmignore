@@ -2,7 +2,7 @@
 *.spec.*
 *.asm
 *.log
-*.loc
+*.lock
 
 .*
 

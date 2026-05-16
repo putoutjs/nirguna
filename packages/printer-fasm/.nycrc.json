@@ -1,6 +1,6 @@
 {
     "skipFull": false,
-    "check-coverage": true,
+    "checkCoverage": true,
     "all": true,
     "exclude": [
         "**/*.config.*",

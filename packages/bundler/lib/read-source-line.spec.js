@@ -1,5 +1,5 @@
 import {test, stub} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {readSourceLine} from './read-source-line.js';
 
 test('nirguna: bundler: readSourceLine', async (t) => {

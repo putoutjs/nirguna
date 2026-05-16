@@ -1,7 +1,7 @@
 import {readFile} from 'node:fs/promises';
 import {createTest} from '@nirguna/test';
 import {run} from '@nirguna/runner-fasm';
-import montag from 'montag';
+import {montag} from 'montag';
 import config from '../.nirguna.json' with {
     type: 'json',
 };

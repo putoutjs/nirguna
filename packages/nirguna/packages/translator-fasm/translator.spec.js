@@ -1,5 +1,5 @@
 import {test} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {translate} from '#translator-fasm';
 
 test('nirguna: translator-fasm', async (t) => {

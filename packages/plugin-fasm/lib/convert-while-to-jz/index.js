@@ -33,7 +33,12 @@ export const replace = () => ({
         const {line} = path.node.loc.start;
         const startLabel = createStartLabel(line);
         const conditionLabel = createConditionLabel(line);
-        const [one, two, jnz, test] = parseWhileArgs(__a);
+        const [
+            one,
+            two,
+            jnz,
+            test,
+        ] = parseWhileArgs(__a);
         const endLabel = createEndLabel(path, line);
         
         let conditionExpression = createExpression(__a, {

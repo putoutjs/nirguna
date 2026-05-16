@@ -1,7 +1,7 @@
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {test} from 'supertape';
-import montag from 'montag';
+import {montag} from 'montag';
 import {bundle} from '../lib/bundler.js';
 
 const __filename = fileURLToPath(import.meta.url);

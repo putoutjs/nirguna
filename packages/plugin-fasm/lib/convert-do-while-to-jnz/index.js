@@ -69,7 +69,12 @@ export const replace = () => ({
         const {line} = path.node.loc.start;
         const startLabel = createStartLabel(line);
         const conditionLabel = createConditionLabel(line);
-        const [one, two, jnz, test] = parseWhileArgs(__a);
+        const [
+            one,
+            two,
+            jnz,
+            test,
+        ] = parseWhileArgs(__a);
         const expression = isCallExpression(__a) ? __a : template.ast(`${test}(${one}, ${two})`);
         
         let conditionExpression = expressionStatement(expression);
