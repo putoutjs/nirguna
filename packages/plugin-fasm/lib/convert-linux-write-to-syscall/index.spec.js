@@ -21,4 +21,3 @@ test('fasm: convert-linux-write-to-syscall: transform: no-properties', (t) => {
     t.transform('no-properties');
     t.end();
 });
-
