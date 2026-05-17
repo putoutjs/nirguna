@@ -16,3 +16,9 @@ test('fasm: convert-linux-write-to-syscall: transform', (t) => {
     t.transform('convert-linux-write-to-syscall');
     t.end();
 });
+
+test('fasm: convert-linux-write-to-syscall: transform: no-properties', (t) => {
+    t.transform('no-properties');
+    t.end();
+});
+

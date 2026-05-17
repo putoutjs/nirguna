@@ -27,6 +27,7 @@
     "lint:fresh": "madrun lint:fresh",
     "fix:lint": "madrun fix:lint",
     "coverage": "madrun coverage",
+    "coverage:escover": "madrun coverage:escover",
     "report": "madrun report"
   },
   "keywords": [
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@putout/plugin-remove-nested-blocks": "^9.1.0",
     "@putout/test": "^15.1.1",
+    "escover": "^6.3.2",
     "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",
