@@ -34,6 +34,11 @@ test('fasm: convert-do-while-to-jz: transform: break', (t) => {
     t.end();
 });
 
+test('fasm: convert-do-while-to-jz: transform: break-single', (t) => {
+    t.transform('break-single');
+    t.end();
+});
+
 test('fasm: convert-do-while-to-jz: transform: convert-if-to-jmp', (t) => {
     t.transform('convert-if-to-jmp', {
         convertIfToJmp,
