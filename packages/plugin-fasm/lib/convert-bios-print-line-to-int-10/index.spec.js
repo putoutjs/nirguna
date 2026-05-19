@@ -21,3 +21,9 @@ test('fasm: convert-bios-print-line-to-int-10: transform: object', (t) => {
     t.transform('object');
     t.end();
 });
+
+test('fasm: convert-bios-print-line-to-int-10: transform: empty-object', (t) => {
+    t.transform('empty-object');
+    t.end();
+});
+
