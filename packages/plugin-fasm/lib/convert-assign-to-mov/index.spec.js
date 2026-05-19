@@ -71,4 +71,3 @@ test('compiler: convert-assign-to-mov: transform: split-includes-to-if-sequence'
     });
     t.end();
 });
-
