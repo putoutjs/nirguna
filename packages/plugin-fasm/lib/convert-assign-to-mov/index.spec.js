@@ -58,6 +58,11 @@ test('compiler: convert-assign-to-mov: transform: binary', (t) => {
     t.end();
 });
 
+test('compiler: convert-assign-to-mov: no report: array', (t) => {
+    t.noReport('array');
+    t.end();
+});
+
 test('compiler: convert-assign-to-mov: transform: split-includes-to-if-sequence', (t) => {
     t.transform('split-includes-to-if-sequence', {
         splitIncludesToIfSequence,
@@ -66,3 +71,4 @@ test('compiler: convert-assign-to-mov: transform: split-includes-to-if-sequence'
     });
     t.end();
 });
+

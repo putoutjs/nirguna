@@ -8,6 +8,7 @@ const {
     isCallExpression,
     isArrayExpression,
     isBinaryExpression,
+    isArrayPattern,
 } = types;
 
 export const report = (path) => {
@@ -16,7 +17,7 @@ export const report = (path) => {
 
 export const match = () => ({
     '__a = __b': ({__a, __b}) => {
-        if (isArrayExpression(__a) && isArrayExpression(__b))
+        if (isArrayPattern(__a) && isArrayExpression(__b))
             return false;
         
         if (isMemberExpression(__a))
@@ -50,3 +51,4 @@ export const match = () => ({
 export const replace = () => ({
     '__a = __b': 'mov(__a, __b)',
 });
+
