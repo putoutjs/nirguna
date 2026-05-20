@@ -32,7 +32,23 @@ test('fasm: apply-types: transform: template', (t) => {
     t.end();
 });
 
+test('fasm: apply-types: no report: fn', (t) => {
+    t.noReport('fn');
+    t.end();
+});
+
+test('fasm: apply-types: transform: string', (t) => {
+    t.transform('string');
+    t.end();
+});
+
+test('fasm: apply-types: transform: number', (t) => {
+    t.transform('number');
+    t.end();
+});
+
 test('fasm: apply-types: no report: ureg', (t) => {
     t.noReport('ureg');
     t.end();
 });
+
