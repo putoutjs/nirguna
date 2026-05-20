@@ -51,4 +51,3 @@ test('fasm: apply-types: no report: ureg', (t) => {
     t.noReport('ureg');
     t.end();
 });
-
