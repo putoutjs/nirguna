@@ -51,6 +51,7 @@ export async function getChar<bx>() {
     bl = al;
     bh = 0;
     cmp(bx, 57);
+    
     //если клавиша отжимается
     jg(again);
     si += bx;

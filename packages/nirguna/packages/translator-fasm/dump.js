@@ -22,7 +22,9 @@ export const dump = (source, binary) => {
     decoder.ip = exampleRip;
     
     // This decodes all bytes. There's also `decode()` which decodes the next instruction,
+    
     // `decodeInstructions(count)` which decodes `count` instructions and `decodeOut(instruction)`
+    
     // which overwrites an existing instruction.
     const instructions = decoder.decodeAll();
     

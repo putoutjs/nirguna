@@ -16,6 +16,7 @@ export async function setCursor<es, dx>() {
     
     // в bl;столбик
     await setColumn();
+    
     // в bh;рядок
     await setLine();
     al = await getLine();

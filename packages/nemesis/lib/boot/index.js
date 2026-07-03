@@ -35,6 +35,7 @@ kernel_size.dw = 0;
 bpbDriveNo.db = 0;
 kernel_sec_size.db = 0;
 bpbSignature.db = 41;
+
 // 0 = nothing more. 41 = three more (below)..;
 bpbID.dd = 1;
 bpbVolumeLabel.db = 'BOOT FLOPPY';
@@ -113,30 +114,38 @@ async function start() {
         push(cx);
         
         bx = kernel_begin;
+        
         // ;$a000 ;buffer
         ax = [kernel_offset];
         al -= 2;
         cx = 0x200;
+        
         //track/sector 0/2
         mul(cx);
         ax += 0x4200;
         cwd();
+        
         // необязательно... но, мало ли... лучше
         div(cx);
         
         // пропишем, что б потом неожиданностей не было...
+        
         // получаем количество секторов в ax
         cx = 18;
+        
         //дорожка
         cwd();
         div(cx);
         
         // в ax номер дорожки
+        
         // в dx номер сектора на дорожке
         ++dl;
         cl = dl;
+        
         // номер сектора
         dx = ax;
+        
         // смотрим парная ли дорожка
         push(dx);
         push(bx);

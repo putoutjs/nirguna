@@ -57,6 +57,7 @@ export const replace = () => ({
         const body = isBlockStatement(__b) ? __b : blockStatement([
             expressionStatement(__b),
         ]);
+        
         body.body.unshift(expressionStatement(template.ast(`${jnz}(${endLabel})`)));
         body.body.unshift(conditionExpression);
         

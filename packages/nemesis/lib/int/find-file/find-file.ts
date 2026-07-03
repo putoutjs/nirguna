@@ -52,6 +52,7 @@ export async function findFile() {
     jnz(_strcmp_end);
     ++di;
     jmp(_strcmp);
+    
     // не нашли если
     _strcmp_end: pop(si);
     cmp(al, 0x20);
@@ -84,6 +85,7 @@ export async function findFile() {
     al = 0;
     debug('all good');
     ret();
+    
     // нашли =)!!!
     file_not_found: pop(di);
     pop(cx);
