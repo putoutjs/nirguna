@@ -14,6 +14,7 @@ let kernel_name = 'KERNEL';
 
 boot: jmp(start);
 line.db = 0;
+
 // Standard BIOS Parameter Block, "BPB".   ;
 bpbOEM.db = 'nemesis ';
 bpbSectSize.dw = 512;
@@ -29,10 +30,12 @@ bpbHeads.dw = 2;
 bpbHiddenSect.dd = 0;
 kernel_offset.dw = 0;
 kernel_size.dw = 0;
+
 // extended BPB for FAT12/FAT16   ;
 bpbDriveNo.db = 0;
 kernel_sec_size.db = 0;
-bpbSignature.db = 41; // 0 = nothing more. 41 = three more (below)..;
+bpbSignature.db = 41;
+// 0 = nothing more. 41 = three more (below)..;
 bpbID.dd = 1;
 bpbVolumeLabel.db = 'BOOT FLOPPY';
 bpbFileSystem.db = 'FAT12   ';
@@ -104,33 +107,43 @@ async function start() {
     await printf(kernel_found);
     
     cx = 3;
+    
     // Грузим ядро
     do {
         push(cx);
         
-        bx = kernel_begin; // ;$a000 ;buffer
+        bx = kernel_begin;
+        // ;$a000 ;buffer
         ax = [kernel_offset];
         al -= 2;
-        cx = 0x200; //track/sector 0/2
+        cx = 0x200;
+        //track/sector 0/2
         mul(cx);
         ax += 0x4200;
-        cwd(); // необязательно... но, мало ли... лучше
+        cwd();
+        // необязательно... но, мало ли... лучше
         div(cx);
+        
         // пропишем, что б потом неожиданностей не было...
         // получаем количество секторов в ax
-        cx = 18; //дорожка
+        cx = 18;
+        //дорожка
         cwd();
         div(cx);
+        
         // в ax номер дорожки
         // в dx номер сектора на дорожке
         ++dl;
-        cl = dl; // номер сектора
-        dx = ax; // смотрим парная ли дорожка
+        cl = dl;
+        // номер сектора
+        dx = ax;
+        // смотрим парная ли дорожка
         push(dx);
         push(bx);
         bx = 2;
         div(bx);
         ch = al;
+        
         // дискету a.k.a головке один
         pop(bx);
         pop(dx);

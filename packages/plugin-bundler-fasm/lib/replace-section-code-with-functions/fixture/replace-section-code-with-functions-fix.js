@@ -10,6 +10,7 @@ org(0x7c00);
 use16();
 boot: jmp(start);
 line.db = 0;
+
 // Standard BIOS Parameter Block, "BPB".   ;
 bpbOEM.db = 'nemesis ';
 async function getStringLength() {

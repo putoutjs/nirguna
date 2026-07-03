@@ -50,7 +50,8 @@ export async function getChar<bx>() {
     jz(enter_not);
     bl = al;
     bh = 0;
-    cmp(bx, 57); //если клавиша отжимается
+    cmp(bx, 57);
+    //если клавиша отжимается
     jg(again);
     si += bx;
     al = [si];
@@ -64,6 +65,7 @@ export async function getChar<bx>() {
     
     al = 0x20;
     io.out(0x20, al);
+    
     //;Ожидание несколько милисикунд
     call(wait);
     pop(ax);

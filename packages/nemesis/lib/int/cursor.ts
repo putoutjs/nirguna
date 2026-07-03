@@ -13,6 +13,7 @@ export async function setCursor<es, dx>() {
     // bx = offset
     ax = 0xb800;
     es = ax;
+    
     // в bl;столбик
     await setColumn();
     // в bh;рядок
@@ -22,21 +23,26 @@ export async function setCursor<es, dx>() {
     bh = 0;
     
     dx = 80;
+    
     // calculate y offset
     mul(dx);
     bx += ax;
+    
     // select to write low byte of index
     al = 0xf;
     dx = 0x03d4;
     io.out(dx, al);
+    
     // write it
     al = bl;
     dx = 0x03d5;
     io.out(dx, al);
+    
     // select to write high byte of index
     al = 0xe;
     dx = 0x03d4;
     io.out(dx, al);
+    
     // write it
     al = bh;
     dx = 0x03d5;

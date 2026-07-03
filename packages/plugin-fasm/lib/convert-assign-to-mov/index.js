@@ -1,7 +1,7 @@
 import {types, operator} from 'putout';
 import {isRegister} from '@nirguna/operator-fasm/regs';
 
-const {traverse} = operator;
+const {superTraverse} = operator;
 
 const {
     isMemberExpression,
@@ -29,7 +29,7 @@ export const match = () => ({
         if (isBinaryExpression(__b)) {
             let is = false;
             
-            traverse(__b, {
+            superTraverse(__b, {
                 Identifier: (path) => {
                     const {name} = path.node;
                     

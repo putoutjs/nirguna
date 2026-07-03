@@ -89,5 +89,6 @@ export async function findFile() {
     pop(cx);
     debug('file not found: ret');
     
-    al = 1; // Ничего не нашли o_O ...
+    al = 1;
+    // Ничего не нашли o_O ...
 }

@@ -26,7 +26,7 @@ export default function tsParser() {
 // This removes the `range` tuple and adds start/end properties instead
 function addStartEnd(node) {
     if (Array.isArray(node))
-        return node.map((node) => addStartEnd(node));
+        return node.map(addStartEnd);
     
     if (node != null && typeof node === 'object') {
         const {range, ...otherProps} = node;

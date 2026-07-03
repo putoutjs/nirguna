@@ -68,7 +68,6 @@ Also we can compile it to binary representation with `nirguna fasm example/fn.ts
 
 ```sh
 $ hexdump example/fn.bin
-
 0000000 b866 0001 0000 bb66 0002 0000 0166 c3d8
 0000010
 ```
@@ -133,6 +132,7 @@ const {x} = run(binary, {
 });
 
 x(1, 2);
+
 // outputs
 3;
 ```

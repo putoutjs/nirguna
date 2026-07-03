@@ -8,8 +8,8 @@ import {TARGETS} from '#targets';
 const {
     replaceWithMultiple,
     rename,
-    traverse,
     compare,
+    superTraverse,
 } = operator;
 
 const {
@@ -70,7 +70,7 @@ export const replace = () => ({
         
         const replaceReturn = createReplaceReturn(path, argsSize);
         
-        traverse(path, {
+        superTraverse(path, {
             'ReturnStatement': replaceReturn,
             'ret()': replaceReturn,
         });
