@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@typescript-eslint/typescript-estree": "^8.35.0",
-    "fatfs-wasm": "^3.0.7",
+    "fatfs-wasm": "^4.0.0",
     "try-to-catch": "^4.0.5"
   },
   "keywords": [
