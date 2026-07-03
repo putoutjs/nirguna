@@ -143,3 +143,50 @@ test('nirguna: compiler-fasm: optimized: onStageChanged: place', async (t) => {
     t.deepEqual(result, expected);
     t.end();
 });
+
+test('nirguna: compiler-fasm: assembly', async (t) => {
+    const source = 'mov(eax, 1)';
+    const [assembly] = await compile(source, {
+        type: 'assembly',
+    });
+    
+    const expected = montag`
+        xor eax, eax
+        inc eax\n
+    `;
+    
+    t.equal(assembly, expected);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: binary: onStageChanged', async (t) => {
+    const source = 'mov(eax, 1)';
+    const result = [];
+    const onStageChange = (a, b) => result.push([a, b]);
+    
+    await compile(source, {
+        onStageChange,
+    });
+    
+    const expected = [
+        ['transform', {
+            last: false,
+            places: [],
+        }],
+        ['optimize', {
+            last: false,
+            places: [],
+        }],
+        ['print', {
+            last: false,
+            places: [],
+        }],
+        ['translate', {
+            last: true,
+            places: [],
+        }],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
