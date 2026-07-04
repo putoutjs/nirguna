@@ -127,22 +127,16 @@ function emitData(node) {
     ]));
 }
 
-function emitImport(node) {
-    const {module, name, descr} = node;
-    
-    if (descr.type !== 'FuncImportDescr')
-        return null;
-    
+function emitImport({module, name, descr}) {
     const {id, signature} = descr;
     const fnName = id.value;
     const fnParams = signature.params.map((p) => identifier(p.valtype));
     const fn = functionExpression(identifier(fnName), fnParams, blockStatement([]));
     
-    return expressionStatement(callExpression(
-        identifier('__nirguna_wasm_import'), [
-            stringLiteral(module),
-            stringLiteral(name),
-            fn,
-        ],
-    ));
+    return expressionStatement(callExpression(identifier('__nirguna_wasm_import'), [
+        stringLiteral(module),
+        stringLiteral(name),
+        fn,
+    ]));
 }
+

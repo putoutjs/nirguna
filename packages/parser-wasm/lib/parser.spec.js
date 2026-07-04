@@ -136,7 +136,7 @@ test('nirguna: wasm → js: data', (t) => {
     const result = parse(source);
     
     const expected = montag`
-        data(i32.const(0), "hello");
+        data(i32.const(0), 'hello');
     `;
     
     t.equal(result, expected);
@@ -153,7 +153,7 @@ test('nirguna: wasm → js: import', (t) => {
     const result = parse(source);
     
     const expected = montag`
-        __nirguna_wasm_import("console", "log", function log(i32) {});
+        __nirguna_wasm_import('console', 'log', function log(i32) {});
     `;
     
     t.equal(result, expected);
