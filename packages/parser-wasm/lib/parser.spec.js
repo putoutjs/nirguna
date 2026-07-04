@@ -1,8 +1,8 @@
+import {readFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {dirname, join} from 'node:path';
 import {test} from 'supertape';
 import {montag} from 'montag';
-import {readFileSync} from 'fs';
-import {fileURLToPath} from 'url';
-import {dirname, join} from 'path';
 import {parse} from './parser.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -191,19 +191,20 @@ test('nirguna: wasm → js: legacy get_local, flat form', (t) => {
     t.end();
 });
 
-
 test('nirguna: wasm → js: call instruction', (t) => {
     const source = readFixture('call.wast');
     const result = parse(source);
+    
     const expected = montag`
         export function double(a: i32): i32 {
             i32.add(a, a);
         }
-
+        
         export function quadruple(a: i32): i32 {
             double(double(local.get(a)));
         }
     `;
+    
     t.equal(result, expected);
     t.end();
 });
@@ -211,11 +212,13 @@ test('nirguna: wasm → js: call instruction', (t) => {
 test('nirguna: wasm → js: comment before func', (t) => {
     const source = readFixture('comment-before-func.wast');
     const result = parse(source);
+    
     const expected = montag`
         export function x(a: i32, b: i32): i32 {
             i32.add(a, b);
         }
     `;
+    
     t.equal(result, expected);
     t.end();
 });
@@ -223,11 +226,13 @@ test('nirguna: wasm → js: comment before func', (t) => {
 test('nirguna: wasm → js: anonymous func named by export', (t) => {
     const source = readFixture('anonymous-export.wast');
     const result = parse(source);
+    
     const expected = montag`
         export function add(a: i32, b: i32) {
             i32.add(a, b);
         }
     `;
+    
     t.equal(result, expected);
     t.end();
 });

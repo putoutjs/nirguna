@@ -1,3 +1,1 @@
-export const ModuleExport = (node) => {
-    return null;
-};
+export const ModuleExport = () => null;
