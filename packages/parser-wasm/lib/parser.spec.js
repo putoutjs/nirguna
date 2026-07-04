@@ -119,7 +119,7 @@ test('nirguna: wasm → js: memory', (t) => {
     const result = parse(source);
     
     const expected = montag`
-        memory(1)
+        memory(1)\n
     `;
     
     t.equal(result, expected);
@@ -136,7 +136,7 @@ test('nirguna: wasm → js: data', (t) => {
     const result = parse(source);
     
     const expected = montag`
-        data(i32.const(0), "hello")
+        data(i32.const(0), "hello")\n
     `;
     
     t.equal(result, expected);
