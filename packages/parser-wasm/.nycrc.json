@@ -4,9 +4,12 @@
     "all": true,
     "exclude": [
         "**/*.config.*",
+        "**/*.spec.js",
         "**/.*",
+        "**/fixture",
         "*.config.js",
-        "coverage"
+        "coverage",
+        "test"
     ],
     "branches": 100,
     "lines": 100,

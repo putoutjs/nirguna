@@ -7,7 +7,10 @@ const noop = () => {};
 const lint = (source) => {
     const code = convertWastToJs(source);
     
-    parse(code);
+    parse(code, {
+        sourceType: 'module',
+        plugins: ['typescript'],
+    });
     
     return {
         code,
