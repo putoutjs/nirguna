@@ -25,10 +25,13 @@ export const parse = (source) => {
     traverse(ast, {
         Module(path) {
             for (const node of path.node.fields) {
-                const built = build(node);
+                const {type} = node;
+                const fn = builders[type];
                 
-                if (built)
-                    body.push(built);
+                if (!fn)
+                    return;
+                
+                body.push(fn(node));
             }
         },
     });
@@ -36,21 +39,12 @@ export const parse = (source) => {
     return program(body);
 };
 
-function build(node) {
-    if (node.type === 'Func')
-        return emitFunction(node);
-    
-    if (node.type === 'Memory')
-        return emitMemory(node);
-    
-    if (node.type === 'Data')
-        return emitData(node);
-    
-    if (node.type === 'ModuleImport')
-        return emitImport(node);
-    
-    return null;
-}
+const builders = {
+    Func: emitFunction,
+    Memory: emitMemory,
+    Data: emitData,
+    ModuleImport: emitImport,
+};
 
 function typeAnnotation(valtype) {
     return tsTypeAnnotation(tsTypeReference(identifier(valtype)));
