@@ -22,9 +22,9 @@ Input:
 
 Output:
 
-```js
+```ts
 export function x(a: i32, b: i32): i32 {
-    i32.add(a, b)
+    i32.add(a, b);
 }
 ```
 

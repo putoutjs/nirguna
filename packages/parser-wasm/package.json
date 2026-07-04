@@ -27,7 +27,12 @@
     "parser",
     "wasm"
   ],
+  "imports": {
+    "#parser-wasm": "./lib/parser.js",
+    "#parser/test": "./test/create-parser-test.js"
+  },
   "devDependencies": {
+    "@putout/test": "^15.6.1",
     "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",

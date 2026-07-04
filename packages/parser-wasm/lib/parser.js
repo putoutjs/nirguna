@@ -6,4 +6,3 @@ export const parse = (source) => {
     
     return print(ast);
 };
-
