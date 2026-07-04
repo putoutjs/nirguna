@@ -43,4 +43,3 @@ export const emitStatement = (instr) => {
 export const typeAnnotation = (valtype) => {
     return tsTypeAnnotation(tsTypeReference(identifier(valtype)));
 };
-

@@ -6,4 +6,3 @@ test('nirguna: parser-wasm: parser: visitors: data', (t) => {
     t.transform('data');
     t.end();
 });
-

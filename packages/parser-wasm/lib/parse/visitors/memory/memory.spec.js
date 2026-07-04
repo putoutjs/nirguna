@@ -6,4 +6,3 @@ test('nirguna: parser-wasm: parser: visitors: memory', (t) => {
     t.transform('memory');
     t.end();
 });
-
