@@ -31,3 +31,14 @@ test('nirguna: parser-wasm: parser: visitors: func: legacy flat form', (t) => {
     t.transform('func-legacy');
     t.end();
 });
+
+
+test('nirguna: parser-wasm: parser: visitors: func: call instruction', (t) => {
+    t.transform('func-call');
+    t.end();
+});
+
+test('nirguna: parser-wasm: parser: visitors: func: comment before', (t) => {
+    t.transform('func-comment-before');
+    t.end();
+});
