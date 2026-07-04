@@ -146,14 +146,14 @@ test('nirguna: wasm → js: data', (t) => {
 test('nirguna: wasm → js: import', (t) => {
     const source = montag`
         (module
-            (import "console" "log" (func $log (param $a i32)))
+            (import "console" "log" (func $log (param i32)))
         )
     `;
     
     const result = parse(source);
     
     const expected = montag`
-        import console.log
+        __nirguna_wasm_import("console", "log", function log(i32) {});
     `;
     
     t.equal(result, expected);

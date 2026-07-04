@@ -6,6 +6,7 @@ const {
     program,
     identifier,
     functionDeclaration,
+    functionExpression,
     exportNamedDeclaration,
     blockStatement,
     expressionStatement,
@@ -20,16 +21,10 @@ const {
 export const parse = (source) => {
     const ast = wastParse(source);
     const body = [];
-    const raw = [];
     
     traverse(ast, {
         Module(path) {
             for (const node of path.node.fields) {
-                if (node.type === 'ModuleImport') {
-                    raw.push(emitImport(node));
-                    continue;
-                }
-                
                 const built = build(node);
                 
                 if (built)
@@ -38,10 +33,7 @@ export const parse = (source) => {
         },
     });
     
-    return [
-        program(body),
-        raw,
-    ];
+    return program(body);
 };
 
 function build(node) {
@@ -53,6 +45,9 @@ function build(node) {
     
     if (node.type === 'Data')
         return emitData(node);
+    
+    if (node.type === 'ModuleImport')
+        return emitImport(node);
     
     return null;
 }
@@ -133,5 +128,21 @@ function emitData(node) {
 }
 
 function emitImport(node) {
-    return `import ${node.module}.${node.name}`;
+    const {module, name, descr} = node;
+    
+    if (descr.type !== 'FuncImportDescr')
+        return null;
+    
+    const {id, signature} = descr;
+    const fnName = id.value;
+    const fnParams = signature.params.map((p) => identifier(p.valtype));
+    const fn = functionExpression(identifier(fnName), fnParams, blockStatement([]));
+    
+    return expressionStatement(callExpression(
+        identifier('__nirguna_wasm_import'), [
+            stringLiteral(module),
+            stringLiteral(name),
+            fn,
+        ],
+    ));
 }

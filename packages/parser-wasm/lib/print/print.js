@@ -1,24 +1,13 @@
 import {print as putoutPrint} from '@putout/printer';
 
-export const print = ([ast, raw]) => {
+export const print = (ast) => {
     if (!ast.body.length)
-        return beautify(raw);
+        return '';
     
-    const printed = putoutPrint(ast, {
+    return putoutPrint(ast, {
         format: {
             quote: '"',
             endOfFile: '',
         },
     });
-    
-    return beautify(raw, printed);
 };
-
-const beautify = (raw, code = '') => {
-    if (!raw.length)
-        return code;
-    
-    return [code, ...raw]
-        .filter(Boolean).join('');
-};
-
