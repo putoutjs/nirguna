@@ -15,7 +15,7 @@ test('nirguna: wasm → js: function', (t) => {
     
     const expected = montag`
         export function x(a: i32, b: i32): i32 {
-            i32.add(a, b)
+            i32.add(a, b);
         }
     `;
     
@@ -36,7 +36,7 @@ test('nirguna: wasm → js: single param', (t) => {
     
     const expected = montag`
         export function id(a: i32): i32 {
-            a
+            a;
         }
     `;
     
@@ -57,7 +57,7 @@ test('nirguna: wasm → js: no params', (t) => {
     
     const expected = montag`
         export function fn(): i32 {
-            i32.add(1, 2)
+            i32.add(1, 2);
         }
     `;
     
@@ -79,8 +79,8 @@ test('nirguna: wasm → js: multiple instructions', (t) => {
     
     const expected = montag`
         export function x(a: i32): i32 {
-            i32.add(a, a)
-            a
+            i32.add(a, a);
+            a;
         }
     `;
     
@@ -101,7 +101,7 @@ test('nirguna: wasm → js: return', (t) => {
     
     const expected = montag`
         export function x(a: i32): i32 {
-            return i32.add(a, a)
+            return i32.add(a, a);
         }
     `;
     
@@ -119,7 +119,7 @@ test('nirguna: wasm → js: memory', (t) => {
     const result = parse(source);
     
     const expected = montag`
-        memory(1)\n
+        memory(1);
     `;
     
     t.equal(result, expected);
@@ -136,7 +136,7 @@ test('nirguna: wasm → js: data', (t) => {
     const result = parse(source);
     
     const expected = montag`
-        data(i32.const(0), "hello")\n
+        data(i32.const(0), "hello");
     `;
     
     t.equal(result, expected);
@@ -175,9 +175,9 @@ test('nirguna: wasm → js: legacy get_local, flat form', (t) => {
     
     const expected = montag`
         export function x(a: i32, b: i32): i32 {
-            get_local(a)
-            get_local(b)
-            i32.add()
+            get_local(a);
+            get_local(b);
+            i32.add();
         }
     `;
     
