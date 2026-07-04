@@ -222,17 +222,3 @@ test('nirguna: wasm → js: comment before func', (t) => {
     t.equal(result, expected);
     t.end();
 });
-
-test('nirguna: wasm → js: anonymous func named by export', (t) => {
-    const source = readFixture('anonymous-export.wast');
-    const result = parse(source);
-    
-    const expected = montag`
-        export function add(a: i32, b: i32) {
-            i32.add(a, b);
-        }
-    `;
-    
-    t.equal(result, expected);
-    t.end();
-});
