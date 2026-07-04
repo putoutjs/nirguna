@@ -24,7 +24,7 @@ export const createTest = (url, options) => {
         extensionFix: 'js',
         lint,
         plugins: [
-            ['markdown', {
+            ['wasm', {
                 report: noop,
                 replace: noop,
             }],
