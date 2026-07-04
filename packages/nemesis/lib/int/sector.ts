@@ -112,7 +112,6 @@ export async function readSector() {
         // чистим младший нибл в bl
         ax += bx;
         jnc(no_carry);
-        
         // если не было переноса,
         
         // то страницы в dl
