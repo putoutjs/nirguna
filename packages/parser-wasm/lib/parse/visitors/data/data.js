@@ -24,4 +24,3 @@ export const Data = (node) => {
 const dottedCall = (object, id, args) => {
     return callExpression(memberExpression(identifier(object), identifier(id)), args);
 };
-
