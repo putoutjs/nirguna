@@ -1,6 +1,12 @@
 import {test} from 'supertape';
 import {montag} from 'montag';
+import {readFileSync} from 'fs';
+import {fileURLToPath} from 'url';
+import {dirname, join} from 'path';
 import {parse} from './parser.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const readFixture = (name) => readFileSync(join(__dirname, '..', 'test', 'fixture', name), 'utf8');
 
 test('nirguna: wasm → js: function', (t) => {
     const source = montag`
@@ -181,6 +187,19 @@ test('nirguna: wasm → js: legacy get_local, flat form', (t) => {
         }
     `;
     
+    t.equal(result, expected);
+    t.end();
+});
+
+
+test('nirguna: wasm → js: comment before func', (t) => {
+    const source = readFixture('comment-before-func.wast');
+    const result = parse(source);
+    const expected = montag`
+        export function x(a: i32, b: i32): i32 {
+            i32.add(a, b);
+        }
+    `;
     t.equal(result, expected);
     t.end();
 });

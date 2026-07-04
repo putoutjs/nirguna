@@ -18,7 +18,7 @@ export const parse = (source) => {
                 const fn = visitors[type];
                 
                 if (!fn)
-                    return;
+                    continue;
                 
                 body.push(fn(field));
             }
