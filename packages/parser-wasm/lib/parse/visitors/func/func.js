@@ -1,11 +1,16 @@
 import {types} from '@putout/babel';
-import {typeAnnotation, emitStatement} from '../../utils.js';
 
 const {
     identifier,
+    expressionStatement,
     functionDeclaration,
     exportNamedDeclaration,
     blockStatement,
+    numericLiteral,
+    callExpression,
+    tsTypeAnnotation,
+    tsTypeReference,
+    memberExpression,
 } = types;
 
 export const Func = (node) => {
@@ -30,3 +35,38 @@ export const Func = (node) => {
     
     return exportNamedDeclaration(fn, []);
 };
+
+const emitStatement = (instr) => {
+    if (instr.id === 'return')
+        return {
+            type: 'ReturnStatement',
+            argument: emitExpr(instr.args[0]),
+        };
+    
+    return expressionStatement(emitExpr(instr));
+};
+
+const emitExpr = (node) => {
+    if (node.type === 'Identifier')
+        return identifier(node.value);
+    
+    if (node.type === 'NumberLiteral')
+        return numericLiteral(node.value);
+    
+    if (node.object)
+        return dottedCall(node.object, node.id, node.args.map(emitExpr));
+    
+    if (!node.args.length)
+        return identifier(node.id);
+    
+    return callExpression(identifier(node.id), node.args.map(emitExpr));
+};
+
+const typeAnnotation = (valtype) => {
+    return tsTypeAnnotation(tsTypeReference(identifier(valtype)));
+};
+
+const dottedCall = (object, id, args) => {
+    return callExpression(memberExpression(identifier(object), identifier(id)), args);
+};
+

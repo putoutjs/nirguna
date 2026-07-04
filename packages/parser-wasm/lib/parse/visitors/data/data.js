@@ -1,5 +1,4 @@
 import {types} from '@putout/babel';
-import {dottedCall} from '../../utils.js';
 
 const {
     identifier,
@@ -7,6 +6,7 @@ const {
     expressionStatement,
     numericLiteral,
     stringLiteral,
+    memberExpression,
 } = types;
 
 export const Data = (node) => {
@@ -20,3 +20,8 @@ export const Data = (node) => {
         stringLiteral(text),
     ]));
 };
+
+const dottedCall = (object, id, args) => {
+    return callExpression(memberExpression(identifier(object), identifier(id)), args);
+};
+
