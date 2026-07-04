@@ -13,8 +13,9 @@ const {
     memberExpression,
 } = types;
 
-export const Func = (node) => {
-    const {params, results} = node.signature;
+export const Func = ({name, signature, body}, exportedName) => {
+    const {params, results} = signature;
+    const funcName = exportedName || name.value;
     
     const args = params.map(({id, valtype}) => {
         const param = identifier(id);
@@ -25,9 +26,9 @@ export const Func = (node) => {
     });
     
     const fn = functionDeclaration(
-        identifier(node.name.value),
+        identifier(funcName),
         args,
-        blockStatement(node.body.map(emitStatement)),
+        blockStatement(body.map(emitStatement)),
     );
     
     if (results[0])
@@ -52,6 +53,9 @@ const emitExpr = (node) => {
     
     if (node.type === 'NumberLiteral')
         return numericLiteral(node.value);
+    
+    if (node.type === 'CallInstruction')
+        return callExpression(identifier(node.index.value), node.instrArgs.map(emitExpr));
     
     if (node.object)
         return dottedCall(node.object, node.id, node.args.map(emitExpr));
