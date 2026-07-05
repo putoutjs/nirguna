@@ -43,9 +43,7 @@ const emitStatement = (instr) => {
             type: 'IfStatement',
             test: emitExpr(instr.test[0]),
             consequent: blockStatement(instr.consequent.map(emitStatement)),
-            alternate: instr.alternate.length
-                ? blockStatement(instr.alternate.map(emitStatement))
-                : null,
+            alternate: instr.alternate.length ? blockStatement(instr.alternate.map(emitStatement)) : null,
         };
     
     if (instr.id === 'return')

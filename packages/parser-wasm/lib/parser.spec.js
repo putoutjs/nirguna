@@ -184,3 +184,19 @@ test('nirguna: wasm → js: legacy get_local, flat form', (t) => {
     t.equal(result, expected);
     t.end();
 });
+
+test('nirguna: wasm → js: comment before start drops', (t) => {
+    const source = montag`
+        (module
+            ;; entry point
+            (start $main)
+        )
+    `;
+    
+    const result = parse(source);
+    
+    const expected = '';
+    
+    t.equal(result, expected);
+    t.end();
+});

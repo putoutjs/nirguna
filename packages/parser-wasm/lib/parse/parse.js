@@ -26,9 +26,7 @@ function collectExports(fields) {
     const exports = {};
     let funcIndex = -1;
     
-    for (let i = 0; i < fields.length; i++) {
-        const field = fields[i];
-        
+    for (const [i, field] of fields.entries()) {
         if (field.type === 'Func') {
             funcIndex++;
             continue;
@@ -37,6 +35,7 @@ function collectExports(fields) {
         if (field.type === 'ModuleExport') {
             exports[funcIndex] = field.name;
             const prev = fields[i - 1];
+            
             field.isAdjacent = prev?.type === 'Func';
         }
     }
@@ -61,6 +60,7 @@ function transformFields(fields, exports) {
             } else {
                 result.push(visitors.Func(field, exports[funcIndex]));
             }
+            
             continue;
         }
         
@@ -92,9 +92,6 @@ function transformFields(fields, exports) {
 }
 
 const attachLeadingComments = (node, comments) => {
-    if (!comments.length)
-        return;
-    
     node.leadingComments = comments.map((field) => ({
         type: 'CommentLine',
         value: field.value,
