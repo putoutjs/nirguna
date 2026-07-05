@@ -55,7 +55,7 @@ const emitExpr = (node) => {
         return numericLiteral(node.value);
     
     if (node.type === 'CallInstruction')
-        return callExpression(identifier(node.index.value), node.instrArgs.map(emitExpr));
+        return callExpression(identifier(node.index.value), (node.instrArgs || []).map(emitExpr));
     
     if (node.object)
         return dottedCall(node.object, node.id, node.args.map(emitExpr));

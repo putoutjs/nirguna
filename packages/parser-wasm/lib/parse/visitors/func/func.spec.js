@@ -42,3 +42,9 @@ test('nirguna: parser-wasm: parser: visitors: func: comment before', (t) => {
     t.transform('func-comment-before');
     t.end();
 });
+
+test('nirguna: parser-wasm: parser: visitors: func: call with no args', (t) => {
+    t.transform('func-call-no-args');
+    t.end();
+});
+
