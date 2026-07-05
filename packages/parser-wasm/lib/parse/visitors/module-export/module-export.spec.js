@@ -26,4 +26,3 @@ test('nirguna: parser-wasm: parser: visitors: module-export: module-export-inval
     t.transform('module-export-invalid');
     t.end();
 });
-

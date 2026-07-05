@@ -66,4 +66,3 @@ test('nirguna: parser-wasm: parser: visitors:  func: transform: func-export-inli
     t.transform('func-export-inline');
     t.end();
 });
-

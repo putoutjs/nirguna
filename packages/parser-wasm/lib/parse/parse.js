@@ -37,6 +37,7 @@ function transformFields(fields, {exportMap}) {
                 const node = visitors.Func(field, {
                     exportMap,
                 });
+                
                 attachLeadingComments(node, pendingComments);
                 pendingComments = [];
                 result.push(node);
@@ -90,4 +91,3 @@ const attachLeadingComments = (node, comments) => {
         value: field.value,
     }));
 };
-

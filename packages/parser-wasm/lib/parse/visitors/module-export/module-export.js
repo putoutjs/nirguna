@@ -13,10 +13,8 @@ export const ModuleExport = (node, {exportMap}) => {
     if (info?.merge)
         return null;
     
-    return expressionStatement(
-        callExpression(identifier('__nirguna_wasm_export'), [
-            stringLiteral(node.name),
-            identifier(node.descr.id.value),
-        ]),
-    );
+    return expressionStatement(callExpression(identifier('__nirguna_wasm_export'), [
+        stringLiteral(node.name),
+        identifier(node.descr.id.value),
+    ]));
 };

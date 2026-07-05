@@ -53,9 +53,7 @@ const emitStatement = (instr) => {
             type: 'IfStatement',
             test: emitExpr(instr.test[0]),
             consequent: blockStatement(instr.consequent.map(emitStatement)),
-            alternate: instr.alternate.length
-                ? blockStatement(instr.alternate.map(emitStatement))
-                : null,
+            alternate: instr.alternate.length ? blockStatement(instr.alternate.map(emitStatement)) : null,
         };
     
     if (instr.id === 'return')
@@ -75,10 +73,7 @@ const emitExpr = (node) => {
         return numericLiteral(node.value);
     
     if (node.type === 'CallInstruction')
-        return callExpression(
-            identifier(node.index.value),
-            (node.instrArgs || []).map(emitExpr),
-        );
+        return callExpression(identifier(node.index.value), (node.instrArgs || []).map(emitExpr));
     
     if (node.object)
         return dottedCall(node.object, node.id, node.args.map(emitExpr));
@@ -90,14 +85,9 @@ const emitExpr = (node) => {
 };
 
 export const typeAnnotation = (valtype) => {
-    return tsTypeAnnotation(
-        tsTypeReference(identifier(valtype)),
-    );
+    return tsTypeAnnotation(tsTypeReference(identifier(valtype)));
 };
 
 const dottedCall = (object, id, args) => {
-    return callExpression(
-        memberExpression(identifier(object), identifier(id)),
-        args,
-    );
+    return callExpression(memberExpression(identifier(object), identifier(id)), args);
 };
