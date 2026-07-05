@@ -1,4 +1,4 @@
-export function double(a: i32): i32 {
+function double(a: i32): i32 {
     i32.add(a, a);
 }
 

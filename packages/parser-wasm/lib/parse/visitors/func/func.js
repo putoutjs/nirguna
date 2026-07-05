@@ -34,6 +34,9 @@ export const Func = ({name, signature, body}, exportedName) => {
     if (results[0])
         fn.returnType = typeAnnotation(results[0]);
     
+    if (exportedName === undefined)
+        return fn;
+    
     return exportNamedDeclaration(fn, []);
 };
 

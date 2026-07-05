@@ -56,3 +56,8 @@ test('nirguna: parser-wasm: parser: visitors: func: if without else', (t) => {
     t.transform('func-if-no-else');
     t.end();
 });
+
+test('nirguna: parser-wasm: parser: visitors: func: not exported', (t) => {
+    t.transform('func-not-exported');
+    t.end();
+});
