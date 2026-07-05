@@ -1,7 +1,5 @@
 import {types} from '@putout/babel';
 
-const isUndefined = (a) => typeof a === 'undefined';
-
 const {
     identifier,
     expressionStatement,
@@ -15,9 +13,14 @@ const {
     memberExpression,
 } = types;
 
-export const Func = ({name, signature, body}, exportedName) => {
+export const Func = (node, {exportMap}) => {
+    const {
+        name,
+        signature,
+        body,
+    } = node;
+    
     const {params, results} = signature;
-    const funcName = exportedName || name.value;
     
     const args = params.map(({id, valtype}) => {
         const param = identifier(id);
@@ -28,7 +31,7 @@ export const Func = ({name, signature, body}, exportedName) => {
     });
     
     const fn = functionDeclaration(
-        identifier(funcName),
+        identifier(name.value),
         args,
         blockStatement(body.map(emitStatement)),
     );
@@ -36,7 +39,9 @@ export const Func = ({name, signature, body}, exportedName) => {
     if (results[0])
         fn.returnType = typeAnnotation(results[0]);
     
-    if (isUndefined(exportedName))
+    const info = exportMap.get(name.value);
+    
+    if (!info || !info.merge)
         return fn;
     
     return exportNamedDeclaration(fn, []);
@@ -48,7 +53,9 @@ const emitStatement = (instr) => {
             type: 'IfStatement',
             test: emitExpr(instr.test[0]),
             consequent: blockStatement(instr.consequent.map(emitStatement)),
-            alternate: instr.alternate.length ? blockStatement(instr.alternate.map(emitStatement)) : null,
+            alternate: instr.alternate.length
+                ? blockStatement(instr.alternate.map(emitStatement))
+                : null,
         };
     
     if (instr.id === 'return')
@@ -68,7 +75,10 @@ const emitExpr = (node) => {
         return numericLiteral(node.value);
     
     if (node.type === 'CallInstruction')
-        return callExpression(identifier(node.index.value), (node.instrArgs || []).map(emitExpr));
+        return callExpression(
+            identifier(node.index.value),
+            (node.instrArgs || []).map(emitExpr),
+        );
     
     if (node.object)
         return dottedCall(node.object, node.id, node.args.map(emitExpr));
@@ -80,9 +90,14 @@ const emitExpr = (node) => {
 };
 
 export const typeAnnotation = (valtype) => {
-    return tsTypeAnnotation(tsTypeReference(identifier(valtype)));
+    return tsTypeAnnotation(
+        tsTypeReference(identifier(valtype)),
+    );
 };
 
 const dottedCall = (object, id, args) => {
-    return callExpression(memberExpression(identifier(object), identifier(id)), args);
+    return callExpression(
+        memberExpression(identifier(object), identifier(id)),
+        args,
+    );
 };

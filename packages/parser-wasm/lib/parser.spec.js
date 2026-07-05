@@ -7,17 +7,17 @@ test('nirguna: wasm → js: function', (t) => {
     t.end();
 });
 
-test('nirguna: wasm → js: single param', (t) => {
+test('nirguna: wasm → js: single-param', (t) => {
     t.transform('single-param');
     t.end();
 });
 
-test('nirguna: wasm → js: no params', (t) => {
+test('nirguna: wasm → js: no-params', (t) => {
     t.transform('no-params');
     t.end();
 });
 
-test('nirguna: wasm → js: multiple instructions', (t) => {
+test('nirguna: wasm → js: multiple-instructions', (t) => {
     t.transform('multiple-instructions');
     t.end();
 });
@@ -42,12 +42,12 @@ test('nirguna: wasm → js: import', (t) => {
     t.end();
 });
 
-test('nirguna: wasm → js: legacy get_local, flat form', (t) => {
+test('nirguna: wasm → js: legacy-get-local', (t) => {
     t.transform('legacy-get-local');
     t.end();
 });
 
-test('nirguna: wasm → js: comment before start drops', (t) => {
+test('nirguna: wasm → js: comment-before-start', (t) => {
     t.transform('comment-before-start');
     t.end();
 });

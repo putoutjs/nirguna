@@ -7,7 +7,7 @@ test('nirguna: parser-wasm: parser: visitors: module-import', (t) => {
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: module-import: keeps param names and return type', (t) => {
+test('nirguna: parser-wasm: parser: visitors: module-import: module-import-typed-params', (t) => {
     t.transform('module-import-typed-params');
     t.end();
 });

@@ -2,62 +2,68 @@ import {createTest} from '#parser/test';
 
 const {test} = createTest(import.meta.url);
 
-test('nirguna: parser-wasm: parser: visitors: func: basic', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-basic', (t) => {
     t.transform('func-basic');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: no params', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-no-params', (t) => {
     t.transform('func-no-params');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: return', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-return', (t) => {
     t.transform('func-return');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: multiple instructions', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-multiple', (t) => {
     t.transform('func-multiple');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: single param', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-single-param', (t) => {
     t.transform('func-single-param');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: legacy flat form', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-legacy', (t) => {
     t.transform('func-legacy');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: call instruction', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-call', (t) => {
     t.transform('func-call');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: comment before', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-comment-before', (t) => {
     t.transform('func-comment-before');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: call with no args', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-call-no-args', (t) => {
     t.transform('func-call-no-args');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: if/else', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-if-else', (t) => {
     t.transform('func-if-else');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: if without else', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-if-no-else', (t) => {
     t.transform('func-if-no-else');
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors: func: not exported', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-not-exported', (t) => {
     t.transform('func-not-exported');
     t.end();
 });
+
+test('nirguna: parser-wasm: parser: visitors:  func: transform: func-export-inline', (t) => {
+    t.transform('func-export-inline');
+    t.end();
+});
+

@@ -2,6 +2,7 @@ import {parse as wastParse} from '@webassemblyjs/wast-parser';
 import {traverse} from '@webassemblyjs/ast';
 import {types} from '@putout/babel';
 import {visitors} from './visitors/visitors.js';
+import {buildExportMap} from './visitors/module-export/export-map.js';
 
 const {program} = types;
 
@@ -12,43 +13,18 @@ export const parse = (source) => {
     traverse(ast, {
         Module(path) {
             const {fields} = path.node;
+            const exportMap = buildExportMap(fields, ast.comments);
             
-            const exports = collectExports(fields);
-            
-            body.push(...transformFields(fields, exports));
+            body.push(...transformFields(fields, {
+                exportMap,
+            }));
         },
     });
     
     return program(body);
 };
 
-function collectExports(fields) {
-    const exports = {};
-    let funcIndex = -1;
-    
-    for (const [i, field] of fields.entries()) {
-        if (field.type === 'Func') {
-            funcIndex++;
-            continue;
-        }
-        
-        if (field.type !== 'ModuleExport')
-            continue;
-        
-        exports[funcIndex] = field.name;
-        
-        let j = i - 1;
-        
-        while (fields[j]?.type === 'LeadingComment')
-            --j;
-        
-        field.isAdjacent = fields[j]?.type === 'Func';
-    }
-    
-    return exports;
-}
-
-function transformFields(fields, exports) {
+function transformFields(fields, {exportMap}) {
     const result = [];
     let funcIndex = -1;
     let pendingComments = [];
@@ -58,12 +34,16 @@ function transformFields(fields, exports) {
             funcIndex++;
             
             if (pendingComments.length) {
-                const node = visitors.Func(field, exports[funcIndex]);
+                const node = visitors.Func(field, {
+                    exportMap,
+                });
                 attachLeadingComments(node, pendingComments);
                 pendingComments = [];
                 result.push(node);
             } else {
-                result.push(visitors.Func(field, exports[funcIndex]));
+                result.push(visitors.Func(field, {
+                    exportMap,
+                }));
             }
             
             continue;
@@ -81,15 +61,12 @@ function transformFields(fields, exports) {
             continue;
         }
         
-        const node = visit(field, field.isAdjacent);
+        const node = visit(field, {
+            exportMap,
+        });
         
         if (node) {
             result.push(node);
-            
-            if (pendingComments.length) {
-                attachLeadingComments(node, pendingComments);
-                pendingComments = [];
-            }
             
             continue;
         }
@@ -113,3 +90,4 @@ const attachLeadingComments = (node, comments) => {
         value: field.value,
     }));
 };
+

@@ -1,2 +1,3 @@
-// exposed to the host
-export function add(a: i32) {}
+function x(a: i32) {}
+
+__nirguna_wasm_export('add', x);

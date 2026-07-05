@@ -59,6 +59,7 @@
     "@putout/printer": "^18.30.0",
     "@webassemblyjs/ast": "^1.14.1",
     "@webassemblyjs/wast-parser": "^1.14.1",
-    "redstd": "^1.0.2"
+    "redstd": "^1.0.2",
+    "try-catch": "^4.0.9"
   }
 }

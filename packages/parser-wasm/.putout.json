@@ -1,3 +1,6 @@
 {
+    "rules": {
+        "putout": "on"
+    },
     "plugins": ["printer"]
 }
