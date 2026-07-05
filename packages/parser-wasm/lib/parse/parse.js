@@ -32,12 +32,17 @@ function collectExports(fields) {
             continue;
         }
         
-        if (field.type === 'ModuleExport') {
-            exports[funcIndex] = field.name;
-            const prev = fields[i - 1];
-            
-            field.isAdjacent = prev?.type === 'Func';
-        }
+        if (field.type !== 'ModuleExport')
+            continue;
+        
+        exports[funcIndex] = field.name;
+        
+        let j = i - 1;
+        
+        while (fields[j]?.type === 'LeadingComment')
+            --j;
+        
+        field.isAdjacent = fields[j]?.type === 'Func';
     }
     
     return exports;
@@ -85,6 +90,17 @@ function transformFields(fields, exports) {
                 attachLeadingComments(node, pendingComments);
                 pendingComments = [];
             }
+            
+            continue;
+        }
+        
+        if (pendingComments.length && field.type === 'ModuleExport') {
+            const prev = result.at(-1);
+            
+            if (prev)
+                attachLeadingComments(prev, pendingComments);
+            
+            pendingComments = [];
         }
     }
     
