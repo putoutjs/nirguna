@@ -66,7 +66,7 @@ const emitExpr = (node) => {
     return callExpression(identifier(node.id), node.args.map(emitExpr));
 };
 
-const typeAnnotation = (valtype) => {
+export const typeAnnotation = (valtype) => {
     return tsTypeAnnotation(tsTypeReference(identifier(valtype)));
 };
 
