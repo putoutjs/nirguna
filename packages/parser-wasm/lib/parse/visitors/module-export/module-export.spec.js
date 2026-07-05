@@ -6,3 +6,8 @@ test('nirguna: parser-wasm: parser: visitors: module-export: anonymous func name
     t.transform('anonymous-export');
     t.end();
 });
+
+test('nirguna: parser-wasm: parser: visitors: module-export: separated export keeps its comment', (t) => {
+    t.transform('module-export-separated-with-comment');
+    t.end();
+});

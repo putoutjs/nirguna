@@ -26,14 +26,19 @@ function collectExports(fields) {
     const exports = {};
     let funcIndex = -1;
     
-    for (const field of fields) {
+    for (let i = 0; i < fields.length; i++) {
+        const field = fields[i];
+        
         if (field.type === 'Func') {
             funcIndex++;
             continue;
         }
         
-        if (field.type === 'ModuleExport')
+        if (field.type === 'ModuleExport') {
             exports[funcIndex] = field.name;
+            const prev = fields[i - 1];
+            field.isAdjacent = prev?.type === 'Func';
+        }
     }
     
     return exports;
@@ -42,25 +47,56 @@ function collectExports(fields) {
 function transformFields(fields, exports) {
     const result = [];
     let funcIndex = -1;
+    let pendingComments = [];
     
     for (const field of fields) {
         if (field.type === 'Func') {
             funcIndex++;
-            result.push(visitors.Func(field, exports[funcIndex]));
             
+            if (pendingComments.length) {
+                const node = visitors.Func(field, exports[funcIndex]);
+                attachLeadingComments(node, pendingComments);
+                pendingComments = [];
+                result.push(node);
+            } else {
+                result.push(visitors.Func(field, exports[funcIndex]));
+            }
+            continue;
+        }
+        
+        if (field.type === 'LeadingComment') {
+            pendingComments.push(field);
             continue;
         }
         
         const visit = visitors[field.type];
         
-        if (!visit)
+        if (!visit) {
+            pendingComments = [];
             continue;
+        }
         
-        const node = visit(field);
+        const node = visit(field, field.isAdjacent);
         
-        if (node)
+        if (node) {
             result.push(node);
+            
+            if (pendingComments.length) {
+                attachLeadingComments(node, pendingComments);
+                pendingComments = [];
+            }
+        }
     }
     
     return result;
 }
+
+const attachLeadingComments = (node, comments) => {
+    if (!comments.length)
+        return;
+    
+    node.leadingComments = comments.map((field) => ({
+        type: 'CommentLine',
+        value: field.value,
+    }));
+};
