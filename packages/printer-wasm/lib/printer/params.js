@@ -8,7 +8,11 @@ export const printParams = (path, printer, semantics, customization = {}) => {
         braceOpen = '(',
         braceClose = ')',
         printSpace = print.space,
+        leadingSpace = false,
     } = customization;
+    
+    if (leadingSpace && params.length > 0)
+        print(' ');
     
     const n = params.length - 1;
     

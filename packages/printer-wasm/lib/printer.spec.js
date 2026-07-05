@@ -97,7 +97,7 @@ test('nirguna: printer-wasm: import: no return', (t) => {
 
 test('nirguna: printer-wasm: comments', (t) => {
     const source = montag`
-        // example/1.wast.ts
+        // adds two numbers
         export function x(a: i32, b: i32): i32 {
             i32.add(local.get(a), local.get(b));
             call(log);
@@ -108,6 +108,7 @@ test('nirguna: printer-wasm: comments', (t) => {
     
     const expected = montag`
         (module
+            ;; adds two numbers
             (func $x (export "x") (param $a i32) (param $b i32) (result i32)
                 (i32.add (local.get $a) (local.get $b))
                 (call $log)
@@ -141,6 +142,50 @@ test('nirguna: printer-wasm: function: no export', (t) => {
                 (local.set $ebx (i32.const 2))
                 (i32.add (local.get $eax) (local.get $ebx))
             )
+        )\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: printer-wasm: function: no export: comment', (t) => {
+    const source = montag`
+        // standalone function
+        function add(a: i32): i32 {
+            local(eax, i32);
+            i32.add(local.get(eax), i32.const(1));
+        }
+    `;
+    
+    const result = print(source);
+    
+    const expected = montag`
+        (module
+            ;; standalone function
+            (func $add (param $a i32) (result i32)
+                (local $eax i32)
+                (i32.add (local.get $eax) (i32.const 1))
+            )
+        )\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: printer-wasm: expression: comment', (t) => {
+    const source = montag`
+        // memory declaration
+        __nirguna_wasm_memory(1);
+    `;
+    
+    const result = print(source);
+    
+    const expected = montag`
+        (module
+            ;; memory declaration
+            (memory 1)
         )\n
     `;
     
@@ -421,6 +466,35 @@ test('nirguna: printer-wasm: i64', (t) => {
             )
         )\n
     `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: printer-wasm: export, no params', (t) => {
+    const source = montag`
+        export function one(): i32 {
+            i32.const(1);
+        }
+    `;
+    
+    const result = print(source);
+    
+    const expected = montag`
+        (module
+            (func $one (export "one") (result i32)
+                (i32.const 1)
+            )
+        )\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: printer-wasm: empty module', (t) => {
+    const result = print('');
+    const expected = '(module)\n';
     
     t.equal(result, expected);
     t.end();

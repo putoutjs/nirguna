@@ -12,7 +12,19 @@ import {
 const {isFunction} = types;
 
 export const ExpressionStatement = (path, printer) => {
-    const {print, maybe} = printer;
+    const {
+        print,
+        maybe,
+        write,
+    } = printer;
+    const {leadingComments} = path.node;
+    
+    if (leadingComments)
+        for (const comment of leadingComments) {
+            write(';; ');
+            write(comment.value.trimStart());
+            write.breakline();
+        }
     
     const expression = path.get('expression');
     

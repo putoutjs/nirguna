@@ -9,8 +9,19 @@ const isInsideBlockLike = createTypeChecker([
 
 export const FunctionDeclaration = {
     print(path, printer, semantics) {
-        const {print} = printer;
-        const {generator, returnType} = path.node;
+        const {print, write} = printer;
+        const {
+            generator,
+            returnType,
+            leadingComments,
+        } = path.node;
+        
+        if (leadingComments)
+            for (const comment of leadingComments) {
+                write(';; ');
+                write(comment.value.trimStart());
+                write.breakline();
+            }
         
         print('(');
         print('func');
@@ -29,11 +40,11 @@ export const FunctionDeclaration = {
             print('__id');
             print('"');
             print(')');
-            print(' ');
         }
         
         printParams(path, printer, semantics, {
             braceOpen: '(param ',
+            leadingSpace: true,
         });
         
         if (returnType) {
