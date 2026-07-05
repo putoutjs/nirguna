@@ -5,9 +5,9 @@
     "exclude": [
         "**/*.config.*",
         "**/.*",
+        "**/fixture",
         "*.config.js",
         "coverage",
-        "**/fixture",
         "test"
     ],
     "branches": 100,
