@@ -1,5 +1,7 @@
 import {types} from '@putout/babel';
 
+const isUndefined = (a) => typeof a === 'undefined';
+
 const {
     identifier,
     expressionStatement,
@@ -34,7 +36,7 @@ export const Func = ({name, signature, body}, exportedName) => {
     if (results[0])
         fn.returnType = typeAnnotation(results[0]);
     
-    if (exportedName === undefined)
+    if (isUndefined(exportedName))
         return fn;
     
     return exportNamedDeclaration(fn, []);
