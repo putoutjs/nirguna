@@ -17,6 +17,7 @@ export const ExpressionStatement = (path, printer) => {
         maybe,
         write,
     } = printer;
+    
     const {leadingComments} = path.node;
     
     if (leadingComments)
