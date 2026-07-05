@@ -1,0 +1,9 @@
+(module
+    (func $add (result i32)
+        (local $eax i32)
+        (local $ebx i32)
+        (local.set $eax (i32.const 1))
+        (local.set $ebx (i32.const 2))
+        (i32.add (local.get $eax) (local.get $ebx))
+    )
+)
