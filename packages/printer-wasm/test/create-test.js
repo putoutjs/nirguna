@@ -1,6 +1,7 @@
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {readFileSync, writeFileSync} from 'node:fs';
+import process from 'node:process';
 import test from 'supertape';
 import {print} from '#printer-wasm';
 
