@@ -1,0 +1,1 @@
+hi.db['hello from Nemizida =)!!!'], 0xa, 0

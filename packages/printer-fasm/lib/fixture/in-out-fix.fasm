@@ -1,0 +1,3 @@
+in al, dx
+out al, dx
+

@@ -1,0 +1,1 @@
+hi db 'Hi, I am Sh3ll. Type ''help'' for ', 'more information', 0xd, 0

@@ -1,0 +1,4 @@
+__nirguna_reboot: {
+    jmp.far('0xFFFF:0x0000');
+}
+(debug_1_reboot.db['reboot'], 0xa, 0);

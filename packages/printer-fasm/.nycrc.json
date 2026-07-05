@@ -6,7 +6,9 @@
         "**/*.config.*",
         "**/.*",
         "*.config.js",
-        "coverage"
+        "coverage",
+        "lib/fixture",
+        "test"
     ],
     "branches": 100,
     "lines": 100,

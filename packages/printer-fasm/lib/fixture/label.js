@@ -1,0 +1,2 @@
+mov(eax, ebx);
+boot: jmp.short.start();
