@@ -5,10 +5,10 @@
     "exclude": [
         "**/*.config.*",
         "**/.*",
+        "**/fixture",
         "*.config.js",
         "bin",
         "coverage",
-        "**/fixture",
         "test"
     ],
     "branches": 100,
