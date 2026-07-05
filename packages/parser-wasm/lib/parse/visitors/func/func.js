@@ -38,6 +38,16 @@ export const Func = ({name, signature, body}, exportedName) => {
 };
 
 const emitStatement = (instr) => {
+    if (instr.type === 'IfInstruction')
+        return {
+            type: 'IfStatement',
+            test: emitExpr(instr.test[0]),
+            consequent: blockStatement(instr.consequent.map(emitStatement)),
+            alternate: instr.alternate.length
+                ? blockStatement(instr.alternate.map(emitStatement))
+                : null,
+        };
+    
     if (instr.id === 'return')
         return {
             type: 'ReturnStatement',
