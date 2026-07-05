@@ -9,6 +9,9 @@
   "release": false,
   "tag": false,
   "changelog": false,
+  "bin": {
+    "printer-wasm": "bin/printer.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/coderaiser/putout.git"
@@ -27,6 +30,9 @@
     "printer",
     "wasm"
   ],
+  "imports": {
+    "#printer-wasm": "./lib/printer.js"
+  },
   "devDependencies": {
     "@putout/plugin-printer": "^8.7.2",
     "eslint": "^10.0.1",
@@ -49,6 +55,7 @@
   },
   "dependencies": {
     "@putout/babel": "^5.3.2",
-    "@putout/printer": "^18.0.0"
+    "@putout/printer": "^18.0.0",
+    "redstd": "^1.0.2"
   }
 }

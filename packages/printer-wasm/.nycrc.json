@@ -6,6 +6,7 @@
         "**/*.config.*",
         "**/.*",
         "*.config.js",
+        "bin",
         "coverage"
     ],
     "branches": 100,
