@@ -32,7 +32,6 @@ test('nirguna: parser-wasm: parser: visitors: func: legacy flat form', (t) => {
     t.end();
 });
 
-
 test('nirguna: parser-wasm: parser: visitors: func: call instruction', (t) => {
     t.transform('func-call');
     t.end();
@@ -47,4 +46,3 @@ test('nirguna: parser-wasm: parser: visitors: func: call with no args', (t) => {
     t.transform('func-call-no-args');
     t.end();
 });
-

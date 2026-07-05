@@ -13,12 +13,16 @@ const {
 export const ModuleImport = ({module, name, descr}) => {
     const {id, signature} = descr;
     const fnName = id.value;
+    
     const fnParams = signature.params.map(({id: paramId, valtype}) => {
         const param = identifier(paramId || valtype);
+        
         if (paramId)
             param.typeAnnotation = typeAnnotation(valtype);
+        
         return param;
     });
+    
     const fn = functionExpression(identifier(fnName), fnParams, blockStatement([]));
     
     if (signature.results[0])

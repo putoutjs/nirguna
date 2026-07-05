@@ -11,4 +11,3 @@ test('nirguna: parser-wasm: parser: visitors: module-import: keeps param names a
     t.transform('module-import-typed-params');
     t.end();
 });
-
