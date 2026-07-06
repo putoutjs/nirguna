@@ -10,6 +10,7 @@ const {
     callExpression,
     tsTypeAnnotation,
     tsTypeReference,
+    tsTupleType,
     memberExpression,
     labeledStatement,
     breakStatement,
@@ -43,7 +44,10 @@ export const Func = (node, {exportMap}) => {
     );
     
     if (results[0])
-        fn.returnType = typeAnnotation(results[0]);
+        if (results.length > 1)
+            fn.returnType = tsTypeAnnotation(tsTupleType(results.map((r) => tsTypeReference(identifier(r)))));
+        else
+            fn.returnType = typeAnnotation(results[0]);
     
     const info = exportMap.get(name.value);
     
