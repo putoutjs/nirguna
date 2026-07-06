@@ -9,4 +9,3 @@ export const IfInstruction = (instr, {labelKinds, emitExpression, emitStatement}
     
     return ifStatement(test, consequent, alternate);
 };
-

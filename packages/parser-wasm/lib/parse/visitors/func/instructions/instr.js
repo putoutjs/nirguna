@@ -29,4 +29,3 @@ export const Instr = (instr, {emitExpression, labelKinds}) => {
     
     return expressionStatement(emitExpression(instr));
 };
-

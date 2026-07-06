@@ -13,9 +13,6 @@ const {
     tsTypeReference,
     tsTupleType,
     memberExpression,
-    labeledStatement,
-    booleanLiteral,
-    whileStatement,
 } = types;
 
 export const Func = (node, {exportMap}) => {
@@ -57,6 +54,7 @@ export const Func = (node, {exportMap}) => {
 
 const emitStatement = (instr, labelKinds) => {
     const {type} = instr;
+    
     labelKinds = labelKinds || new Map();
     
     if (instructions[type])
