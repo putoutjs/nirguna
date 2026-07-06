@@ -8,6 +8,9 @@ import {Program} from './visitors/program.js';
 import {Identifier} from './visitors/identifier.js';
 import {ReturnStatement} from './visitors/return.js';
 import {IfStatement} from './visitors/if-statement.js';
+import {LabeledStatement} from './visitors/labeled-statement.js';
+import {BreakStatement} from './visitors/break-statement.js';
+import {ContinueStatement} from './visitors/continue-statement.js';
 
 export const print = (ast) => {
     return putoutPrint(ast, {
@@ -22,6 +25,9 @@ export const print = (ast) => {
             CallExpression,
             BlockStatement,
             IfStatement,
+            LabeledStatement,
+            BreakStatement,
+            ContinueStatement,
             ExpressionStatement,
             ExportNamedDeclaration,
             FunctionDeclaration,
