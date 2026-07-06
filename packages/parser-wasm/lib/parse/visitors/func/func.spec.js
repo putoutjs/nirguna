@@ -62,7 +62,13 @@ test('nirguna: parser-wasm: parser: visitors: func: func-not-exported', (t) => {
     t.end();
 });
 
-test('nirguna: parser-wasm: parser: visitors:  func: transform: func-export-inline', (t) => {
+test('nirguna: parser-wasm: parser: visitors: func: func-block-loop-br', (t) => {
+    t.transform('func-block-loop-br');
+    t.end();
+});
+
+test('nirguna: parser-wasm: parser: visitors: func: func-export-inline', (t) => {
     t.transform('func-export-inline');
     t.end();
 });
+
