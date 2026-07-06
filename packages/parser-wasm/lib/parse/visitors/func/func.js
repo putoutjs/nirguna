@@ -96,4 +96,3 @@ export const typeAnnotation = (valtype) => {
 const dottedCall = (object, id, args) => {
     return callExpression(memberExpression(identifier(object), identifier(id)), args);
 };
-

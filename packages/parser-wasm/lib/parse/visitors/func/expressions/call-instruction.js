@@ -1,10 +1,6 @@
 import {types} from '@putout/babel';
 
-const {
-    identifier,
-    callExpression,
-    Identifier,
-} = types;
+const {identifier, callExpression} = types;
 
 const CALL = identifier('call');
 
@@ -15,4 +11,3 @@ export const CallInstruction = (node, {emitExpression}) => {
     
     return callExpression(CALL, [id, ...args]);
 };
-
