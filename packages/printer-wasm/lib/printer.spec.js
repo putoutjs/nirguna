@@ -106,3 +106,8 @@ test('nirguna: printer-wasm: empty module', (t) => {
     t.transform('empty-module');
     t.end();
 });
+
+test('nirguna: printer-wasm: multi-value result', (t) => {
+    t.transform('func-multi-value-result');
+    t.end();
+});

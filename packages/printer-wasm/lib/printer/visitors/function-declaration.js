@@ -1,6 +1,9 @@
 import {isNext, isNextParent} from '@putout/printer/is';
 import {createTypeChecker} from '@putout/printer/type-checker';
+import {types} from '@putout/babel';
 import {printParams} from '../params.js';
+
+const {isTSTupleType} = types;
 
 const isInsideBlockLike = createTypeChecker([
     '+: parentPath.parentPath -> TSModuleBlock',
@@ -9,7 +12,11 @@ const isInsideBlockLike = createTypeChecker([
 
 export const FunctionDeclaration = {
     print(path, printer, semantics) {
-        const {print, write} = printer;
+        const {
+            print,
+            write,
+            traverse,
+        } = printer;
         const {
             generator,
             returnType,
@@ -51,7 +58,23 @@ export const FunctionDeclaration = {
             print.space();
             print('(');
             print('result ');
-            print('__returnType');
+            
+            const returnTypeAnnotation = path.get('returnType').get('typeAnnotation');
+            
+            if (isTSTupleType(returnTypeAnnotation)) {
+                const elementTypes = returnTypeAnnotation.get('elementTypes');
+                const n = elementTypes.length - 1;
+                
+                for (const [i, elementType] of elementTypes.entries()) {
+                    traverse(elementType);
+                    
+                    if (i < n)
+                        print.space();
+                }
+            } else {
+                print('__returnType');
+            }
+            
             print(')');
         }
         
