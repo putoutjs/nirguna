@@ -20,6 +20,7 @@ export const LabeledStatement = (path, printer) => {
         indent,
         traverse,
     } = printer;
+    
     const {node} = path;
     const label = node.label.name;
     const body = path.get('body');
