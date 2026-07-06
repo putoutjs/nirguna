@@ -3,7 +3,7 @@ function one(): i32 {
 }
 
 function oneTwo(): i32 {
-    one();
+    call(one);
     i32.const(2);
 }
 

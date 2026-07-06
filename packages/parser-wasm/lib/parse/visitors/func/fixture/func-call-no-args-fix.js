@@ -3,5 +3,5 @@ function one(): i32 {
 }
 
 function oneTwo(): i32 {
-    one();
+    call(one);
 }

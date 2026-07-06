@@ -1,5 +1,6 @@
 import {types} from '@putout/babel';
 import {instructions} from './instructions/instructions.js';
+import {CallInstruction} from './expressions/call-instruction.js';
 
 const {
     identifier,
@@ -75,7 +76,9 @@ const emitExpression = (node) => {
         return numericLiteral(node.value);
     
     if (node.type === 'CallInstruction')
-        return callExpression(identifier(node.index.value), (node.instrArgs || []).map(emitExpression));
+        return CallInstruction(node, {
+            emitExpression,
+        });
     
     if (node.object)
         return dottedCall(node.object, node.id, node.args.map(emitExpression));
@@ -93,3 +96,4 @@ export const typeAnnotation = (valtype) => {
 const dottedCall = (object, id, args) => {
     return callExpression(memberExpression(identifier(object), identifier(id)), args);
 };
+

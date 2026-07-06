@@ -3,5 +3,5 @@ function double(a: i32): i32 {
 }
 
 export function quadruple(a: i32): i32 {
-    double(double(local.get(a)));
+    call(double, call(double, local.get(a)));
 }
