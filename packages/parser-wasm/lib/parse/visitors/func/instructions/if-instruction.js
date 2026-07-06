@@ -11,6 +11,7 @@ export const IfInstruction = (instr, {labelKinds, emitExpression, emitStatement}
         emitStatement,
         labelKinds,
     });
+    
     const alternate = createAlternate(instr, {
         emitStatement,
         labelKinds,
