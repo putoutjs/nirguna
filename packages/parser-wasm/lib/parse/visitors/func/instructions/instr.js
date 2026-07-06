@@ -9,11 +9,11 @@ const {
     expressionStatement,
 } = types;
 
-export const Instr = (instr, {emitExpr, labelKinds}) => {
+export const Instr = (instr, {emitExpression, labelKinds}) => {
     if (instr.id === 'return')
         return {
             type: 'ReturnStatement',
-            argument: emitExpr(instr.args[0]),
+            argument: emitExpression(instr.args[0]),
         };
     
     if (instr.id === 'br' || instr.id === 'br_if') {
@@ -24,9 +24,9 @@ export const Instr = (instr, {emitExpr, labelKinds}) => {
         if (instr.id === 'br')
             return jump;
         
-        return ifStatement(emitExpr(rest[0]), blockStatement([jump]));
+        return ifStatement(emitExpression(rest[0]), blockStatement([jump]));
     }
     
-    return expressionStatement(emitExpr(instr));
+    return expressionStatement(emitExpression(instr));
 };
 

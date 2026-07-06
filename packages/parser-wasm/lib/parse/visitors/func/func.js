@@ -62,14 +62,14 @@ const emitStatement = (instr, labelKinds) => {
     if (instructions[type])
         return instructions[type](instr, {
             labelKinds,
-            emitExpr,
+            emitExpression,
             emitStatement,
         });
     
-    return expressionStatement(emitExpr(instr));
+    return expressionStatement(emitExpression(instr));
 };
 
-const emitExpr = (node) => {
+const emitExpression = (node) => {
     if (node.type === 'Identifier')
         return identifier(node.value);
     
@@ -77,15 +77,15 @@ const emitExpr = (node) => {
         return numericLiteral(node.value);
     
     if (node.type === 'CallInstruction')
-        return callExpression(identifier(node.index.value), (node.instrArgs || []).map(emitExpr));
+        return callExpression(identifier(node.index.value), (node.instrArgs || []).map(emitExpression));
     
     if (node.object)
-        return dottedCall(node.object, node.id, node.args.map(emitExpr));
+        return dottedCall(node.object, node.id, node.args.map(emitExpression));
     
     if (!node.args.length)
         return identifier(node.id);
     
-    return callExpression(identifier(node.id), node.args.map(emitExpr));
+    return callExpression(identifier(node.id), node.args.map(emitExpression));
 };
 
 export const typeAnnotation = (valtype) => {
