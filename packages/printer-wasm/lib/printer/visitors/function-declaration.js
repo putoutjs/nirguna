@@ -17,6 +17,7 @@ export const FunctionDeclaration = {
             write,
             traverse,
         } = printer;
+        
         const {
             generator,
             returnType,

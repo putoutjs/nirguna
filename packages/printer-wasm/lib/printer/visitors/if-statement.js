@@ -1,7 +1,11 @@
 import {types} from '@putout/babel';
 import {exists} from '@putout/printer/is';
 
-const {isReturnStatement, isBreakStatement, isContinueStatement} = types;
+const {
+    isReturnStatement,
+    isBreakStatement,
+    isContinueStatement,
+} = types;
 
 export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     const {parentPath} = path;
@@ -14,10 +18,14 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     const alternate = path.get('alternate');
     const hasNoAlternate = !exists(alternate);
     
-    const isBrIf = consequent.isBlockStatement() && consequent.node.body.length === 1 && (isBreakStatement(consequent.node.body[0]) || isContinueStatement(consequent.node.body[0])) && hasNoAlternate;
+    const isBrIf = consequent.isBlockStatement()
+        && consequent.node.body.length === 1
+        && (isBreakStatement(consequent.node.body[0])
+        || isContinueStatement(consequent.node.body[0]))
+        && hasNoAlternate;
     
     if (isBrIf) {
-        const jump = consequent.node.body[0];
+        const [jump] = consequent.node.body;
         
         write('(');
         write('br_if');
@@ -27,6 +35,7 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
         print('__test');
         write(')');
         write.newline();
+        
         return;
     }
     

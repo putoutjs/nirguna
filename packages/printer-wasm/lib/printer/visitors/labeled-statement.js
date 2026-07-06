@@ -1,6 +1,9 @@
 import {types} from '@putout/babel';
 
-const {isWhileStatement, isBooleanLiteral} = types;
+const {
+    isWhileStatement,
+    isBooleanLiteral,
+} = types;
 
 const isTrueWhile = (path) => {
     if (!isWhileStatement(path))
@@ -8,11 +11,15 @@ const isTrueWhile = (path) => {
     
     const test = path.get('test');
     
-    return isBooleanLiteral(test) && test.node.value === true;
+    return isBooleanLiteral(test) && test.node.value;
 };
 
 export const LabeledStatement = (path, printer) => {
-    const {write, indent, traverse} = printer;
+    const {
+        write,
+        indent,
+        traverse,
+    } = printer;
     const {node} = path;
     const label = node.label.name;
     const body = path.get('body');
