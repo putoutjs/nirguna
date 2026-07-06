@@ -2,6 +2,11 @@ import {createTest} from '#parser/test';
 
 const {test} = createTest(import.meta.url);
 
+test('nirguna: parser-wasm: parser: visitors: module-export: module-export-different', (t) => {
+    t.transform('module-export-different');
+    t.end();
+});
+
 test('nirguna: parser-wasm: parser: visitors: module-export: anonymous-export', (t) => {
     t.transform('anonymous-export');
     t.end();
