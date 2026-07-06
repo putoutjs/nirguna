@@ -39,7 +39,7 @@ export const Func = (node, {exportMap}) => {
     const fn = functionDeclaration(
         identifier(name.value),
         args,
-        blockStatement(body.map((i) => emitStatement(i))),
+        blockStatement(body.map(emitStatement)),
     );
     
     if (results[0])
