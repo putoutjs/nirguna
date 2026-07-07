@@ -10,8 +10,6 @@ export const BreakStatement = {
         print.newline();
     },
     print(path, {print, maybe}) {
-        const {label} = path.node;
-        
         maybe.indent(!isInsideLabel(path));
         print('(br $');
         print('__label');
