@@ -65,4 +65,3 @@ function brIfId(instr, {labelKinds, emitExpression}) {
     
     return ifStatement(emitExpression(first), blockStatement([jump]));
 }
-

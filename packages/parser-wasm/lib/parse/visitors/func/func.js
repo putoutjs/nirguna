@@ -39,11 +39,7 @@ export const Func = (node, {exportMap}) => {
         block.push(emitStatement(statement));
     }
     
-    const fn = functionDeclaration(
-        identifier(name.value),
-        args,
-        blockStatement(block),
-    );
+    const fn = functionDeclaration(identifier(name.value), args, blockStatement(block));
     
     if (results[0])
         if (results.length > 1)
@@ -70,7 +66,9 @@ const emitStatement = (instr, labelKinds = new Map()) => {
     if (LABELS[type])
         labelKinds.set(instr.label.value, LABELS[type]);
     
-    const emitBlockStatement = createEmitBlockStatement({labelKinds});
+    const emitBlockStatement = createEmitBlockStatement({
+        labelKinds,
+    });
     
     if (instructions[type])
         return instructions[type](instr, {
