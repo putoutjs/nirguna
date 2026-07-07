@@ -33,10 +33,16 @@ export const Func = (node, {exportMap}) => {
         return param;
     });
     
+    const block = [];
+    
+    for (const statement of body) {
+        block.push(emitStatement(statement));
+    }
+    
     const fn = functionDeclaration(
         identifier(name.value),
         args,
-        blockStatement(body.map(emitStatement)),
+        blockStatement(block),
     );
     
     if (results[0])
@@ -53,16 +59,25 @@ export const Func = (node, {exportMap}) => {
     return exportNamedDeclaration(fn, []);
 };
 
-const emitStatement = (instr, labelKinds) => {
+const LABELS = {
+    BlockInstruction: 'block',
+    LoopInstruction: 'loop',
+};
+
+const emitStatement = (instr, labelKinds = new Map()) => {
     const {type} = instr;
     
-    labelKinds = labelKinds || new Map();
+    if (LABELS[type])
+        labelKinds.set(instr.label.value, LABELS[type]);
+    
+    const emitBlockStatement = createEmitBlockStatement({labelKinds});
     
     if (instructions[type])
         return instructions[type](instr, {
             labelKinds,
             emitExpression,
             emitStatement,
+            emitBlockStatement,
         });
     
     return expressionStatement(emitExpression(instr));
@@ -98,4 +113,17 @@ export const typeAnnotation = (valtype) => {
 
 const dottedCall = (object, id, args) => {
     return callExpression(memberExpression(identifier(object), identifier(id)), args);
+};
+
+const createEmitBlockStatement = ({labelKinds}) => (instructions) => {
+    const result = [];
+    
+    for (const instruction of instructions) {
+        result.push(emitStatement(
+            instruction,
+            labelKinds,
+        ));
+    }
+    
+    return blockStatement(result);
 };

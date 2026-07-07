@@ -5,13 +5,12 @@ const {
     whileStatement,
     identifier,
     labeledStatement,
-    blockStatement,
 } = types;
 
-export const LoopInstruction = (instr, {labelKinds, emitStatement}) => {
-    labelKinds.set(instr.label.value, 'loop');
+export const LoopInstruction = (instr, {emitBlockStatement}) => {
+    const body = emitBlockStatement(instr.instr);
+    const loop = whileStatement(booleanLiteral(true), body);
+    const id = identifier(instr.label.value);
     
-    const body = blockStatement(instr.instr.map((i) => emitStatement(i, labelKinds)));
-    
-    return labeledStatement(identifier(instr.label.value), whileStatement(booleanLiteral(true), body));
+    return labeledStatement(id, loop);
 };

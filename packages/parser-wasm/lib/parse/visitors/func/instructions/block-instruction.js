@@ -1,31 +1,11 @@
 import {types} from '@putout/babel';
 
 const {
-    blockStatement,
     labeledStatement,
     identifier,
 } = types;
 
-export const BlockInstruction = (instr, {labelKinds, emitStatement}) => {
-    labelKinds.set(instr.label.value, 'block');
-    
-    const body = getBody(instr, {
-        emitStatement,
-        labelKinds,
-    });
-    
+export const BlockInstruction = (instr, {emitBlockStatement}) => {
+    const body = emitBlockStatement(instr.instr);
     return labeledStatement(identifier(instr.label.value), body);
 };
-
-function getBody(instr, {emitStatement, labelKinds}) {
-    const result = [];
-    
-    for (const instruction of instr.instr) {
-        result.push(emitStatement(
-            instruction,
-            labelKinds,
-        ));
-    }
-    
-    return blockStatement(result);
-}
