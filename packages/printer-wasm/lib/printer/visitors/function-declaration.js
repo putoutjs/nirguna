@@ -80,6 +80,7 @@ export const FunctionDeclaration = {
         }
         
         print('__body');
+        print.indent();
         print(')');
     },
     afterSatisfy: () => [isNext, isNextParent, isInsideBlockLike],

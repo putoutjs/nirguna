@@ -17,6 +17,7 @@ export const LabeledStatement = (path, {print, maybe}) => {
     print('__label');
     print.space();
     print('__body');
+    print.indent();
     print(')');
     print.newline();
 };

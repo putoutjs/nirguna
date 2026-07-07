@@ -19,5 +19,4 @@ export const BlockStatement = (path, printer) => {
     }
     
     indent.dec();
-    indent();
 };
