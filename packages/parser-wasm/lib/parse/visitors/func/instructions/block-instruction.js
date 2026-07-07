@@ -4,7 +4,6 @@ const {
     blockStatement,
     labeledStatement,
     identifier,
-    BlockStatement,
 } = types;
 
 export const BlockInstruction = (instr, {labelKinds, emitStatement}) => {
@@ -30,4 +29,3 @@ function getBody(instr, {emitStatement, labelKinds}) {
     
     return blockStatement(result);
 }
-
