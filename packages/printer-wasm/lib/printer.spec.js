@@ -121,3 +121,8 @@ test('nirguna: printer-wasm: float const', (t) => {
     t.transform('func-float-const');
     t.end();
 });
+
+test('nirguna: printer-wasm: global: immutable', (t) => {
+    t.transform('global-immutable');
+    t.end();
+});
