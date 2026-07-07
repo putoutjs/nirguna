@@ -11,6 +11,7 @@ import {ReturnStatement} from './visitors/return.js';
 import {IfStatement} from './visitors/if-statement.js';
 import {LabeledStatement} from './visitors/labeled-statement.js';
 import {VariableDeclaration} from './visitors/variable-declaration.js';
+import {DoWhileStatement} from './visitors/do-while-statement.js';
 
 export const print = (ast) => {
     return putoutPrint(ast, {
@@ -22,9 +23,10 @@ export const print = (ast) => {
         },
         visitors: {
             ReturnStatement,
-            CallExpression,
             BlockStatement,
             BreakStatement,
+            CallExpression,
+            DoWhileStatement,
             IfStatement,
             LabeledStatement,
             ExpressionStatement,
