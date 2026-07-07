@@ -1,5 +1,5 @@
 import {isNext, isPrev} from '@putout/printer/is';
-import {types} from 'putout';
+import {createTypeChecker} from '@putout/printer/type-checker';
 import {
     isWastImport,
     printWasmImport,
@@ -8,11 +8,6 @@ import {
     isWastMemory,
     printWasmMemory,
 } from './print-wasm-memory.js';
-
-const {
-    isFunction,
-    isBlockStatement,
-} = types;
 
 export const ExpressionStatement = (path, printer) => {
     const {
@@ -46,9 +41,16 @@ export const ExpressionStatement = (path, printer) => {
         return;
     }
     
-    const surrounded = isNext(path) || isFunction(path.parentPath.parentPath) || isBlockStatement(path.parentPath);
+    const surrounded = isSurrounded(path);
     
-    maybe.indent(surrounded || isPrev(path));
+    maybe.indent(surrounded);
     print('__expression');
     maybe.print.newline(surrounded);
 };
+
+const isSurrounded = createTypeChecker([
+    ['+', isPrev],
+    ['+', isNext],
+    ['+: parentPath -> BlockStatement'],
+    ['+: parentPath.parentPath -> FunctionDeclaration'],
+]);
