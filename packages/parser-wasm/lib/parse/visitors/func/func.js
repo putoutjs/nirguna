@@ -68,7 +68,7 @@ const emitStatement = (instr, labelKinds) => {
     return expressionStatement(emitExpression(instr));
 };
 
-const emitExpression = (node) => {
+export const emitExpression = (node) => {
     if (node.type === 'Identifier')
         return identifier(node.value);
     
