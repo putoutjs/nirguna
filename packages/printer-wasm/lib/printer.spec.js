@@ -126,3 +126,8 @@ test('nirguna: printer-wasm: global: immutable', (t) => {
     t.transform('global-immutable');
     t.end();
 });
+
+test('nirguna: printer-wasm: transform', (t) => {
+    t.transform('block');
+    t.end();
+});
