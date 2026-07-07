@@ -51,3 +51,8 @@ test('nirguna: wasm → js: comment-before-start', (t) => {
     t.transform('comment-before-start');
     t.end();
 });
+
+test('nirguna: wasm → js: unknown-field', (t) => {
+    t.transform('unknown-field');
+    t.end();
+});
