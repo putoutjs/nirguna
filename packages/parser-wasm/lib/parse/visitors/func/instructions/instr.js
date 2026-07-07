@@ -19,7 +19,10 @@ export const Instr = (instr, {emitExpression, labelKinds}) => {
     if (instr.id === 'br' || instr.id === 'br_if') {
         const [label, ...rest] = instr.args;
         const kind = labelKinds.get(label.value);
-        const jump = createJump({kind, label});
+        const jump = createJump({
+            kind,
+            label,
+        });
         
         if (instr.id === 'br')
             return jump;
@@ -34,7 +37,7 @@ export const Instr = (instr, {emitExpression, labelKinds}) => {
 
 function createJump({kind, label}) {
     if (kind === 'loop')
-        return continueStatement(identifier(label.value)) ;
+        return continueStatement(identifier(label.value));
     
     return breakStatement(identifier(label.value));
 }
