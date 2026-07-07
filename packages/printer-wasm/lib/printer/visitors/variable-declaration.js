@@ -4,6 +4,7 @@ export const VariableDeclaration = (path, printer) => {
         traverse,
         write,
     } = printer;
+    
     const [declarator] = path.get('declarations');
     const {id} = declarator.node;
     const typeName = id.typeAnnotation.typeAnnotation.typeName.name;
@@ -26,4 +27,3 @@ export const VariableDeclaration = (path, printer) => {
     print(')');
     write.breakline();
 };
-
