@@ -75,6 +75,9 @@ export const emitExpression = (node) => {
     if (node.type === 'NumberLiteral')
         return numericLiteral(node.value);
     
+    if (node.type === 'FloatLiteral')
+        return numericLiteral(node.value);
+    
     if (node.type === 'CallInstruction')
         return CallInstruction(node, {
             emitExpression,

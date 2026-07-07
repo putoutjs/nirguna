@@ -76,3 +76,9 @@ test('nirguna: parser-wasm: parser: visitors: func: func-multi-value-result', (t
     t.transform('func-multi-value-result');
     t.end();
 });
+
+test('nirguna: parser-wasm: parser: visitors: func: func-float-const', (t) => {
+    t.transform('func-float-const');
+    t.end();
+});
+
