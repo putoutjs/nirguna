@@ -1,4 +1,4 @@
-export const WhileStatement = (path, {print, indent}) => {
+export const WhileStatement = (path, {print}) => {
     print('while');
     print.space();
     print('(');
@@ -15,4 +15,3 @@ export const WhileStatement = (path, {print, indent}) => {
     print.newline();
     print('__body');
 };
-

@@ -15,7 +15,6 @@ import {VariableDeclaration} from './visitors/variable-declaration.js';
 import {WhileStatement} from './visitors/while-statement.js';
 
 export const print = (ast) => {
-    debugger;
     return putoutPrint(ast, {
         format: {
             quote: '"',
@@ -41,4 +40,3 @@ export const print = (ast) => {
         },
     });
 };
-
