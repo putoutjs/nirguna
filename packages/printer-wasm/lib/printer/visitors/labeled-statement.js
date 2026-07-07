@@ -30,18 +30,17 @@ export const LabeledStatement = (path, printer) => {
     
     indent();
     write('(');
+    
     write(isLoop ? 'loop' : 'block');
     write(' $');
     write(label);
-    indent.inc();
+    
     write.breakline();
     
     for (const element of inner.get('body')) {
         traverse(element);
     }
     
-    indent.dec();
-    indent();
     write(')');
     write.newline();
 };

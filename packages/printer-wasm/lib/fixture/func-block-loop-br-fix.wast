@@ -5,7 +5,7 @@
                 (br_if $b (i32.eqz (local.get $a)))
                 (br $l)
             )
-            (i32.const 1)
         )
+        (i32.const 1)
     )
 )

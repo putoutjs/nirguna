@@ -11,29 +11,19 @@ const isUpdate = () => Boolean(process.env.UPDATE);
 
 export const createTest = () => {
     return test.extend({
-        transform: () => (name) => {
+        transform: ({pass, equal}) => (name) => {
             const full = join(__dirname, '..', 'lib', 'fixture', name);
             const input = readFileSync(`${full}.js`, 'utf8');
-            const code = print(input);
+            const result = print(input);
             
             if (isUpdate()) {
-                writeFileSync(`${full}-fix.wast`, code);
-                return {
-                    is: true,
-                    expected: code,
-                    result: code,
-                    message: 'fixed fixture updated',
-                };
+                writeFileSync(`${full}-fix.wast`, result);
+                return pass('update fixture');
             }
             
-            const fix = readFileSync(`${full}-fix.wast`, 'utf8');
+            const expected = readFileSync(`${full}-fix.wast`, 'utf8');
             
-            return {
-                is: code === fix,
-                expected: fix,
-                result: code,
-                message: 'should equal',
-            };
+            return equal(result, expected);
         },
     });
 };

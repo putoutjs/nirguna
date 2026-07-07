@@ -3,7 +3,6 @@ const isFirstStatement = (path) => path.node.body[0];
 export const BlockStatement = (path, printer) => {
     const {
         indent,
-        maybe,
         write,
         traverse,
     } = printer;
@@ -20,5 +19,6 @@ export const BlockStatement = (path, printer) => {
     }
     
     indent.dec();
-    maybe.indent(body.length);
+    indent();
 };
+

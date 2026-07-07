@@ -12,8 +12,10 @@ import {LabeledStatement} from './visitors/labeled-statement.js';
 import {BreakStatement} from './visitors/break-statement.js';
 import {ContinueStatement} from './visitors/continue-statement.js';
 import {VariableDeclaration} from './visitors/variable-declaration.js';
+import {WhileStatement} from './visitors/while-statement.js';
 
 export const print = (ast) => {
+    debugger;
     return putoutPrint(ast, {
         format: {
             quote: '"',
@@ -28,6 +30,7 @@ export const print = (ast) => {
             IfStatement,
             LabeledStatement,
             BreakStatement,
+            WhileStatement,
             ContinueStatement,
             ExpressionStatement,
             ExportNamedDeclaration,
@@ -38,3 +41,4 @@ export const print = (ast) => {
         },
     });
 };
+
