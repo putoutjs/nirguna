@@ -5,9 +5,10 @@ const {
     identifier,
     variableDeclaration,
     variableDeclarator,
+    exportNamedDeclaration,
 } = types;
 
-export const Global = (node) => {
+export const Global = (node, {exportMap}) => {
     const {valtype, mutability} = node.globalType;
     const id = identifier(node.name.value);
     
@@ -16,7 +17,14 @@ export const Global = (node) => {
     const kind = mutability === 'var' ? 'let' : 'const';
     const [init] = node.init;
     
-    return variableDeclaration(kind, [
+    const decl = variableDeclaration(kind, [
         variableDeclarator(id, emitExpression(init)),
     ]);
+    
+    const info = exportMap.get(node.name.value);
+    
+    if (info?.merge)
+        return exportNamedDeclaration(decl, []);
+    
+    return decl;
 };
