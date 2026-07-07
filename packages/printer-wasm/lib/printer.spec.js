@@ -116,3 +116,8 @@ test('nirguna: printer-wasm: global', (t) => {
     t.transform('global-basic');
     t.end();
 });
+
+test('nirguna: printer-wasm: float const', (t) => {
+    t.transform('func-float-const');
+    t.end();
+});
