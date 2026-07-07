@@ -7,30 +7,23 @@ const {
     identifier,
     continueStatement,
     expressionStatement,
+    returnStatement,
 } = types;
 
+const ids = {
+    return: returnId,
+    br: brId,
+    br_if: brIfId,
+};
+
 export const Instr = (instr, {emitExpression, labelKinds}) => {
-    if (instr.id === 'return')
-        return {
-            type: 'ReturnStatement',
-            argument: emitExpression(instr.args[0]),
-        };
+    const {id} = instr;
     
-    if (instr.id === 'br' || instr.id === 'br_if') {
-        const [label, ...rest] = instr.args;
-        const kind = labelKinds.get(label.value);
-        const jump = createJump({
-            kind,
-            label,
+    if (ids[id])
+        return ids[id](instr, {
+            labelKinds,
+            emitExpression,
         });
-        
-        if (instr.id === 'br')
-            return jump;
-        
-        const [first] = rest;
-        
-        return ifStatement(emitExpression(first), blockStatement([jump]));
-    }
     
     return expressionStatement(emitExpression(instr));
 };
@@ -41,3 +34,35 @@ function createJump({kind, label}) {
     
     return breakStatement(identifier(label.value));
 }
+
+function returnId(instr, {emitExpression}) {
+    const [first] = instr.args;
+    return returnStatement(emitExpression(first));
+}
+
+function brId(instr, {labelKinds}) {
+    const [label] = instr.args;
+    const kind = labelKinds.get(label.value);
+    
+    const jump = createJump({
+        kind,
+        label,
+    });
+    
+    return jump;
+}
+
+function brIfId(instr, {labelKinds, emitExpression}) {
+    const [label, ...rest] = instr.args;
+    const kind = labelKinds.get(label.value);
+    
+    const jump = createJump({
+        kind,
+        label,
+    });
+    
+    const [first] = rest;
+    
+    return ifStatement(emitExpression(first), blockStatement([jump]));
+}
+
