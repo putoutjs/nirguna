@@ -6,3 +6,8 @@ test('nirguna: parser-wasm: parser: visitors: global: global-basic', (t) => {
     t.transform('global-basic');
     t.end();
 });
+
+test('nirguna: parser-wasm: parser: visitors: global: global-immutable', (t) => {
+    t.transform('global-immutable');
+    t.end();
+});
