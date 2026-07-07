@@ -9,10 +9,10 @@ export const DoWhileStatement = {
         print('(');
         print('loop');
         print(' ');
+        print('$');
         print(label);
-        
         print('__body');
-        print.breakline();
+        print.indent();
         print(')');
     },
     afterSatisfy: () => [

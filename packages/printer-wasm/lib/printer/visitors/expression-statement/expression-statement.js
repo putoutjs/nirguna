@@ -9,7 +9,10 @@ import {
     printWasmMemory,
 } from './print-wasm-memory.js';
 
-const {isFunction} = types;
+const {
+    isFunction,
+    isBlockStatement,
+} = types;
 
 export const ExpressionStatement = (path, printer) => {
     const {
@@ -43,7 +46,7 @@ export const ExpressionStatement = (path, printer) => {
         return;
     }
     
-    const surrounded = isNext(path) || isFunction(path.parentPath.parentPath);
+    const surrounded = isNext(path) || isFunction(path.parentPath.parentPath) || isBlockStatement(path.parentPath);
     
     maybe.indent(surrounded || isPrev(path));
     print('__expression');

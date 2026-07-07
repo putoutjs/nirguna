@@ -136,3 +136,8 @@ test('nirguna: printer-wasm: transform: loop', (t) => {
     t.transform('loop');
     t.end();
 });
+
+test('nirguna: printer-wasm: transform: block-loop', (t) => {
+    t.transform('block-loop');
+    t.end();
+});
