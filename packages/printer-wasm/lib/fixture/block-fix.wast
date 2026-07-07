@@ -1,6 +1,6 @@
 (module
     (func $x (export "x") (result i32)
-        (block $b 
+        (block $b
             (i32.const 1)
             (br $b)
         )
