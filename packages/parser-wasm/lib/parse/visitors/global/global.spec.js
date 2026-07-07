@@ -16,4 +16,3 @@ test('nirguna: parser-wasm: parser: visitors: global: global-exported', (t) => {
     t.transform('global-exported');
     t.end();
 });
-
