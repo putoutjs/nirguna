@@ -111,3 +111,8 @@ test('nirguna: printer-wasm: multi-value result', (t) => {
     t.transform('func-multi-value-result');
     t.end();
 });
+
+test('nirguna: printer-wasm: global', (t) => {
+    t.transform('global-basic');
+    t.end();
+});

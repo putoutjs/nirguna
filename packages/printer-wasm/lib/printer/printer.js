@@ -11,6 +11,7 @@ import {IfStatement} from './visitors/if-statement.js';
 import {LabeledStatement} from './visitors/labeled-statement.js';
 import {BreakStatement} from './visitors/break-statement.js';
 import {ContinueStatement} from './visitors/continue-statement.js';
+import {VariableDeclaration} from './visitors/variable-declaration.js';
 
 export const print = (ast) => {
     return putoutPrint(ast, {
@@ -33,6 +34,7 @@ export const print = (ast) => {
             FunctionDeclaration,
             Program,
             Identifier,
+            VariableDeclaration,
         },
     });
 };
