@@ -1,11 +1,7 @@
 import {types} from '@putout/babel';
 import {exists} from '@putout/printer/is';
 
-const {
-    isReturnStatement,
-    isBreakStatement,
-    isContinueStatement,
-} = types;
+const {isReturnStatement} = types;
 
 export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     const {parentPath} = path;
@@ -13,31 +9,6 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     
     if (path !== partOfAlternate)
         indent();
-    
-    const consequent = path.get('consequent');
-    const alternate = path.get('alternate');
-    const hasNoAlternate = !exists(alternate);
-    
-    const isBrIf = consequent.isBlockStatement()
-        && consequent.node.body.length === 1
-        && (isBreakStatement(consequent.node.body[0])
-        || isContinueStatement(consequent.node.body[0]))
-        && hasNoAlternate;
-    
-    if (isBrIf) {
-        const [jump] = consequent.node.body;
-        
-        write('(');
-        write('br_if');
-        write(' $');
-        write(jump.label.name);
-        write(' ');
-        print('__test');
-        write(')');
-        write.newline();
-        
-        return;
-    }
     
     print('(if');
     
@@ -55,6 +26,8 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     print.breakline();
     print('(then');
     
+    const consequent = path.get('consequent');
+    const alternate = path.get('alternate');
     const isConsequentBlock = consequent.isBlockStatement();
     const isVar = consequent.isVariableDeclaration();
     

@@ -126,18 +126,3 @@ test('nirguna: printer-wasm: global: immutable', (t) => {
     t.transform('global-immutable');
     t.end();
 });
-
-test('nirguna: printer-wasm: br_if: continue', (t) => {
-    t.transform('br-if-continue');
-    t.end();
-});
-
-test('nirguna: printer-wasm: break: standalone', (t) => {
-    t.transform('break-standalone');
-    t.end();
-});
-
-test('nirguna: printer-wasm: block, loop, br', (t) => {
-    t.transform('func-block-loop-br');
-    t.end();
-});
