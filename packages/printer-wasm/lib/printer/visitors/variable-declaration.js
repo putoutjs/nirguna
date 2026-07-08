@@ -1,10 +1,6 @@
-export const VariableDeclaration = (path, printer) => {
-    const {
-        print,
-        traverse,
-        write,
-    } = printer;
-    
+import {isNext} from '#is';
+
+export const VariableDeclaration = (path, {print, traverse, maybe}) => {
     const [declarator] = path.get('declarations');
     const {id} = declarator.node;
     const typeName = id.typeAnnotation.typeAnnotation.typeName.name;
@@ -32,5 +28,6 @@ export const VariableDeclaration = (path, printer) => {
     print(' ');
     traverse(declarator.get('init'));
     print(')');
-    write.breakline();
+    maybe.write.breakline(isNext(path));
 };
+
