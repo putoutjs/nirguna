@@ -1,3 +1,6 @@
+import {pathToFileURL} from 'node:url';
+import {codeFrameColumns} from '@putout/babel';
+
 const isUndefined = (a) => typeof a === 'undefined';
 
 export const lintWastFormatting = (text) => {
@@ -5,14 +8,23 @@ export const lintWastFormatting = (text) => {
     const lines = text.split('\n');
     
     for (const [i, line] of lines.entries()) {
-        const n = i + 1;
-        const body = line.replace(/^\s+/, '');
+        const doubleSpace = line.match(/(?<=\S) {2,}/);
         
-        if (/ {2,}\S/.test(body))
-            issues.push(`line ${n}: double space`);
+        if (doubleSpace)
+            issues.push({
+                line: i + 1,
+                column: doubleSpace.index + 1,
+                message: 'indent',
+            });
         
-        if (/[ \t]+$/.test(line) && line.trim() !== '')
-            issues.push(`line ${n}: trailing whitespace`);
+        const trailingIndex = line.search(/[ \t]+$/);
+        
+        if (trailingIndex !== -1 && line.trim() !== '')
+            issues.push({
+                line: i + 1,
+                column: trailingIndex + 1,
+                message: 'trailing whitespace',
+            });
     }
     
     for (const [i, line] of lines.entries()) {
@@ -22,8 +34,32 @@ export const lintWastFormatting = (text) => {
             continue;
         
         if (line.trim() === '' && next.trim() === '')
-            issues.push(`line ${i + 1}: consecutive blank lines`);
+            issues.push({
+                line: i + 1,
+                column: 1,
+                message: 'consecutive blank lines',
+            });
     }
     
     return issues;
 };
+
+export function createReport(fixturePath, source, formatIssues) {
+    const result = [];
+    
+    for (const {line, column, message} of formatIssues) {
+        const url = `${pathToFileURL(fixturePath).href}:${line}:${column}`;
+        const frame = codeFrameColumns(source, {
+            start: {
+                line,
+                column,
+            },
+        }, {
+            message,
+        });
+        
+        result.push(`${url}\n${frame}`);
+    }
+    
+    return result.join('\n\n');
+}

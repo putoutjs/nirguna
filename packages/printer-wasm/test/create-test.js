@@ -4,15 +4,17 @@ import {readFileSync, writeFileSync} from 'node:fs';
 import process from 'node:process';
 import test from 'supertape';
 import {print} from '#printer-wasm';
-import {lintWastFormatting} from './lint-wast-formatting.js';
+import {
+    lintWastFormatting,
+    createReport,
+} from './lint-wast-formatting.js';
 
 const isUpdate = () => Boolean(process.env.UPDATE);
 
 export const createTest = (url) => {
     return test.extend({
-        transform: ({pass, equal, fail}) => (name) => {
+        transform: ({pass, equal, fail, __dirname}) => (name) => {
             const dir = dirname(fileURLToPath(url));
-            
             const full = join(dir, 'fixture', name);
             const input = readFileSync(`${full}.js`, 'utf8');
             const result = print(input);
@@ -25,10 +27,15 @@ export const createTest = (url) => {
             const expected = readFileSync(`${full}-fix.wast`, 'utf8');
             const formatIssues = lintWastFormatting(result);
             
-            if (formatIssues.length)
-                return fail(`formatting issues in ${name}: ${formatIssues.join(', ')}`);
+            if (formatIssues.length) {
+                const fixturePath = `${full}-fix.wast`;
+                const report = createReport(fixturePath, result, formatIssues);
+                
+                return fail(`formatting issues in ${name}:\n\n${report}`);
+            }
             
             return equal(result, expected);
         },
     });
 };
+
