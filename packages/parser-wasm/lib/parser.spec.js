@@ -61,4 +61,3 @@ test('nirguna: wasm → js: start-section', (t) => {
     t.transform('start-section');
     t.end();
 });
-
