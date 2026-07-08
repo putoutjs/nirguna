@@ -31,4 +31,3 @@ test('nirguna: printer-wasm: fn: fn-couple', (t) => {
     t.transform('fn-couple');
     t.end();
 });
-
