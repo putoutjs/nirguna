@@ -43,6 +43,7 @@
     "@nirguna/printer-wasm": "^1.0.0",
     "@nirguna/transformer-fasm": "^1.0.0",
     "@nirguna/transformer-wasm": "^1.0.0",
+    "@nirguna/translator-fasm": "^1.0.0",
     "@putout/babel": "^5.2.12",
     "@putout/plugin-assignment": "^2.0.0",
     "@putout/plugin-esm": "^10.0.1",
@@ -50,7 +51,6 @@
     "@putout/plugin-remove-useless-operand": "^3.0.0",
     "@typescript-eslint/typescript-estree": "^8.32.1",
     "chalk": "^5.4.1",
-    "fasm.js": "^1.0.7",
     "hexdump-nodejs": "^0.1.0",
     "iced-x86": "^1.21.0",
     "just-snake-case": "^3.2.0",
@@ -89,7 +89,6 @@
     "#optimizer-wasm": "./packages/optimizer-wasm/optimizer.js",
     "#translator-wasm": "./packages/translator-wasm/translator.js",
     "#test-wasm": "./packages/test-wasm/test.js",
-    "#translator-fasm": "./packages/translator-fasm/translator.js",
     "#operator-wasm": "./packages/operator-wasm/index.js",
     "#nirguna": "./lib/nirguna.js"
   },

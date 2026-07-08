@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import {montag} from 'montag';
-import {translate} from '#translator-fasm';
+import {translate} from './translator.js';
 
 test('nirguna: translator-fasm', async (t) => {
     const [result] = await translate(`

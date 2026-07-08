@@ -1,11 +1,11 @@
 {
-  "name": "@nirguna/transformer-wasm",
+  "name": "@nirguna/translator-fasm",
   "version": "1.0.0",
   "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "🐊nirguna transformer adds ability to transform wasm",
   "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/transformer-wasm#readme",
-  "main": "lib/transformer.js",
+  "main": "lib/translator.js",
   "release": false,
   "tag": false,
   "changelog": false,
@@ -33,7 +33,12 @@
     "madrun"
   ],
   "dependencies": {
-    "fasm.js": "^1.0.7"
+    "@nirguna/plugin-nirguna": "^1.0.0",
+    "@nirguna/plugin-wasm": "^1.1.0",
+    "@putout/plugin-esm": "^10.3.0",
+    "@putout/plugin-remove-nested-blocks": "^9.1.0",
+    "@putout/plugin-remove-useless-operand": "^3.0.0",
+    "putout": "^42.0.12"
   },
   "devDependencies": {
     "eslint": "^10.0.1",

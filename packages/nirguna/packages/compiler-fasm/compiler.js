@@ -1,6 +1,6 @@
 import {transform} from '@nirguna/transformer-fasm';
 import {print} from '@nirguna/printer-fasm';
-import {translate} from '#translator-fasm';
+import {translate} from '@nirguna/translator-fasm';
 import {optimize} from '#optimizer-fasm';
 
 const noop = () => {};
