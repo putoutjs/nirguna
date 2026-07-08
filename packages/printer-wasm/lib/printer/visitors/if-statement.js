@@ -31,7 +31,11 @@ export const IfStatement = (path, {indent, print, maybe, write, traverse}) => {
     const isConsequentBlock = consequent.isBlockStatement();
     const isVar = consequent.isVariableDeclaration();
     
-    if (!isConsequentBlock) {
+    if (isConsequentBlock) {
+        indent.inc();
+        traverse(consequent);
+        indent.dec();
+    } else {
         const isRet = isReturnStatement(consequent);
         print.newline();
         indent.inc();

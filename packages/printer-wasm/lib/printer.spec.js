@@ -141,3 +141,8 @@ test('nirguna: printer-wasm: transform: block-loop', (t) => {
     t.transform('block-loop');
     t.end();
 });
+
+test('nirguna: printer-wasm: if: block body', (t) => {
+    t.transform('if-else-block');
+    t.end();
+});
