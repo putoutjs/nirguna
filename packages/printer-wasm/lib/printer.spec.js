@@ -156,3 +156,9 @@ test('nirguna: printer-wasm: global: global-exported', (t) => {
     t.transform('global-exported');
     t.end();
 });
+
+test('nirguna: printer-wasm: global: data', (t) => {
+    t.transform('data');
+    t.end();
+});
+

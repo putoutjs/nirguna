@@ -1,4 +1,5 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
+import {types} from '@putout/babel';
 import {isNext, isPrev} from '#is';
 import {
     isWastImport,
@@ -13,11 +14,14 @@ import {
     printWasmExport,
 } from './print-wasm-export.js';
 
+const {isProgram} = types;
+
 export const ExpressionStatement = (path, printer) => {
     const {
         print,
         maybe,
         write,
+        indent,
     } = printer;
     
     const {leadingComments} = path.node;
@@ -52,15 +56,31 @@ export const ExpressionStatement = (path, printer) => {
         return;
     }
     
-    const surrounded = isSurrounded(path);
+    if (isIndentBefore(path))
+        indent();
     
-    maybe.indent(surrounded);
     print('__expression');
-    maybe.print.newline(surrounded);
+    
+    if (isNewlineAfter(path))
+        print.newline();
 };
 
-const isSurrounded = createTypeChecker([
+const isFirst = (path) => {
+    if (!isProgram(path.parentPath))
+        return false;
+    
+    return path.parentPath.get('body.0') === path;
+};
+
+const isIndentBefore = createTypeChecker([
+    ['-: ->', isFirst],
     ['+', isPrev],
+    ['+', isNext],
+    ['+: parentPath -> BlockStatement'],
+    ['+: parentPath.parentPath -> FunctionDeclaration'],
+]);
+
+const isNewlineAfter = createTypeChecker([
     ['+', isNext],
     ['+: parentPath -> BlockStatement'],
     ['+: parentPath.parentPath -> FunctionDeclaration'],
