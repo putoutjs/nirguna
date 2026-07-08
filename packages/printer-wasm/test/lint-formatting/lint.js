@@ -24,4 +24,3 @@ export const lint = (text) => {
     
     return issues;
 };
-

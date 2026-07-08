@@ -16,4 +16,3 @@ export const check = (line, next) => {
         index: 0,
     };
 };
-

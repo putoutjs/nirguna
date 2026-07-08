@@ -20,4 +20,3 @@ export function report(fixturePath, source, formatIssues) {
     
     return result.join('\n\n');
 }
-

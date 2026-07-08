@@ -37,7 +37,15 @@ test('report: single issue includes a code frame pointing at the source', (t) =>
 
 test('report: multiple issues are separated by a blank line', (t) => {
     const fixturePath = '/tmp/export-marker-fix.wast';
-    const message = report(fixturePath, '', [{line: 2, column: 27, message: 'double space'}, {line: 3, column: 1, message: 'trailing whitespace'}]);
+    const message = report(fixturePath, '', [{
+        line: 2,
+        column: 27,
+        message: 'double space',
+    }, {
+        line: 3,
+        column: 1,
+        message: 'trailing whitespace',
+    }]);
     const parts = message.split('\n\n');
     
     t.equal(parts.length, 2);
