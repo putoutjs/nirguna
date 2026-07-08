@@ -8,6 +8,10 @@ import {
     isWastMemory,
     printWasmMemory,
 } from './print-wasm-memory.js';
+import {
+    isWastExport,
+    printWasmExport,
+} from './print-wasm-export.js';
 
 export const ExpressionStatement = (path, printer) => {
     const {
@@ -36,6 +40,13 @@ export const ExpressionStatement = (path, printer) => {
     
     if (isWastMemory(expression)) {
         printWasmMemory(expression, printer);
+        maybe.print.newline(isNext(path));
+        
+        return;
+    }
+    
+    if (isWastExport(expression)) {
+        printWasmExport(expression, printer);
         maybe.print.newline(isNext(path));
         
         return;

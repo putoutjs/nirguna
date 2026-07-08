@@ -146,3 +146,8 @@ test('nirguna: printer-wasm: if: block body', (t) => {
     t.transform('if-else-block');
     t.end();
 });
+
+test('nirguna: printer-wasm: export marker', (t) => {
+    t.transform('export-marker');
+    t.end();
+});
