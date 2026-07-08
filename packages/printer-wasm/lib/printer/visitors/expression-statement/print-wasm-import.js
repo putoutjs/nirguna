@@ -3,11 +3,11 @@ import {createTypeChecker} from '@putout/printer/type-checker';
 
 const {isReturnStatement} = types;
 
-const checkName = (a) => a === '__nirguna_wasm_import';
+const IMPORT = '__nirguna_wasm_import';
 
 export const isWastImport = createTypeChecker([
     ['-: -> !CallExpression'],
-    ['+: node.callee.name', checkName],
+    ['+: node.callee.name', '=', IMPORT],
 ]);
 
 export function printWasmImport(path, printer) {
