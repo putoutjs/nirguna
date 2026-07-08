@@ -1,6 +1,6 @@
-import {isNext, isNextParent} from '@putout/printer/is';
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {types} from '@putout/babel';
+import {isNext, isNextParent} from '#is';
 import {printParams} from '../params.js';
 
 const {isTSTupleType} = types;
@@ -88,3 +88,4 @@ export const FunctionDeclaration = {
         write.breakline();
     },
 };
+

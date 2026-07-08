@@ -3,7 +3,7 @@ import {
     isNextParent,
     isInsideIf,
     isInsideLabel,
-} from '@putout/printer/is';
+} from '#is';
 
 export const BreakStatement = {
     split(path, {print}) {

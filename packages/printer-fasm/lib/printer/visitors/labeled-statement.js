@@ -1,4 +1,4 @@
-import {exists} from '@putout/printer/is';
+import {exists} from '#is';
 
 export const LabeledStatement = (path, {print, maybe}) => {
     const prev = path.getPrevSibling();

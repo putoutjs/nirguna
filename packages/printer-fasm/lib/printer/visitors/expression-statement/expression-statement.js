@@ -1,4 +1,4 @@
-import {isNext, exists} from '@putout/printer/is';
+import {isNext, exists} from '#is';
 import {isJmpFar, printJmpFar} from './print-jmp-far.js';
 import {isInOut, printInOut} from './print-in-out.js';
 

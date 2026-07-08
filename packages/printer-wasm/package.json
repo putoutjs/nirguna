@@ -34,7 +34,8 @@
   ],
   "imports": {
     "#printer-wasm": "./lib/printer.js",
-    "#printer-wasm/test": "./test/create-test.js"
+    "#printer-wasm/test": "./test/create-test.js",
+    "#is": "@putout/printer/is"
   },
   "devDependencies": {
     "@putout/plugin-printer": "^8.7.2",

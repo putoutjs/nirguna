@@ -1,5 +1,5 @@
-import {isNext, isPrev} from '@putout/printer/is';
 import {createTypeChecker} from '@putout/printer/type-checker';
+import {isNext, isPrev} from '#is';
 import {
     isWastImport,
     printWasmImport,
@@ -65,3 +65,4 @@ const isSurrounded = createTypeChecker([
     ['+: parentPath -> BlockStatement'],
     ['+: parentPath.parentPath -> FunctionDeclaration'],
 ]);
+

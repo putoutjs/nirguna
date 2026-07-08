@@ -1,5 +1,5 @@
 import {types} from '@putout/babel';
-import {exists} from '@putout/printer/is';
+import {exists} from '#is';
 
 const {isReturnStatement} = types;
 

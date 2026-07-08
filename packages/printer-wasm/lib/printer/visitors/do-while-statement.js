@@ -1,4 +1,4 @@
-import {isLast} from '@putout/printer/is';
+import {isLast} from '#is';
 
 const notLast = (path) => !isLast(path);
 

@@ -1,5 +1,5 @@
-import {isInsideLabel} from '@putout/printer/is';
 import {types} from '@putout/babel';
+import {isInsideLabel} from '#is';
 
 const {isDoWhileStatement} = types;
 
@@ -20,3 +20,4 @@ export const LabeledStatement = (path, {print, maybe}) => {
     print(')');
     print.newline();
 };
+
