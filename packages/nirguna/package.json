@@ -86,7 +86,6 @@
     "#optimizer-fasm": "./packages/optimizer-fasm/optimizer.js",
     "#optimizer-wasm": "./packages/optimizer-wasm/optimizer.js",
     "#test-wasm": "./packages/test-wasm/test.js",
-    "#operator-wasm": "./packages/operator-wasm/index.js",
     "#nirguna": "./lib/nirguna.js"
   },
   "license": "MIT",

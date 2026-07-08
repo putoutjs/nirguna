@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import {tryCatch} from 'try-catch';
-import {create} from '#operator-wasm';
+import {create} from './index.js';
 
 test('nirguna: operator-wast: create: call', (t) => {
     const imports = [];

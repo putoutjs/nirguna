@@ -1,0 +1,50 @@
+{
+  "name": "@nirguna/operator-wasm",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "🐊nirguna operator helps with wasm",
+  "homepage": "https://github.com/coderaiser/putout/tree/master/packages/plugin-madrun#readme",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "release": false,
+  "tag": false,
+  "changelog": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderaiser/putout.git"
+  },
+  "scripts": {
+    "test": "madrun test",
+    "watch:test": "madrun watch:test",
+    "lint": "madrun lint",
+    "fresh:lint": "madrun fresh:lint",
+    "lint:fresh": "madrun lint:fresh",
+    "fix:lint": "madrun fix:lint",
+    "coverage": "madrun coverage",
+    "report": "madrun report"
+  },
+  "dependencies": {},
+  "keywords": [
+    "putout",
+    "putout-plugin",
+    "plugin",
+    "madrun"
+  ],
+  "devDependencies": {
+    "eslint": "^10.0.1",
+    "eslint-plugin-putout": "^31.0.1",
+    "madrun": "^13.0.0",
+    "nodemon": "^3.0.1",
+    "superc8": "^12.0.0",
+    "try-catch": "^4.0.9"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
