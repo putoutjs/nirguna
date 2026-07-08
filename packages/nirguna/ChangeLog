@@ -1,3 +1,74 @@
+2026.07.08, v1.2.5
+
+fix:
+- f13f271 feat: @nirguna/parser-wasm: add support for start section test: add fixture start-section.wast -> start-section-fix.js feat: add Start visitor to parse (start ) attach pending comments to all visited nodes, not just Func
+- f7378dc @nirguna/printer-wasm: VariableDeclaration: newline
+- 6e8a36a @nirguna/printer-wasm: indent
+- 5497424 @nirguna/printer-wasm: print export on exported globals
+- 9ff53d6 @nirguna/parser-wasm: include export kind in the export marker
+- 0f96250 @nirguna/printer-wasm: print a block-bodied if consequent
+- cdbb52e @nirguna/parser-wasm: match printer-wasm's br/br_if/loop representation
+- 0558d25 @nirguna/printer-wasm: remove trailing space after a block's label
+- 1143d50 @nirguna/parser-wasm: stop dropping exported globals
+- 362d7c7 @nirguna/parser-wasm: stop crashing on float constants
+- 5e7f565 @nirguna/parser-wasm: call
+- 3ca5241 @putout/nirguna-parser-wasm: stop dropping multi-value return types
+- 9b510cb @putout/nirguna-parser-wasm: only export functions that are actually exported
+- 0e95d33 @putout/nirguna-parser-wasm: keep separated exports and their comments as standalone nodes
+- 81317d4 @putout/nirguna-parser-wasm: keep import param names and return type
+- 0601715 @putout/nirguna-parser-wasm: handle call instruction with no arguments
+- 8f359e6 @nirguna/parser-wasm: get rid of util
+- 70fb091 @nirguna/plugin-fasm: convert-assign-to-mov: isArrayExpression -> isArrayPattern
+
+feature:
+- ba7c812 @nirguna/translator-wasm: move out to package
+- dba795a @nirguna/translator-fasm: move out
+- 9797662 @nirguna/printer: ExpressionStatement: printWasmExport: simplify
+- 079b43c @nirguna/printer-wasm: print export marker calls back to WAST
+- a6043f3 @nirguna/printer-wasm: ExpressionStatement: apply type checker
+- a391277 @nirguna/printer-wasm: loop inside block
+- d05b2e8 @nirguna/printer: indent
+- 0a371da @nirguna/printer: loop
+- 4dcb795 @nirguna/printer-wasm: escover v6.5.2
+- 49303bd @nirguna/printer-wasm: escover v6.5.2
+- 1e70d8a @nirguna/printer: block
+- 06081ce @nirguna/printer-wasm: revert: continue, label
+- 98b47ad @nirguna/parser-wasm: func: emitBlockStatement: add
+- 48ef1ff @nirguna/printer-wasm: add support of global
+- 3785622 @nirguna/parser-wasm: add support of global
+- fc1641a @nirguna/printer-wasm: continue, label
+- c958886 @putout/nirguna-printer-wasm: add support of multi-value return types
+- eeb14d1 @putout/nirguna-parser-wasm: add support of block, loop, br, br_if
+- 3ec6679 @nirguna/parser-wasm: export
+- bc06507 @putout/nirguna-printer-wasm: add support of comments, fix double space and empty module
+- 5f8aadd @nirguna/parser-wasm: comments
+- bc2c4b1 @nirguna/parser-wasm: bin: add
+- 90823be @nirguna/printer-wasm: bin: add
+- 58b3fa5 @putout/nirguna-parser-wasm: add support of if/else
+- 5b75b42 ModuleExports: add support
+- c87630f @nirguna/parser-wasm: comments
+- a99f106 @nirguna/parser-wasm: move out visitors
+- db25ea1 @nirguna/parser-wasm: parse: visitors: module-import
+- 8a52b9d @nirguna/parser-wasm: builders: move out
+- fa287e1 @nirguna/parser-wasm: simplify
+- 1236fad @nirguna/parser-wasm: improve import support
+- aadfb59 @nirguna/parser-wasm: print: rm useless visitors
+- e6c2b3b @nirguna/parser-wasm: simplify
+- a3deb7c @putout/parser-wasm: split print/parse
+- 5cb1313 @nirguna/parser-wasm: add
+- 8e39c19 @nirguna/format-floppy: fatfs-wasm v4.0.0
+- 3132486 nirguna: typescript v6.0.3
+- 4ab3499 root: montag v2.0.1
+- 63128ab root: eslint-plugin-n: drop
+- 9ee2044 root: supertape v13.2.0
+- 8a655c2 @putout/plugin-fasm: convert-function-to-label: rm dead code
+- c81765d @putout/plugin-fasm: convert-linux-write-to-syscall: rm unused
+- 1628a80 @putout/plugin-fasm: extract-labeled-block: rm unused
+- 593a66c nemesis: get-char: includes
+- 0f26697 @nirguna/plugin-fasm: split-includes-to-if-sequence: structuralClone
+- e22846b nemesis: get-char: keys: move out
+- 6522e88 @putout/plugin-fasm: split-include-to-if-sequence: add
+
 2026.03.12, v1.2.4
 
 fix:
