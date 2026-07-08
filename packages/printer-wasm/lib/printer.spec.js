@@ -27,21 +27,6 @@ test('nirguna: printer-wasm: comments', (t) => {
     t.end();
 });
 
-test('nirguna: printer-wasm: function: func-empty-body', (t) => {
-    t.transform('func-empty-body');
-    t.end();
-});
-
-test('nirguna: printer-wasm: function: function-no-export', (t) => {
-    t.transform('function-no-export');
-    t.end();
-});
-
-test('nirguna: printer-wasm: function: no export: function-no-export-comment', (t) => {
-    t.transform('function-no-export-comment');
-    t.end();
-});
-
 test('nirguna: printer-wasm: expression: expression-comment', (t) => {
     t.transform('expression-comment');
     t.end();
@@ -87,11 +72,6 @@ test('nirguna: printer-wasm: if: if-result', (t) => {
     t.end();
 });
 
-test('nirguna: printer-wasm: fn: fn-couple', (t) => {
-    t.transform('fn-couple');
-    t.end();
-});
-
 test('nirguna: printer-wasm: return: return-empty', (t) => {
     t.transform('return-empty');
     t.end();
@@ -112,18 +92,8 @@ test('nirguna: printer-wasm: empty-module', (t) => {
     t.end();
 });
 
-test('nirguna: printer-wasm: func-multi-value-result', (t) => {
-    t.transform('func-multi-value-result');
-    t.end();
-});
-
 test('nirguna: printer-wasm: global-basic', (t) => {
     t.transform('global-basic');
-    t.end();
-});
-
-test('nirguna: printer-wasm: func-float-const', (t) => {
-    t.transform('func-float-const');
     t.end();
 });
 

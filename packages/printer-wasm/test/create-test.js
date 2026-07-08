@@ -6,14 +6,14 @@ import test from 'supertape';
 import {print} from '#printer-wasm';
 import {lintWastFormatting} from './lint-wast-formatting.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const isUpdate = () => Boolean(process.env.UPDATE);
 
-export const createTest = () => {
+export const createTest = (url) => {
     return test.extend({
         transform: ({pass, equal, fail}) => (name) => {
-            const full = join(__dirname, '..', 'lib', 'fixture', name);
+            const dir = dirname(fileURLToPath(url));
+            
+            const full = join(dir, 'fixture', name);
             const input = readFileSync(`${full}.js`, 'utf8');
             const result = print(input);
             

@@ -5,7 +5,7 @@ import {
     isNextParent,
     hasBody,
 } from '#is';
-import {printParams} from '../params.js';
+import {printParams} from '../../params.js';
 
 const {isTSTupleType} = types;
 
