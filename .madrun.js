@@ -18,20 +18,20 @@ export default {
     'build:boot': () => run('build:boot:*'),
     'build:boot:fasm': () => nirguna({
         targets: ['fasm'],
-        src: 'externals/nemesis/lib/boot/index.js',
+        src: 'packages/nemesis/lib/boot/index.js',
     }),
     'build:boot:asm': () => nirguna({
         targets: ['asm'],
-        src: 'externals/nemesis/lib/boot/index.js',
+        src: 'packages/nemesis/lib/boot/index.js',
     }),
     'build:nemesis': () => run('build:nemesis:*'),
     'build:nemesis:asm': () => nirguna({
         targets: ['asm'],
-        src: 'externals/nemesis/lib/kernel.ts',
+        src: 'packages/nemesis/lib/kernel.ts',
     }),
     'build:nemesis:fasm': () => nirguna({
         targets: ['fasm'],
-        src: 'externals/nemesis/lib/kernel.ts',
+        src: 'packages/nemesis/lib/kernel.ts',
     }),
 };
 
@@ -39,7 +39,7 @@ function nirguna({targets, src}) {
     const result = [];
     
     for (const target of targets) {
-        const cmd = `./externals/nirguna/bin/nirguna.js -t ${target} ${src}`;
+        const cmd = `./packages/nirguna/bin/nirguna.js -t ${target} ${src}`;
         result.push(cmd);
     }
     

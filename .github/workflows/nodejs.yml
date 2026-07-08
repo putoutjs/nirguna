@@ -43,6 +43,8 @@ jobs:
           fetch: --force
           message: "chore: ${{ env.NAME }}: actions: lint ☘️"
           pull: --rebase --autostash
+      - name: Build
+        run: redrun build:*
       - name: Coverage
         run: redrun coverage report
       - name: Coveralls
