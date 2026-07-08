@@ -33,7 +33,11 @@
     "madrun"
   ],
   "dependencies": {
-    "fasm.js": "^1.0.7"
+    "fasm.js": "^1.0.7",
+    "@putout/plugin-remove-nested-blocks": "^9.1.0",
+    "@putout/plugin-esm": "^10.8.1",
+    "@nirguna/plugin-nirguna": "^1.0.1",
+    "@nirguna/plugin-wasm": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^10.0.1",

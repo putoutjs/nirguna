@@ -33,22 +33,19 @@
     "madrun"
   ],
   "dependencies": {
-    "@nirguna/plugin-nirguna": "^1.0.0",
-    "@nirguna/plugin-wasm": "^1.1.0",
-    "@putout/plugin-esm": "^10.3.0",
-    "@putout/plugin-remove-nested-blocks": "^9.1.0",
-    "@putout/plugin-remove-useless-operand": "^3.0.0",
-    "putout": "^42.0.12"
+    "try-catch": "^4.0.9",
+    "wabt": "^1.0.39"
   },
   "devDependencies": {
+    "@nirguna/runner-wasm": "*",
     "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",
     "montag": "^2.0.1",
     "nodemon": "^3.0.1",
+    "putout": "^42.8.0",
     "superc8": "^12.0.0",
-    "supertape": "^13.2.0",
-    "@nirguna/runner-wasm": "*"
+    "supertape": "^13.2.0"
   },
   "license": "MIT",
   "engines": {
