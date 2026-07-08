@@ -1,0 +1,60 @@
+{
+  "name": "@nirguna/translator-wasm",
+  "version": "1.0.0",
+  "type": "module",
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
+  "description": "🐊nirguna transformer adds ability to translate wasm",
+  "homepage": "https://github.com/putoutjs/nirguna/tree/master/packages/transformer-wasm#readme",
+  "main": "lib/translator.js",
+  "release": false,
+  "tag": false,
+  "changelog": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/putoutjs/nirguna.git"
+  },
+  "imports": {
+    "#transformer-wasm": "./lib/transformer.js"
+  },
+  "scripts": {
+    "test": "madrun test",
+    "watch:test": "madrun watch:test",
+    "lint": "madrun lint",
+    "fresh:lint": "madrun fresh:lint",
+    "lint:fresh": "madrun lint:fresh",
+    "fix:lint": "madrun fix:lint",
+    "coverage": "madrun coverage",
+    "report": "madrun report"
+  },
+  "keywords": [
+    "putout",
+    "putout-transformer",
+    "transformer",
+    "madrun"
+  ],
+  "dependencies": {
+    "@nirguna/plugin-nirguna": "^1.0.0",
+    "@nirguna/plugin-wasm": "^1.1.0",
+    "@putout/plugin-esm": "^10.3.0",
+    "@putout/plugin-remove-nested-blocks": "^9.1.0",
+    "@putout/plugin-remove-useless-operand": "^3.0.0",
+    "putout": "^42.0.12"
+  },
+  "devDependencies": {
+    "eslint": "^10.0.1",
+    "eslint-plugin-putout": "^31.0.1",
+    "madrun": "^13.0.0",
+    "montag": "^2.0.1",
+    "nodemon": "^3.0.1",
+    "superc8": "^12.0.0",
+    "supertape": "^13.2.0",
+    "@nirguna/runner-wasm": "*"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

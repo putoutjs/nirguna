@@ -1,6 +1,6 @@
 import {transform} from '@nirguna/transformer-wasm';
 import {print} from '@nirguna/printer-wasm';
-import {translate} from '#translator-wasm';
+import {translate} from '@nirguna/translator-wasm';
 import {optimize} from '#optimizer-wasm';
 
 const noop = () => {};

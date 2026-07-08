@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import {run} from '@nirguna/runner-wasm';
-import {translate} from '#translator-wasm';
+import {translate} from './translator.js';
 
 test('nirguna: translator-wasm: translate', async (t) => {
     const [binary] = await translate(`
