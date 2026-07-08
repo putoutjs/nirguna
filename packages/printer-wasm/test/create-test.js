@@ -13,7 +13,7 @@ const isUpdate = () => Boolean(process.env.UPDATE);
 
 export const createTest = (url) => {
     return test.extend({
-        transform: ({pass, equal, fail, __dirname}) => (name) => {
+        transform: ({pass, equal, fail}) => (name) => {
             const dir = dirname(fileURLToPath(url));
             const full = join(dir, 'fixture', name);
             const input = readFileSync(`${full}.js`, 'utf8');
@@ -38,4 +38,3 @@ export const createTest = (url) => {
         },
     });
 };
-
