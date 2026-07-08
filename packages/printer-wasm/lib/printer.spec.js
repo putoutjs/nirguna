@@ -27,6 +27,11 @@ test('nirguna: printer-wasm: comments', (t) => {
     t.end();
 });
 
+test('nirguna: printer-wasm: function: func-empty-body', (t) => {
+    t.transform('func-empty-body');
+    t.end();
+});
+
 test('nirguna: printer-wasm: function: function-no-export', (t) => {
     t.transform('function-no-export');
     t.end();
@@ -161,3 +166,4 @@ test('nirguna: printer-wasm: global: data', (t) => {
     t.transform('data');
     t.end();
 });
+

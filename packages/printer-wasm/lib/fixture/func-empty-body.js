@@ -1,0 +1,1 @@
+function add(a: i32) {}

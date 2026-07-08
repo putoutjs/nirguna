@@ -1,6 +1,10 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {types} from '@putout/babel';
-import {isNext, isNextParent} from '#is';
+import {
+    isNext,
+    isNextParent,
+    hasBody,
+} from '#is';
 import {printParams} from '../params.js';
 
 const {isTSTupleType} = types;
@@ -80,7 +84,10 @@ export const FunctionDeclaration = {
         }
         
         print('__body');
-        print.indent();
+        
+        if (hasBody(path))
+            print.indent();
+        
         print(')');
     },
     afterSatisfy: () => [isNext, isNextParent, isInsideBlockLike],
