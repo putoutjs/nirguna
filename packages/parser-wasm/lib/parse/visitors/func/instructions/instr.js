@@ -1,13 +1,10 @@
 import {types} from '@putout/babel';
 
 const {
-    blockStatement,
-    ifStatement,
-    breakStatement,
     identifier,
-    continueStatement,
     expressionStatement,
     returnStatement,
+    callExpression,
 } = types;
 
 const ids = {
@@ -16,52 +13,33 @@ const ids = {
     br_if: brIfId,
 };
 
-export const Instr = (instr, {emitExpression, labelKinds}) => {
+export const Instr = (instr, {emitExpression}) => {
     const {id} = instr;
     
     if (ids[id])
         return ids[id](instr, {
-            labelKinds,
             emitExpression,
         });
     
     return expressionStatement(emitExpression(instr));
 };
 
-function createJump({kind, label}) {
-    if (kind === 'loop')
-        return continueStatement(identifier(label.value));
-    
-    return breakStatement(identifier(label.value));
-}
-
 function returnId(instr, {emitExpression}) {
     const [first] = instr.args;
     return returnStatement(emitExpression(first));
 }
 
-function brId(instr, {labelKinds}) {
+function brId(instr) {
     const [label] = instr.args;
-    const kind = labelKinds.get(label.value);
-    
-    const jump = createJump({
-        kind,
-        label,
-    });
-    
-    return jump;
+    return expressionStatement(callExpression(identifier('br'), [identifier(label.value)]));
 }
 
-function brIfId(instr, {labelKinds, emitExpression}) {
+function brIfId(instr, {emitExpression}) {
     const [label, ...rest] = instr.args;
-    const kind = labelKinds.get(label.value);
+    const [test] = rest;
     
-    const jump = createJump({
-        kind,
-        label,
-    });
-    
-    const [first] = rest;
-    
-    return ifStatement(emitExpression(first), blockStatement([jump]));
+    return expressionStatement(callExpression(identifier('br_if'), [
+        identifier(label.value),
+        emitExpression(test),
+    ]));
 }

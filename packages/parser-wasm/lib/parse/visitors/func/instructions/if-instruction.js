@@ -2,19 +2,17 @@ import {types} from '@putout/babel';
 
 const {blockStatement, ifStatement} = types;
 
-export const IfInstruction = (instr, {labelKinds, emitExpression, emitStatement}) => {
+export const IfInstruction = (instr, {emitExpression, emitStatement}) => {
     const test = createTest(instr, {
         emitExpression,
     });
     
     const consequent = createConsequent(instr, {
         emitStatement,
-        labelKinds,
     });
     
     const alternate = createAlternate(instr, {
         emitStatement,
-        labelKinds,
     });
     
     return ifStatement(test, consequent, alternate);
@@ -27,24 +25,24 @@ function createTest(instr, {emitExpression}) {
     return emitExpression(first);
 }
 
-function createConsequent(instr, {emitStatement, labelKinds}) {
+function createConsequent(instr, {emitStatement}) {
     const body = [];
     
     for (const consequent of instr.consequent) {
-        body.push(emitStatement(consequent, labelKinds));
+        body.push(emitStatement(consequent));
     }
     
     return blockStatement(body);
 }
 
-function createAlternate(instr, {emitStatement, labelKinds}) {
+function createAlternate(instr, {emitStatement}) {
     if (!instr.alternate.length)
         return null;
     
     const body = [];
     
     for (const alternate of instr.alternate) {
-        body.push(emitStatement(alternate, labelKinds));
+        body.push(emitStatement(alternate));
     }
     
     return blockStatement(body);

@@ -55,24 +55,13 @@ export const Func = (node, {exportMap}) => {
     return exportNamedDeclaration(fn, []);
 };
 
-const LABELS = {
-    BlockInstruction: 'block',
-    LoopInstruction: 'loop',
-};
-
-const emitStatement = (instr, labelKinds = new Map()) => {
+const emitStatement = (instr) => {
     const {type} = instr;
     
-    if (LABELS[type])
-        labelKinds.set(instr.label.value, LABELS[type]);
-    
-    const emitBlockStatement = createEmitBlockStatement({
-        labelKinds,
-    });
+    const emitBlockStatement = createEmitBlockStatement();
     
     if (instructions[type])
         return instructions[type](instr, {
-            labelKinds,
             emitExpression,
             emitStatement,
             emitBlockStatement,
@@ -113,14 +102,11 @@ const dottedCall = (object, id, args) => {
     return callExpression(memberExpression(identifier(object), identifier(id)), args);
 };
 
-const createEmitBlockStatement = ({labelKinds}) => (instructions) => {
+const createEmitBlockStatement = () => (instructions) => {
     const result = [];
     
     for (const instruction of instructions) {
-        result.push(emitStatement(
-            instruction,
-            labelKinds,
-        ));
+        result.push(emitStatement(instruction));
     }
     
     return blockStatement(result);
