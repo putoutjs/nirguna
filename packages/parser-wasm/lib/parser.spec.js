@@ -56,3 +56,9 @@ test('nirguna: wasm → js: unknown-field', (t) => {
     t.transform('unknown-field');
     t.end();
 });
+
+test('nirguna: wasm → js: start-section', (t) => {
+    t.transform('start-section');
+    t.end();
+});
+

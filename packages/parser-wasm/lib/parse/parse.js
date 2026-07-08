@@ -67,6 +67,11 @@ function transformFields(fields, {exportMap}) {
         });
         
         if (node) {
+            if (pendingComments.length) {
+                attachLeadingComments(node, pendingComments);
+                pendingComments = [];
+            }
+            
             result.push(node);
             
             continue;
