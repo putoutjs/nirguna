@@ -151,3 +151,8 @@ test('nirguna: printer-wasm: export marker', (t) => {
     t.transform('export-marker');
     t.end();
 });
+
+test('nirguna: printer-wasm: global: exported', (t) => {
+    t.transform('global-exported');
+    t.end();
+});

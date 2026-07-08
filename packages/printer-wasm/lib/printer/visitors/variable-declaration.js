@@ -12,6 +12,13 @@ export const VariableDeclaration = (path, printer) => {
     
     print('(global $');
     print(id.name);
+    
+    if (path.parentPath.isExportNamedDeclaration()) {
+        print(' (export "');
+        print(id.name);
+        print('")');
+    }
+    
     print(' ');
     
     if (isMut) {
