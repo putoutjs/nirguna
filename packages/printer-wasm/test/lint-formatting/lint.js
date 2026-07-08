@@ -1,9 +1,6 @@
-import {pathToFileURL} from 'node:url';
-import {codeFrameColumns} from '@putout/babel';
-
 const isUndefined = (a) => typeof a === 'undefined';
 
-export const lintWastFormatting = (text) => {
+export const lint = (text) => {
     const issues = [];
     const lines = text.split('\n');
     
@@ -44,22 +41,3 @@ export const lintWastFormatting = (text) => {
     return issues;
 };
 
-export function createReport(fixturePath, source, formatIssues) {
-    const result = [];
-    
-    for (const {line, column, message} of formatIssues) {
-        const url = `${pathToFileURL(fixturePath).href}:${line}:${column}`;
-        const frame = codeFrameColumns(source, {
-            start: {
-                line,
-                column,
-            },
-        }, {
-            message,
-        });
-        
-        result.push(`${url}\n${frame}`);
-    }
-    
-    return result.join('\n\n');
-}

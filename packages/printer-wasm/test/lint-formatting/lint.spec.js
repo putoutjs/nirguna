@@ -1,8 +1,8 @@
 import {test} from 'supertape';
-import {lintWastFormatting} from './lint-wast-formatting.js';
+import {lint} from './lint.js';
 
 test('lint-wast-formatting: double space', (t) => {
-    const issues = lintWastFormatting('(func $add (param $a i32)    )');
+    const issues = lint('(func $add (param $a i32)    )');
     
     t.deepEqual(issues, [{
         line: 1,
@@ -13,7 +13,7 @@ test('lint-wast-formatting: double space', (t) => {
 });
 
 test('lint-wast-formatting: trailing whitespace', (t) => {
-    const issues = lintWastFormatting('(block $b \n)');
+    const issues = lint('(block $b \n)');
     
     t.deepEqual(issues, [{
         line: 1,
@@ -24,7 +24,7 @@ test('lint-wast-formatting: trailing whitespace', (t) => {
 });
 
 test('lint-wast-formatting: consecutive blank lines', (t) => {
-    const issues = lintWastFormatting('(module\n\n\n)');
+    const issues = lint('(module\n\n\n)');
     
     t.deepEqual(issues, [{
         line: 2,
@@ -35,7 +35,7 @@ test('lint-wast-formatting: consecutive blank lines', (t) => {
 });
 
 test('lint-wast-formatting: clean output has no issues', (t) => {
-    const issues = lintWastFormatting('(module\n    (func $x (result i32)\n        (i32.const 1)\n    )\n)\n');
+    const issues = lint('(module\n    (func $x (result i32)\n        (i32.const 1)\n    )\n)\n');
     
     t.deepEqual(issues, []);
     t.end();
