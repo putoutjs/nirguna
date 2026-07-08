@@ -20,4 +20,3 @@ export const LabeledStatement = (path, {print, maybe}) => {
     print(')');
     print.newline();
 };
-

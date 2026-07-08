@@ -30,4 +30,3 @@ export const VariableDeclaration = (path, {print, traverse, maybe}) => {
     print(')');
     maybe.write.breakline(isNext(path));
 };
-

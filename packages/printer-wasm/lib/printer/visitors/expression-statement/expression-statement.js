@@ -85,4 +85,3 @@ const isNewlineAfter = createTypeChecker([
     ['+: parentPath -> BlockStatement'],
     ['+: parentPath.parentPath -> FunctionDeclaration'],
 ]);
-

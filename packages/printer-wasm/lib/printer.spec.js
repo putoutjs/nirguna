@@ -161,4 +161,3 @@ test('nirguna: printer-wasm: global: data', (t) => {
     t.transform('data');
     t.end();
 });
-
