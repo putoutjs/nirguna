@@ -16,5 +16,6 @@ export const ModuleExport = (node, {exportMap}) => {
     return expressionStatement(callExpression(identifier('__nirguna_wasm_export'), [
         stringLiteral(node.name),
         identifier(node.descr.id.value),
+        stringLiteral(node.descr.exportType.toLowerCase()),
     ]));
 };

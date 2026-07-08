@@ -7,4 +7,4 @@ function oneTwo(): i32 {
     i32.const(2);
 }
 
-__nirguna_wasm_export('theAnswer', oneTwo);
+__nirguna_wasm_export('theAnswer', oneTwo, 'func');
