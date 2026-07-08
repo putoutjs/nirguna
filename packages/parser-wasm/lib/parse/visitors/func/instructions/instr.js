@@ -31,7 +31,9 @@ function returnId(instr, {emitExpression}) {
 
 function brId(instr) {
     const [label] = instr.args;
-    return expressionStatement(callExpression(identifier('br'), [identifier(label.value)]));
+    return expressionStatement(callExpression(identifier('br'), [
+        identifier(label.value),
+    ]));
 }
 
 function brIfId(instr, {emitExpression}) {

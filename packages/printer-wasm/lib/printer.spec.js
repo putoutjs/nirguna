@@ -142,17 +142,17 @@ test('nirguna: printer-wasm: transform: block-loop', (t) => {
     t.end();
 });
 
-test('nirguna: printer-wasm: if: block body', (t) => {
+test('nirguna: printer-wasm: if: if-else-block', (t) => {
     t.transform('if-else-block');
     t.end();
 });
 
-test('nirguna: printer-wasm: export marker', (t) => {
+test('nirguna: printer-wasm: export-marker', (t) => {
     t.transform('export-marker');
     t.end();
 });
 
-test('nirguna: printer-wasm: global: exported', (t) => {
+test('nirguna: printer-wasm: global: global-exported', (t) => {
     t.transform('global-exported');
     t.end();
 });
