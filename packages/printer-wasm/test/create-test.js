@@ -27,9 +27,9 @@ export const createTest = (url) => {
             
             if (formatIssues.length) {
                 const fixturePath = `${full}-fix.wast`;
-                const report = report(fixturePath, result, formatIssues);
+                const message = report(fixturePath, result, formatIssues);
                 
-                return fail(`formatting issues in ${name}:\n\n${report}`);
+                return fail(`formatting issues in ${name}:\n\n${message}`);
             }
             
             return equal(result, expected);
