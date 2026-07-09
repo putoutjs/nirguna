@@ -21,7 +21,6 @@ const {isProgram} = types;
 export const ExpressionStatement = (path, printer) => {
     const {
         print,
-        maybe,
         write,
         indent,
     } = printer;
