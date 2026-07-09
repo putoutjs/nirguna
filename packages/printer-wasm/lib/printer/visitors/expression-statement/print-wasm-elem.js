@@ -1,4 +1,14 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
+import {types} from '@putout/babel';
+import {isNext} from '#is';
+
+const {isFunction} = types;
+
+const isParentNext = (path) => isNext(path.parentPath);
+const isNextFn = (path) => {
+    const next = path.parentPath.getNextSibling();
+    return isFunction(next);
+};
 
 const checkName = (a) => a === 'elem';
 
@@ -8,7 +18,7 @@ export const isWastElem = createTypeChecker([
 ]);
 
 export function printWasmElem(path, printer) {
-    const {print} = printer;
+    const {print, indent} = printer;
     const [offset, ...funcs] = path.get('arguments');
     
     print('(elem ');
@@ -21,4 +31,11 @@ export function printWasmElem(path, printer) {
     }
     
     print(')');
+    
+    if (isParentNext(path))
+        print.newline();
+    
+    if (isNextFn(path))
+        indent();
 }
+
