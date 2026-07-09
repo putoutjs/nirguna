@@ -16,10 +16,7 @@ import {
 import {isWastTable, printWasmTable} from './print-wasm-table.js';
 import {isWastElem, printWasmElem} from './print-wasm-elem.js';
 
-const {
-    isProgram,
-    isFunction,
-} = types;
+const {isProgram} = types;
 
 export const ExpressionStatement = (path, printer) => {
     const {
@@ -102,4 +99,3 @@ const isNewlineAfter = createTypeChecker([
     ['+: parentPath -> BlockStatement'],
     ['+: parentPath.parentPath -> FunctionDeclaration'],
 ]);
-
