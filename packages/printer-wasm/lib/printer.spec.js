@@ -136,3 +136,9 @@ test('nirguna: printer-wasm: global: data', (t) => {
     t.transform('data');
     t.end();
 });
+
+test('nirguna: printer-wasm: table', (t) => {
+    t.transform('table-basic');
+    t.end();
+});
+

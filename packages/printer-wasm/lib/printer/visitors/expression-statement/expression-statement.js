@@ -13,6 +13,10 @@ import {
     isWastExport,
     printWasmExport,
 } from './print-wasm-export.js';
+import {
+    isWastTable,
+    printWasmTable,
+} from './print-wasm-table.js';
 
 const {isProgram} = types;
 
@@ -51,6 +55,13 @@ export const ExpressionStatement = (path, printer) => {
     
     if (isWastExport(expression)) {
         printWasmExport(expression, printer);
+        maybe.print.newline(isNext(path));
+        
+        return;
+    }
+    
+    if (isWastTable(expression)) {
+        printWasmTable(expression, printer);
         maybe.print.newline(isNext(path));
         
         return;
