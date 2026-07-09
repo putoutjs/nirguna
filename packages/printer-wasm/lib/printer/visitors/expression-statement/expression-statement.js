@@ -39,29 +39,21 @@ export const ExpressionStatement = (path, printer) => {
     
     if (isWastImport(expression)) {
         printWasmImport(expression, printer);
-        maybe.print.breakline(isNext(path));
-        
         return;
     }
     
     if (isWastMemory(expression)) {
         printWasmMemory(expression, printer);
-        maybe.print.newline(isNext(path));
-        
         return;
     }
     
     if (isWastExport(expression)) {
         printWasmExport(expression, printer);
-        maybe.print.newline(isNext(path));
-        
         return;
     }
     
     if (isWastTable(expression)) {
         printWasmTable(expression, printer);
-        maybe.print.newline(isNext(path));
-        
         return;
     }
     
