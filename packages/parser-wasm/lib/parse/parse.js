@@ -91,8 +91,12 @@ function transformFields(fields, {exportMap}) {
 }
 
 const attachLeadingComments = (node, comments) => {
-    node.leadingComments = comments.map((field) => ({
-        type: 'CommentLine',
-        value: field.value,
-    }));
+    node.leadingComments = [];
+    for (const field of comments) {
+        node.leadingComments.push({
+            type: 'CommentLine',
+            value: field.value,
+        });
+    }
 };
+

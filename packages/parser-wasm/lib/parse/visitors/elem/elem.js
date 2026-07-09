@@ -9,10 +9,15 @@ const {
 
 export const Elem = (node) => {
     const [offset] = node.offset;
-    const funcs = node.funcs.map(({value}) => identifier(value));
+    const funcs = [];
+    
+    for (const {value} of node.funcs) {
+        funcs.push(identifier(value));
+    }
     
     return expressionStatement(callExpression(identifier('elem'), [
         emitExpression(offset),
         ...funcs,
     ]));
 };
+

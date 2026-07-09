@@ -17,6 +17,8 @@ const {
     unaryExpression,
 } = types;
 
+const createTypeReference = (a) => tsTypeReference(identifier(a));
+
 export const Func = (node, {exportMap}) => {
     const {
         name,
@@ -25,14 +27,15 @@ export const Func = (node, {exportMap}) => {
     } = node;
     
     const {params, results} = signature;
+    const args = [];
     
-    const args = params.map(({id, valtype}) => {
+    for (const {id, valtype} of params) {
         const param = identifier(id);
         
         param.typeAnnotation = typeAnnotation(valtype);
         
-        return param;
-    });
+        args.push(param);
+    }
     
     const block = [];
     
@@ -44,7 +47,7 @@ export const Func = (node, {exportMap}) => {
     
     if (results[0])
         if (results.length > 1)
-            fn.returnType = tsTypeAnnotation(tsTupleType(results.map((r) => tsTypeReference(identifier(r)))));
+            fn.returnType = tsTypeAnnotation(tsTupleType(results.map(createTypeReference)));
         else
             fn.returnType = typeAnnotation(results[0]);
     
@@ -113,3 +116,4 @@ const createEmitBlockStatement = () => (instructions) => {
     
     return blockStatement(result);
 };
+
