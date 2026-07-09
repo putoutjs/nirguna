@@ -81,3 +81,8 @@ test('nirguna: parser-wasm: parser: visitors: func: func-float-const', (t) => {
     t.transform('func-float-const');
     t.end();
 });
+
+test('nirguna: parser-wasm: parser: visitors: func: func-negative-const', (t) => {
+    t.transform('func-negative-const');
+    t.end();
+});

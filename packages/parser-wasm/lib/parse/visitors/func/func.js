@@ -14,6 +14,7 @@ const {
     tsTypeReference,
     tsTupleType,
     memberExpression,
+    unaryExpression,
 } = types;
 
 export const Func = (node, {exportMap}) => {
@@ -74,11 +75,12 @@ export const emitExpression = (node) => {
     if (node.type === 'Identifier')
         return identifier(node.value);
     
-    if (node.type === 'NumberLiteral')
+    if (node.type === 'NumberLiteral' || node.type === 'FloatLiteral') {
+        if (node.value < 0)
+            return unaryExpression('-', numericLiteral(-node.value));
+        
         return numericLiteral(node.value);
-    
-    if (node.type === 'FloatLiteral')
-        return numericLiteral(node.value);
+    }
     
     if (node.type === 'CallInstruction')
         return CallInstruction(node, {
