@@ -25,5 +25,5 @@ export function printWasmTable(path, printer) {
     print.space();
     print(elementType.node.value);
     print(')');
-    maybe.print.newline(isParentNext(path));
+    maybe.print.breakline(isParentNext(path));
 }

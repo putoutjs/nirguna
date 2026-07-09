@@ -136,3 +136,13 @@ test('nirguna: printer-wasm: global: data', (t) => {
     t.transform('data');
     t.end();
 });
+
+test('nirguna: printer-wasm: multiple-markers', (t) => {
+    t.transform('multiple-markers');
+    t.end();
+});
+
+test('nirguna: printer-wasm: elem-then-table', (t) => {
+    t.transform('elem-then-table');
+    t.end();
+});

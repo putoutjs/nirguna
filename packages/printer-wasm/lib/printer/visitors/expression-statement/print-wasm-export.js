@@ -26,5 +26,5 @@ export const printWasmExport = (path, printer) => {
     print(target.node.name);
     print('))');
     
-    maybe.print.newline(isParentNext(path));
+    maybe.print.breakline(isParentNext(path));
 };

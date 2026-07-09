@@ -27,5 +27,5 @@ export function printWasmMemory(path, printer) {
     }
     
     print(')');
-    maybe.print.newline(isParentNext(path));
+    maybe.print.breakline(isParentNext(path));
 }
