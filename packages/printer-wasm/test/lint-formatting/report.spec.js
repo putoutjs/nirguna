@@ -46,6 +46,7 @@ test('report: multiple issues are separated by a blank line', (t) => {
         column: 1,
         message: 'trailing whitespace',
     }]);
+    
     const parts = message.split('\n\n');
     
     t.equal(parts.length, 2);

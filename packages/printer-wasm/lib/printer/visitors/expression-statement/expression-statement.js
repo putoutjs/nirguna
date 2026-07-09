@@ -13,14 +13,8 @@ import {
     isWastExport,
     printWasmExport,
 } from './print-wasm-export.js';
-import {
-    isWastTable,
-    printWasmTable,
-} from './print-wasm-table.js';
-import {
-    isWastElem,
-    printWasmElem,
-} from './print-wasm-elem.js';
+import {isWastTable, printWasmTable} from './print-wasm-table.js';
+import {isWastElem, printWasmElem} from './print-wasm-elem.js';
 
 const {isProgram} = types;
 
