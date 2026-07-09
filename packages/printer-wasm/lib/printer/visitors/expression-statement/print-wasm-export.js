@@ -1,5 +1,6 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {isNext} from '#is';
+
 const isParentNext = (path) => isNext(path.parentPath);
 
 const EXPORT = '__nirguna_wasm_export';
@@ -27,4 +28,3 @@ export const printWasmExport = (path, printer) => {
     
     maybe.print.newline(isParentNext(path));
 };
-

@@ -1,5 +1,6 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {isNext} from '#is';
+
 const isParentNext = (path) => isNext(path.parentPath);
 
 const checkName = (a) => a === 'table';
@@ -26,4 +27,3 @@ export function printWasmTable(path, printer) {
     print(')');
     maybe.print.newline(isParentNext(path));
 }
-

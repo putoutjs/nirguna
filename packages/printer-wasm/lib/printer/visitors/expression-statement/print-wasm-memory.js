@@ -1,5 +1,6 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {isNext} from '#is';
+
 const isParentNext = (path) => isNext(path.parentPath);
 
 const checkName = (a) => a === '__nirguna_wasm_memory';
@@ -28,4 +29,3 @@ export function printWasmMemory(path, printer) {
     print(')');
     maybe.print.newline(isParentNext(path));
 }
-

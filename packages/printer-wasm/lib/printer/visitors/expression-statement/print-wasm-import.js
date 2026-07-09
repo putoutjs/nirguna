@@ -1,6 +1,7 @@
 import {types} from '@putout/babel';
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {isNext} from '#is';
+
 const isParentNext = (path) => isNext(path.parentPath);
 
 const {isReturnStatement} = types;
@@ -79,4 +80,3 @@ function printParam(funcArg, {print}) {
     print(funcArg.get('typeAnnotation.typeAnnotation'));
     print(`)`);
 }
-
