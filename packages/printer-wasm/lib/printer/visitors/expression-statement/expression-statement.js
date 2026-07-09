@@ -130,4 +130,3 @@ const maybeNewlineAfter = (path, {print}) => {
     
     print.newline();
 };
-
