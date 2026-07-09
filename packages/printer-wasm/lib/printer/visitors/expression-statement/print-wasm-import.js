@@ -1,8 +1,5 @@
 import {types} from '@putout/babel';
 import {createTypeChecker} from '@putout/printer/type-checker';
-import {isNext} from '#is';
-
-const isParentNext = (path) => isNext(path.parentPath);
 
 const {isReturnStatement} = types;
 
@@ -48,8 +45,6 @@ export function printWasmImport(path, printer) {
     
     print(')');
     print(')');
-    
-    maybe.print.breakline(isParentNext(path));
 }
 
 function getReturnType(func) {

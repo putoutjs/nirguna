@@ -1,17 +1,28 @@
 import * as indent from './rules/indent.js';
 import * as blankLine from './rules/blank-line.js';
 import * as trailingSpace from './rules/trailing-space.js';
+import * as missingIndent from './rules/missing-indent.js';
 
-const rules = [indent, trailingSpace, blankLine];
+const rules = [
+    indent,
+    trailingSpace,
+    blankLine,
+    missingIndent,
+];
 
 export const lint = (text) => {
     const issues = [];
     const lines = text.split('\n');
     
     for (const [i, line] of lines.entries()) {
+        const next = lines[i + 1];
+        const context = {
+            isFirstLine: !i,
+            isLastLine: i === lines.length - 1,
+        };
+        
         for (const rule of rules) {
-            const next = lines[i + 1];
-            const position = rule.check(line, next);
+            const position = rule.check(line, next, context);
             
             if (position)
                 issues.push({

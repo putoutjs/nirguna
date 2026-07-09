@@ -1,6 +1,12 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
 import {types} from '@putout/babel';
-import {isNext, isPrev} from '#is';
+import {
+    isNext,
+    isPrev,
+    callWithNext,
+    callWithPrev,
+    isInsideProgram,
+} from '#is';
 import {
     isWastImport,
     printWasmImport,
@@ -16,7 +22,11 @@ import {
 import {isWastTable, printWasmTable} from './print-wasm-table.js';
 import {isWastElem, printWasmElem} from './print-wasm-elem.js';
 
-const {isProgram} = types;
+const {
+    isProgram,
+    isFunctionDeclaration,
+    isExpressionStatement,
+} = types;
 
 export const ExpressionStatement = (path, printer) => {
     const {
@@ -34,40 +44,48 @@ export const ExpressionStatement = (path, printer) => {
             write.breakline();
         }
     
+    if (shouldIndentBefore(path))
+        indent();
+    
     const expression = path.get('expression');
     
     if (isWastImport(expression)) {
         printWasmImport(expression, printer);
+        maybeNewlineAfter(path, printer);
+        
         return;
     }
     
     if (isWastMemory(expression)) {
         printWasmMemory(expression, printer);
+        maybeNewlineAfter(path, printer);
+        
         return;
     }
     
     if (isWastExport(expression)) {
         printWasmExport(expression, printer);
+        maybeNewlineAfter(path, printer);
+        
         return;
     }
     
     if (isWastTable(expression)) {
         printWasmTable(expression, printer);
+        maybeNewlineAfter(path, printer);
+        
         return;
     }
     
     if (isWastElem(expression)) {
         printWasmElem(expression, printer);
+        maybeNewlineAfter(path, printer);
+        
         return;
     }
     
-    if (isIndentBefore(path))
-        indent();
-    
     print('__expression');
-    
-    if (isNewlineAfter(path))
-        print.newline();
+    maybeNewlineAfter(path, printer);
 };
 
 const isFirst = (path) => {
@@ -77,12 +95,22 @@ const isFirst = (path) => {
     return path.parentPath.get('body.0') === path;
 };
 
-const isIndentBefore = createTypeChecker([
+const isPrevFunctionDeclaration = callWithPrev(isFunctionDeclaration);
+const isProgramPrevFunctionDeclaration = (path) => isInsideProgram(path) && isPrevFunctionDeclaration(path);
+
+const shouldIndentBefore = createTypeChecker([
     ['-: ->', isFirst],
+    ['-', isProgramPrevFunctionDeclaration],
     ['+', isPrev],
     ['+', isNext],
     ['+: parentPath -> BlockStatement'],
     ['+: parentPath.parentPath -> FunctionDeclaration'],
+]);
+
+const isBreaklineAfter = createTypeChecker([
+    ['-: -> !', isNext],
+    ['-', callWithNext(isExpressionStatement)],
+    ['+', isInsideProgram],
 ]);
 
 const isNewlineAfter = createTypeChecker([
@@ -90,3 +118,16 @@ const isNewlineAfter = createTypeChecker([
     ['+: parentPath -> BlockStatement'],
     ['+: parentPath.parentPath -> FunctionDeclaration'],
 ]);
+
+const maybeNewlineAfter = (path, {print}) => {
+    if (!isNewlineAfter(path))
+        return;
+    
+    if (isBreaklineAfter(path)) {
+        print.breakline();
+        return;
+    }
+    
+    print.newline();
+};
+

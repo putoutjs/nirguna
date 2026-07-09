@@ -1,7 +1,4 @@
 import {createTypeChecker} from '@putout/printer/type-checker';
-import {isNext} from '#is';
-
-const isParentNext = (path) => isNext(path.parentPath);
 
 const checkName = (a) => a === 'elem';
 
@@ -11,7 +8,7 @@ export const isWastElem = createTypeChecker([
 ]);
 
 export function printWasmElem(path, printer) {
-    const {print, maybe} = printer;
+    const {print} = printer;
     const [offset, ...funcs] = path.get('arguments');
     
     print('(elem ');
@@ -24,6 +21,4 @@ export function printWasmElem(path, printer) {
     }
     
     print(')');
-    
-    maybe.print.breakline(isParentNext(path));
 }
