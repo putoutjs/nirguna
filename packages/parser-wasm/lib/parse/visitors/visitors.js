@@ -6,6 +6,7 @@ import {ModuleExport} from './module-export/module-export.js';
 import {Global} from './global/global.js';
 import {Start} from './start/start.js';
 import {Table} from './table/table.js';
+import {Elem} from './elem/elem.js';
 
 export const visitors = {
     Func,
@@ -16,4 +17,5 @@ export const visitors = {
     Global,
     Start,
     Table,
+    Elem,
 };
