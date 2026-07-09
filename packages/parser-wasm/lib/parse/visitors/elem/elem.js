@@ -20,4 +20,3 @@ export const Elem = (node) => {
         ...funcs,
     ]));
 };
-

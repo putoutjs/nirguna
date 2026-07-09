@@ -99,4 +99,3 @@ const attachLeadingComments = (node, comments) => {
         });
     }
 };
-

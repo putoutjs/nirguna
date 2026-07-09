@@ -116,4 +116,3 @@ const createEmitBlockStatement = () => (instructions) => {
     
     return blockStatement(result);
 };
-
