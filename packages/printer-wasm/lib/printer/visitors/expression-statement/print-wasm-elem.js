@@ -38,4 +38,3 @@ export function printWasmElem(path, printer) {
     if (isNextFn(path))
         indent();
 }
-
