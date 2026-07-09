@@ -142,3 +142,8 @@ test('nirguna: printer-wasm: table', (t) => {
     t.end();
 });
 
+test('nirguna: printer-wasm: elem', (t) => {
+    t.transform('elem-basic');
+    t.end();
+});
+
