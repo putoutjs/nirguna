@@ -11,4 +11,3 @@ test('nirguna: printer-wasm: elem', (t) => {
     t.transform('elem');
     t.end();
 });
-
