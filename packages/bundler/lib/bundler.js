@@ -9,6 +9,7 @@ const isString = (a) => typeof a === 'string';
 
 const createConfig = (config) => ({
     external: [],
+    plugins: [],
     ...config,
 });
 
@@ -34,6 +35,7 @@ export async function bundle(filePath, config) {
                 extensions: ['.ts'],
             }),
             tsParser(),
+            ...customConfig.plugins,
         ],
         onwarn(warning, warn) {
             if (warning.code === 'UNRESOLVED_IMPORT')

@@ -56,3 +56,97 @@ test('nirguna: bundler: external', async (t) => {
     t.equal(result, expected);
     t.end();
 });
+
+test('nirguna: bundler: unresolved import', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'unresolved.js');
+    const [, result] = await bundle(filePath);
+    
+    const expected = montag`
+        import { x } from 'not-installed-package';
+        
+        x();\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: bundler: unused external import', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'unused-external.js');
+    const [, result] = await bundle(filePath);
+    
+    const expected = montag`
+        import '@nirguna/operator-fasm';
+        
+        const a = 5;\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: bundler: circular dependency', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'circular', 'index.js');
+    const [, result] = await bundle(filePath);
+    
+    const expected = montag`
+        const b = () => a;
+        
+        const a = () => b();
+        
+        a();\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: bundler: syntax error', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'syntax-error.js');
+    const [error] = await bundle(filePath);
+    
+    t.equal(error.message, `Variable declaration expected: 'const = ;'`);
+    t.end();
+});
+
+test('nirguna: bundler: no entry', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'missing-entry.js');
+    const [error] = await bundle(filePath);
+    
+    t.equal(error.code, 'UNRESOLVED_ENTRY');
+    t.end();
+});
+
+test('nirguna: bundler: plugins: assets', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'index.js');
+    const assets = () => ({
+        name: 'assets',
+        buildStart() {
+            this.emitFile({
+                type: 'asset',
+                fileName: 'a.txt',
+                source: 'text',
+            });
+            
+            this.emitFile({
+                type: 'asset',
+                fileName: 'b.bin',
+                source: new Uint8Array([104, 105]),
+            });
+        },
+    });
+    
+    const [, result] = await bundle(filePath, {
+        plugins: [assets()],
+    });
+    
+    const expected = montag`
+        const hello = () => 'hello';
+        
+        hello();
+        texthi
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
