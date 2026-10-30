@@ -1,4 +1,4 @@
-import {rb} from '@nirguna/operator-fasm';
+import type {rb} from '@nirguna/operator-fasm';
 
 const noop = () => {};
 
