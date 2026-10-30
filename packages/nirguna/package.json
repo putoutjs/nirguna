@@ -63,6 +63,7 @@
     "putout"
   ],
   "devDependencies": {
+    "@nirguna/operator-wasm": "*",
     "try-catch": "^4.0.9",
     "@putout/test": "^15.1.1",
     "eslint": "^10.0.1",
