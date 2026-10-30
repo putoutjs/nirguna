@@ -10,7 +10,7 @@ const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const script = join(__dirname, 'fixture', 'compile.js');
+const script = join(__dirname, '..', 'test', 'fixture', 'compile.js');
 const isOutputName = ([name]) => !['OUTPUT', 'RAW'].includes(name);
 
 const compile = async (env = {}, name = 'local-set') => {

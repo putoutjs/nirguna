@@ -29,7 +29,7 @@ async function start() {
 }
 
 section: 'code';
-include('test/fixture/include/secread.inc');
+include('e2e/fixture/include/secread.inc');
 
 section: 'data';
 (rb, 0x200 - ($ - start) - 2);

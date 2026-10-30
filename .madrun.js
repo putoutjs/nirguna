@@ -6,14 +6,15 @@ const env = {
 
 export default {
     'wisdom': () => run(['lint', 'test:all']),
-    'test': () => `tape 'packages/**/*.spec.js' 'packages/**/test/*.js' 'packages/runner-fasm/test/*.ts'`,
-    'test:all': () => run('test', 'externals/**/*.spec.ts'),
+    'test': () => `tape 'packages/**/*.spec.js' 'packages/**/test/*.js'`,
+    'test:e2e': () => `tape 'packages/**/e2e/*.{js,ts}'`,
+    'test:all': async () => `${await run('test', 'externals/**/*.spec.ts')} && ${await run('test:e2e')}`,
     'watch:test': async () => `nodemon -w packages -w test -x "${await run('test')}"`,
     'lint': () => `putout .`,
     'fresh:lint': () => run('lint', '--fresh'),
     'lint:fresh': () => run('lint', '--fresh'),
     'fix:lint': () => run('lint', '--fix'),
-    'coverage': async () => [env, `c8 ${await run('test')}`],
+    'coverage': async () => [env, `c8 ${await run('test', "'packages/**/e2e/*.{js,ts}'")}`],
     'report': () => 'c8 report --reporter=lcov',
     'build:boot': () => run('build:boot:*'),
     'build:boot:fasm': () => nirguna({
