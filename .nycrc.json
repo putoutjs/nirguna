@@ -1,10 +1,12 @@
 {
-    "skipFull": false,
+    "skipFull": true,
     "checkCoverage": true,
     "all": true,
     "exclude": [
         "**/*.config.*",
         "**/.*",
+        "**/*.spec.*",
+        "**/test",
         "**/bin",
         "**/e2e",
         "**/example",
