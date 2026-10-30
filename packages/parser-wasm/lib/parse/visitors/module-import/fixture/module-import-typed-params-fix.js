@@ -1,1 +1,1 @@
-__nirguna_wasm_import('console', 'log', function log(level: i32, code: i32) {});
+__nirguna_wasm_import('console', 'log', function log(level: i32, code: i32): i32 {});

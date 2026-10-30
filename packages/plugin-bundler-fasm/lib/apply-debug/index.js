@@ -11,6 +11,7 @@ const {remove, replaceWith} = operator;
 const {
     isStringLiteral,
     isLabeledStatement,
+    labeledStatement,
     awaitExpression,
     identifier,
 } = types;
@@ -47,8 +48,13 @@ export const replace = ({options}) => {
                 if (isLabeledStatement(parentParentPath)) {
                     const next = parentParentPath.getNextSibling();
                     
-                    parentParentPath.node.body = next.node;
+                    const {node} = next;
+                    const {label} = parentParentPath.node;
+                    
                     remove(next);
+                    replaceWith(parentParentPath, labeledStatement(label, node));
+                    
+                    return path.node;
                 }
                 
                 return '';
