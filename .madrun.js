@@ -14,7 +14,7 @@ export default {
     'fresh:lint': () => run('lint', '--fresh'),
     'lint:fresh': () => run('lint', '--fresh'),
     'fix:lint': () => run('lint', '--fix'),
-    'coverage': async () => [env, `c8 ${await run('test', "'packages/**/e2e/*.{js,ts}'")}`],
+    'coverage': async () => [env, `c8 ${await run('test')}`],
     'report': () => 'c8 report --reporter=lcov',
     'build:boot': () => run('build:boot:*'),
     'build:boot:fasm': () => nirguna({
