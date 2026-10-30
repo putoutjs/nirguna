@@ -6,7 +6,7 @@ const env = {
 
 export default {
     'wisdom': () => run(['lint', 'test:all']),
-    'test': () => `tape 'packages/**/*.spec.js' 'packages/**/test/*.js'`,
+    'test': () => `tape 'packages/**/*.spec.js' 'packages/**/test/*.js' 'packages/runner-fasm/test/*.ts'`,
     'test:all': () => run('test', 'externals/**/*.spec.ts'),
     'watch:test': async () => `nodemon -w packages -w test -x "${await run('test')}"`,
     'lint': () => `putout .`,

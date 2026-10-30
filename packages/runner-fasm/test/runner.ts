@@ -1,10 +1,17 @@
+import {readFileSync} from 'node:fs';
+import {join} from 'node:path';
 import {createTest} from '@nirguna/test';
 import {montag} from 'montag';
 import {run} from '../lib/runner.js';
 
+const packageDir = new URL('..', import.meta.url).pathname;
+
 const {test} = createTest(import.meta.url, {
     target: 'fasm',
     run,
+    config: {
+        readFileSync: (name, encoding) => readFileSync(join(packageDir, name), encoding),
+    },
 });
 
 test('nirguna: runner-fasm: x64', async ({compile}) => {
