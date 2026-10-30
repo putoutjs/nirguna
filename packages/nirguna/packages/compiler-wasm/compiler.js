@@ -10,6 +10,7 @@ export const compile = async (source, options = {}) => {
         name,
         type = 'binary',
         onStageChange = noop,
+        plugins,
     } = options;
     
     const emitStateChange = (a) => onStageChange(a, {
@@ -22,7 +23,9 @@ export const compile = async (source, options = {}) => {
         places,
     });
     
-    const [code, compilePlaces] = transform(source);
+    const [code, compilePlaces] = transform(source, {
+        plugins,
+    });
     
     if (compilePlaces.length) {
         emitLastStateChange('Transform', compilePlaces);

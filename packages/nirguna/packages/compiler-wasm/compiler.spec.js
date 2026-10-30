@@ -2,6 +2,8 @@ import {test} from 'supertape';
 import {montag} from 'montag';
 import {compile} from '#compiler-wasm';
 
+const noop = () => {};
+
 test('nirguna: compiler-wasm', async (t) => {
     const source = montag`
         export function x(a: i32, b: i32): i32 {
@@ -122,6 +124,101 @@ test('nirguna: compiler-wasm: optimized: onStageChanged', async (t) => {
             last: true,
             places: [],
         }],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: code', async (t) => {
+    const source = montag`
+        export function x(a: i32): i32 {
+            return a;
+        }
+    `;
+    
+    const [result] = await compile(source, {
+        type: 'code',
+    });
+    
+    const expected = montag`
+        export function x(a: i32): i32 {
+            return a;
+        }\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: code: places', async (t) => {
+    const source = 'function add(a, b) {return a + b};\n';
+    const [, places] = await compile(source, {
+        type: 'code',
+    });
+    
+    const expected = [];
+    
+    t.deepEqual(places, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: code: onStageChange', async (t) => {
+    const source = 'function add(a, b) {return a + b};\n';
+    const result = [];
+    const onStageChange = (a, b) => result.push([a, b]);
+    
+    await compile(source, {
+        type: 'code',
+        onStageChange,
+    });
+    
+    const expected = [
+        ['Transform', {
+            last: true,
+            places: [],
+        }],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+const brokenPlugin = {
+    report: () => 'broken',
+    include: () => [
+        'Program',
+    ],
+    fix: noop,
+    filter: () => true,
+};
+
+test('nirguna: compiler-wasm: broken plugin: places', async (t) => {
+    const source = 'const a = 1;\n';
+    const [, places] = await compile(source, {
+        type: 'code',
+        plugins: [
+            ['broken', brokenPlugin],
+        ],
+    });
+    
+    t.equal(places.length, 1);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: broken plugin: onStageChange', async (t) => {
+    const source = 'const a = 1;\n';
+    const result = [];
+    const onStageChange = (a, {last, places}) => result.push([a, last, places.length]);
+    
+    await compile(source, {
+        onStageChange,
+        plugins: [
+            ['broken', brokenPlugin],
+        ],
+    });
+    const expected = [
+        ['Transform', true, 1],
     ];
     
     t.deepEqual(result, expected);

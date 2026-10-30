@@ -2,7 +2,7 @@ import {createTest as createPutoutTest} from '@putout/test';
 import {parse} from '@putout/babel';
 import {parse as convertWastToJs} from '#parser-wasm';
 
-const noop = () => {};
+export const noop = () => {};
 
 const lint = (source) => {
     const code = convertWastToJs(source);

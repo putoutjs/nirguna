@@ -4,7 +4,7 @@ import * as esm from '@putout/plugin-esm';
 import * as nirguna from '@nirguna/plugin-nirguna';
 import * as wasm from '@nirguna/plugin-wasm';
 
-export const transform = (source) => {
+export const transform = (source, {plugins = []} = {}) => {
     const {code, places} = putout(source, {
         fix: true,
         isTS: true,
@@ -13,6 +13,7 @@ export const transform = (source) => {
             ['nirguna/nirguna', nirguna],
             ['esm', esm],
             ['remove-nested-blocks', removeNestedBlocks],
+            ...plugins,
         ],
     });
     
