@@ -9,8 +9,11 @@ const isString = (a) => typeof a === 'string';
 
 const createConfig = (config) => ({
     external: [],
-    plugins: [],
     ...config,
+    rollup: {
+        plugins: [],
+        ...config?.rollup,
+    },
 });
 
 export async function bundle(filePath, config) {
@@ -35,7 +38,7 @@ export async function bundle(filePath, config) {
                 extensions: ['.ts'],
             }),
             tsParser(),
-            ...customConfig.plugins,
+            ...customConfig.rollup.plugins,
         ],
         onwarn(warning, warn) {
             if (warning.code === 'UNRESOLVED_IMPORT')

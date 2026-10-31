@@ -7,6 +7,34 @@ import {bundle} from '../lib/bundler.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+function emitAssets() {
+    this.emitFile({
+        type: 'asset',
+        fileName: 'a.txt',
+        source: 'text',
+    });
+    
+    this.emitFile({
+        type: 'asset',
+        fileName: 'b.bin',
+        source: new Uint8Array([104, 105]),
+    });
+}
+
+const assets = () => ({
+    name: 'assets',
+    buildStart: emitAssets,
+});
+
+const pushSpy = (seen) => {
+    seen.push('spy');
+};
+
+const createSpy = (seen) => ({
+    name: 'spy',
+    buildStart: pushSpy.bind(null, seen),
+});
+
 test('nirguna: bundler', async (t) => {
     const filePath = join(__dirname, 'fixture', 'index.js');
     const [, result] = await bundle(filePath);
@@ -117,27 +145,14 @@ test('nirguna: bundler: no entry', async (t) => {
     t.end();
 });
 
-test('nirguna: bundler: plugins: assets', async (t) => {
+test('nirguna: bundler: rollup plugins: assets', async (t) => {
     const filePath = join(__dirname, 'fixture', 'index.js');
-    const assets = () => ({
-        name: 'assets',
-        buildStart() {
-            this.emitFile({
-                type: 'asset',
-                fileName: 'a.txt',
-                source: 'text',
-            });
-            
-            this.emitFile({
-                type: 'asset',
-                fileName: 'b.bin',
-                source: new Uint8Array([104, 105]),
-            });
-        },
-    });
-    
     const [, result] = await bundle(filePath, {
-        plugins: [assets()],
+        rollup: {
+            plugins: [
+                assets(),
+            ],
+        },
     });
     
     const expected = montag`
@@ -148,5 +163,38 @@ test('nirguna: bundler: plugins: assets', async (t) => {
     `;
     
     t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: bundler: config: plugins are for Putout, not for Rollup', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'index.js');
+    const [error] = await bundle(filePath, {
+        plugins: ['@nirguna/plugin-nemesis'],
+    });
+    
+    t.notOk(error);
+    t.end();
+});
+
+test('nirguna: bundler: config: rollup plugins and Putout plugins together', async (t) => {
+    const filePath = join(__dirname, 'fixture', 'index.js');
+    const seen = [];
+    
+    const [error] = await bundle(filePath, {
+        plugins: ['@nirguna/plugin-nemesis'],
+        rollup: {
+            plugins: [
+                createSpy(seen),
+            ],
+        },
+    });
+    
+    const result = [error, seen];
+    const expected = [
+        null,
+        ['spy'],
+    ];
+    
+    t.deepEqual(result, expected);
     t.end();
 });
