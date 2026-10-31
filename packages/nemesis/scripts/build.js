@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 
-import {readFileSync, writeFileSync} from 'node:fs';
+import {dirname} from 'node:path';
+import {
+    mkdirSync,
+    readFileSync,
+    writeFileSync,
+} from 'node:fs';
 import process from 'node:process';
 import {format} from '@nirguna/format-floppy';
 
@@ -28,6 +33,10 @@ const files = {
 const floppy = await format({
     boot,
     files,
+});
+
+mkdirSync(dirname(imagePath), {
+    recursive: true,
 });
 
 writeFileSync(imagePath, floppy);
