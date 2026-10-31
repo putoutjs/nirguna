@@ -83,8 +83,6 @@ log(args, 'Bundle', {
 const [error, source] = await bundle(name, config);
 
 if (error) {
-    console.log(error);
-    
     if (!error.id) {
         console.error(error.message);
         process.exit(1);
