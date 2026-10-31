@@ -8,6 +8,7 @@ export default {
     'wisdom': () => run(['lint', 'test:all']),
     'test': () => `tape 'packages/**/*.spec.js' 'packages/**/test/*.js'`,
     'test:e2e': () => `tape 'packages/**/e2e/*.{js,ts}'`,
+    'test:qemu': () => `tape 'packages/**/qemu/*.js'`,
     'test:all': async () => `${await run('test', 'externals/**/*.spec.ts')} && ${await run('test:e2e')}`,
     'watch:test': async () => `nodemon -w packages -w test -x "${await run('test')}"`,
     'lint': () => `putout .`,

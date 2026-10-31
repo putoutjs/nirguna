@@ -69,3 +69,23 @@ jobs:
         run: madrun --init
       - name: E2E
         run: redrun test:e2e
+  qemu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+      - name: Install QEMU
+        run: sudo apt-get update && sudo apt-get install -y qemu-system-x86
+      - name: Install Redrun
+        run: bun install redrun madrun -g --no-save
+      - name: Install
+        run: bun i --no-save
+      - name: Init Madrun
+        run: madrun --init
+      - name: QEMU
+        run: redrun test:qemu

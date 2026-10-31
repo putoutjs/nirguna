@@ -13,6 +13,7 @@
     "wisdom": "madrun wisdom",
     "test": "madrun test",
     "test:e2e": "madrun test:e2e",
+    "test:qemu": "madrun test:qemu",
     "test:all": "madrun test:all",
     "watch:test": "madrun watch:test",
     "lint": "madrun lint",
