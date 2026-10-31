@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@nirguna/operator-fasm": "*",
-    "fasm.js": "^1.2.0",
+    "fasm.js": "^1.3.0",
     "v86": "^0.5.319"
   },
   "keywords": [
