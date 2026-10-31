@@ -10,3 +10,4 @@ eslint.config.*
 example
 test
 coverage
+e2e
