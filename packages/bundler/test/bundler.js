@@ -190,6 +190,7 @@ test('nirguna: bundler: config: rollup plugins and Putout plugins together', asy
     });
     
     const result = [error, seen];
+    
     const expected = [
         null,
         ['spy'],

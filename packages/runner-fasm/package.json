@@ -38,6 +38,7 @@
   ],
   "devDependencies": {
     "@nirguna/test": "*",
+    "try-to-catch": "^4.0.5",
     "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",

@@ -38,6 +38,7 @@ test('nirguna: format-floppy: e2e: image with a boot sector has the size of a 1.
 test('nirguna: format-floppy: e2e: two files of the size of the kernel and the shell', async (t) => {
     const kernel = fill(KERNEL_SIZE, 1);
     const shell = fill(SHELL_SIZE, 2);
+    
     const floppy = await format({
         files: {
             'kernel.bin': kernel,

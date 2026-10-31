@@ -41,6 +41,7 @@ test('nirguna: nemesis: e2e: shell is loaded: trace does not stop on a wait for 
         .trimEnd()
         .split('\n')
         .at(-1);
+    
     const expected = 'end';
     
     t.equal(result, expected);

@@ -26,10 +26,12 @@ export const parseConfig = (name, overrides = {}) => {
         readConfigAgain,
     });
     
-    return [error, {
-        ...options,
-        debug,
-    }];
+    return [
+        error, {
+            ...options,
+            debug,
+        },
+    ];
 };
 
 function findConfig(name, overrides = {}) {

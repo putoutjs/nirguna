@@ -72,6 +72,7 @@ test('nirguna: format-floppy: e2e: size: pad of a small image is equal to the re
     });
     
     const result = pad(small);
+    
     const expected = await format({
         files,
     });
@@ -88,6 +89,7 @@ test('nirguna: format-floppy: e2e: size: two files are read from a padded image'
     });
     
     const full = pad(small);
+    
     const result = [
         Buffer.from(await readFloppyFile('kernel.bin', full)),
         Buffer.from(await readFloppyFile('sh3ll.bin', full)),
