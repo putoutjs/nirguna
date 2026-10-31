@@ -34,7 +34,7 @@ export const replace = () => ({
     'do {__body} while (--__a)': ({__body}, path) => {
         const {line} = path.node.loc.start;
         const startLabel = createStartLabel(line);
-        const loopExpression = template.ast(`loop(${startLabel})`);
+        const loopExpression = template.ast.fresh(`loop(${startLabel})`);
         const conditionLabel = createConditionLabel(line);
         
         let conditionExpression = expressionStatement(loopExpression);
@@ -52,7 +52,7 @@ export const replace = () => ({
         const {line} = path.node.loc.start;
         const startLabel = createStartLabel(line);
         const conditionLabel = createConditionLabel(line);
-        const expression = isCallExpression(__a) ? __a : template.ast(`test(${__a.name}, ${__a.name})`);
+        const expression = isCallExpression(__a) ? __a : template.ast.fresh(`test(${__a.name}, ${__a.name})`);
         
         let conditionExpression = expressionStatement(expression);
         const wasContinue = maybeReplaceContinueWithJmp(path, conditionLabel);
@@ -61,7 +61,7 @@ export const replace = () => ({
             conditionExpression = labeledStatement(identifier(conditionLabel), conditionExpression);
         
         __body.body.push(conditionExpression);
-        __body.body.push(expressionStatement(template.ast(`jz(${startLabel})`)));
+        __body.body.push(expressionStatement(template.ast.fresh(`jz(${startLabel})`)));
         
         return `${startLabel}: __body`;
     },
@@ -77,7 +77,7 @@ export const replace = () => ({
             test,
         ] = parseWhileArgs(__a);
         
-        const expression = isCallExpression(__a) ? __a : template.ast(`${test}(${one}, ${two})`);
+        const expression = isCallExpression(__a) ? __a : template.ast.fresh(`${test}(${one}, ${two})`);
         
         let conditionExpression = expressionStatement(expression);
         const wasContinue = maybeReplaceContinueWithJmp(path, conditionLabel);
@@ -86,7 +86,7 @@ export const replace = () => ({
             conditionExpression = labeledStatement(identifier(conditionLabel), conditionExpression);
         
         __body.body.push(conditionExpression);
-        __body.body.push(expressionStatement(template.ast(`${jnz}(${startLabel})`)));
+        __body.body.push(expressionStatement(template.ast.fresh(`${jnz}(${startLabel})`)));
         
         maybeReplaceBreak(path, line);
         
@@ -140,7 +140,7 @@ function maybeReplaceBreak(path, line) {
     
     if (wasBreak) {
         const nextPath = path.getNextSibling();
-        const labeledNode = labeledStatement(identifier(breakLabel), nextPath.node || expressionStatement(template.ast('nop()')));
+        const labeledNode = labeledStatement(identifier(breakLabel), nextPath.node || expressionStatement(template.ast.fresh('nop()')));
         
         if (nextPath.node)
             replaceWith(nextPath, labeledNode);

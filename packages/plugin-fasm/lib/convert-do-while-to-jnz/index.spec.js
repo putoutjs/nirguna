@@ -2,6 +2,7 @@ import {createTest} from '@putout/test';
 import * as plugin from './index.js';
 import * as convertIfToJmp from '../convert-if-to-jmp/index.js';
 import * as applyEquality from '../apply-equality/index.js';
+import * as convertDecToHex from '../convert-dec-to-hex/index.js';
 
 const test = createTest(import.meta.url, {
     plugins: [
@@ -70,6 +71,13 @@ test('fasm: convert-do-while-to-jz: transform: boolean', (t) => {
 
 test('fasm: convert-do-while-to-jz: transform: true', (t) => {
     t.transform('true');
+    t.end();
+});
+
+test('fasm: convert-do-while-to-jz: transform: cmp-hex', (t) => {
+    t.transform('cmp-hex', {
+        convertDecToHex,
+    });
     t.end();
 });
 
