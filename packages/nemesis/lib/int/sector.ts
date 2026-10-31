@@ -15,6 +15,7 @@ let secread_com = 0xE6;
 
 const BUSY = 0x80;
 const SEEK = 0xf;
+const SENSE_INTERRUPT = 8;
 const FULL_LENGTH = 0xFF;
 const GAP = 0x1B;
 const END_OF_TRACK = 0x12;
@@ -79,6 +80,11 @@ export async function readSector() {
         
         // ожидаем прерывания от НГМД
         debug('after wait long 2');
+        
+        ah = SENSE_INTERRUPT;
+        await outFDC();
+        await inFDC();
+        await inFDC();
         await waitShort();
         debug('after wait short');
         
