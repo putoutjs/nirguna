@@ -4,7 +4,6 @@ import process from 'node:process';
 import {tryCatch} from 'try-catch';
 import {findUpSync as _findUpSync} from 'find-up-simple';
 
-const {assign} = Object;
 const require = createRequire(import.meta.url);
 
 const NAME = '.nirguna.json';
@@ -27,11 +26,10 @@ export const parseConfig = (name, overrides = {}) => {
         readConfigAgain,
     });
     
-    assign(options, {
+    return [error, {
+        ...options,
         debug,
-    });
-    
-    return [error, options];
+    }];
 };
 
 function findConfig(name, overrides = {}) {

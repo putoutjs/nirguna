@@ -143,3 +143,28 @@ test('nirguna: cli-options: parse-options: readConfigAgain: error', (t) => {
     t.deepEqual(result, expected);
     t.end();
 });
+
+const returnValue = (value) => value;
+
+test('nirguna: cli-options: parse-options: a later call does not change an earlier result', (t) => {
+    const options = {};
+    const readConfig = returnValue.bind(null, options);
+    
+    const [, first] = parseConfig(__filename, {
+        readConfig,
+        env: {
+            DEBUG: '2',
+        },
+    });
+    
+    parseConfig(__filename, {
+        readConfig,
+        env: {},
+    });
+    
+    const result = first.debug;
+    const expected = '2';
+    
+    t.equal(result, expected);
+    t.end();
+});
