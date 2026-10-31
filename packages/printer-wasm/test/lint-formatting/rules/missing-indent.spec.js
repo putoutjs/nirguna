@@ -99,7 +99,10 @@ test('missing-indent: flags chained markers without indent', (t) => {
             issues.push(i + 1);
     }
     
-    t.deepEqual(issues, [3, 4]);
+    const result = issues;
+    const expected = [3, 4];
+    
+    t.deepEqual(result, expected);
     t.end();
 });
 
@@ -126,6 +129,9 @@ test('missing-indent: flags elem followed by unindented table', (t) => {
             issues.push(i + 1);
     }
     
-    t.deepEqual(issues, [3]);
+    const result = issues;
+    const expected = [3];
+    
+    t.deepEqual(result, expected);
     t.end();
 });

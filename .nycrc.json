@@ -4,8 +4,8 @@
     "all": true,
     "exclude": [
         "**/*.config.*",
-        "**/.*",
         "**/*.spec.*",
+        "**/.*",
         "**/test",
         "**/bin",
         "**/e2e",
@@ -13,10 +13,10 @@
         "**/fixture",
         "**/printer-*",
         "**/nemesis",
+        "*.config.js",
+        "packages/test/lib/compile-extension.js",
         "packages/runner-fasm/lib",
         "packages/test/e2e",
-        "packages/test/lib/compile-extension.js",
-        "*.config.js",
         "coverage"
     ],
     "branches": 100,

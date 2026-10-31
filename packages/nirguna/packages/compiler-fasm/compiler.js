@@ -43,10 +43,12 @@ export const compile = async (source, options = {}) => {
     
     emitStateChange('transform');
     
-    const [optimized, optimizedPlaces] = optimization ? optimize(code) : [
-        code,
-        [],
-    ];
+    const [optimized, optimizedPlaces] = optimization
+        ? optimize(code)
+        : [
+            code,
+            [],
+        ];
     
     if (type === 'optimized') {
         emitLastStateChange('optimize');

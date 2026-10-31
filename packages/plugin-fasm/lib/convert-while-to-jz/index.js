@@ -54,9 +54,11 @@ export const replace = () => ({
         if (wasContinue)
             conditionExpression = labeledStatement(identifier(conditionLabel), conditionExpression);
         
-        const body = isBlockStatement(__b) ? __b : blockStatement([
-            expressionStatement(__b),
-        ]);
+        const body = isBlockStatement(__b)
+            ? __b
+            : blockStatement([
+                expressionStatement(__b),
+            ]);
         
         body.body.unshift(expressionStatement(template.ast(`${jnz}(${endLabel})`)));
         body.body.unshift(conditionExpression);

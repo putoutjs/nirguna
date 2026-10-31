@@ -36,9 +36,10 @@ export const dump = (source, binary) => {
     // Change some options, there are many more
     formatter.digitSeparator = '`';
     formatter.firstOperandCharIndex = 10;
-    
     // Format the instructions
-    const output = instructions.map((instruction) => {
+    const output = [];
+    
+    for (const instruction of instructions) {
         // Eg. "00007FFAC46ACDB2 488DAC2400FFFFFF     lea       rbp,[rsp-100h]"
         let line = instruction.ip.toString(16);
         
@@ -57,8 +58,8 @@ export const dump = (source, binary) => {
         line += ' ';
         line += formatter.format(instruction);
         
-        return line;
-    });
+        output.push(line);
+    }
     
     // Free wasm memory
     for (const instruction of instructions)

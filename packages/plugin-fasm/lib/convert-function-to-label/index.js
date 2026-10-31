@@ -84,9 +84,12 @@ function addStackOperations({__body, __type_params = []}) {
     
     const push = createStackOperation('push', args);
     
-    const pop = createStackOperation('pop', args
-        .slice()
-        .reverse());
+    const pop = createStackOperation(
+        'pop',
+        args
+            .slice()
+            .reverse(),
+    );
     
     __body.body.unshift(push);
     

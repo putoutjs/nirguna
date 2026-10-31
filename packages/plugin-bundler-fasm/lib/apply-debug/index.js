@@ -67,7 +67,9 @@ export const replace = ({options}) => {
             programPath.node.body.push(createVariable(__a, name));
             
             if (variables)
-                variables.push(programPath.get('body').at(-1));
+                variables.push(
+                    programPath.get('body').at(-1),
+                );
             
             if (debug === 'port' && !programPath.__nirguna_apply_debug) {
                 programPath.__nirguna_apply_debug = true;
@@ -91,7 +93,9 @@ export const replace = ({options}) => {
                 programPath.node.body.push(node);
                 
                 if (functions)
-                    functions.push(programPath.get('body').at(-1));
+                    functions.push(
+                        programPath.get('body').at(-1),
+                    );
             }
             
             if (debug === 'port') {

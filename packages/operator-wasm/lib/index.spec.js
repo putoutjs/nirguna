@@ -96,7 +96,12 @@ test('nirguna: operator-wast: create: call: import: skip other names', (t) => {
 test('nirguna: operator-wast: create: call: import: override', (t) => {
     const stack = [];
     const imports = [
-        ['console', 'log', null, () => 2],
+        [
+            'console',
+            'log',
+            null,
+            () => 2,
+        ],
     ];
     
     const {call} = create({
