@@ -149,3 +149,23 @@ test('nirguna: target: wasm', async (t) => {
     t.equal(result, expected);
     t.end();
 });
+
+test('nirguna: wast', async (t) => {
+    const source = montag`
+        export function add() {
+            const eax = 1;
+            const ebx = 2;
+            return eax + ebx;
+        }
+    `;
+    
+    const [wast] = await compile(source, {
+        target: 'wast',
+        type: 'binary',
+    });
+    
+    const result = String(wast);
+    
+    t.match(result, /^\(module/);
+    t.end();
+});

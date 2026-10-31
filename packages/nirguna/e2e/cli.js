@@ -1,3 +1,4 @@
+import {Buffer} from 'node:buffer';
 import {spawnSync} from 'node:child_process';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
@@ -90,5 +91,105 @@ test('nirguna: cli: e2e: syntax error in an imported file: message quotes the br
     const {stderr} = run(['bad-import.js', 'bad-dep.js'], ['-t', 'fasm', 'bad-import.js']);
     
     t.match(stderr, `'const = ;'`);
+    t.end();
+});
+
+test('nirguna: cli: e2e: wast: exit code', (t) => {
+    const {status} = run(['add.ts'], ['-t', 'wast', 'add.ts']);
+    
+    t.equal(status, 0);
+    t.end();
+});
+
+test('nirguna: cli: e2e: wast: output is WebAssembly text', (t) => {
+    const {read} = run(['add.ts'], ['-t', 'wast', 'add.ts']);
+    const result = String(read('add.wast'));
+    
+    t.match(result, /^\(module/);
+    t.end();
+});
+
+test('nirguna: cli: e2e: wast: writes only <name>.wast', (t) => {
+    const {files} = run(['add.ts'], ['-t', 'wast', 'add.ts']);
+    const expected = [
+        'add.ts',
+        'add.wast',
+    ];
+    
+    t.deepEqual(files, expected);
+    t.end();
+});
+
+test('nirguna: cli: e2e: asm: writes only <name>.asm', (t) => {
+    const {files} = run(['asm.ts'], ['-t', 'asm', 'asm.ts']);
+    const expected = [
+        'asm.asm',
+        'asm.ts',
+    ];
+    
+    t.deepEqual(files, expected);
+    t.end();
+});
+
+test('nirguna: cli: e2e: asm: output is assembly text', (t) => {
+    const {read} = run(['asm.ts'], ['-t', 'asm', 'asm.ts']);
+    const result = String(read('asm.asm'));
+    
+    t.match(result, /^xor eax, eax/);
+    t.end();
+});
+
+test('nirguna: cli: e2e: wasm: writes only <name>.wasm', (t) => {
+    const {files} = run(['add.ts'], ['-t', 'wasm', 'add.ts']);
+    const expected = [
+        'add.ts',
+        'add.wasm',
+    ];
+    
+    t.deepEqual(files, expected);
+    t.end();
+});
+
+test('nirguna: cli: e2e: -o binary: exit code', (t) => {
+    const {status} = run(['boot.ts'], [
+        '-t',
+        'boot',
+        '-o',
+        'binary',
+        'boot.ts',
+    ]);
+    
+    t.equal(status, 0);
+    t.end();
+});
+
+test('nirguna: cli: e2e: -o binary: stdout is the boot sector', (t) => {
+    const {stdout} = run(['boot.ts'], [
+        '-t',
+        'boot',
+        '-o',
+        'binary',
+        'boot.ts',
+    ]);
+    
+    const result = stdout.subarray(510);
+    const expected = Buffer.from([0x55, 0xaa]);
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: cli: e2e: -o binary: writes no file', (t) => {
+    const {files} = run(['boot.ts'], [
+        '-t',
+        'boot',
+        '-o',
+        'binary',
+        'boot.ts',
+    ]);
+    
+    const expected = ['boot.ts'];
+    
+    t.deepEqual(files, expected);
     t.end();
 });

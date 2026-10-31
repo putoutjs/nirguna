@@ -11,6 +11,14 @@ export const compile = async (source, options) => {
         onStageChange,
     } = options;
     
+    if (target === 'wast')
+        return await wasm.compile(source, {
+            type: 'assembly',
+            name,
+            optimization,
+            onStageChange,
+        });
+    
     if (target === 'wasm')
         return await wasm.compile(source, {
             type,

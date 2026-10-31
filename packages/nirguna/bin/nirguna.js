@@ -137,16 +137,14 @@ if (args.output) {
     process.exit();
 }
 
-if (!args.output)
-    if (args.target === 'wasm')
-        write(name, 'wasm', binary);
-    else
-        write(name, 'bin', binary);
+const EXTENSIONS = {
+    wasm: 'wasm',
+    wast: 'wast',
+    asm: 'asm',
+};
 
-if (args.target === 'wast')
-    write(name, 'wast', binary);
-else if (args.target === 'asm')
-    write(name, 'asm', binary);
+if (!args.output)
+    write(name, EXTENSIONS[args.target] || 'bin', binary);
 
 process.exit(0);
 
