@@ -1,12 +1,9 @@
 {
-    "printer": [
-        "putout",
-        {
-            "semantics": {
-                "maxElementLengthInOneLine": 100
-            }
+    "printer": ["putout", {
+        "semantics": {
+            "maxElementLengthInOneLine": 100
         }
-    ],
+    }],
     "match": {
         "{test,*.spec.*}": {
             "nodejs/declare": "on",

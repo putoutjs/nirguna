@@ -3,7 +3,5 @@
         "putout": "off",
         "putout/apply-type-check": "off"
     },
-    "plugins": [
-        "printer"
-    ]
+    "plugins": ["printer"]
 }

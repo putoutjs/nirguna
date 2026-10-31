@@ -15,7 +15,7 @@ const SOURCE = `
     mov rax, 60
     xor rdi, rdi
     syscall
-    segment readable writeable
+    segment readable writable
     msg db 'ok', 0xA
 `;
 

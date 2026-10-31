@@ -36,6 +36,7 @@ export const dump = (source, binary) => {
     // Change some options, there are many more
     formatter.digitSeparator = '`';
     formatter.firstOperandCharIndex = 10;
+    
     // Format the instructions
     const output = [];
     
