@@ -18,34 +18,34 @@ const toArrayBuffer = (binary) => {
     return binary.buffer.slice(binary.byteOffset, binary.byteOffset + binary.byteLength);
 };
 
-export const boot = async (binary) => {
+export const createEmulator = async (binary) => {
     const bootloader = toArrayBuffer(binary);
     const seabios = toArrayBuffer(await extract(seabiosZip));
     const vgabios = toArrayBuffer(await extract(vgabiosZip));
     
-    return await run({
-        bootloader,
-        seabios,
-        vgabios,
+    return new V86({
+        wasm_path: new URL('../../../node_modules/v86/build/v86.wasm', import.meta.url).pathname,
+        bios: {
+            buffer: seabios,
+        },
+        vga_bios: {
+            buffer: vgabios,
+        },
+        fda: {
+            buffer: bootloader,
+        },
+        autostart: true,
     });
 };
 
-function run({bootloader, seabios, vgabios} = {}) {
+export const boot = async (binary) => {
+    const emulator = await createEmulator(binary);
+    
+    return await run(emulator);
+};
+
+function run(emulator) {
     return new Promise((resolve) => {
-        const emulator = new V86({
-            wasm_path: new URL('../../../node_modules/v86/build/v86.wasm', import.meta.url).pathname,
-            bios: {
-                buffer: seabios,
-            },
-            vga_bios: {
-                buffer: vgabios,
-            },
-            fda: {
-                buffer: bootloader,
-            },
-            autostart: true,
-        });
-        
         let output = '';
         
         emulator.bus.register('emulator-started', () => {
