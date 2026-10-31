@@ -15,7 +15,7 @@ export const prepareError = async (error) => {
         return error;
     }
     
-    const line = loc.line + 1;
+    const line = error.location?.start.line || loc.line + 1;
     const sourceLine = await readSourceLine(id, line);
     const message = error.message.replace('.', `: '${sourceLine}'`);
     

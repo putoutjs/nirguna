@@ -34,3 +34,19 @@ test('nirguna: bundler: prepareError: no id: loc', async (t) => {
     t.ok(loc);
     t.end();
 });
+
+test('nirguna: bundler: prepareError: location: line', async (t) => {
+    const error = Error('Unexpected token.');
+    
+    error.id = id;
+    error.location = {
+        start: {
+            line: 2,
+        },
+    };
+    
+    const {message} = await prepareError(error);
+    
+    t.equal(message, `Unexpected token: 'hello();'`);
+    t.end();
+});

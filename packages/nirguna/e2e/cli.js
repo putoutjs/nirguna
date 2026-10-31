@@ -71,3 +71,24 @@ test('nirguna: cli: e2e: syntax error: message has the line number', (t) => {
     t.match(stderr, 'bad.js:3:');
     t.end();
 });
+
+test('nirguna: cli: e2e: syntax error: message quotes the broken line', (t) => {
+    const {stderr} = run(['bad.js'], ['-t', 'fasm', 'bad.js']);
+    
+    t.match(stderr, `'const = ;'`);
+    t.end();
+});
+
+test('nirguna: cli: e2e: syntax error in an imported file: message has the file and the line', (t) => {
+    const {stderr} = run(['bad-import.js', 'bad-dep.js'], ['-t', 'fasm', 'bad-import.js']);
+    
+    t.match(stderr, 'bad-dep.js:2:');
+    t.end();
+});
+
+test('nirguna: cli: e2e: syntax error in an imported file: message quotes the broken line', (t) => {
+    const {stderr} = run(['bad-import.js', 'bad-dep.js'], ['-t', 'fasm', 'bad-import.js']);
+    
+    t.match(stderr, `'const = ;'`);
+    t.end();
+});
