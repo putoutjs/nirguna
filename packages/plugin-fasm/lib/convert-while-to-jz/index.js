@@ -26,10 +26,19 @@ const {
 const createStartLabel = (line) => `__nirguna_while_${line}`;
 const createConditionLabel = (line) => `__nirguna_while_condition_${line}`;
 
+const toBlock = (a) => isBlockStatement(a)
+    ? a
+    : blockStatement([
+        expressionStatement(a),
+    ]);
+
 export const report = () => `Use 'jz' instead of 'while'`;
 
 export const replace = () => ({
     'while(__a) __b': ({__a, __b}, path) => {
+        if (isBooleanLiteral(__a))
+            return createConstantLoop(path, __a.value, __b);
+        
         const {line} = path.node.loc.start;
         const startLabel = createStartLabel(line);
         const conditionLabel = createConditionLabel(line);
@@ -54,11 +63,7 @@ export const replace = () => ({
         if (wasContinue)
             conditionExpression = labeledStatement(identifier(conditionLabel), conditionExpression);
         
-        const body = isBlockStatement(__b)
-            ? __b
-            : blockStatement([
-                expressionStatement(__b),
-            ]);
+        const body = toBlock(__b);
         
         body.body.unshift(expressionStatement(template.ast(`${jnz}(${endLabel})`)));
         body.body.unshift(conditionExpression);
@@ -71,23 +76,26 @@ export const replace = () => ({
     },
 });
 
+function createConstantLoop(path, value, __b) {
+    const {line} = path.node.loc.start;
+    const startLabel = createStartLabel(line);
+    const endLabel = createEndLabel(path, line);
+    
+    maybeReplaceContinueWithJmp(path, startLabel);
+    
+    const body = toBlock(__b);
+    
+    if (!value)
+        body.body.unshift(expressionStatement(template.ast.fresh(`jmp(${endLabel})`)));
+    
+    body.body.push(expressionStatement(template.ast.fresh(`jmp(${startLabel})`)));
+    
+    maybeReplaceBreak(path, endLabel);
+    
+    return labeledStatement(identifier(startLabel), body);
+}
+
 const parseWhileArgs = (__a) => {
-    if (isBooleanLiteral(__a) && __a.value)
-        return [
-            'al',
-            'al',
-            'je',
-            'cmp',
-        ];
-    
-    if (isBooleanLiteral(__a) && !__a.value)
-        return [
-            'al',
-            'al',
-            'je',
-            'cmp',
-        ];
-    
     if (isArrayExpression(__a))
         return [
             'al',
