@@ -42,6 +42,10 @@ test('nirguna: compiler-fasm: optimized: onStageChanged', async (t) => {
     });
     
     const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
         ['transform', {
             last: false,
             places: [],
@@ -68,6 +72,10 @@ test('nirguna: compiler-fasm: optimized: onStageChanged: error', async (t) => {
     });
     
     const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
         ['transform', {
             last: false,
             places: [],
@@ -94,6 +102,10 @@ test('nirguna: compiler-fasm: optimized: onStageChanged: code', async (t) => {
     });
     
     const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
         ['transform', {
             last: true,
             places: [],
@@ -127,6 +139,10 @@ test('nirguna: compiler-fasm: optimized: onStageChanged: place', async (t) => {
     });
     
     const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
         ['transform', {
             last: true,
             places: [{
@@ -169,6 +185,10 @@ test('nirguna: compiler-fasm: binary: onStageChanged', async (t) => {
     });
     
     const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
         ['transform', {
             last: false,
             places: [],
@@ -186,6 +206,151 @@ test('nirguna: compiler-fasm: binary: onStageChanged', async (t) => {
             places: [],
         }],
     ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+const PLAIN = montag`
+    function stringLength(str) {
+        let n = 0;
+        while (str[n])
+            n++;
+        return n;
+    }
+`;
+
+const UREG = montag`
+    async function stringLength(str): ureg {
+        let usi = str;
+        let ucx = 0;
+        cld();
+        while (lodsb()) {
+            ++ucx;
+        }
+        return ucx;
+    }
+`;
+
+test('nirguna: compiler-fasm: inflate: binary of the plain function', async (t) => {
+    const [result] = await compile(PLAIN, {
+        target: 'nemesis',
+    });
+    
+    const [expected] = await compile(UREG, {
+        target: 'nemesis',
+    });
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: inflate: size of the plain function', async (t) => {
+    const [result] = await compile(PLAIN, {
+        target: 'nemesis',
+    });
+    
+    t.equal(result.length, 23);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: inflate: syntax error: places', async (t) => {
+    const [, places] = await compile('function {', {
+        target: 'nemesis',
+    });
+    
+    t.equal(places.length, 1);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: inflate: syntax error: onStageChange', async (t) => {
+    const result = [];
+    const onStageChange = (a, {last, places}) => result.push([a, last, places.length]);
+    
+    await compile('function {', {
+        target: 'nemesis',
+        onStageChange,
+    });
+    
+    const expected = [
+        ['inflate', true, 1],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+const PLAIN_CLEAR_BUFFER = montag`
+    function clearBuffer(buffer) {
+        let i = 0;
+        while (buffer[i]) {
+            buffer[i] = 0;
+            i++;
+        }
+    }
+`;
+
+const ASSEMBLY_CLEAR_BUFFER = montag`
+    async function clearBuffer(buffer) {
+        di = buffer;
+        si = buffer;
+        while (lodsb()) {
+            al = 0;
+            stosb();
+        }
+    }
+`;
+
+const PLAIN_STRCMP = montag`
+    function strcmp(a, b) {
+        let i = 0;
+        while (a[i]) {
+            if (a[i] !== b[i])
+                return 1;
+            i++;
+        }
+        return 0;
+    }
+`;
+
+const ASSEMBLY_STRCMP = montag`
+    async function strcmp(a, b): ureg {
+        let uax = 0;
+        let usi = a;
+        let udi = b;
+        cld();
+        while (lodsb()) {
+            if (al !== [udi]) {
+                al = 1;
+                break;
+            }
+            ++udi;
+        }
+        return uax;
+    }
+`;
+
+test('nirguna: compiler-fasm: inflate: binary of the plain clear-buffer', async (t) => {
+    const [result] = await compile(PLAIN_CLEAR_BUFFER, {
+        target: 'nemesis',
+    });
+    
+    const [expected] = await compile(ASSEMBLY_CLEAR_BUFFER, {
+        target: 'nemesis',
+    });
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: inflate: binary of the plain strcmp', async (t) => {
+    const [result] = await compile(PLAIN_STRCMP, {
+        target: 'nemesis',
+    });
+    
+    const [expected] = await compile(ASSEMBLY_STRCMP, {
+        target: 'nemesis',
+    });
     
     t.deepEqual(result, expected);
     t.end();

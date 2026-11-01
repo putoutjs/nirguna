@@ -1,3 +1,4 @@
+import {inflate} from '@nirguna/inflater-fasm';
 import {transform} from '@nirguna/transformer-fasm';
 import {print} from '@nirguna/printer-fasm';
 import {translate} from '@nirguna/translator-fasm';
@@ -25,7 +26,19 @@ export const compile = async (source, options = {}) => {
         places,
     });
     
-    const [code, compilePlaces] = transform(source, {
+    const [inflated, inflatePlaces] = inflate(source, {
+        target,
+    });
+    
+    if (inflatePlaces.length) {
+        emitLastStateChange('inflate', inflatePlaces);
+        
+        return [inflated, inflatePlaces];
+    }
+    
+    emitStateChange('inflate');
+    
+    const [code, compilePlaces] = transform(inflated, {
         ...config,
         target,
     });
