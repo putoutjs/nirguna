@@ -1,3 +1,4 @@
+import {inflate} from '@nirguna/inflater-wasm';
 import {transform} from '@nirguna/transformer-wasm';
 import {print} from '@nirguna/printer-wasm';
 import {translate} from '@nirguna/translator-wasm';
@@ -23,7 +24,17 @@ export const compile = async (source, options = {}) => {
         places,
     });
     
-    const [code, compilePlaces] = transform(source, {
+    const [inflated, inflatePlaces] = inflate(source);
+    
+    if (inflatePlaces.length) {
+        emitLastStateChange('inflate', inflatePlaces);
+        
+        return [inflated, inflatePlaces];
+    }
+    
+    emitStateChange('inflate');
+    
+    const [code, compilePlaces] = transform(inflated, {
         plugins,
     });
     

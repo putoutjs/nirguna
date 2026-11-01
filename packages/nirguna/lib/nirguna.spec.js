@@ -49,6 +49,10 @@ test('nirguna: wasm: onStageChanged', async (t) => {
     });
     
     const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
         ['transform', {
             last: false,
             places: [],
