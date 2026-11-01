@@ -1,4 +1,5 @@
 import {createTest} from '@putout/test';
+import * as convertDecToHex from '../convert-dec-to-hex/index.js';
 import * as plugin from './index.js';
 
 const test = createTest(import.meta.url, {
@@ -69,5 +70,17 @@ test('fasm: convert-while-to-jz: transform: while-false', (t) => {
 
 test('fasm: convert-while-to-jz: transform: equal', (t) => {
     t.transform('equal');
+    t.end();
+});
+
+test('fasm: convert-while-to-jz: transform: cache-poison', (t) => {
+    t.transform('cache-poison', {
+        convertDecToHex,
+    });
+    t.end();
+});
+
+test('fasm: convert-while-to-jz: transform: cache', (t) => {
+    t.transform('cache');
     t.end();
 });

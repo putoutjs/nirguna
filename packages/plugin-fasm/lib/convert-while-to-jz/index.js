@@ -65,10 +65,10 @@ export const replace = () => ({
         
         const body = toBlock(__b);
         
-        body.body.unshift(expressionStatement(template.ast(`${jnz}(${endLabel})`)));
+        body.body.unshift(expressionStatement(template.ast.fresh(`${jnz}(${endLabel})`)));
         body.body.unshift(conditionExpression);
         
-        body.body.push(expressionStatement(template.ast(`jmp(${startLabel})`)));
+        body.body.push(expressionStatement(template.ast.fresh(`jmp(${startLabel})`)));
         
         maybeReplaceBreak(path, endLabel);
         
@@ -127,8 +127,8 @@ function createExpression(__a, {one, two, test}) {
         const op = printExpression(__a);
         
         return blockStatement([
-            expressionStatement(template.ast(op)),
-            expressionStatement(template.ast(`${test}(al, al)`)),
+            expressionStatement(template.ast.fresh(op)),
+            expressionStatement(template.ast.fresh(`${test}(al, al)`)),
         ]);
     }
     
@@ -136,12 +136,12 @@ function createExpression(__a, {one, two, test}) {
         const source = printExpression(__a);
         
         return blockStatement([
-            expressionStatement(template.ast(`mov(al, ${source})`)),
-            expressionStatement(template.ast(`${test}(al, al)`)),
+            expressionStatement(template.ast.fresh(`mov(al, ${source})`)),
+            expressionStatement(template.ast.fresh(`${test}(al, al)`)),
         ]);
     }
     
-    return expressionStatement(template.ast(`${test}(${one}, ${two})`));
+    return expressionStatement(template.ast.fresh(`${test}(${one}, ${two})`));
 }
 
 function maybeReplaceContinueWithJmp(path, startLabel) {
@@ -167,7 +167,7 @@ function maybeReplaceBreak(path, endLabel) {
 function createEndLabel(path, line) {
     const endLabel = `__nirguna_while_end_${line}`;
     const nextPath = path.getNextSibling();
-    const labeledNode = labeledStatement(identifier(endLabel), nextPath.node || expressionStatement(template.ast('nop()')));
+    const labeledNode = labeledStatement(identifier(endLabel), nextPath.node || expressionStatement(template.ast.fresh('nop()')));
     
     if (nextPath.node)
         replaceWith(nextPath, labeledNode);
