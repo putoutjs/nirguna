@@ -1,20 +1,12 @@
-import {ureg} from '@nirguna/operator-fasm';
-
-export async function strcmp(a, b): ureg {
-    let uax = 0;
-    let usi = a;
-    let udi = b;
+export function strcmp(a, b) {
+    let i = 0;
     
-    cld();
-    
-    while (lodsb()) {
-        if (al !== [udi]) {
-            al = 1;
-            break;
-        }
+    while (a[i]) {
+        if (a[i] !== b[i])
+            return 1;
         
-        ++udi;
+        i++;
     }
     
-    return uax;
+    return 0;
 }

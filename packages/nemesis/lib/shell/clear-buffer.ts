@@ -1,9 +1,8 @@
-export async function clearBuffer(buffer) {
-    di = buffer;
-    si = buffer;
+export function clearBuffer(buffer) {
+    let i = 0;
     
-    while (lodsb()) {
-        al = 0;
-        stosb();
+    while (buffer[i]) {
+        buffer[i] = 0;
+        i++;
     }
 }

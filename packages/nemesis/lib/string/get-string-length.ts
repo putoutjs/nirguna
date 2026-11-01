@@ -1,14 +1,8 @@
-import {ureg} from '@nirguna/operator-fasm';
-
-export async function getStringLength(str): ureg {
-    let usi = str;
-    let ucx = 0;
+export function getStringLength(str) {
+    let n = 0;
     
-    cld();
+    while (str[n])
+        n++;
     
-    while (lodsb()) {
-        ++ucx;
-    }
-    
-    return ucx;
+    return n;
 }
