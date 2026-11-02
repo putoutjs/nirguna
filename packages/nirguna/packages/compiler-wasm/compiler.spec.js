@@ -511,13 +511,16 @@ test('nirguna: compiler-wasm: inflate: strcmp: the second string is a prefix', a
 
 const HEX_TO_DEC = montag`
     export function hexToDec(hex) {
-        if (hex >= 0x30 && hex <= 0x40)
+        if (hex >= 0x30 && hex <= 0x39)
             return hex - 0x30;
         
-        if (hex <= 0x61 || hex >= 0x66)
-            return 0x10;
+        if (hex >= 0x41 && hex <= 0x46)
+            return hex - 0x37;
         
-        return hex;
+        if (hex >= 0x61 && hex <= 0x66)
+            return hex - 0x57;
+        
+        return 0x10;
     }
 `;
 
@@ -528,6 +531,14 @@ const callHexToDec = async (hex) => {
     
     return hexToDecExports.hexToDec(hex);
 };
+
+test('nirguna: compiler-wasm: inflate: hex-to-dec: before zero', async (t) => {
+    const result = await callHexToDec(0x2f);
+    const expected = 0x10;
+    
+    t.equal(result, expected);
+    t.end();
+});
 
 test('nirguna: compiler-wasm: inflate: hex-to-dec: zero', async (t) => {
     const result = await callHexToDec(0x30);
@@ -545,24 +556,16 @@ test('nirguna: compiler-wasm: inflate: hex-to-dec: nine', async (t) => {
     t.end();
 });
 
-test('nirguna: compiler-wasm: inflate: hex-to-dec: 0x3f', async (t) => {
-    const result = await callHexToDec(0x3f);
-    const expected = 15;
-    
-    t.equal(result, expected);
-    t.end();
-});
-
-test('nirguna: compiler-wasm: inflate: hex-to-dec: 0x40 is accepted', async (t) => {
-    const result = await callHexToDec(0x40);
+test('nirguna: compiler-wasm: inflate: hex-to-dec: colon is not a digit', async (t) => {
+    const result = await callHexToDec(0x3a);
     const expected = 0x10;
     
     t.equal(result, expected);
     t.end();
 });
 
-test('nirguna: compiler-wasm: inflate: hex-to-dec: below the range', async (t) => {
-    const result = await callHexToDec(0x2f);
+test('nirguna: compiler-wasm: inflate: hex-to-dec: at sign is not a digit', async (t) => {
+    const result = await callHexToDec(0x40);
     const expected = 0x10;
     
     t.equal(result, expected);
@@ -571,38 +574,54 @@ test('nirguna: compiler-wasm: inflate: hex-to-dec: below the range', async (t) =
 
 test('nirguna: compiler-wasm: inflate: hex-to-dec: capital a', async (t) => {
     const result = await callHexToDec(0x41);
+    const expected = 0xa;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: inflate: hex-to-dec: capital f', async (t) => {
+    const result = await callHexToDec(0x46);
+    const expected = 0xf;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: inflate: hex-to-dec: capital g is not a digit', async (t) => {
+    const result = await callHexToDec(0x47);
     const expected = 0x10;
     
     t.equal(result, expected);
     t.end();
 });
 
-test('nirguna: compiler-wasm: inflate: hex-to-dec: small a is not a digit', async (t) => {
+test('nirguna: compiler-wasm: inflate: hex-to-dec: grave accent is not a digit', async (t) => {
+    const result = await callHexToDec(0x60);
+    const expected = 0x10;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: inflate: hex-to-dec: small a', async (t) => {
     const result = await callHexToDec(0x61);
-    const expected = 0x10;
+    const expected = 0xa;
     
     t.equal(result, expected);
     t.end();
 });
 
-test('nirguna: compiler-wasm: inflate: hex-to-dec: small b is not converted', async (t) => {
-    const result = await callHexToDec(0x62);
-    const expected = 0x62;
-    
-    t.equal(result, expected);
-    t.end();
-});
-
-test('nirguna: compiler-wasm: inflate: hex-to-dec: small e is not converted', async (t) => {
-    const result = await callHexToDec(0x65);
-    const expected = 0x65;
-    
-    t.equal(result, expected);
-    t.end();
-});
-
-test('nirguna: compiler-wasm: inflate: hex-to-dec: small f is not a digit', async (t) => {
+test('nirguna: compiler-wasm: inflate: hex-to-dec: small f', async (t) => {
     const result = await callHexToDec(0x66);
+    const expected = 0xf;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: inflate: hex-to-dec: small g is not a digit', async (t) => {
+    const result = await callHexToDec(0x67);
     const expected = 0x10;
     
     t.equal(result, expected);

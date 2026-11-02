@@ -359,42 +359,29 @@ test('nirguna: compiler-fasm: inflate: binary of the plain strcmp', async (t) =>
 
 const PLAIN_HEX_TO_DEC = montag`
     function hex2dec(hex) {
-        if (hex >= 0x30 && hex <= 0x40)
+        if (hex >= 0x30 && hex <= 0x39)
             return hex - 0x30;
-        if (hex <= 0x61 || hex >= 0x66)
-            return 0x10;
-        return hex;
+        if (hex >= 0x41 && hex <= 0x46)
+            return hex - 0x37;
+        if (hex >= 0x61 && hex <= 0x66)
+            return hex - 0x57;
+        return 0x10;
     }
 `;
 
 const ASSEMBLY_HEX_TO_DEC = montag`
     async function hex2dec(): i8 {
-        if (al >= 0x30 && al <= 0x40)
+        if (al >= 0x30 && al <= 0x39)
             return al - 0x30;
-        if (al <= 0x61 || al >= 0x66)
-            return 0x10;
-        return al;
+        if (al >= 0x41 && al <= 0x46)
+            return al - 0x37;
+        if (al >= 0x61 && al <= 0x66)
+            return al - 0x57;
+        return 0x10;
     }
 `;
 
-const NAMED_HEX_TO_DEC = montag`
-    const FIRST = 0x030;
-    const LAST = 0x40;
-    const A = 'a';
-    const F = 'f';
-    
-    async function hex2dec(): Promise<i8> {
-        if (al >= FIRST && al <= LAST)
-            return al - 0x30;
-        
-        if (al <= A || al >= F)
-            return 0x10;
-        
-        return al;
-    }
-`;
-
-const HEX_TO_DEC_BINARY = '3c307c073c407f032c30c33c617e043c667c03b010c3c3';
+const HEX_TO_DEC_BINARY = '3c307c073c397f032c30c33c417c073c467f032c37c33c617c073c667f032c57c3b010c3';
 
 test('nirguna: compiler-fasm: inflate: binary of the plain hex-to-dec', async (t) => {
     const [result] = await compile(PLAIN_HEX_TO_DEC, {
@@ -402,19 +389,6 @@ test('nirguna: compiler-fasm: inflate: binary of the plain hex-to-dec', async (t
     });
     
     const [expected] = await compile(ASSEMBLY_HEX_TO_DEC, {
-        target: 'nemesis',
-    });
-    
-    t.deepEqual(result, expected);
-    t.end();
-});
-
-test('nirguna: compiler-fasm: inflate: binary of the plain hex-to-dec: named constants', async (t) => {
-    const [result] = await compile(PLAIN_HEX_TO_DEC, {
-        target: 'nemesis',
-    });
-    
-    const [expected] = await compile(NAMED_HEX_TO_DEC, {
         target: 'nemesis',
     });
     

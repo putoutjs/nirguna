@@ -13,6 +13,8 @@ const COLUMNS = 80;
 const PROMPT = /Hi, I am Sh3ll[\s\S]*\]/;
 const COLOR_HELP = `where b - it's bgcolor`;
 
+const getDone = (command) => RegExp(`\\]${command} *\\n([\\s\\S]*\\n)?\\]`);
+
 await getFloppy({
     size: SIZE,
 });
@@ -33,7 +35,7 @@ const getPromptAttribute = async (command) => {
     const {text, video} = await screenVideo(await writeImage(), {
         until: PROMPT,
         keys: `${command}\n`,
-        then: RegExp(`\\]${command} *\\n\\]`),
+        then: getDone(command),
     });
     
     const cell = findCell(text, `]${command}`) + COLUMNS;
@@ -45,7 +47,7 @@ test('nirguna: nemesis: qemu: color: without arguments prints the help', async (
     const result = await screen(await writeImage(), {
         until: PROMPT,
         keys: 'color\n',
-        then: COLOR_HELP,
+        then: getDone('color'),
     });
     
     t.match(result, COLOR_HELP);
@@ -84,11 +86,81 @@ test('nirguna: nemesis: qemu: color: background 3, text 0', async (t) => {
     timeout: TIMEOUT,
 });
 
-test('nirguna: nemesis: qemu: color: small a is not a digit (F-11)', async (t) => {
+test('nirguna: nemesis: qemu: color: small a is 10', async (t) => {
+    const result = await getPromptAttribute('color 0a');
+    const expected = 0x0a;
+    
+    t.equal(result, expected);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: small f is 15', async (t) => {
+    const result = await getPromptAttribute('color 0f');
+    const expected = 0x0f;
+    
+    t.equal(result, expected);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: small a in the background', async (t) => {
+    const result = await getPromptAttribute('color a0');
+    const expected = 0xa0;
+    
+    t.equal(result, expected);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: small b and small f', async (t) => {
+    const result = await getPromptAttribute('color bf');
+    const expected = 0xbf;
+    
+    t.equal(result, expected);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: capital A is 10', async (t) => {
+    const result = await getPromptAttribute('color 0A');
+    const expected = 0x0a;
+    
+    t.equal(result, expected);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: capital F is 15', async (t) => {
+    const result = await getPromptAttribute('color 0F');
+    const expected = 0x0f;
+    
+    t.equal(result, expected);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: capital A in the background', async (t) => {
+    const result = await getPromptAttribute('color A0');
+    const expected = 0xa0;
+    
+    t.equal(result, expected);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: small g is not a digit', async (t) => {
     const result = await screen(await writeImage(), {
         until: PROMPT,
-        keys: 'color 0a\n',
-        then: COLOR_HELP,
+        keys: 'color 0g\n',
+        then: getDone('color 0g'),
     });
     
     t.match(result, COLOR_HELP);
@@ -97,11 +169,53 @@ test('nirguna: nemesis: qemu: color: small a is not a digit (F-11)', async (t) =
     timeout: TIMEOUT,
 });
 
-test('nirguna: nemesis: qemu: color: small b is not converted (F-11)', async (t) => {
-    const result = await getPromptAttribute('color 0b');
-    const expected = 0x62;
+test('nirguna: nemesis: qemu: color: capital G is not a digit', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color 0G\n',
+        then: getDone('color 0G'),
+    });
     
-    t.equal(result, expected);
+    t.match(result, COLOR_HELP);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: colon is not a digit', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color 0:\n',
+        then: getDone('color 0:'),
+    });
+    
+    t.match(result, COLOR_HELP);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: at sign is not a digit', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color 0@\n',
+        then: getDone('color 0@'),
+    });
+    
+    t.match(result, COLOR_HELP);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: small g in the background is not a digit', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color g0\n',
+        then: getDone('color g0'),
+    });
+    
+    t.match(result, COLOR_HELP);
     t.end();
 }, {
     timeout: TIMEOUT,
