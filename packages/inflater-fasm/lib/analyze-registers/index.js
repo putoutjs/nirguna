@@ -17,6 +17,9 @@ const hasParameter = (args, name) => {
 };
 
 const hasParameters = (shape, vars) => {
+    if (shape.registerParameters && vars.__args.length !== shape.parameters.length)
+        return false;
+    
     for (const placeholder of shape.parameters) {
         if (!hasParameter(vars.__args, vars[placeholder].name))
             return false;

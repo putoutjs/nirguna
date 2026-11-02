@@ -32,6 +32,16 @@ test('fasm: analyze-registers: transform: strcmp', (t) => {
     t.end();
 });
 
+test('fasm: analyze-registers: transform: hex-to-dec', (t) => {
+    t.transform('hex-to-dec');
+    t.end();
+});
+
+test('fasm: analyze-registers: no transform: hex-to-dec-two-parameters', (t) => {
+    t.noTransform('hex-to-dec-two-parameters');
+    t.end();
+});
+
 test('fasm: analyze-registers: no transform: strcmp-not-parameter', (t) => {
     t.noTransform('strcmp-not-parameter');
     t.end();

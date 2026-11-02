@@ -27,6 +27,11 @@ test('fasm: apply-registers: transform: strcmp', (t) => {
     t.end();
 });
 
+test('fasm: apply-registers: transform: hex-to-dec', (t) => {
+    t.transform('hex-to-dec');
+    t.end();
+});
+
 test('fasm: apply-registers: no transform: unknown-shape', (t) => {
     t.noTransform('unknown-shape');
     t.end();

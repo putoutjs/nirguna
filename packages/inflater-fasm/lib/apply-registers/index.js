@@ -37,6 +37,9 @@ export const fix = (path) => {
     path.node.body = createBody(facts);
     path.node.async = true;
     
+    if (facts.shape.registerParameters)
+        path.node.params = [];
+    
     if (facts.shape.returnType)
-        path.node.returnType = tsTypeAnnotation(tsTypeReference(identifier('ureg')));
+        path.node.returnType = tsTypeAnnotation(tsTypeReference(identifier(facts.shape.returnType)));
 };

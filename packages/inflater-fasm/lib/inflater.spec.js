@@ -33,6 +33,16 @@ const STRCMP = montag`
     }
 `;
 
+const HEX_TO_DEC = montag`
+    function hexToDec(hex) {
+        if (hex >= 0x30 && hex <= 0x40)
+            return hex - 0x30;
+        if (hex <= 0x61 || hex >= 0x66)
+            return 0x10;
+        return hex;
+    }
+`;
+
 const ASSEMBLY = montag`
     async function getStringLength(str): ureg {
         let usi = str;
@@ -113,6 +123,32 @@ test('nirguna: inflater-fasm: inflate: strcmp', (t) => {
     `;
     
     t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: inflater-fasm: inflate: hex-to-dec', (t) => {
+    const [result] = inflate(HEX_TO_DEC);
+    const expected = montag`
+        async function hexToDec(): i8 {
+            if (al >= 0x30 && al <= 0x40)
+                return al - 0x30;
+            
+            if (al <= 0x61 || al >= 0x66)
+                return 0x10;
+            
+            return al;
+        }\n
+    `;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: inflater-fasm: inflate: hex-to-dec: places', (t) => {
+    const [, result] = inflate(HEX_TO_DEC);
+    const expected = [];
+    
+    t.deepEqual(result, expected);
     t.end();
 });
 

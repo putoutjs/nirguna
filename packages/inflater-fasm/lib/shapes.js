@@ -11,7 +11,7 @@ export const SHAPES = [{
         ['__p', 'si'],
         ['__n', 'cx'],
     ],
-    returnType: true,
+    returnType: 'ureg',
     body: `{
         let usi = __p;
         let ucx = 0;
@@ -31,7 +31,7 @@ export const SHAPES = [{
         ['__p', 'di,si'],
         ['__n', '-'],
     ],
-    returnType: false,
+    returnType: '',
     body: `{
         di = __p;
         si = __p;
@@ -51,7 +51,7 @@ export const SHAPES = [{
         ['__q', 'di'],
         ['__n', '-'],
     ],
-    returnType: true,
+    returnType: 'ureg',
     body: `{
         let uax = 0;
         let usi = __p;
@@ -65,6 +65,26 @@ export const SHAPES = [{
             ++udi;
         }
         return uax;
+    }`,
+}, {
+    name: 'hex-to-dec',
+    templates: [
+        'function __a(__args) {if (__p >= 0x30 && __p <= 0x40) return __p - 0x30; if (__p <= 0x61 || __p >= 0x66) return 0x10; return __p;}',
+    ],
+    parameters: ['__p'],
+    values: [
+        ['__p', 'al'],
+    ],
+    registerParameters: true,
+    returnType: 'i8',
+    body: `{
+        if (al >= 0x30 && al <= 0x40)
+            return al - 0x30;
+        
+        if (al <= 0x61 || al >= 0x66)
+            return 0x10;
+        
+        return al;
     }`,
 }];
 
