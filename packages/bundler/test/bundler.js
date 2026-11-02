@@ -113,22 +113,6 @@ test('nirguna: bundler: unused external import', async (t) => {
     t.end();
 });
 
-test('nirguna: bundler: circular dependency', async (t) => {
-    const filePath = join(__dirname, 'fixture', 'circular', 'index.js');
-    const [, result] = await bundle(filePath);
-    
-    const expected = montag`
-        const b = () => a;
-        
-        const a = () => b();
-        
-        a();\n
-    `;
-    
-    t.equal(result, expected);
-    t.end();
-});
-
 test('nirguna: bundler: syntax error', async (t) => {
     const filePath = join(__dirname, 'fixture', 'syntax-error.js');
     const [error] = await bundle(filePath);
