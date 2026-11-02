@@ -56,27 +56,157 @@ test('nirguna: nemesis: qemu: color: without arguments prints the help', async (
     timeout: TIMEOUT,
 });
 
-test('nirguna: nemesis: qemu: color: help lists e as light yellow', async (t) => {
+test('nirguna: nemesis: qemu: color: help: 1 is blue', async (t) => {
     const result = await screen(await writeImage(), {
         until: PROMPT,
         keys: 'color\n',
         then: getDone('color'),
     });
     
-    t.match(result, 'e = light yellow');
+    t.match(result, '1 = blue');
     t.end();
 }, {
     timeout: TIMEOUT,
 });
 
-test('nirguna: nemesis: qemu: color: help has no d as light yellow', async (t) => {
+test('nirguna: nemesis: qemu: color: help: 3 is cyan', async (t) => {
     const result = await screen(await writeImage(), {
         until: PROMPT,
         keys: 'color\n',
         then: getDone('color'),
     });
     
-    t.notMatch(result, 'd = light yellow');
+    t.match(result, '3 = cyan');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: 5 is magenta', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, '5 = magenta');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: 6 is brown', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, '6 = brown');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: 7 is light gray', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, '7 = light gray');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: 8 is dark gray', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, '8 = dark gray');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: b is light cyan', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, 'b = light cyan');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: d is light magenta', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, 'd = light magenta');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: e is yellow', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, 'e = yellow');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: f is white', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, 'f = white');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: b is not light blue', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.notMatch(result, 'b = light blue');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: qemu: color: help: no light yellow', async (t) => {
+    const result = await screen(await writeImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.notMatch(result, 'light yellow');
     t.end();
 }, {
     timeout: TIMEOUT,
