@@ -1,38 +1,16 @@
 import {spawn} from 'node:child_process';
 import {setTimeout} from 'node:timers/promises';
+import {tryToCatch} from 'try-to-catch';
+import {toText, toVideo} from './video.js';
 
 const isRegExp = (a) => a instanceof RegExp;
 const POLL = 500;
 const KEY_DELAY = 300;
 const SCREEN = 'xp /4000bx 0xb8000\n';
-const ROW = /^0+b8[\da-f]{3}: (.+)$/gm;
-const BYTE = /0x([\da-f]{2})/g;
 
 const KEYS = {
     '\n': 'ret',
     ' ': 'spc',
-};
-
-const isCharIndex = (byte, index) => !(index % 2);
-
-const toText = (output) => {
-    const bytes = [];
-    
-    for (const [, row] of output.matchAll(ROW))
-        for (const [, byte] of row.matchAll(BYTE))
-            bytes.push(parseInt(byte, 16));
-    
-    const chars = bytes.filter(isCharIndex);
-    const lines = [];
-    
-    for (let i = 0; i < chars.length; i += 80)
-        lines.push(
-            String
-                .fromCharCode(...chars.slice(i, i + 80))
-                .trimEnd(),
-        );
-    
-    return lines.join('\n');
 };
 
 const matches = (until, text) => {
@@ -51,20 +29,20 @@ const readScreen = async ({qemu, state}) => {
     qemu.stdin.write(SCREEN);
     await setTimeout(POLL);
     
-    return toText(state.output);
+    return toVideo(state.output);
 };
 
 const waitFor = async (session, expected) => {
-    let text = '';
+    let video = new Uint8Array();
     
     while (Date.now() < session.deadline) {
-        text = await readScreen(session);
+        video = await readScreen(session);
         
-        if (matches(expected, text))
-            return text;
+        if (matches(expected, toText(video)))
+            return video;
     }
     
-    throw Error(`no match on the screen:\n${text}`);
+    throw Error(`no match on the screen:\n${toText(video)}`);
 };
 
 const pressKeys = async ({qemu}, keys) => {
@@ -74,7 +52,33 @@ const pressKeys = async ({qemu}, keys) => {
     }
 };
 
-export const screen = async (image, {until, keys, then, timeout = 60_000}) => {
+const getText = toText;
+
+const getVideo = (video) => ({
+    text: toText(video),
+    video,
+});
+
+const readScreens = async (session, options, read) => {
+    const {
+        until,
+        keys,
+        then,
+    } = options;
+    
+    const first = await waitFor(session, until);
+    
+    if (!keys)
+        return read(first);
+    
+    await pressKeys(session, keys);
+    
+    return read(await waitFor(session, then));
+};
+
+const play = async (image, options, read) => {
+    const {timeout = 60_000} = options;
+    
     const qemu = spawn('qemu-system-i386', [
         '-drive',
         `file=${image},format=raw,if=floppy`,
@@ -96,16 +100,15 @@ export const screen = async (image, {until, keys, then, timeout = 60_000}) => {
     
     qemu.stdout.on('data', collect.bind(null, state));
     
-    try {
-        const text = await waitFor(session, until);
-        
-        if (!keys)
-            return text;
-        
-        await pressKeys(session, keys);
-        
-        return await waitFor(session, then);
-    } finally {
-        qemu.kill();
-    }
+    const [error, result] = await tryToCatch(readScreens, session, options, read);
+    
+    qemu.kill();
+    
+    if (error)
+        throw error;
+    
+    return result;
 };
+
+export const screen = (image, options) => play(image, options, getText);
+export const screenVideo = (image, options) => play(image, options, getVideo);
