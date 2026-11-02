@@ -1,6 +1,8 @@
 import {promisify} from 'node:util';
 import process from 'node:process';
 import {fileURLToPath} from 'node:url';
+import {execFile} from 'node:child_process';
+import {dirname, join} from 'node:path';
 import {test} from 'supertape';
 import {montag} from 'montag';
 
