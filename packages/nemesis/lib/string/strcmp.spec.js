@@ -1,10 +1,7 @@
 import {test} from 'supertape';
 import {strcmp} from './strcmp.ts';
 
-const toBytes = (a) => Uint8Array.from([
-    ...Buffer.from(a),
-    0,
-]);
+const toBytes = (a) => Uint8Array.from([...Buffer.from(a), 0]);
 
 test('nirguna: nemesis: strcmp: equal', (t) => {
     const result = strcmp(toBytes('help'), toBytes('help'));

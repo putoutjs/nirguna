@@ -1,7 +1,4 @@
-import {
-    template,
-    types,
-} from 'putout';
+import {template, types} from 'putout';
 import {
     getFacts,
     hasFacts,
@@ -17,7 +14,9 @@ const {
 
 export const report = () => `Apply: registers`;
 
-export const include = () => ['FunctionDeclaration'];
+export const include = () => [
+    'FunctionDeclaration',
+];
 
 export const filter = (path) => hasFacts(path) && parseFacts(getFacts(path));
 

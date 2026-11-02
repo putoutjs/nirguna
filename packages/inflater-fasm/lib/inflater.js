@@ -36,10 +36,15 @@ export const inflate = (source) => {
     const [error, found] = tryCatch(putout, source, createFindOptions(ANALYZE));
     
     if (error)
-        return [source, [toPlace(error)]];
+        return [source, [
+            toPlace(error),
+        ]];
     
     if (!found.places.length)
-        return [source, []];
+        return [
+            source,
+            [],
+        ];
     
     const inflated = putout(source, createFixOptions(INFLATE));
     

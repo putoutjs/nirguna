@@ -299,10 +299,7 @@ const read = (exports, address, length) => {
     return Array.from(new Uint8Array(exports.memory.buffer).slice(address, address + length));
 };
 
-const toBytes = (a) => [
-    ...Buffer.from(a),
-    0,
-];
+const toBytes = (a) => [...Buffer.from(a), 0];
 
 const compareStrings = async (a, b) => {
     const exports = await instantiate(STRCMP);
@@ -386,11 +383,7 @@ test('nirguna: compiler-wasm: inflate: string-length: empty', async (t) => {
 test('nirguna: compiler-wasm: inflate: string-length: stops at zero', async (t) => {
     const exports = await instantiate(STRING_LENGTH);
     
-    write(exports, FIRST, [
-        0x68,
-        0,
-        0x68,
-    ]);
+    write(exports, FIRST, [0x68, 0, 0x68]);
     
     const result = exports.getStringLength(FIRST);
     const expected = 1;
@@ -402,11 +395,7 @@ test('nirguna: compiler-wasm: inflate: string-length: stops at zero', async (t) 
 test('nirguna: compiler-wasm: inflate: string-length: byte 0xff', async (t) => {
     const exports = await instantiate(STRING_LENGTH);
     
-    write(exports, FIRST, [
-        0xff,
-        0xff,
-        0,
-    ]);
+    write(exports, FIRST, [0xff, 0xff, 0]);
     
     const result = exports.getStringLength(FIRST);
     const expected = 2;
@@ -444,18 +433,12 @@ test('nirguna: compiler-wasm: inflate: clear-buffer: clears the string', async (
 test('nirguna: compiler-wasm: inflate: clear-buffer: empty', async (t) => {
     const exports = await instantiate(CLEAR_BUFFER);
     
-    write(exports, FIRST, [
-        0,
-        9,
-    ]);
+    write(exports, FIRST, [0, 9]);
     
     exports.clearBuffer(FIRST);
     
     const result = read(exports, FIRST, 2);
-    const expected = [
-        0,
-        9,
-    ];
+    const expected = [0, 9];
     
     t.deepEqual(result, expected);
     t.end();
@@ -464,18 +447,12 @@ test('nirguna: compiler-wasm: inflate: clear-buffer: empty', async (t) => {
 test('nirguna: compiler-wasm: inflate: clear-buffer: byte 0xff', async (t) => {
     const exports = await instantiate(CLEAR_BUFFER);
     
-    write(exports, FIRST, [
-        0xff,
-        0,
-    ]);
+    write(exports, FIRST, [0xff, 0]);
     
     exports.clearBuffer(FIRST);
     
     const result = read(exports, FIRST, 2);
-    const expected = [
-        0,
-        0,
-    ];
+    const expected = [0, 0];
     
     t.deepEqual(result, expected);
     t.end();

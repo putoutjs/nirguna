@@ -15,10 +15,7 @@ test('wasm: report-byte-read: report: string-length', (t) => {
 });
 
 test('wasm: report-byte-read: report: clear-buffer', (t) => {
-    t.report('clear-buffer', [
-        MESSAGE,
-        MESSAGE,
-    ]);
+    t.report('clear-buffer', [MESSAGE, MESSAGE]);
     t.end();
 });
 
@@ -32,10 +29,7 @@ test('wasm: report-byte-read: report: strcmp', (t) => {
 });
 
 test('wasm: report-byte-read: report: many', (t) => {
-    t.report('many', [
-        MESSAGE,
-        MESSAGE,
-    ]);
+    t.report('many', [MESSAGE, MESSAGE]);
     t.end();
 });
 
