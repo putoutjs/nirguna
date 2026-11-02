@@ -2,16 +2,12 @@ import {spawn} from 'node:child_process';
 import {setTimeout} from 'node:timers/promises';
 import {tryToCatch} from 'try-to-catch';
 import {toText, toVideo} from './video.js';
+import {toKey} from './keys.js';
 
 const isRegExp = (a) => a instanceof RegExp;
 const POLL = 500;
 const KEY_DELAY = 300;
 const SCREEN = 'xp /4000bx 0xb8000\n';
-
-const KEYS = {
-    '\n': 'ret',
-    ' ': 'spc',
-};
 
 const matches = (until, text) => {
     if (isRegExp(until))
@@ -47,7 +43,7 @@ const waitFor = async (session, expected) => {
 
 const pressKeys = async ({qemu}, keys) => {
     for (const key of keys) {
-        qemu.stdin.write(`sendkey ${KEYS[key] || key}\n`);
+        qemu.stdin.write(`sendkey ${toKey(key)}\n`);
         await setTimeout(KEY_DELAY);
     }
 };
