@@ -69,7 +69,7 @@ export const SHAPES = [{
 }, {
     name: 'hex-to-dec',
     templates: [
-        'function __a(__args) {if (__p >= 0x30 && __p <= 0x40) return __p - 0x30; if (__p <= 0x61 || __p >= 0x66) return 0x10; return __p;}',
+        'function __a(__args) {if (__p >= 0x30 && __p <= 0x39) return __p - 0x30; if (__p >= 0x41 && __p <= 0x46) return __p - 0x37; if (__p >= 0x61 && __p <= 0x66) return __p - 0x57; return 0x10;}',
     ],
     parameters: ['__p'],
     values: [
@@ -78,13 +78,16 @@ export const SHAPES = [{
     registerParameters: true,
     returnType: 'i8',
     body: `{
-        if (al >= 0x30 && al <= 0x40)
+        if (al >= 0x30 && al <= 0x39)
             return al - 0x30;
         
-        if (al <= 0x61 || al >= 0x66)
-            return 0x10;
+        if (al >= 0x41 && al <= 0x46)
+            return al - 0x37;
         
-        return al;
+        if (al >= 0x61 && al <= 0x66)
+            return al - 0x57;
+        
+        return 0x10;
     }`,
 }];
 
