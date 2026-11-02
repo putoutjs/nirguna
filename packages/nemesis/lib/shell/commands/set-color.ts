@@ -21,7 +21,7 @@ let colorHelp = [
     0xd,
     '5 = violet    d = light violet',
     0xd,
-    '6 = yellow    d = light yellow',
+    '6 = yellow    e = light yellow',
     0xd,
     '7 = white     f = light white',
     0xd,

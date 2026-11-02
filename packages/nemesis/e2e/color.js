@@ -48,6 +48,32 @@ test('nirguna: nemesis: e2e: color: without arguments prints the help', async (t
     timeout: TIMEOUT,
 });
 
+test('nirguna: nemesis: e2e: color: help lists e as light yellow', async (t) => {
+    const result = await screen(await getImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.match(result, 'e = light yellow');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: nemesis: e2e: color: help has no d as light yellow', async (t) => {
+    const result = await screen(await getImage(), {
+        until: PROMPT,
+        keys: 'color\n',
+        then: getDone('color'),
+    });
+    
+    t.notMatch(result, 'd = light yellow');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
 test('nirguna: nemesis: e2e: color: background 1, text 4', async (t) => {
     const result = await getPromptAttribute('color 14');
     const expected = 0x14;
