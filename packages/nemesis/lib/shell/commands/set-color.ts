@@ -1,5 +1,5 @@
 import {nemesis} from '@nirguna/operator-nemesis';
-import {i8} from '@nirguna/operator-fasm';
+import {hex2dec} from './hex2dec.ts';
 
 let colorHelp = [
     'type: color bt',
@@ -61,19 +61,4 @@ export async function setColor() {
         color: cl,
         background: ch,
     });
-}
-
-const FIRST = 0x030;
-const LAST = 0x40;
-const A = 'a';
-const F = 'f';
-
-async function hex2dec(): Promise<i8> {
-    if (al >= FIRST && al <= LAST)
-        return al - 0x30;
-    
-    if (al <= A || al >= F)
-        return 0x10;
-    
-    return al;
 }

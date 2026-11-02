@@ -1,3 +1,4 @@
+import {Buffer} from 'node:buffer';
 import {test} from 'supertape';
 import {montag} from 'montag';
 import {compile} from '#compiler-fasm';
@@ -353,5 +354,83 @@ test('nirguna: compiler-fasm: inflate: binary of the plain strcmp', async (t) =>
     });
     
     t.deepEqual(result, expected);
+    t.end();
+});
+
+const PLAIN_HEX_TO_DEC = montag`
+    function hex2dec(hex) {
+        if (hex >= 0x30 && hex <= 0x40)
+            return hex - 0x30;
+        if (hex <= 0x61 || hex >= 0x66)
+            return 0x10;
+        return hex;
+    }
+`;
+
+const ASSEMBLY_HEX_TO_DEC = montag`
+    async function hex2dec(): i8 {
+        if (al >= 0x30 && al <= 0x40)
+            return al - 0x30;
+        if (al <= 0x61 || al >= 0x66)
+            return 0x10;
+        return al;
+    }
+`;
+
+const NAMED_HEX_TO_DEC = montag`
+    const FIRST = 0x030;
+    const LAST = 0x40;
+    const A = 'a';
+    const F = 'f';
+    
+    async function hex2dec(): Promise<i8> {
+        if (al >= FIRST && al <= LAST)
+            return al - 0x30;
+        
+        if (al <= A || al >= F)
+            return 0x10;
+        
+        return al;
+    }
+`;
+
+const HEX_TO_DEC_BINARY = '3c307c073c407f032c30c33c617e043c667c03b010c3c3';
+
+test('nirguna: compiler-fasm: inflate: binary of the plain hex-to-dec', async (t) => {
+    const [result] = await compile(PLAIN_HEX_TO_DEC, {
+        target: 'nemesis',
+    });
+    
+    const [expected] = await compile(ASSEMBLY_HEX_TO_DEC, {
+        target: 'nemesis',
+    });
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: inflate: binary of the plain hex-to-dec: named constants', async (t) => {
+    const [result] = await compile(PLAIN_HEX_TO_DEC, {
+        target: 'nemesis',
+    });
+    
+    const [expected] = await compile(NAMED_HEX_TO_DEC, {
+        target: 'nemesis',
+    });
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: inflate: binary of the plain hex-to-dec: bytes', async (t) => {
+    const [binary] = await compile(PLAIN_HEX_TO_DEC, {
+        target: 'nemesis',
+    });
+    
+    const result = Buffer
+        .from(binary)
+        .toString('hex');
+    
+    t.equal(result, HEX_TO_DEC_BINARY);
     t.end();
 });
