@@ -2,9 +2,13 @@ import {setTimeout} from 'node:timers/promises';
 import {tryToCatch} from 'try-to-catch';
 import {createEmulator} from './boot.js';
 import {waitStarted} from './wait-started.js';
+import {shiftBase} from './shift-base.js';
 
 const POLL = 100;
 const KEY_DELAY = 300;
+const SHIFT_DELAY = 100;
+const SHIFT_DOWN = 0x2a;
+const SHIFT_UP = 0xaa;
 const TIMEOUT = 30_000;
 const VIDEO_SIZE = 4000;
 
@@ -40,9 +44,25 @@ const waitFor = async ({emulator, deadline}, expected) => {
     throw Error(`no match on the screen:\n${text}`);
 };
 
+const pressShifted = async (emulator, base) => {
+    await emulator.keyboard_send_scancodes([SHIFT_DOWN], SHIFT_DELAY);
+    emulator.keyboard_send_text(base);
+    await setTimeout(SHIFT_DELAY);
+    await emulator.keyboard_send_scancodes([SHIFT_UP], SHIFT_DELAY);
+};
+
+const pressKey = async (emulator, key) => {
+    const base = shiftBase(key);
+    
+    if (base)
+        return await pressShifted(emulator, base);
+    
+    emulator.keyboard_send_text(key);
+};
+
 const pressKeys = async ({emulator}, keys) => {
     for (const key of keys) {
-        emulator.keyboard_send_text(key);
+        await pressKey(emulator, key);
         await setTimeout(KEY_DELAY);
     }
 };
