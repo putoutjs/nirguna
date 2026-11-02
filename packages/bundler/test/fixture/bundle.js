@@ -7,4 +7,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const [, , name] = process.argv;
 
-await bundle(join(__dirname, name));
+const [, source] = await bundle(join(__dirname, name));
+
+process.stdout.write(source || '');
