@@ -27,6 +27,16 @@ test('wasm: apply-byte-read: transform: strcmp', (t) => {
     t.end();
 });
 
+test('wasm: apply-byte-read: transform: hex-to-dec', (t) => {
+    t.transform('hex-to-dec');
+    t.end();
+});
+
+test('wasm: apply-byte-read: no transform: hex-to-dec-two-parameters', (t) => {
+    t.noTransform('hex-to-dec-two-parameters');
+    t.end();
+});
+
 test('wasm: apply-byte-read: no transform: other', (t) => {
     t.noTransform('other');
     t.end();

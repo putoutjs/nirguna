@@ -33,6 +33,16 @@ const STRCMP = montag`
     }
 `;
 
+const HEX_TO_DEC = montag`
+    function hexToDec(hex) {
+        if (hex >= 0x30 && hex <= 0x40)
+            return hex - 0x30;
+        if (hex <= 0x61 || hex >= 0x66)
+            return 0x10;
+        return hex;
+    }
+`;
+
 const FIRST = 'function first(a) {return a[0];}\n';
 const ADD = 'function add(a, b) {return a + b};\n';
 
@@ -116,6 +126,28 @@ test('nirguna: inflater-wasm: inflate: strcmp: compare', (t) => {
     const [result] = inflate(STRCMP);
     
     t.match(result, 'i32.ne');
+    t.end();
+});
+
+test('nirguna: inflater-wasm: inflate: hex-to-dec: places', (t) => {
+    const [, result] = inflate(HEX_TO_DEC);
+    const expected = [];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: inflater-wasm: inflate: hex-to-dec: comparison', (t) => {
+    const [result] = inflate(HEX_TO_DEC);
+    
+    t.match(result, 'i32.ge_u');
+    t.end();
+});
+
+test('nirguna: inflater-wasm: inflate: hex-to-dec: no early return', (t) => {
+    const [result] = inflate(HEX_TO_DEC);
+    
+    t.notMatch(result, 'return');
     t.end();
 });
 
