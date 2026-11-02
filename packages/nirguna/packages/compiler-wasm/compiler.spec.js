@@ -643,3 +643,36 @@ test('nirguna: compiler-wasm: inflate: hex-to-dec: byte 0xff', async (t) => {
     t.equal(result, expected);
     t.end();
 });
+
+const EARLY_RETURN = montag`
+    export function early(a) {
+        if (i32.eqz(local.get(a)))
+            return i32.const(1);
+        
+        return i32.const(2);
+    }
+`;
+
+let earlyExports;
+
+const callEarly = async (a) => {
+    earlyExports = earlyExports || await instantiate(EARLY_RETURN);
+    
+    return earlyExports.early(a);
+};
+
+test('nirguna: compiler-wasm: early return: taken', async (t) => {
+    const result = await callEarly(0);
+    const expected = 1;
+    
+    t.equal(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: early return: not taken', async (t) => {
+    const result = await callEarly(5);
+    const expected = 2;
+    
+    t.equal(result, expected);
+    t.end();
+});

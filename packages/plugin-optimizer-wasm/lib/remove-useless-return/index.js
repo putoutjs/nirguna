@@ -10,14 +10,11 @@ export const match = () => ({
             return true;
         
         const {parentPath} = path;
-        const next = parentPath.getNextSibling();
         
         if (!isIfStatement(parentPath))
             return false;
         
-        const {typeArguments} = parentPath.node.test;
-        
-        return typeArguments || next.node;
+        return Boolean(parentPath.node.test.typeArguments);
     },
 });
 
