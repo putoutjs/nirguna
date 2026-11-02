@@ -1,6 +1,7 @@
 import {test} from 'supertape';
 import {tryToCatch} from 'try-to-catch';
-import {screen} from '../lib/screen.js';
+import {screen, screenVideo} from '../lib/screen.js';
+import {findCell} from '../lib/find-cell.js';
 import {createBoot} from './lib/boot-image.js';
 
 const TIMEOUT = 60_000;
@@ -60,6 +61,67 @@ test('nirguna: runner-fasm: screen: no match', async (t) => {
     });
     
     t.match(error.message, 'no match on the screen');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: runner-fasm: screenVideo: text', async (t) => {
+    const {text} = await screenVideo(createBoot(), {
+        until: 'Hi',
+    });
+    
+    t.match(text, 'Hi');
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: runner-fasm: screenVideo: size', async (t) => {
+    const {video} = await screenVideo(createBoot(), {
+        until: 'Hi',
+    });
+    
+    t.equal(video.length, 4000);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: runner-fasm: screenVideo: character', async (t) => {
+    const {text, video} = await screenVideo(createBoot(), {
+        until: 'Hi',
+    });
+    
+    const cell = findCell(text, 'Hi');
+    
+    t.equal(video[cell * 2], 0x48);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: runner-fasm: screenVideo: attribute', async (t) => {
+    const {text, video} = await screenVideo(createBoot(), {
+        until: 'Hi',
+    });
+    
+    const cell = findCell(text, 'Hi');
+    
+    t.equal(video[cell * 2 + 1], 0x07);
+    t.end();
+}, {
+    timeout: TIMEOUT,
+});
+
+test('nirguna: runner-fasm: screenVideo: keys', async (t) => {
+    const {text} = await screenVideo(createBoot(), {
+        until: 'Hi',
+        keys: 'x',
+        then: 'Hix',
+    });
+    
+    t.match(text, 'Hix');
     t.end();
 }, {
     timeout: TIMEOUT,

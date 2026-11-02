@@ -28,6 +28,7 @@
   "dependencies": {
     "@nirguna/operator-fasm": "*",
     "fasm.js": "^1.3.0",
+    "try-to-catch": "^4.0.5",
     "v86": "^0.5.319"
   },
   "keywords": [
@@ -38,7 +39,6 @@
   ],
   "devDependencies": {
     "@nirguna/test": "*",
-    "try-to-catch": "^4.0.5",
     "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
     "madrun": "^13.0.0",
