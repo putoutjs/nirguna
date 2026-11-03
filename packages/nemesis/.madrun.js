@@ -7,6 +7,7 @@ const BUILD = [
     'nirguna -t boot lib/boot/index.js',
     'nirguna -t nemesis lib/shell/shell.ts',
     './scripts/build.js',
+    'mkdir -p ~/nemesis-emulator',
     'cp ./build/* ~/nemesis-emulator/',
 ].join(' && ');
 
