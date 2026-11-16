@@ -1,93 +1,40 @@
 import {inflate} from '@nirguna/inflater-fasm';
-import {transform} from '@nirguna/transformer-fasm';
-import {print} from '@nirguna/printer-fasm';
+import {transform as transformCode} from '@nirguna/transformer-fasm';
+import {print as printCode} from '@nirguna/printer-fasm';
 import {translate} from '@nirguna/translator-fasm';
+import {createPipeline} from '#pipeline';
 import {optimize} from '#optimizer-fasm';
 
-const noop = () => {};
-
-export const compile = async (source, options = {}) => {
-    const {
-        name,
-        type = 'binary',
-        optimization = true,
-        target = 'fasm',
-        config,
-        onStageChange = noop,
-    } = options;
-    
-    const emitStateChange = (a) => onStageChange(a, {
-        last: false,
-        places: [],
-    });
-    
-    const emitLastStateChange = (a, places = []) => onStageChange(a, {
-        last: true,
-        places,
-    });
-    
-    const [inflated, inflatePlaces] = inflate(source, {
-        target,
-    });
-    
-    if (inflatePlaces.length) {
-        emitLastStateChange('inflate', inflatePlaces);
-        
-        return [inflated, inflatePlaces];
-    }
-    
-    emitStateChange('inflate');
-    
-    const [code, compilePlaces] = transform(inflated, {
+function transform(source, {config, target = 'fasm'}) {
+    return transformCode(source, {
         ...config,
         target,
     });
+}
+
+function print(source) {
+    return [
+        printCode(source),
+        [],
+    ];
+}
+
+const run = createPipeline([
+    inflate,
+    transform,
+    optimize,
+    print,
+    translate,
+]);
+
+const toOptions = (options) => {
+    if (options.target === 'asm')
+        return {
+            ...options,
+            type: 'assembly',
+        };
     
-    if (compilePlaces.length) {
-        emitLastStateChange('transform', compilePlaces);
-        
-        return [code, compilePlaces];
-    }
-    
-    if (type === 'code') {
-        emitLastStateChange('transform');
-        return [code, compilePlaces];
-    }
-    
-    emitStateChange('transform');
-    
-    const [optimized, optimizedPlaces] = optimization
-        ? optimize(code)
-        : [
-            code,
-            [],
-        ];
-    
-    if (type === 'optimized') {
-        emitLastStateChange('optimize');
-        return [optimized, optimizedPlaces];
-    }
-    
-    emitStateChange('optimize');
-    
-    const assembly = print(optimized);
-    
-    if (type === 'assembly' || target === 'asm') {
-        emitLastStateChange('Print');
-        return [
-            assembly,
-            [],
-        ];
-    }
-    
-    emitStateChange('print');
-    
-    const [binary, places] = await translate(assembly, {
-        name,
-        type,
-    });
-    
-    emitLastStateChange('translate', places);
-    
-    return [binary, places];
+    return options;
 };
+
+export const compile = (source, options = {}) => run(source, toOptions(options));

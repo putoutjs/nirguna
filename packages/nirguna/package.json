@@ -88,6 +88,7 @@
     "#compiler-fasm": "./packages/compiler-fasm/compiler.js",
     "#optimizer-fasm": "./packages/optimizer-fasm/optimizer.js",
     "#optimizer-wasm": "./packages/optimizer-wasm/optimizer.js",
+    "#pipeline": "./packages/pipeline/pipeline.js",
     "#test-wasm": "./packages/test-wasm/test.js",
     "#nirguna": "./lib/nirguna.js"
   },

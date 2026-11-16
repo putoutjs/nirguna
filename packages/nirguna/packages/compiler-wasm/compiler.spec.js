@@ -184,7 +184,7 @@ test('nirguna: compiler-wasm: code: onStageChange', async (t) => {
             last: false,
             places: [],
         }],
-        ['Transform', {
+        ['transform', {
             last: true,
             places: [],
         }],
@@ -229,7 +229,7 @@ test('nirguna: compiler-wasm: broken plugin: onStageChange', async (t) => {
     });
     const expected = [
         ['inflate', false, 0],
-        ['Transform', true, 1],
+        ['transform', true, 1],
     ];
     
     t.deepEqual(result, expected);
@@ -674,5 +674,76 @@ test('nirguna: compiler-wasm: early return: not taken', async (t) => {
     const expected = 2;
     
     t.equal(result, expected);
+    t.end();
+});
+
+const OPTIMIZER_SOURCE = montag`
+    export function thenElse(a: i32): i32 {
+        if (i32.eq<i32>(a, 10))
+            return i32.const(1);
+        else
+            return i32.const(5);
+    }
+`;
+
+test('nirguna: compiler-wasm: optimization: false: skip the optimizer', async (t) => {
+    const [code] = await compile(OPTIMIZER_SOURCE, {
+        type: 'code',
+    });
+    
+    const [result] = await compile(OPTIMIZER_SOURCE, {
+        type: 'optimized',
+        optimization: false,
+    });
+    
+    t.equal(result, code);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: optimization: true: run the optimizer', async (t) => {
+    const [code] = await compile(OPTIMIZER_SOURCE, {
+        type: 'code',
+    });
+    
+    const [optimized] = await compile(OPTIMIZER_SOURCE, {
+        type: 'optimized',
+    });
+    
+    const result = optimized !== code;
+    
+    t.ok(result);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: assembly: onStageChange: the last event is print', async (t) => {
+    const source = 'function add(a, b) {return a + b};\n';
+    const result = [];
+    const onStageChange = (a, b) => result.push([a, b]);
+    
+    await compile(source, {
+        type: 'assembly',
+        onStageChange,
+    });
+    
+    const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
+        ['transform', {
+            last: false,
+            places: [],
+        }],
+        ['optimize', {
+            last: false,
+            places: [],
+        }],
+        ['print', {
+            last: true,
+            places: [],
+        }],
+    ];
+    
+    t.deepEqual(result, expected);
     t.end();
 });

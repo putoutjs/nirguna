@@ -408,3 +408,35 @@ test('nirguna: compiler-fasm: inflate: binary of the plain hex-to-dec: bytes', a
     t.equal(result, HEX_TO_DEC_BINARY);
     t.end();
 });
+
+test('nirguna: compiler-fasm: assembly: onStageChange: the name of the last event is print', async (t) => {
+    const result = [];
+    const onStageChange = (a, b) => result.push([a, b]);
+    
+    await compile('mov(eax, 1);', {
+        type: 'assembly',
+        onStageChange,
+    });
+    
+    const expected = [
+        ['inflate', {
+            last: false,
+            places: [],
+        }],
+        ['transform', {
+            last: false,
+            places: [],
+        }],
+        ['optimize', {
+            last: false,
+            places: [],
+        }],
+        ['print', {
+            last: true,
+            places: [],
+        }],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
