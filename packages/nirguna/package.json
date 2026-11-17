@@ -56,6 +56,7 @@
     "hexdump-nodejs": "^0.1.0",
     "just-snake-case": "^3.2.0",
     "putout": "^42.0.12",
+    "try-catch": "^4.0.9",
     "try-to-catch": "^4.0.5",
     "typescript": "^6.0.3",
     "wabt": "^1.0.37",
@@ -65,9 +66,9 @@
     "putout"
   ],
   "devDependencies": {
+    "@nirguna/operator-fasm": "*",
     "@nirguna/operator-wasm": "*",
     "@nirguna/runner-wasm": "*",
-    "try-catch": "^4.0.9",
     "@putout/test": "^15.1.1",
     "eslint": "^10.0.1",
     "eslint-plugin-putout": "^31.0.1",
@@ -86,8 +87,13 @@
     "#plugin-fasm": "./packages/plugin-fasm/lib/index.js",
     "#compiler-wasm": "./packages/compiler-wasm/compiler.js",
     "#compiler-fasm": "./packages/compiler-fasm/compiler.js",
+    "#checker": "./packages/checker/checker.js",
+    "#checker-fasm": "./packages/checker-fasm/checker.js",
+    "#checker-wasm": "./packages/checker-wasm/checker.js",
     "#optimizer-fasm": "./packages/optimizer-fasm/optimizer.js",
     "#optimizer-wasm": "./packages/optimizer-wasm/optimizer.js",
+    "#operator-wasm": "@nirguna/operator-wasm",
+    "#operator-fasm": "@nirguna/operator-fasm",
     "#pipeline": "./packages/pipeline/pipeline.js",
     "#test-wasm": "./packages/test-wasm/test.js",
     "#nirguna": "./lib/nirguna.js"

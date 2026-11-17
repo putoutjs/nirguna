@@ -3,6 +3,7 @@ import {transform as transformCode} from '@nirguna/transformer-fasm';
 import {print as printCode} from '@nirguna/printer-fasm';
 import {translate} from '@nirguna/translator-fasm';
 import {createPipeline} from '#pipeline';
+import {check} from '#checker-fasm';
 import {optimize} from '#optimizer-fasm';
 
 function transform(source, {config, target = 'fasm'}) {
@@ -22,6 +23,7 @@ function print(source) {
 const run = createPipeline([
     inflate,
     transform,
+    check,
     optimize,
     print,
     translate,

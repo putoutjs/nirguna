@@ -57,6 +57,10 @@ test('nirguna: wasm: onStageChanged', async (t) => {
             last: false,
             places: [],
         }],
+        ['check', {
+            last: false,
+            places: [],
+        }],
         ['optimize', {
             last: true,
             places: [],

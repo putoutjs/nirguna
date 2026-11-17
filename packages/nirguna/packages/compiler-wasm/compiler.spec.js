@@ -126,6 +126,10 @@ test('nirguna: compiler-wasm: optimized: onStageChanged', async (t) => {
             last: false,
             places: [],
         }],
+        ['check', {
+            last: false,
+            places: [],
+        }],
         ['optimize', {
             last: true,
             places: [],
@@ -734,6 +738,10 @@ test('nirguna: compiler-wasm: assembly: onStageChange: the last event is print',
             last: false,
             places: [],
         }],
+        ['check', {
+            last: false,
+            places: [],
+        }],
         ['optimize', {
             last: false,
             places: [],
@@ -743,6 +751,68 @@ test('nirguna: compiler-wasm: assembly: onStageChange: the last event is print',
             places: [],
         }],
     ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: check: class: places', async (t) => {
+    const [, result] = await compile('export class A {}\n', {
+        type: 'binary',
+    });
+    
+    const expected = [{
+        message: `Unsupported 'ClassDeclaration': class A {}`,
+        position: {
+            line: 1,
+            column: 7,
+        },
+    }];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: check: class: onStageChange', async (t) => {
+    const result = [];
+    const onStageChange = (a, b) => result.push([a, b.last]);
+    
+    await compile('export class A {}\n', {
+        type: 'binary',
+        onStageChange,
+    });
+    
+    const expected = [
+        ['inflate', false],
+        ['transform', false],
+        ['check', true],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: check: for: the printer does not stop', async (t) => {
+    const source = montag`
+        export function f(a: i32): i32 {
+            for (;;) {}
+        }
+    `;
+    
+    const [, [{message}]] = await compile(source, {
+        type: 'assembly',
+    });
+    
+    t.equal(message, `Unsupported 'ForStatement': for (;;) {}`);
+    t.end();
+});
+
+test('nirguna: compiler-wasm: check: type: code: no check', async (t) => {
+    const [, result] = await compile('export class A {}\n', {
+        type: 'code',
+    });
+    
+    const expected = [];
     
     t.deepEqual(result, expected);
     t.end();

@@ -51,6 +51,10 @@ test('nirguna: compiler-fasm: optimized: onStageChanged', async (t) => {
             last: false,
             places: [],
         }],
+        ['check', {
+            last: false,
+            places: [],
+        }],
         ['optimize', {
             last: true,
             places: [],
@@ -78,6 +82,10 @@ test('nirguna: compiler-fasm: optimized: onStageChanged: error', async (t) => {
             places: [],
         }],
         ['transform', {
+            last: false,
+            places: [],
+        }],
+        ['check', {
             last: false,
             places: [],
         }],
@@ -191,6 +199,10 @@ test('nirguna: compiler-fasm: binary: onStageChanged', async (t) => {
             places: [],
         }],
         ['transform', {
+            last: false,
+            places: [],
+        }],
+        ['check', {
             last: false,
             places: [],
         }],
@@ -427,6 +439,10 @@ test('nirguna: compiler-fasm: assembly: onStageChange: the name of the last even
             last: false,
             places: [],
         }],
+        ['check', {
+            last: false,
+            places: [],
+        }],
         ['optimize', {
             last: false,
             places: [],
@@ -436,6 +452,46 @@ test('nirguna: compiler-fasm: assembly: onStageChange: the name of the last even
             places: [],
         }],
     ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: check: a function that the transform does not lower', async (t) => {
+    const source = montag`
+        export function f(a: i32): i32 {
+            for (;;) {}
+        }
+    `;
+    
+    const [, [{message}]] = await compile(source, {
+        type: 'binary',
+    });
+    
+    t.equal(message, `Unsupported 'ExportNamedDeclaration': export async function f() {`);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: check: position', async (t) => {
+    const [, [{position}]] = await compile('class A {}\n', {
+        type: 'assembly',
+    });
+    
+    const expected = {
+        line: 1,
+        column: 0,
+    };
+    
+    t.deepEqual(position, expected);
+    t.end();
+});
+
+test('nirguna: compiler-fasm: check: type: code: no check', async (t) => {
+    const [, result] = await compile('class A {}\n', {
+        type: 'code',
+    });
+    
+    const expected = [];
     
     t.deepEqual(result, expected);
     t.end();
