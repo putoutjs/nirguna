@@ -13,11 +13,18 @@ function print(source) {
     ];
 }
 
-export const compile = createPipeline([
+const stages = [
     inflate,
     transform,
     check,
     optimize,
     print,
     translate,
-]);
+];
+
+export const wasm = {
+    name: 'wasm',
+    stages,
+    options: ['name'],
+    compile: createPipeline(stages),
+};

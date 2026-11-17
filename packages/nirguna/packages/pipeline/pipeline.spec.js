@@ -1,4 +1,5 @@
 import {test} from 'supertape';
+import {tryToCatch} from 'try-to-catch';
 import {createPipeline} from '#pipeline';
 
 const NAMES = [
@@ -374,6 +375,85 @@ test('nirguna: pipeline: no stages', async (t) => {
         's',
         [],
     ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: pipeline: stop: name of a stage', async (t) => {
+    const run = createPipeline(createStages());
+    const result = await run('s', {
+        stop: 'transform',
+    });
+    
+    const expected = [
+        's.inflate.transform',
+        [],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: pipeline: stop: the last event', async (t) => {
+    const run = createPipeline(createStages());
+    const result = [];
+    const onStageChange = (a, b) => result.push([a, b.last]);
+    
+    await run('s', {
+        stop: 'inflate',
+        onStageChange,
+    });
+    
+    const expected = [
+        ['inflate', true],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: pipeline: stop: wins over type', async (t) => {
+    const run = createPipeline(createStages());
+    const [result] = await run('s', {
+        type: 'binary',
+        stop: 'inflate',
+    });
+    
+    t.equal(result, 's.inflate');
+    t.end();
+});
+
+test('nirguna: pipeline: stop: the last stage', async (t) => {
+    const run = createPipeline(createStages());
+    const [result] = await run('s', {
+        stop: 'translate',
+    });
+    
+    t.equal(result, 's.inflate.transform.optimize.print.translate');
+    t.end();
+});
+
+test('nirguna: pipeline: stop: unknown stage', async (t) => {
+    const run = createPipeline(createStages());
+    const [error] = await tryToCatch(run, 's', {
+        stop: 'check',
+    });
+    
+    t.equal(error.message, `Unknown stage 'check'`);
+    t.end();
+});
+
+test('nirguna: pipeline: stop: unknown stage: no stage runs', async (t) => {
+    const run = createPipeline(createStages());
+    const result = [];
+    const onStageChange = result.push.bind(result);
+    
+    await tryToCatch(run, 's', {
+        stop: 'check',
+        onStageChange,
+    });
+    const expected = [];
     
     t.deepEqual(result, expected);
     t.end();

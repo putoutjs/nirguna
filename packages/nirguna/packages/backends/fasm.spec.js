@@ -1,8 +1,9 @@
 import {Buffer} from 'node:buffer';
 import {test} from 'supertape';
 import {montag} from 'montag';
-import {compile} from '#compiler-fasm';
+import {fasm} from '#backend-fasm';
 
+const {compile} = fasm;
 const noop = () => {};
 
 test('nirguna: compiler-fasm: optimized', async (t) => {
@@ -494,5 +495,30 @@ test('nirguna: compiler-fasm: check: type: code: no check', async (t) => {
     const expected = [];
     
     t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: backend-fasm: stages', (t) => {
+    const result = [];
+    
+    for (const {name} of fasm.stages) {
+        result.push(name);
+    }
+    
+    const expected = [
+        'inflate',
+        'transform',
+        'check',
+        'optimize',
+        'print',
+        'translate',
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: backend-fasm: options', (t) => {
+    t.deepEqual(fasm.options, ['target', 'config']);
     t.end();
 });

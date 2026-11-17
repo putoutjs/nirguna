@@ -20,14 +20,16 @@ function print(source) {
     ];
 }
 
-const run = createPipeline([
+const stages = [
     inflate,
     transform,
     check,
     optimize,
     print,
     translate,
-]);
+];
+
+const run = createPipeline(stages);
 
 const toOptions = (options) => {
     if (options.target === 'asm')
@@ -39,4 +41,11 @@ const toOptions = (options) => {
     return options;
 };
 
-export const compile = (source, options = {}) => run(source, toOptions(options));
+const compile = (source, options = {}) => run(source, toOptions(options));
+
+export const fasm = {
+    name: 'fasm',
+    stages,
+    options: ['target', 'config'],
+    compile,
+};

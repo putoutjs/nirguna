@@ -2,8 +2,9 @@ import {Buffer} from 'node:buffer';
 import {test} from 'supertape';
 import {montag} from 'montag';
 import {run} from '@nirguna/runner-wasm';
-import {compile} from '#compiler-wasm';
+import {wasm} from '#backend-wasm';
 
+const {compile} = wasm;
 const noop = () => {};
 
 test('nirguna: compiler-wasm', async (t) => {
@@ -815,5 +816,30 @@ test('nirguna: compiler-wasm: check: type: code: no check', async (t) => {
     const expected = [];
     
     t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: backend-wasm: stages', (t) => {
+    const result = [];
+    
+    for (const {name} of wasm.stages) {
+        result.push(name);
+    }
+    
+    const expected = [
+        'inflate',
+        'transform',
+        'check',
+        'optimize',
+        'print',
+        'translate',
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: backend-wasm: options', (t) => {
+    t.deepEqual(wasm.options, ['name']);
     t.end();
 });

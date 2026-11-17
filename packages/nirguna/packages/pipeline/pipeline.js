@@ -13,7 +13,14 @@ const identity = (source) => [
     [],
 ];
 
-const getStop = ({type = 'binary'}) => STOP_AT[type] || 'translate';
+const getStop = ({type = 'binary', stop}) => stop || STOP_AT[type] || 'translate';
+
+const hasStage = (stages, stop) => stages.some(({name}) => name === stop);
+
+const assertStop = (stages, {stop}) => {
+    if (stop && !hasStage(stages, stop))
+        throw Error(`Unknown stage '${stop}'`);
+};
 
 const isSkipped = ({name}, {optimization = true}) => name === 'optimize' && !optimization;
 
@@ -28,6 +35,8 @@ export const createPipeline = (stages) => async (source, options = {}) => {
     const {
         onStageChange = noop,
     } = options;
+    
+    assertStop(stages, options);
     
     const stop = getStop(options);
     
