@@ -1,10 +1,10 @@
 import putout from 'putout';
 import {tryCatch} from 'try-catch';
 import * as reportByteRead from './report-byte-read/index.js';
-import * as applyByteRead from './apply-byte-read/index.js';
+import * as applyShapes from './apply-shapes/index.js';
 
 const INFLATE = [
-    ['apply-byte-read', applyByteRead],
+    ['apply-shapes', applyShapes],
     ['report-byte-read', reportByteRead],
 ];
 

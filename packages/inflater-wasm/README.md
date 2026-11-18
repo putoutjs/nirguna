@@ -34,10 +34,10 @@ The stage runs Putout one time with two plugins to find. If there is no place, i
 
 | Plugin | Type | Action |
 |---|---|---|
-| `apply-byte-read` | `replace` | Writes one of three known plain functions as a `wasm` loop. |
+| `apply-shapes` | `replace` | Writes one of three known plain functions as a `wasm` loop. |
 | `report-byte-read` | `traverse` | Reports each computed member `a[i]` where `a` is a parameter and no shape changed it. |
 
-The plugin `apply-byte-read` does not write the types. The plugin `apply-types` of `plugin-wasm` types the parameters and the result as `i32` in the stage `transform`.
+The plugin `apply-shapes` does not write the types. The plugin `apply-types` of `plugin-wasm` types the parameters and the result as `i32` in the stage `transform`.
 
 ## Known shapes
 
