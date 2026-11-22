@@ -4,7 +4,8 @@ import {print as printCode} from '@nirguna/printer-fasm';
 import {translate} from '@nirguna/translator-fasm';
 import {check} from '@nirguna/checker-fasm';
 import {optimize} from '@nirguna/optimizer-fasm';
-import {createPipeline, printStage} from '#pipeline';
+import {printStage} from '#pipeline';
+import {defineBackend} from './define-backend.js';
 
 function transform(source, {config, target = 'fasm'}) {
     return transformCode(source, {
@@ -22,8 +23,6 @@ const stages = [
     translate,
 ];
 
-const run = createPipeline(stages);
-
 const toOptions = (options) => {
     if (options.target === 'asm')
         return {
@@ -34,11 +33,15 @@ const toOptions = (options) => {
     return options;
 };
 
-const compile = (source, options = {}) => run(source, toOptions(options));
+const backend = defineBackend({
+    name: 'fasm',
+    options: ['target', 'config'],
+    stages,
+});
+
+const compile = (source, options = {}) => backend.compile(source, toOptions(options));
 
 export const fasm = {
-    name: 'fasm',
-    stages,
-    options: ['target', 'config'],
+    ...backend,
     compile,
 };

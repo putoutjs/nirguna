@@ -4,7 +4,8 @@ import {print as printCode} from '@nirguna/printer-wasm';
 import {translate} from '@nirguna/translator-wasm';
 import {check} from '@nirguna/checker-wasm';
 import {optimize} from '@nirguna/optimizer-wasm';
-import {createPipeline, printStage} from '#pipeline';
+import {printStage} from '#pipeline';
+import {defineBackend} from './define-backend.js';
 
 const stages = [
     inflate,
@@ -15,9 +16,8 @@ const stages = [
     translate,
 ];
 
-export const wasm = {
+export const wasm = defineBackend({
     name: 'wasm',
-    stages,
     options: ['name'],
-    compile: createPipeline(stages),
-};
+    stages,
+});
