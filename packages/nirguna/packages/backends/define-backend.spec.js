@@ -19,6 +19,7 @@ test('nirguna: define-backend: fields', (t) => {
     });
     
     const result = [backend.name, backend.options, backend.stages];
+    
     const expected = [
         'hello',
         ['target'],

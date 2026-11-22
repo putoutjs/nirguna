@@ -188,6 +188,7 @@ test('nirguna: operator-checker: createChecker: supported', (t) => {
     });
     
     const result = check('a;');
+    
     const expected = [
         'a;',
         [],
@@ -204,6 +205,7 @@ test('nirguna: operator-checker: createChecker: unsupported', (t) => {
     });
     
     const [, result] = check('a();');
+    
     const expected = [{
         message: `Unsupported 'CallExpression': a()`,
         position: {

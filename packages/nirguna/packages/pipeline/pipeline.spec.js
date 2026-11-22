@@ -462,6 +462,7 @@ test('nirguna: pipeline: stop: unknown stage: no stage runs', async (t) => {
 test('nirguna: pipeline: printStage: result and no places', (t) => {
     const print = printStage((source) => `${source}!`);
     const result = print('a');
+    
     const expected = [
         'a!',
         [],
