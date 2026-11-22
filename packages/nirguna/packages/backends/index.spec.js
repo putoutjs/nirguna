@@ -115,9 +115,30 @@ test('nirguna: backends: resolve: target of Object.prototype: fasm', (t) => {
     t.end();
 });
 
+test('nirguna: backends: resolve: asm: backend', (t) => {
+    const [backend] = resolve({
+        target: 'asm',
+    });
+    
+    t.equal(backend, fasm);
+    t.end();
+});
+
+test('nirguna: backends: resolve: asm: type is fixed', (t) => {
+    const [, options] = resolve({
+        target: 'asm',
+        type: 'binary',
+    });
+    
+    t.equal(options.type, 'assembly');
+    t.end();
+});
+
 test('nirguna: backends: TARGETS: names', (t) => {
-    const result = [...TARGETS.keys()];
+    const result = [...TARGETS.keys()].sort();
     const expected = [
+        'asm',
+        'fasm',
         'wasm',
         'wast',
     ];

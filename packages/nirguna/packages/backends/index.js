@@ -8,20 +8,20 @@ const COMMON = [
     'onStageChange',
 ];
 
-export const TARGETS = new Map([
-    ['wasm', {
-        backend: wasm,
-    }],
-    ['wast', {
-        backend: wasm,
-        fixed: {
-            type: 'assembly',
+const BACKENDS = [wasm, fasm];
+
+export const TARGETS = new Map(BACKENDS.flatMap((backend) => Object
+    .entries(backend.targets)
+    .map(([target, fixed]) => [
+        target, {
+            backend,
+            fixed,
         },
-    }],
-]);
+    ])));
 
 export const DEFAULT = {
     backend: fasm,
+    fixed: {},
 };
 
 const pick = (options, names) => {

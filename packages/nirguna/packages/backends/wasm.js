@@ -20,4 +20,10 @@ export const wasm = defineBackend({
     name: 'wasm',
     options: ['name'],
     stages,
+    targets: {
+        wasm: {},
+        wast: {
+            type: 'assembly',
+        },
+    },
 });

@@ -23,25 +23,14 @@ const stages = [
     translate,
 ];
 
-const toOptions = (options) => {
-    if (options.target === 'asm')
-        return {
-            ...options,
-            type: 'assembly',
-        };
-    
-    return options;
-};
-
-const backend = defineBackend({
+export const fasm = defineBackend({
     name: 'fasm',
     options: ['target', 'config'],
     stages,
+    targets: {
+        fasm: {},
+        asm: {
+            type: 'assembly',
+        },
+    },
 });
-
-const compile = (source, options = {}) => backend.compile(source, toOptions(options));
-
-export const fasm = {
-    ...backend,
-    compile,
-};
