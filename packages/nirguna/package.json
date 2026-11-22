@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "@nirguna/bundler": "^1.0.0",
+    "@nirguna/checker-fasm": "^1.0.0",
+    "@nirguna/checker-wasm": "^1.0.0",
     "@nirguna/cli-args": "^1.0.0",
     "@nirguna/cli-help": "^1.0.0",
     "@nirguna/inflater-fasm": "^1.0.0",
@@ -89,8 +91,6 @@
     "#backends": "./packages/backends/index.js",
     "#backend-wasm": "./packages/backends/wasm.js",
     "#backend-fasm": "./packages/backends/fasm.js",
-    "#checker-fasm": "./packages/checker-fasm/checker.js",
-    "#checker-wasm": "./packages/checker-wasm/checker.js",
     "#optimizer-fasm": "./packages/optimizer-fasm/optimizer.js",
     "#optimizer-wasm": "./packages/optimizer-wasm/optimizer.js",
     "#operator-wasm": "@nirguna/operator-wasm",

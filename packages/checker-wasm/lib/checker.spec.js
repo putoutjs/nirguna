@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import {montag} from 'montag';
-import {check} from '#checker-wasm';
+import {check} from './checker.js';
 
 test('nirguna: checker-wasm: supported', (t) => {
     const source = montag`

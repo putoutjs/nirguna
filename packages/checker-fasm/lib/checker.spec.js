@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import {montag} from 'montag';
-import {check} from '#checker-fasm';
+import {check} from './checker.js';
 
 test('nirguna: checker-fasm: supported', (t) => {
     const source = montag`
