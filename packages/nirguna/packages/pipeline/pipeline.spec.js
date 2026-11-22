@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import {tryToCatch} from 'try-to-catch';
-import {createPipeline} from '#pipeline';
+import {createPipeline, printStage} from '#pipeline';
 
 const NAMES = [
     'inflate',
@@ -456,5 +456,39 @@ test('nirguna: pipeline: stop: unknown stage: no stage runs', async (t) => {
     const expected = [];
     
     t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: pipeline: printStage: result and no places', (t) => {
+    const print = printStage((source) => `${source}!`);
+    const result = print('a');
+    const expected = [
+        'a!',
+        [],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: pipeline: printStage: name is print', (t) => {
+    const print = printStage(() => '');
+    
+    t.equal(print.name, 'print');
+    t.end();
+});
+
+test('nirguna: pipeline: printStage: stop by name', async (t) => {
+    const stages = [
+        printStage((source) => `${source}!`),
+    ];
+    
+    const run = createPipeline(stages);
+    
+    const [result] = await run('a', {
+        stop: 'print',
+    });
+    
+    t.equal(result, 'a!');
     t.end();
 });

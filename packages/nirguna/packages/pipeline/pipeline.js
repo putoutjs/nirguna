@@ -13,6 +13,15 @@ const identity = (source) => [
     [],
 ];
 
+const setName = (fn, name) => Object.defineProperty(fn, 'name', {
+    value: name,
+});
+
+export const printStage = (print) => setName((source) => [
+    print(source),
+    [],
+], 'print');
+
 const getStop = ({type = 'binary', stop}) => stop || STOP_AT[type] || 'translate';
 
 const hasStage = (stages, stop) => stages.some(({name}) => name === stop);

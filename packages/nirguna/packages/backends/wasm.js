@@ -4,21 +4,14 @@ import {print as printCode} from '@nirguna/printer-wasm';
 import {translate} from '@nirguna/translator-wasm';
 import {check} from '@nirguna/checker-wasm';
 import {optimize} from '@nirguna/optimizer-wasm';
-import {createPipeline} from '#pipeline';
-
-function print(source) {
-    return [
-        printCode(source),
-        [],
-    ];
-}
+import {createPipeline, printStage} from '#pipeline';
 
 const stages = [
     inflate,
     transform,
     check,
     optimize,
-    print,
+    printStage(printCode),
     translate,
 ];
 

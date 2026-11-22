@@ -4,7 +4,7 @@ import {print as printCode} from '@nirguna/printer-fasm';
 import {translate} from '@nirguna/translator-fasm';
 import {check} from '@nirguna/checker-fasm';
 import {optimize} from '@nirguna/optimizer-fasm';
-import {createPipeline} from '#pipeline';
+import {createPipeline, printStage} from '#pipeline';
 
 function transform(source, {config, target = 'fasm'}) {
     return transformCode(source, {
@@ -13,19 +13,12 @@ function transform(source, {config, target = 'fasm'}) {
     });
 }
 
-function print(source) {
-    return [
-        printCode(source),
-        [],
-    ];
-}
-
 const stages = [
     inflate,
     transform,
     check,
     optimize,
-    print,
+    printStage(printCode),
     translate,
 ];
 
