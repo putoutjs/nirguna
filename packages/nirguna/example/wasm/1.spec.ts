@@ -1,5 +1,5 @@
 import {test, stub} from 'supertape';
-import {prepare} from '#test-wasm';
+import {prepare} from '@nirguna/test-wasm';
 import * as one from './1.wast.ts';
 
 const preparedOne = prepare(one);
