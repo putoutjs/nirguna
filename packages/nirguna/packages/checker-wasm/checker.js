@@ -1,4 +1,4 @@
-import {checkNodes} from '#checker';
+import {createChecker} from '@nirguna/operator-checker';
 
 const allowed = new Set([
     'Program',
@@ -24,7 +24,7 @@ const allowed = new Set([
     'TSTypeParameterInstantiation',
 ]);
 
-export const check = (source) => checkNodes(source, {
+export const check = createChecker({
     isTS: true,
     allowed,
 });

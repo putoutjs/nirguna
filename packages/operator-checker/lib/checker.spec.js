@@ -1,6 +1,6 @@
 import {test} from 'supertape';
 import {montag} from 'montag';
-import {checkNodes} from '#checker';
+import {checkNodes, createChecker} from './checker.js';
 
 const CALLS = new Set([
     'Program',
@@ -162,5 +162,93 @@ test('nirguna: checker: parse error: source stays', (t) => {
     });
     
     t.equal(result, 'a(');
+    t.end();
+});
+
+const ALLOWED = new Set([
+    'Program',
+    'ExpressionStatement',
+    'Identifier',
+]);
+
+test('nirguna: operator-checker: createChecker: name is check', (t) => {
+    const check = createChecker({
+        isTS: false,
+        allowed: ALLOWED,
+    });
+    
+    t.equal(check.name, 'check');
+    t.end();
+});
+
+test('nirguna: operator-checker: createChecker: supported', (t) => {
+    const check = createChecker({
+        isTS: false,
+        allowed: ALLOWED,
+    });
+    
+    const result = check('a;');
+    const expected = [
+        'a;',
+        [],
+    ];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: operator-checker: createChecker: unsupported', (t) => {
+    const check = createChecker({
+        isTS: false,
+        allowed: ALLOWED,
+    });
+    
+    const [, result] = check('a();');
+    const expected = [{
+        message: `Unsupported 'CallExpression': a()`,
+        position: {
+            line: 1,
+            column: 0,
+        },
+    }];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: operator-checker: createChecker: isTS true parses types', (t) => {
+    const typed = new Set([
+        'Program',
+        'VariableDeclaration',
+        'VariableDeclarator',
+        'Identifier',
+        'NumericLiteral',
+        'TSTypeAnnotation',
+        'TSNumberKeyword',
+    ]);
+    
+    const check = createChecker({
+        isTS: true,
+        allowed: typed,
+    });
+    
+    const [, result] = check('const a: number = 1;');
+    const expected = [];
+    
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('nirguna: operator-checker: createChecker: isTS false: parse error is a place', (t) => {
+    const check = createChecker({
+        isTS: false,
+        allowed: ALLOWED,
+    });
+    
+    const [source, places] = check('const a: number = 1;');
+    const result = [source, places.length];
+    const expected = ['const a: number = 1;', 1];
+    
+    t.deepEqual(result, expected);
     t.end();
 });

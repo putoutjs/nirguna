@@ -57,3 +57,12 @@ export const checkNodes = (source, {isTS, allowed}) => {
     
     return [source, places];
 };
+
+const setName = (fn, name) => Object.defineProperty(fn, 'name', {
+    value: name,
+});
+
+export const createChecker = ({isTS, allowed}) => setName((source) => checkNodes(source, {
+    isTS,
+    allowed,
+}), 'check');
