@@ -3,8 +3,8 @@ import {transform as transformCode} from '@nirguna/transformer-fasm';
 import {print as printCode} from '@nirguna/printer-fasm';
 import {translate} from '@nirguna/translator-fasm';
 import {check} from '@nirguna/checker-fasm';
+import {optimize} from '@nirguna/optimizer-fasm';
 import {createPipeline} from '#pipeline';
-import {optimize} from '#optimizer-fasm';
 
 function transform(source, {config, target = 'fasm'}) {
     return transformCode(source, {
